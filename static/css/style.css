@@ -1,9 +1,8 @@
 /* ================================
    FONT MATCHA MINT
 ================================ */
-
 @font-face {
-    font-family: "Matcha Mint";
+    font-family: "Matcha Mint"; 
     src: url("/static/fonts/Matcha Mint.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
@@ -22,7 +21,6 @@
 /* ================================
    VARIABLES
 ================================ */
-
 :root {
     --ink: #1c1917;
     --paper: #faf6f0;
