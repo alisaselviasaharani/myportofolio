@@ -2,7 +2,7 @@
    FONT MATCHA MINT
 ================================ */
 @font-face {
-    font-family: "Matcha Mint"; 
+    font-family: "Matcha Mint";
     src: url("/static/fonts/Matcha Mint.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
@@ -24,13 +24,67 @@
 :root {
     --ink: #1c1917;
     --paper: #faf6f0;
-    --accent: #d95d39;
+    --accent: #39b1d9;
     --accent-dark: #a8442a;
     --line: #e3d9c9;
     --text-muted: #6b6459;
     --radius: 4px;
 }
 
+.intro {
+
+    text-align: center;
+    min-height: calc(100vh-100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.intro-card {
+
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+}
+
+.intro-card h1 {
+    font-family: "AGENTORANGE";
+    font-size: 60px;
+}
+
+.intro-card p {
+    font-family: "SimpleHandmade", cursive;
+    font-size: 30px;
+}
+
+.intro-image img {
+
+    width: 140px !important;
+    height: 140px !important;
+
+}
+
+@font-face {
+    font-family: "Milky Cream";
+    src: url("/static/fonts/Milky%20Cream.otf") format("opentype");
+
+
+}
+
+@font-face {
+    font-family: "SimpleHandmade";
+    src: url("/static/fonts/SimpleHandmade.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "AGENTORANGE";
+    src: url("/static/fonts/AGENTORANGE.TTF") format("opentype");
+}
+ 
 
 /* ================================
    BODY
