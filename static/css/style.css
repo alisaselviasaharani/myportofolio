@@ -1,6 +1,6 @@
-/* ================================
+/* 
    FONT MATCHA MINT
-================================ */
+ */
 @font-face {
     font-family: "Matcha Mint";
     src: url("/static/fonts/Matcha Mint.otf") format("opentype");
@@ -9,9 +9,9 @@
 }
 
 
-/* ================================
+/* 
    RESET
-================================ */
+ */
 * {
     margin: 0;
     padding: 0;
@@ -35,9 +35,9 @@
     scroll-snap-align: start;
 }
 
-/* ================================
+/* 
    VARIABLES
-================================ */
+ */
 :root {
     --ink: #1c1917;
     --paper: #faf6f0;
@@ -85,11 +85,13 @@
 
 }
 
+
+/* 
+    Mengaktifkan font yang sudah di download di dafont 
+*/
 @font-face {
     font-family: "Milky Cream";
     src: url("/static/fonts/Milky%20Cream.otf") format("opentype");
-
-
 }
 
 @font-face {
@@ -103,9 +105,9 @@
 }
 
 
-/* ================================
-   BODY
-================================ */
+/* 
+    BODY
+*/
 body {
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--ink);
@@ -124,7 +126,9 @@ body {
 }
 
 
-/* SWIPE */
+/* 
+    SWIPE 
+*/
 .swipe-hint {
     margin-top: 25px;
 
@@ -144,7 +148,9 @@ body {
 }
 
 @keyframes swipeArrow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateX(0);
     }
 
@@ -152,18 +158,19 @@ body {
         transform: translateX(8px);
     }
 }
-/* ================================
+
+/* 
    TYPOGRAPHY
-================================ */
+ */
 h1,
 .brand {
     font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
 
-/* ================================
+/* 
    CONTAINER
-================================ */
+ */
 
 .container {
     max-width: 960px;
@@ -171,9 +178,9 @@ h1,
     padding: 0 1.5rem;
 }
 
-/* ================================
+/* 
    HEADER
-================================ */
+ */
 
 .site-header {
     border-bottom: 1px solid var(--line);
@@ -205,9 +212,9 @@ h1,
 }
 
 
-/* ================================
+/* 
    HERO
-================================ */
+ */
 
 .hero {
     padding: 4.5rem 0 5rem;
@@ -232,9 +239,9 @@ h1,
     grid-area: details;
 }
 
-/* ================================
+/* 
    KICKER
-================================ */
+ */
 
 .hero-kicker {
     display: inline-block;
@@ -264,9 +271,9 @@ h1,
 }
 
 
-/* ================================
+/* 
    FONT MATCHA MINT
-================================ */
+ */
 
 .hero-identity h1 {
     font-family: "Matcha Mint", cursive;
@@ -276,9 +283,9 @@ h1,
 }
 
 
-/* ================================
+/* 
    BIO
-================================ */
+ */
 .bio {
     color: #fffaf0;
     max-width: 520px;
@@ -289,9 +296,9 @@ h1,
         1px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* ================================
+/* 
    NPM & PROGRAM
-================================ */
+ */
 .meta-list {
     display: flex;
     gap: 2rem;
@@ -324,9 +331,9 @@ h1,
 }
 
 
-/* ================================
+/* 
    SOCIAL LINKS
-================================ */
+ */
 
 .social-links {
     display: flex;
@@ -357,9 +364,7 @@ h1,
 }
 
 
-/* ================================
-   FOTO PROFIL
-================================ */
+/* FOTO PROFIL*/
 
 .hero-photo {
     grid-area: photo;
@@ -400,25 +405,17 @@ h1,
 }
 
 
-/* ================================
-   FOOTER
-================================ */
+/* FOOTER*/
 
 .site-footer {
     padding: 1.5rem;
-
     color: var(--text-muted);
-
     font-size: 0.85rem;
-
     border-top: 1px solid var(--line);
 }
 
 
-/* ================================
-   RESPONSIVE / HP
-================================ */
-
+/* RESPONSIVE / HP */
 @media (max-width: 600px) {
 
     .hero-grid {
@@ -441,3 +438,122 @@ h1,
 
 
 /* PAGE EDUCATION */
+.education-page {
+    min-height: 100vh;
+    padding-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.education-content {
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+
+/*  JUDUL EDUCATION*/
+
+.ketik {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.ketik h1 {
+    font-family: "AGENTORANGE";
+    font-size: 50px;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    width: 0;
+
+    border-right: 4px solid orange;
+
+    animation:
+        ketikan 2.5s steps(9, end) forwards,
+        kedip 0.75s step-end infinite;
+}
+
+
+/* Efek mengetik */
+@keyframes ketikan {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 9ch;
+    }
+}
+
+
+/* Efek kursor */
+@keyframes kedip {
+
+    0%,
+    100% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: orange;
+    }
+}
+
+
+/* EDUCATION CARDS */
+.education-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 25px;
+}
+
+
+.education-card {
+    width: 280px;
+    min-height: 330px;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* Logo sekolah */
+
+.education-logo {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+
+    margin-bottom: 20px;
+}
+
+
+.education-card h2 {
+    font-size: 25px;
+    margin: 10px 0;
+    font-family: "SimpleHandmade";
+}
+
+
+.education-card p {
+    font-size: 23px;
+    margin: 5px 0;
+    font-family: "SimpleHandmade";
+}
