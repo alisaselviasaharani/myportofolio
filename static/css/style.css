@@ -534,9 +534,7 @@ h1,
 }
 
 
-
-
-/* Logo sekolah */
+/* Logo  */
 
 .education-logo {
     width: 200px;
@@ -642,5 +640,87 @@ h1,
 }
 
 .experience-content .avatar {
+    border: none;
+}
+
+/* PAGE - ACHIEVEMENT */
+.achievements-page{
+    min-height: 100vh;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.achievements-content{
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+/* JUDUL ACHIEVEMENT */
+
+.achievements-content .ketik {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* ACHIEVEMENT CARDS */
+.achievements-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+}
+
+.achievements-card {
+    width: 400px;
+    min-height: 330px;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+
+.achievements-card .avatar {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border: none;
+    margin-bottom: 20px;
+}
+
+
+.achievements-card h2 {
+    font-size: 25px;
+    margin: 10px 0;
+    font-family: "SimpleHandmade";
+}
+
+.achievements-card h3 {
+    font-size: 25px;
+    margin: 10px 0;
+    font-family: "SimpleHandmade";
+}
+
+.achievements-card p {
+    font-size: 23px;
+    margin: 5px 0;
+    font-family: "SimpleHandmade";
+}
+
+.achievements-content .avatar {
     border: none;
 }
