@@ -534,6 +534,8 @@ h1,
 }
 
 
+
+
 /* Logo sekolah */
 
 .education-logo {
@@ -556,4 +558,89 @@ h1,
     font-size: 23px;
     margin: 5px 0;
     font-family: "SimpleHandmade";
+}
+
+
+/* 
+   PAGE EXPERIENCE
+ */
+
+.experience-page {
+    min-height: 100vh;
+    padding-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.experience-content {
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+
+/* JUDUL EXPERIENCE */
+
+.experience-content .ketik {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+
+/* EXPERIENCE CARDS */
+
+.experience-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+}
+
+.experience-card {
+    width: 400px;
+    min-height: 330px;
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* LOGO EXPERIENCE */
+
+.experience-card .avatar {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border: none;
+    margin-bottom: 20px;
+}
+
+
+.experience-card h2 {
+    font-size: 25px;
+    margin: 10px 0;
+    font-family: "SimpleHandmade";
+}
+
+.experience-card p {
+    font-size: 23px;
+    margin: 5px 0;
+    font-family: "SimpleHandmade";
+}
+
+.experience-content .avatar {
+    border: none;
 }
