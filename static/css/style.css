@@ -1,17 +1,53 @@
 /* 
-   FONT MATCHA MINT
- */
+    Mengaktifkan font yang sudah di download di dafont 
+*/
 @font-face {
     font-family: "Matcha Mint";
     src: url("/static/fonts/Matcha Mint.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: "Milky Cream";
+    src: url("/static/fonts/Milky%20Cream.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "SimpleHandmade";
+    src: url("/static/fonts/SimpleHandmade.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: "AGENTORANGE";
+    src: url("/static/fonts/AGENTORANGE.TTF") format("opentype");
+}
+
+
+/*
+    button about
+*/
+.button-about {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.button-about:hover{
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
 
 
 /* 
    RESET
- */
+*/
 * {
     margin: 0;
     padding: 0;
@@ -85,24 +121,6 @@
 
 }
 
-
-/* 
-    Mengaktifkan font yang sudah di download di dafont 
-*/
-@font-face {
-    font-family: "Milky Cream";
-    src: url("/static/fonts/Milky%20Cream.otf") format("opentype");
-}
-
-@font-face {
-    font-family: "SimpleHandmade";
-    src: url("/static/fonts/SimpleHandmade.ttf") format("opentype");
-}
-
-@font-face {
-    font-family: "AGENTORANGE";
-    src: url("/static/fonts/AGENTORANGE.TTF") format("opentype");
-}
 
 
 /* 
@@ -626,7 +644,6 @@ h1,
     margin-bottom: 20px;
 }
 
-
 .experience-card h2 {
     font-size: 25px;
     margin: 10px 0;
@@ -644,7 +661,8 @@ h1,
 }
 
 /* PAGE - ACHIEVEMENT */
-.achievements-page{
+
+.achievements-page {
     min-height: 100vh;
     padding-top: 30px;
     display: flex;
@@ -652,7 +670,7 @@ h1,
     align-items: flex-start;
 }
 
-.achievements-content{
+.achievements-content {
     width: 90%;
     max-width: 1100px;
     text-align: center;
@@ -667,7 +685,7 @@ h1,
 }
 
 /* ACHIEVEMENT CARDS */
-.achievements-cards{
+.achievements-cards {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -723,4 +741,81 @@ h1,
 
 .achievements-content .avatar {
     border: none;
+}
+
+
+
+/* PAGE - SKILLS */
+
+.skills-page {
+    min-height: 100vh;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.skills-content {
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+/* JUDUL SKILLS */
+
+.skills-content .ketik {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* SKILLS CARDS */
+
+.skills-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+}
+
+.skills-card {
+    width: 400px;
+    min-height: 500px;
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+/* GAMBAR SKILLS */
+
+.skills-logo {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+/* JUDUL */
+
+.skills-card h2 {
+    font-size: 25px;
+    margin: 10px 0 20px;
+    font-family: "SimpleHandmade";
+}
+
+/* DAFTAR SKILL */
+
+.skills-card p {
+    font-size: 23px;
+    margin: 5px 0;
+    font-family: "SimpleHandmade";
 }

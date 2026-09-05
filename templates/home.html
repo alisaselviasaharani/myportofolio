@@ -16,8 +16,8 @@
         <div class="container">
             <a href="#profile" class="brand">Alisa Selvia Saharani</a>
             <nav>
-                
-                <!-- Menu -->
+
+                <!--  Menu -->
                 <a href="{% url 'home' %}">HOME</a>
                 <a href="{% url 'aboutme' %}">ABOUT</a>
 
@@ -29,14 +29,20 @@
     <main> <!-- -> wadah page utama -->
         <section class="intro">
             <div class="intro-card">
-                <div class="intro-image">
-                   <img class="avatar" src="/static/img/nailong.png" alt="Photo of nailong">
+
+                <!-- menambahkan foto ikonik yang saya sukai yaitu nailong agar pengunjung merasa terhibur dengan keimutan dan lucunya nailong kuning >_< -->
+                <div class="intro-image"> 
+                    <img class="avatar" src="/static/img/nailong.png" alt="Photo of nailong">
                 </div>
+
+                <!-- membuat deskripsi perkenalan agar pengunjung terkesan di page utama home saya :) -->
                 <h1> Hello, I'm Alisa</h1>
                 <p> I'm a Computer Science student at Universitas Indonesia.</p>
                 <p> Welcome to my portofolio!!!</p>
                 <p> This is a little space where I share more about myself.</p>
-                <a href="{% url 'aboutme' %}">Get to know me → </a>
+
+                <!-- membuat button untuk menunjukkan ke halaman selanjutnya -->
+                <a href="{% url 'aboutme' %}" class="button-about">Get to know me → </a> 
             </div>
         </section>
 

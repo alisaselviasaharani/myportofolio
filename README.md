@@ -94,6 +94,7 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
     - mempercantik tampilan di section experience
     - mempercantik tampilan di section achievements
     - menambahkan informasi README
+    - menghapus index.html (karna saya memindahkan isi index.html seluruhnya ke file aboutme.html)
 
 
 
