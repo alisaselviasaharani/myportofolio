@@ -744,7 +744,6 @@ h1,
 }
 
 
-
 /* PAGE - SKILLS */
 
 .skills-page {
@@ -819,3 +818,67 @@ h1,
     margin: 5px 0;
     font-family: "SimpleHandmade";
 }
+
+
+
+
+
+
+
+/* PAGE - CONTACT */
+
+.contact-page {
+    min-height: 100vh;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.contact-content {
+    width: 90%;
+    max-width: 1100px;
+    text-align: center;
+}
+
+/* JUDUL CONTACT */
+
+.contact-content .ketik {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* CONTACT CARDS */
+
+.contact-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+}
+
+.contact-card {
+    width: 400px;
+    min-height: 400px;
+    padding: 25px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+/* GAMBAR SKILLS */
+
+.contact-logo {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
