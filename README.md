@@ -108,6 +108,7 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
     berikut ini progress commit di git hub yang telah saya lakukan:
     - menambahkan section contact
     - mempercantik petunjuk untuk swipe dan mengganti posisi gambar nailong menjadi center
+    - mempercantik button swipe (swipe hint) , menambahkan gelembung2 (bubble) di setiap page serta menambahkan informasi di read
 
 
 ## AI Disclosure & Usage
