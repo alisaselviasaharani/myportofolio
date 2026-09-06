@@ -7,6 +7,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Milky Cream";
     src: url("/static/fonts/Milky%20Cream.otf") format("opentype");
@@ -39,7 +40,7 @@
     transition: 0.3s;
 }
 
-.button-about:hover{
+.button-about:hover {
     transform: translateY(-3px);
     opacity: 0.85;
 }
@@ -84,8 +85,9 @@
     --radius: 4px;
 }
 
-.intro {
+/* PAGE- HOME */
 
+.intro {
     text-align: center;
     min-height: calc(100vh-100px);
     display: flex;
@@ -102,6 +104,8 @@
     border-radius: 10px;
     max-width: 800px;
     width: 90%;
+    align-items: center;
+    justify-content: center;
 }
 
 .intro-card h1 {
@@ -114,13 +118,18 @@
     font-size: 30px;
 }
 
-.intro-image img {
-
-    width: 140px !important;
-    height: 140px !important;
-
+/* Foto nailong */
+.intro-image {
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
+.intro-image img {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+}
 
 
 /* 
@@ -155,27 +164,58 @@ body {
     justify-content: center;
     gap: 8px;
 
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 20px;
+
+    background-color: var(--accent);
+    color: white;
+    font-family: "Space Grotesk", sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     font-size: 16px;
     font-weight: 700;
+    animation: floatHint 5s ease-in-out infinite;
+}
+
+.swipe-text {
+    font-family: "Simply Olive";
 }
 
 .swipe-hint .arrow {
-    font-size: 25px;
+    font-size: 28px;
+    font-weight: 700;
     animation: swipeArrow 1s infinite;
     justify-content: center;
 }
 
 @keyframes swipeArrow {
 
+    /*Panah bergerak ke kanan*/
     0%,
     100% {
         transform: translateX(0);
     }
 
     50% {
-        transform: translateX(8px);
+        transform: translateX(10px);
     }
 }
+
+@keyframes floatHint {
+
+    /* Card sedikit naik-turun */
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
 
 /* 
    TYPOGRAPHY
@@ -483,6 +523,11 @@ h1,
 .ketik h1 {
     font-family: "AGENTORANGE";
     font-size: 50px;
+    color: #E8F7FA;
+    text-shadow:
+        3px 3px 0 #1c1917,
+        0 0 10px rgba(255, 224, 102, 0.35);
+
 
     white-space: nowrap;
     overflow: hidden;
@@ -860,8 +905,8 @@ h1,
 }
 
 .contact-card {
-    width: 400px;
-    min-height: 400px;
+    width: 300px;
+    min-height: 300px;
     padding: 25px;
     border-radius: 10px;
 
@@ -873,12 +918,11 @@ h1,
     box-sizing: border-box;
 }
 
-/* GAMBAR SKILLS */
+/* GAMBAR CONTACT */
 
 .contact-logo {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
     margin-bottom: 20px;
 }
-
