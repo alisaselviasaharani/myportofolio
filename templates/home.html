@@ -18,8 +18,12 @@
             <nav>
 
                 <!--  Menu -->
-                <a href="{% url 'home' %}"><h2>HOME</h2></a>
-                <a href="{% url 'aboutme' %}"><h2>ABOUT</h2></a>
+                <a href="{% url 'home' %}">
+                    <h2>HOME</h2>
+                </a>
+                <a href="{% url 'aboutme' %}">
+                    <h2>ABOUT</h2>
+                </a>
 
             </nav>
         </div>
@@ -31,7 +35,7 @@
             <div class="intro-card">
 
                 <!-- menambahkan foto ikonik yang saya sukai yaitu nailong agar pengunjung merasa terhibur dengan keimutan dan lucunya nailong kuning >_< -->
-                <div class="intro-image"> 
+                <div class="intro-image">
                     <img class="avatar" src="/static/img/nailong.png" alt="Photo of nailong">
                 </div>
 
@@ -42,11 +46,17 @@
                 <p> This is a little space where I share more about myself.</p>
 
                 <!-- membuat button untuk menunjukkan ke halaman selanjutnya -->
-                <a href="{% url 'aboutme' %}" class="button-about">Get to know me → </a> 
+                <a href="{% url 'aboutme' %}" class="button-about">Get to know me → </a>
             </div>
         </section>
 
     </main>
+    
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p>
+        </div>
+    </footer>
 
 </body>
 
