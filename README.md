@@ -10,9 +10,9 @@ Website portofolio pribadi yang saya buat menggunakan Django, HTML, dan CSS. Dal
 skills, dan kontak saya.
 
 ## Konsep ide yang saya gunakan
-Untuk ide dalam website ini saya menggunakan tema laut karna saya ingin menggambarkan diri saya seperti sedang barada dalam aquarium dan sedang menyelami kehidupan. Laut bagi saya menjadi sebuah simbol perjalanan hidup yang penuh dengan hal-hal yang belum diketahui dan terus dieksplorasi. Setiap bagian yang ada dalam website ini menggambarkan tahap yang berbeda dalam perjalanan tersebut, dari mulai mengenal diri sendiri, Pendidikan yang saya jalani, pengalaman yang telah saya lakukan, hingga pencapaian yang di dapatkan.
+Untuk ide dalam website ini saya menggunakan tema laut karena saya ingin menggambarkan diri saya seperti sedang berada dalam aquarium dan sedang menyelami kehidupan. Laut bagi saya menjadi sebuah simbol perjalanan hidup yang penuh dengan hal-hal yang belum diketahui dan terus dieksplorasi. Setiap bagian yang ada dalam website ini menggambarkan tahap yang berbeda dalam perjalanan tersebut, dari mulai mengenal diri sendiri, Pendidikan yang saya jalani, pengalaman yang telah saya lakukan, hingga pencapaian yang di dapatkan.
 
-Backgroud laut ini memiliki visual yang beragam sehingga website ini menjadi sebuah interpretasi sebuah kehidupan yang penuh rintangan dan tantangan sehingga saya ingin memberikan kesan bagi pengunjung website untuk ikut serta menyelami dan mengenal diri saya lebih dalam. Dengan konsep ini, saya berharap website portofolio yang saya rancang, desain, dan ciptakan bukan hanya sekedar sebagai tempat menampilkan informasi diri saya saja. Tetapi, menjadi representasi visual dan perjalanan dan proses perkembangan diri saya.
+Background laut ini memiliki visual yang beragam sehingga website ini menjadi sebuah interpretasi sebuah kehidupan yang penuh rintangan dan tantangan sehingga saya ingin memberikan kesan bagi pengunjung website untuk ikut serta menyelami dan mengenal diri saya lebih dalam. Dengan konsep ini, saya berharap website portofolio yang saya rancang, desain, dan ciptakan bukan hanya sekedar sebagai tempat menampilkan informasi diri saya saja. Tetapi, menjadi representasi visual dan perjalanan dan proses perkembangan diri saya.
 
 
 ## Teknologi yang di gunakan:
@@ -28,7 +28,7 @@ seperti yang sudah di jabarkan dalam deskripsi di atas saya menggunakan :
 - Google Fonts (Space Groteks)
 - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
 - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
-- W3Schools (Saya menggunakan ini untuk mengetahui bagaimana sintax html dan css)https://www.w3schools.com/html/html_css.asp
+- W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
 - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
 - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
 
@@ -83,7 +83,7 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
 4. 5 September 2026
     - Mengerjakan tugas 1 dengan menambahkan foto saya
     - Menambahkan logo ui, menambahkan logo SMA, menambahkan logo SMP, dll.
-    - Menambahkan beberapa tampilan yang saya inginkan seperti membaut 2 menu yaitu menu home dan menu aboutme.
+    - Menambahkan beberapa tampilan yang saya inginkan seperti membuat 2 menu yaitu menu home dan menu aboutme.
     - Menambahkan beberapa section dalam page about me yaitu education, bio, experience, achievements.
 
     berikut ini progress commit di git hub yang telah saya lakukan:
@@ -96,7 +96,7 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
     - mempercantik tampilan di section experience
     - mempercantik tampilan di section achievements
     - menambahkan informasi README
-    - menghapus index.html (karna saya memindahkan isi index.html seluruhnya ke file aboutme.html)
+    - menghapus index.html (karena saya memindahkan isi index.html seluruhnya ke file aboutme.html)
     - membuat section skills dan sudah mempercantiknya dengan tambahan gambar visual Skill
 
 5. 6 September 2026
@@ -107,7 +107,7 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
 
     berikut ini progress commit di git hub yang telah saya lakukan:
     - menambahkan section contact
-    - mempercantik petunjuk untuk swipe dan mengganti posisi gambar nailon menjadi center
+    - mempercantik petunjuk untuk swipe dan mengganti posisi gambar nailong menjadi center
 
 
 ## AI Disclosure & Usage
@@ -120,8 +120,8 @@ Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
 1.  pertanyaan saya: bagaimana cara agar border font css
     jawaban gpt: Kalau maksudmu membuat tulisan/font punya border atau outline, CSS biasanya pakai -webkit-text-stroke. ✨
 
-2.  pertanyaan saya: jadinya bagimana y biar tiap section panjangnya berbeda apakah mustahil untuk di lakukan juka 
-    menggunakan pages> section semua akan ikut berubah smeua maka dari itu kita harus bagaimana ya
+2.  pertanyaan saya: jadinya bagimana y biar tiap section panjangnya berbeda apakah mustahil untuk di lakukan jika 
+    menggunakan pages> section semua akan ikut berubah semua maka dari itu kita harus bagaimana ya
     jawaban gpt: 
     Nggak mustahil sama sekali 😭 Bisa dibedakan. Justru dari CSS yang kamu kirim, masalahnya sekarang karena aturan ini:
     .pages > section {
@@ -177,13 +177,13 @@ konsep dasar HTML dan CSS agar dapat menentukan apakah saran yang diberikan AI s
     Ya, dalam pembuatan website ini saya menggunakan elemen semantik HTML5 dan salah satunya yaitu <section>. Saya menggunakan <section> untuk membagi halaman menjadi beberapa bagian berdasarkan informasi yang ingin saya tampilkan, seperti About Me, Education, Experience, Achievements, Skills, dan Contact. Penggunaan <section> membantu saya dalam menyusun struktur website agar setiap bagian memiliki fungsi dan tujuan yang jelas. Selain membuat kode HTML lebih terstruktur, penggunaan <section> juga memudahkan saya ketika mengatur tampilan setiap bagian menggunakan CSS. Misalnya, setiap section pada halaman About saya buat sebagai halaman yang dapat digeser secara horizontal (horizontal scrolling). Saya tidak banyak menggunakan elemen seperti <article> atau <aside> karena kebutuhan website saya lebih berfokus pada pembagian halaman berdasarkan bagian portofolio. Untuk struktur tersebut, penggunaan <section> sudah cukup memenuhi kebutuhan desain dan membantu saya mengorganisasi konten dengan lebih mudah. Dari proses ini, saya memahami bahwa elemen semantik tidak hanya digunakan agar HTML terlihat lebih rapi, tetapi juga membantu saya memahami struktur dan pembagian konten dalam website yang saya buat.
 
 
-2.  Ketika Anda mengatur CSS Anda agar tetap responsive, tantangan tata letak apa yang Anda temukan? Bagaimana Anda mengevaluasi elemen mana yang
-    harus diubah posisinya atau diprioritaskan ukurannya saat berpindah dari tampilan desktop ke mobile?
+2.  Ketika Anda mengatur CSS Anda agar tetap responsive, tantangan tata letak apa yang Anda temukan? Bagaimana Anda     
+    mengevaluasi elemen mana yang harus diubah posisinya atau diprioritaskan ukurannya saat berpindah dari tampilan desktop ke mobile?
     jawab:
-    Saat mengatur CSS agar website tetap responsive menjadi salah satu tantanga terbesar saya karena saya harus multitasking dalam menyesuaika ukuran, posisi elemen ketika ukuran layar berubah, terutama pada tampilan desktop ke mobile. Beberapa elemen seperti card, gambar, teks, dan bagian Contact yang terlihat cukup baik di desktop dapat menjadi terlalu besar atau tidak berada di posisi yang sesuai ketika dilihat pada layar yang lebih kecil. Untuk mengevaluasinya, saya mencoba melihat tampilan website pada ukuran layar yang berbeda dan memperhatikan elemen mana yang mulai terlihat terlalu besar, terlalu rapat, atau keluar dari area yang seharusnya. Saya kemudian menyesuaikan ukuran seperti width, height, padding, dan font-size, serta mengatur kembali posisi beberapa elemen menggunakan Flexbox dan CSS. Saya memprioritaskan informasi utama dan keterbacaan terlebih dahulu. Misalnya, ukuran teks dan card harus tetap nyaman dibaca, sedangkan elemen dekoratif seperti gambar dan animasi dapat disesuaikan ukurannya agar tidak mengganggu konten utama. Dari proses tersebut, saya memahami bahwa membuat website responsive bukan hanya dengan mengecilkan semua ukuran elemen, tetapi perlu mempertimbangkan susunan, keterbacaan, dan prioritas informasi pada setiap ukuran layar.
+    Saat mengatur CSS agar website tetap responsive, salah satu tantangan terbesar yang saya temukan adalah menyesuaikan ukuran dan posisi beberapa elemen ketika ukuran layar berubah, terutama dari tampilan desktop ke mobile. Beberapa elemen seperti card, gambar, teks, dan bagian Contact yang terlihat cukup baik di desktop dapat menjadi terlalu besar atau tidak berada di posisi yang sesuai ketika dilihat pada layar yang lebih kecil. Untuk mengevaluasinya, saya mencoba melihat tampilan website pada ukuran layar yang berbeda dan memperhatikan elemen mana yang mulai terlihat terlalu besar, terlalu rapat, atau keluar dari area yang seharusnya. Saya kemudian menyesuaikan ukuran seperti width, height, padding, dan font-size, serta mengatur kembali posisi beberapa elemen menggunakan Flexbox dan CSS. Saya memprioritaskan informasi utama dan keterbacaan terlebih dahulu. Misalnya, ukuran teks dan card harus tetap nyaman dibaca, sedangkan elemen dekoratif seperti gambar dan animasi dapat disesuaikan ukurannya agar tidak mengganggu konten utama. Dari proses tersebut, saya memahami bahwa membuat website responsive bukan hanya dengan mengecilkan semua ukuran elemen, tetapi perlu mempertimbangkan susunan, keterbacaan, dan prioritas informasi pada setiap ukuran layar.
 
-3.  Website yang Anda buat saat ini adalah static web murni. Batasan apa yang Anda rasakan saat mencoba menyajikan informasi pada portofolio Anda 
-    secara optimal? Berdasarkan batasan tersebut, fungsionalitas dinamis apa yang paling ingin Anda persiapkan dan tambahkan pada iterasi proyek selanjutnya?
+3.  Website yang Anda buat saat ini adalah static web murni. Batasan apa yang Anda rasakan saat mencoba menyajikan informasi 
+    pada portofolio Anda secara optimal? Berdasarkan batasan tersebut, fungsionalitas dinamis apa yang paling ingin Anda persiapkan dan tambahkan pada iterasi proyek selanjutnya?
     jawab:
     Batasan yang saya rasakan saat membuat website static adalah informasi yang ditampilkan masih harus ditulis dan diubah secara langsung di dalam kode HTML. Jadi, ketika saya ingin menambahkan atau mengubah data seperti pengalaman, pencapaian, atau skills, saya perlu mengubah kode secara manual. Selain itu, interaksi dengan pengunjung juga masih terbatas karena website lebih berfungsi sebagai media untuk menampilkan informasi mengenai diri saya. Berdasarkan batasan tersebut, pada iterasi proyek selanjutnya saya paling ingin menambahkan fungsionalitas dinamis untuk mengelola dan menampilkan data portofolio. Misalnya, saya ingin membuat sistem agar data seperti education, experience, achievements, dan skills dapat disimpan di database dan ditampilkan secara otomatis pada website. Dengan begitu, saya tidak perlu mengubah HTML secara manual setiap kali ingin memperbarui informasi. Saya juga ingin menambahkan fitur interaktif seperti form contact sehingga pengunjung dapat mengirim pesan secara langsung melalui website. Menurut saya, fitur tersebut akan membuat website tidak hanya menjadi halaman untuk menampilkan informasi, tetapi juga menjadi media komunikasi yang lebih interaktif. Dari proses ini, saya memahami bahwa static web memiliki keterbatasan dalam pengelolaan data dan interaksi. Pengembangan ke arah website dinamis akan membuat portofolio lebih mudah diperbarui, dikelola, dan digunakan oleh pengunjung.
 
