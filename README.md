@@ -49,6 +49,8 @@ berikut ini langkah-langkahnya:
   1. Education
   2. Experience
   3. Achievements
+  4. Skills
+  5. Contact
 
 
 ## Weekly Progress
@@ -95,7 +97,15 @@ Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan we
     - mempercantik tampilan di section achievements
     - menambahkan informasi README
     - menghapus index.html (karna saya memindahkan isi index.html seluruhnya ke file aboutme.html)
+    - membuat section skills dan sudah mempercantiknya dengan tambahan gambar visual Skill
 
+5. 6 September 2026
+    - Finishing beberapa section dan mempercantik tampilannya
+    - merapikan section dari contact
+
+    berikut ini progress commit di git hub yang telah saya lakukan:
+    - menambahkan section contact
+    - mempercantik petunjuk untuk swipe dan mengganti posisi gambar nailon menjadi center
 
 
 
