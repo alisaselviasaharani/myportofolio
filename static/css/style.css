@@ -1,3 +1,4 @@
+/* =================== FONT =================== */
 /* 
     Mengaktifkan font yang sudah di download di dafont 
 */
@@ -34,17 +35,24 @@
 }
 
 
+/* =================== HEADER =================== */
+.site-header {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid var(--line);
+}
+
+.site-header nav {
+    display: flex;
+    gap: 2rem;
+}
+
 .site-header nav a {
     position: relative;
     color: var(--ink);
     text-decoration: none;
     transition: 0.3s ease;
 
-}
-
-.site-header {
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.15);
 }
 
 .site-header nav a::after {
@@ -67,9 +75,24 @@
     width: 100%;
 }
 
-/*
-    button about
-*/
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+}
+
+.brand {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #1c1917;
+    text-decoration: none;
+}
+
+
+/* =================== TOMBOL ABOUT =================== */
+/* NOTE: jadi ini untuk mendesain tombol yang ada di home nanti ngelink ke bagian about me setelah di pencet*/
 .button-about {
     display: inline-block;
     margin-top: 20px;
@@ -98,7 +121,8 @@
     box-sizing: border-box;
 }
 
-
+/* =================== PAGES =================== */
+/* NOTE: Intinya ini untuk pengaturan ukuran dll setiap halamannya */
 .pages {
     display: flex;
     width: 100%;
@@ -114,6 +138,10 @@
 }
 
 /* Pengaturan dasar masing-masing section */
+/* note: sebenarnya saya ingin membuat tampilan di setiap section itu berbeda walaupun dii pages about juga namun karena css
+blm dapat melakukan hal tersebut jadinya otomatis ukuran yang diambil adalah ukiran yang paling besar dalam sectionnya
+intinya ukuran pages about mengikuti ukuran dari section skills
+Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi penggunaan html dan CSS saja*/
 .pages>section {
     min-width: 100vw;
     flex-shrink: 0;
@@ -133,8 +161,8 @@
     --radius: 4px;
 }
 
-/* PAGE- HOME */
 
+/* =================== PAGE HOME =================== */
 .intro {
     text-align: center;
     min-height: calc(100vh-100px);
@@ -145,7 +173,6 @@
 }
 
 .intro-card {
-
     text-align: center;
     background-color: rgba(255, 255, 255, 0.85);
     padding: 10px;
@@ -157,16 +184,18 @@
 }
 
 .intro-card h1 {
+    /* untuk ukuran h1 */
     font-family: "AGENTORANGE";
     font-size: 60px;
 }
 
 .intro-card p {
+    /* untuk ukuran p */
     font-family: "SimpleHandmade", cursive;
     font-size: 30px;
 }
 
-/* Foto nailong */
+/* Foto nailong (foto ini saya gunakan karna saya sangat menyukai nailong)*/
 .intro-image {
     justify-content: center;
     align-items: center;
@@ -180,9 +209,7 @@
 }
 
 
-/* 
-    BODY
-*/
+/* =================== BODY =================== */
 body {
     margin: 0;
     overflow-x: hidden;
@@ -203,12 +230,11 @@ body {
 }
 
 
-/* 
-    SWIPE 
-*/
+/* =================== SWIPE HINT =================== */
+/* NOTE: jadi pada intinya alasan saya menggunakan swipe ke kanan di bandingkan dengan scroll ke bawah karna saya ingin
+membuat protofolio yang unik jadi sambil menyelam sambil melihat ke kanan untuk mendapatkan informasi. */
 .swipe-hint {
     margin-top: 25px;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -267,9 +293,7 @@ body {
 }
 
 
-/* 
-   TYPOGRAPHY
- */
+/* =================== TYPOGRAPHY =================== */
 h2,
 .brand {
     font-family: "Space Grotesk", sans-serif;
@@ -281,57 +305,15 @@ h2,
     background: rgba(88, 191, 255, 0.95);
 }
 
-
-
-/* 
-   CONTAINER
- */
-
+/* =================== CONTAINER =================== */
 .container {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-/* 
-   HEADER
- */
 
-.site-header {
-    border-bottom: 1px solid var(--line);
-}
-
-.site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-}
-
-.brand {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #1c1917;
-    text-decoration: none;
-}
-
-.site-header nav {
-    display: flex;
-    gap: 2rem;
-}
-
-.site-header nav a {
-    color: var(--ink);
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-
-/* 
-   HERO
- */
-
+/* =================== HERO =================== */
 .hero {
     padding: 4.5rem 0 5rem;
 }
@@ -355,10 +337,7 @@ h2,
     grid-area: details;
 }
 
-/* 
-   KICKER
- */
-
+/* =================== KICKER =================== */
 .hero-kicker {
     display: inline-block;
 
@@ -386,23 +365,16 @@ h2,
     text-decoration: none !important;
 }
 
-
-/* 
-   FONT MATCHA MINT
- */
-
 .hero-identity h1 {
+    /* FONT MATCHA MINT UNTUK NAMA*/
     font-family: "Matcha Mint", cursive;
     font-size: clamp(2.5rem, 5.5vw, 4rem);
     line-height: 1;
     font-weight: normal;
 }
 
-
-/* 
-   BIO
- */
 .bio {
+    /* SINGKAT BIO*/
     color: #fffaf0;
     max-width: 520px;
     margin-bottom: 1.5rem;
@@ -412,22 +384,15 @@ h2,
         1px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* 
-   NPM & PROGRAM
- */
 .meta-list {
+    /* NPM & PROGRAM*/
     display: flex;
     gap: 2rem;
     margin-bottom: 1.5rem;
-
     background: rgba(250, 246, 240, 0.78);
-
     padding: 0.9rem 1.25rem;
-
     border-radius: 10px;
-
     width: fit-content;
-
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 }
 
@@ -435,9 +400,7 @@ h2,
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-
     color: #5a5148;
-
     margin-bottom: 0.15rem;
 }
 
@@ -446,11 +409,9 @@ h2,
     color: #1c1917;
 }
 
-
 /* 
    SOCIAL LINKS
  */
-
 .social-links {
     display: flex;
     gap: 0.5rem;
@@ -481,7 +442,6 @@ h2,
 
 
 /* FOTO PROFIL*/
-
 .hero-photo {
     grid-area: photo;
     align-self: center;
@@ -521,8 +481,7 @@ h2,
 }
 
 
-/* FOOTER*/
-
+/* =================== FOOTER =================== */
 .site-footer {
     padding: 12px 20px;
     color: white;
@@ -555,7 +514,7 @@ h2,
 }
 
 
-/* PAGE EDUCATION */
+/* =================== PAGE EDUCATION =================== */
 .education-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -572,8 +531,7 @@ h2,
 }
 
 
-/*  JUDUL EDUCATION*/
-
+/* =================== JUDUL EDUCATION SAMBIL DIKETIK =================== */
 .ketik {
     display: flex;
     justify-content: center;
@@ -601,7 +559,6 @@ h2,
         kedip 0.75s step-end infinite;
 }
 
-
 /* Efek mengetik */
 @keyframes ketikan {
     from {
@@ -612,7 +569,6 @@ h2,
         width: 9ch;
     }
 }
-
 
 /* Efek kursor */
 @keyframes kedip {
@@ -627,7 +583,6 @@ h2,
     }
 }
 
-
 /* EDUCATION CARDS */
 .education-cards {
     display: flex;
@@ -637,7 +592,6 @@ h2,
 
     gap: 25px;
 }
-
 
 .education-card {
     width: 280px;
@@ -663,25 +617,21 @@ h2,
     background: rgba(88, 191, 255, 0.95);
 }
 
+/* memberikan link di logo jadi saat mengeklik akan menuju halaman link yg saya cantumkan */
 .education-link {
     width: 280px;
     min-height: 330px;
-
     padding: 25px;
-
     border-radius: 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     box-sizing: border-box;
 }
 
 
 /* Logo  */
-
 .education-logo {
     width: 200px;
     height: 200px;
@@ -690,13 +640,11 @@ h2,
     margin-bottom: 20px;
 }
 
-
 .education-card h2 {
     font-size: 25px;
     margin: 10px 0;
     font-family: "SimpleHandmade";
 }
-
 
 .education-card p {
     font-size: 23px;
@@ -705,10 +653,7 @@ h2,
 }
 
 
-/* 
-   PAGE EXPERIENCE
- */
-
+/* =================== PAGE EXPERIENCE =================== */
 .experience-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -726,7 +671,6 @@ h2,
 
 
 /* JUDUL EXPERIENCE */
-
 .experience-content .ketik {
     display: flex;
     justify-content: center;
@@ -735,7 +679,6 @@ h2,
 
 
 /* EXPERIENCE CARDS */
-
 .experience-cards {
     display: flex;
     flex-direction: row;
@@ -786,7 +729,6 @@ h2,
 
 
 /* LOGO EXPERIENCE */
-
 .experience-card .avatar {
     width: 300px;
     height: 300px;
@@ -811,8 +753,8 @@ h2,
     border: none;
 }
 
-/* PAGE - ACHIEVEMENT */
 
+/* =================== PAGE ACHIEVEMENT =================== */
 .achievements-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -829,7 +771,6 @@ h2,
 }
 
 /* JUDUL ACHIEVEMENT */
-
 .achievements-content .ketik {
     display: flex;
     justify-content: center;
@@ -869,7 +810,6 @@ h2,
     background: rgba(88, 191, 255, 0.95);
 }
 
-
 .achievements-card .avatar {
     width: 300px;
     height: 300px;
@@ -877,7 +817,6 @@ h2,
     border: none;
     margin-bottom: 20px;
 }
-
 
 .achievements-card h2 {
     font-size: 25px;
@@ -902,8 +841,7 @@ h2,
 }
 
 
-/* PAGE - SKILLS */
-
+/* =================== PAGE - SKILLS =================== */
 .skills-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -920,7 +858,6 @@ h2,
 }
 
 /* JUDUL SKILLS */
-
 .skills-content .ketik {
     display: flex;
     justify-content: center;
@@ -995,10 +932,7 @@ h2,
     font-family: "SimpleHandmade";
 }
 
-/* 
-   CONTACT
- */
-
+/* =================== PAGE - CONTACT =================== */
 .contact-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -1019,11 +953,7 @@ h2,
     z-index: 2;
 }
 
-
-/* 
-   MESSAGE + NAILONG
- */
-
+/* MESSAGE + NAILONG*/
 .contact-message {
     display: flex;
     justify-content: center;
@@ -1038,17 +968,11 @@ h2,
 /* SPEECH BUBBLE */
 .message-box {
     position: relative;
-
     width: 420px;
-
     padding: 25px 35px;
-
     background: rgba(255, 255, 255, 0.85);
-
     border-radius: 35px;
-
     border: 3px solid white;
-
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -1057,18 +981,13 @@ h2,
 
 .message-box::after {
     content: "";
-
     position: absolute;
-
     right: -25px;
     bottom: 30px;
-
     width: 0;
     height: 0;
-
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-
     border-left: 30px solid rgba(255, 255, 255, 0.85);
 }
 
@@ -1077,7 +996,6 @@ h2,
 .message-box h2 {
     font-family: "SimpleHandmade";
     font-size: 28px;
-
     margin: 5px 0;
 }
 
@@ -1086,9 +1004,7 @@ h2,
 .nailong {
     width: 400px;
     height: 400px;
-
     object-fit: contain;
-
     animation: floatNailong 2s ease-in-out infinite;
 }
 
@@ -1115,7 +1031,6 @@ h2,
     font-family: "Matcha Mint";
     color: white;
     -webkit-text-stroke: 1px rgb(0, 3, 5);
-
     font-size: 32px;
     margin-top: 25px;
     margin-bottom: 20px;
@@ -1125,13 +1040,10 @@ h2,
 /* 
    CONTACT CARDS
  */
-
 .contact-cards {
     display: flex;
-
     justify-content: center;
     align-items: center;
-
     gap: 30px;
 }
 
@@ -1141,69 +1053,48 @@ h2,
 .contact-card {
     width: 180px;
     height: 180px;
-
     background: rgba(255, 255, 255, 0.80);
-
     border-radius: 30px;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     text-decoration: none;
-
     transition: 0.3s;
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 
 /* LOGO */
-
 .contact-logo {
     width: 90px;
     height: 90px;
-
     object-fit: contain;
-
     margin-bottom: 10px;
 }
 
 
 /* TEXT */
-
 .contact-card span {
     font-family: "Space Grotesk", sans-serif;
-
     font-size: 18px;
-
     font-weight: 700;
-
     color: #1c1917;
 }
 
 
 /* HOVER */
-
 .contact-card:hover {
     transform: translateY(-10px) scale(1.03);
-
     background: rgba(255, 255, 255, 0.95);
 }
 
 /* MENAMBAHKAN BUBBLES  */
 /* Note: alasan saya menggunakan efek bubbles agar para pengunjung merasakan seperti menyelam di dalam laut */
-
 .bubbles {
     position: absolute;
-
     inset: 0;
-
     pointer-events: none;
-
     z-index: 1;
 }
 
@@ -1220,7 +1111,6 @@ h2,
 
 
 /* posisi gelembung */
-
 .bubbles span:nth-child(1) {
     left: 10%;
     width: 20px;
