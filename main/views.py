@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from main.models import Experience
 
+def show_home(request):
+    return render(request, "home.html")
 
 def show_main(request):
     context = {
