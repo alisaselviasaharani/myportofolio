@@ -1,8 +1,11 @@
 from django.shortcuts import render
 
 
-def home_page(request):
+def show_home(request):
     return render(request,"home.html")
 
-def aboutme_page(request):
+def show_aboutme(request):
     return render(request, "aboutme.html")
+
+def show_experience(request):
+    return render(request, "experience.html")

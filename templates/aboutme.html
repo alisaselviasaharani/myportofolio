@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alisa Selvia Saharani - Portfolio</title>
+    <!-- <title>Alisa Selvia Saharani - Portfolio</title> -->
+    <title>{{ name }} - Portofolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -14,12 +15,11 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="#profile" class="brand">Alisa Selvia Saharani</a>
+            <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
+            <a href="#profile" class="brand">{{ name }}</a>
             <nav>
-                <!-- Menu -->
-                <a href="{% url 'home' %}"><h2>HOME</h2></a>
-                <a href="{% url 'aboutme' %}"><h2>ABOUT</h2></a>
-
+                <a href="">Profile</a>
+                <a href="#experience">Experience</a>
             </nav>
         </div>
 
@@ -37,25 +37,34 @@
                 <!-- PAGE 1 : ABOUTME -->
                 <div class="hero-photo">
                     <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/alisa.png" alt="Photo of Alisa Selvia Saharani">
+                    <!-- <img class="avatar" src="/static/img/alisa.png" alt="Photo of Alisa Selvia Saharani"> -->
+                    <img class="avatar" src="/static/img/alisa.png" alt="Photo of {{ name }}">
                 </div>
 
                 <!-- berikut ini sedikit deskripsi tentang saya -->
                 <div class="hero-details">
-                    <p class="bio">
+                    <!-- <p class="bio">
                         Computer Science student at Universitas Indonesia who is interested in learning,
                         exploring new things, and developing skills in technology and data.
-                    </p>
+                    </p> -->
+                    <p class="bio">{{ bio }}</p>
 
                     <dl class="meta-list">
                         <div class="meta-row">
                             <dt>NPM</dt>
-                            <dd>2506618433</dd>
+                            <!-- <dd>2506618433</dd> -->
+                            <dd style="color: black !important; display: block !important;">
+                                {{ npm }}
+                            </dd>
                         </div>
 
                         <div class="meta-row">
                             <dt>Program</dt>
-                            <dd>S1 Ilmu Komputer</dd>
+                            <!-- <dd>S1 Ilmu Komputer</dd> -->
+                            <!-- <dd>{{ study_program }}</dd> -->
+                            <dd style="color: black !important; display: block !important;">
+                                {{ study_program }}
+                            </dd>
                         </div>
                     </dl>
 
@@ -178,7 +187,8 @@
                 <div class="experience-cards">
 
                     <div class="experience-card">
-                        <a href="https://www.youtube.com/@itclubsman6575/videos" class="experience-link" target="_blank">
+                        <a href="https://www.youtube.com/@itclubsman6575/videos" class="experience-link"
+                            target="_blank">
                             <img class="avatar" src="/static/img/logoIT65.png" alt="Logo IT Club 65">
                         </a>
                         <h2>Vice Chairperson of IT Club 65</h2>
@@ -437,7 +447,8 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p>
+            <!-- <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p> -->
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
         </div>
     </footer>
 </body>
