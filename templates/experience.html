@@ -18,6 +18,21 @@
             <a href="#profile" class="brand">{{ name }}</a>
 
         </div>
+        <nav>
+
+            <a href="{% url 'main:show_home' %}">
+                <h2>HOME</h2>
+            </a>
+
+            <a href="{% url 'main:aboutme' %}">
+                <h2>ABOUT</h2>
+            </a>
+
+            <a href="{% url 'main:experience' %}">
+                <h2>EXPERIENCE</h2>
+            </a>
+
+        </nav>
 
     </header>
 
