@@ -25,3 +25,14 @@ class Experience(models.Model):
     def is_ongoing(self):
         return self.ended_at is None
 
+#Class Education
+# Note: saya membagi beberapa kategori dlm bagian yg saya gunakan sebelumnya di tugas 1
+class Education(models.Model):
+    institution=models.CharField(max_length=100)
+    degree=models.CharField(max_length=100)
+    period= models.CharField(max_length=50)
+    logo =models.CharField(max_length=50)
+    website= models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.institution

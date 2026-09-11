@@ -17,6 +17,12 @@ def show_main(request):
 
     return render(request, "aboutme.html", context)
 
+def show_education(request):
+    context ={
+        "name": "Alisa Selvia Saharani",
+        "experience_list": Education.objects.all(),
+    }
+    return render(request, "education.html",context)
 
 def show_experience(request):
     context = {

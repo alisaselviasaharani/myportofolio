@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from main.models import Education
 
 def show_home(request):
     return render(request,"home.html")
