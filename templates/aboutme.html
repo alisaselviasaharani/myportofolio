@@ -18,8 +18,15 @@
             <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
             <a href="#profile" class="brand">{{ name }}</a>
             <nav>
-                <a href="">Profile</a>
-                <a href="#experience">Experience</a>
+                <a href="{% url 'main:show_home' %}">
+                    <h2>HOME</h2>
+                </a>
+                <a href="">
+                    <h2>PROFILE</h2>
+                </a>
+                <a href="{% url 'main:show_experience' %}">
+                    <h2>EXPERIENCE</h2>
+                </a>
             </nav>
         </div>
 
@@ -89,10 +96,10 @@
         </section>
 
         <!-- PAGE 2 : EDUCATION -->
-        <section class="education-page" id="education">
+        <!-- <section class="education-page" id="education"> -->
 
-            <!-- Gelembung -->
-            <div class="bubbles">
+        <!-- Gelembung -->
+        <!-- <div class="bubbles">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -101,21 +108,21 @@
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </div> -->
 
 
-            <div class="education-content">
+        <!-- <div class="education-content"> -->
 
-                <!-- Judul Education -->
-                <div class="ketik">
+        <!-- Judul Education -->
+        <!-- <div class="ketik">
                     <h1>EDUCATION</h1>
-                </div>
+                </div> -->
 
-                <!-- Kartu Education -->
-                <div class="education-cards">
+        <!-- Kartu Education -->
+        <!-- <div class="education-cards"> -->
 
-                    <!-- Universitas Indonesia -->
-                    <div class="education-card">
+        <!-- Universitas Indonesia -->
+        <!-- <div class="education-card">
 
                         <a href="https://cs.ui.ac.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logoUI.png" alt="Logo Universitas Indonesia">
@@ -124,10 +131,10 @@
                         <p>S1 Ilmu Komputer</p>
                         <p>2025 - Present</p>
 
-                    </div>
+                    </div> -->
 
-                    <!-- SMAN 65 Jakarta -->
-                    <div class="education-card">
+        <!-- SMAN 65 Jakarta -->
+        <!-- <div class="education-card">
                         <a href="https://sman65jakarta.sch.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logo65.jpg" alt="Logo SMAN 65 Jakarta">
                         </a>
@@ -135,10 +142,10 @@
                         <h2>SMAN 65 Jakarta</h2>
                         <p>Natural Science</p>
                         <p>2022 - 2025</p>
-                    </div>
+                    </div> -->
 
-                    <!-- MTSN 12 Jakarta -->
-                    <div class="education-card">
+        <!-- MTSN 12 Jakarta -->
+        <!-- <div class="education-card">
                         <a href="https://www.mtsn12jkt.sch.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logomts.png" alt="Logo MTSN 12 Jakarta">
                         </a>
@@ -146,12 +153,12 @@
                         <p>2019 - 2022</p>
                     </div>
 
-                </div>
+                </div> -->
 
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+        <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk NEXT -->
-                <div class="swipe-hint">
+        <!-- Peringatan untuk NEXT -->
+        <!-- <div class="swipe-hint">
                     <span>Next</span>
                     <span class="arrow">→</span>
 
@@ -159,7 +166,7 @@
 
             </div>
 
-        </section>
+        </section> -->
 
         <!-- PAGE 3 : EXPERIENCE -->
         <section class="experience-page" id="experience">

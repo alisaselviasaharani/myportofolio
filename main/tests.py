@@ -14,10 +14,10 @@ class MainTest(TestCase):
         )
 
     def test_main_url_is_accessible(self):
-        response = self.client.get(reverse("main:show_main"))
+        response = self.client.get(reverse("main:aboutme"))
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "index.html")
+        self.assertTemplateUsed(response, "aboutme.html")
         self.assertNotContains(response, self.experience.title)
         self.assertContains(response, f'href="{reverse("main:show_experience")}"')
 
@@ -40,7 +40,7 @@ class MainTest(TestCase):
         self.assertContains(response, self.experience.description)
         self.assertContains(response, "Part-Time")
         self.assertContains(response, "Sedang berlangsung")
-        self.assertContains(response, f'href="{reverse("main:show_main")}"')
+        self.assertContains(response, f'href="{reverse("main:aboutme")}"')
 
     def test_empty_experience_page(self):
         Experience.objects.all().delete()
