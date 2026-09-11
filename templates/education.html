@@ -52,51 +52,40 @@
 
                 <!-- Kartu Education -->
                 <div class="education-cards">
-
-                    <!-- Universitas Indonesia -->
+                    {% for education in education_list %}
                     <div class="education-card">
 
-                        <a href="https://cs.ui.ac.id/" class="education-link" target="_blank">
-                            <img class="education-logo" src="/static/img/logoUI.png" alt="Logo Universitas Indonesia">
-                        </a>
-                        <h2>Universitas Indonesia</h2>
-                        <p>S1 Ilmu Komputer</p>
-                        <p>2025 - Present</p>
-
-                    </div>
-
-                    <!-- SMAN 65 Jakarta -->
-                    <div class="education-card">
-                        <a href="https://sman65jakarta.sch.id/" class="education-link" target="_blank">
-                            <img class="education-logo" src="/static/img/logo65.jpg" alt="Logo SMAN 65 Jakarta">
+                        {% if education.website %}
+                        <a href="{{education.website}}" class="education-link" target="_blank">
+                            
+                            {% if education.logo %}
+                            <img class="education-logo" src="{{ education.logo }}" alt="{{ education.institution }}">
+                            {% endif %}
                         </a>
 
-                        <h2>SMAN 65 Jakarta</h2>
-                        <p>Natural Science</p>
-                        <p>2022 - 2025</p>
+                        {% endif %}
+                        <h2>{{ education.institution }}</h2>
+                        <p>{{ education.degree }}</p>
+                        <p>{{ education.period }}</p>
                     </div>
 
-                    <!-- MTSN 12 Jakarta -->
-                    <div class="education-card">
-                        <a href="https://www.mtsn12jkt.sch.id/" class="education-link" target="_blank">
-                            <img class="education-logo" src="/static/img/logomts.png" alt="Logo MTSN 12 Jakarta">
-                        </a>
-                        <h2>MTSN 12 Jakarta</h2>
-                        <p>2019 - 2022</p>
-                    </div>
+                    {% empty %}
 
-                </div>
+                    <p>Belum ada data pendidikan.</p>
 
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+                    {% endfor %}
+
+
+                    <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk NEXT -->
-                <div class="swipe-hint">
-                    <span>Next</span>
-                    <span class="arrow">→</span>
+                    <!-- Peringatan untuk NEXT -->
+                    <div class="swipe-hint">
+                        <span>Next</span>
+                        <span class="arrow">→</span>
+
+                    </div>
 
                 </div>
-
-            </div>
 
         </section>
 
