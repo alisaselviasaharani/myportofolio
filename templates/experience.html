@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- <title>Alisa Selvia Saharani - Portfolio</title> -->
     <title>{{ name }} - Portofolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -13,28 +15,28 @@
 </head>
 
 <body>
+
     <header class="site-header">
         <div class="container">
+
             <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
             <a href="#profile" class="brand">{{ name }}</a>
+
             <nav>
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
-                <a href="">
+
+                <a href="{% url 'main:aboutme' %}">
                     <h2>PROFILE</h2>
                 </a>
-                <a href="{% url 'main:show_experience' %}">
-                    <h2>EXPERIENCE</h2>
-                </a>
             </nav>
-        </div>
 
+        </div>
     </header>
 
 
-
-    <main>
+    <main class="pages">
 
         <!-- PAGE 3 : EXPERIENCE -->
         <section class="experience-page" id="experience">
@@ -55,7 +57,7 @@
 
                 <!-- Judul Experience -->
                 <div class="ketik">
-                    <h1>Experience</h1>
+                    <h1>EXPERIENCE</h1>
                 </div>
 
                 <!-- Kartu Experience -->
@@ -65,55 +67,61 @@
 
                     <div class="experience-card">
 
-                        {% if experience.thumbnail %}
-                        <a href="#" class="experience-link" target="_blank">
-                            <img class="avatar" src="{{ experience.thumbnail }}" alt="{{ experience.title }}">
+                        {% if experience.website %}
+
+                        <a href="{{ experience.website }}" class="experience-link" target="_blank">
+
+                            {% if experience.logo %}
+
+                            <img class="experience-logo" src="{{ experience.logo }}"
+                                alt="{{ experience.institution|default:experience.title }}">
+
+                            {% endif %}
+
                         </a>
+
                         {% endif %}
 
                         <h2>{{ experience.title }}</h2>
 
+                        {% if experience.institution %}
+                        <p>{{ experience.institution }}</p>
+                        {% endif %}
+
+                        {% if experience.period %}
+                        <p>{{ experience.period }}</p>
+                        {% endif %}
+
                         <p>{{ experience.get_category_display }}</p>
 
-                        <p>
-                            {{ experience.description }}
-                        </p>
-
-                        {% if experience.is_ongoing %}
-                        <p>Sedang berlangsung</p>
-                        {% else %}
-                        <p>Selesai</p>
-                        {% endif %}
+                        <p>{{ experience.description }}</p>
 
                     </div>
 
                     {% empty %}
 
-                    <p class="empty-state">
-                        Belum ada pengalaman yang ditambahkan.
-                    </p>
+                    <p>Belum ada pengalaman yang ditambahkan.</p>
 
                     {% endfor %}
 
                 </div>
 
-                <!-- Peringatan untuk NEXT -->
-                <div class="swipe-hint">
-                    <span>Next</span>
-                    <span class="arrow">→</span>
-                </div>
-
             </div>
 
         </section>
+
     </main>
+
 
     <footer class="site-footer">
         <div class="container">
+
             <!-- <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p> -->
             <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+
         </div>
     </footer>
+
 </body>
 
 </html>

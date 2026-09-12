@@ -13,11 +13,15 @@ class Experience(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
+    institution=models.CharField(max_length=100,blank=True, null=True)
     description = models.TextField()
     category = models.CharField(max_length=20, choices=EXPERIENCE_CHOICES, default='full-time')
-    thumbnail = models.URLField(blank=True, null=True)
-    started_at = models.DateTimeField(auto_now_add=True)
-    ended_at = models.DateTimeField(blank=True, null=True)
+    # thumbnail = models.URLField(blank=True, null=True)
+    # started_at = models.DateTimeField(auto_now_add=True)
+    # ended_at = models.DateTimeField(blank=True, null=True)
+    period = models.CharField(max_length=50, blank=True, null=True)
+    logo = models.CharField(max_length=255, blank=True, null=True)
+    website = models.CharField(max_length=255, blank=True, null=True)
     def __str__(self):
         return self.title
     
