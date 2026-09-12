@@ -208,7 +208,41 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
     object-fit: contain;
 }
 
+/* KETIK HOME */
+.ketik-home {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
 
+.ketik-home h1 {
+    font-size: clamp(40px, 5vw, 80px);
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid black;
+    animation:
+        mengetik 3s steps(18, end) forwards,
+        kursor 0.7s step-end infinite;
+}
+
+
+@keyframes mengetik {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 18ch;
+    }
+}
+
+@keyframes kursor {
+    50% {
+        border-color: transparent;
+    }
+}
 /* =================== BODY =================== */
 body {
     margin: 0;

@@ -245,3 +245,7 @@ link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
                 ↓
             Database diperbarui
 
+
+    # AI Disclosure & Usage
+  
+
