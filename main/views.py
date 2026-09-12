@@ -4,7 +4,7 @@ from main.models import Experience, Education
 def show_home(request):
     return render(request, "home.html")
 
-def show_main(request):
+def show_aboutme(request):
     context = {
         "name": "Alisa Selvia Saharani",
         "npm": "2506618433",

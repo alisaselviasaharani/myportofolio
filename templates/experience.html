@@ -27,11 +27,18 @@
                     <h2>HOME</h2>
                 </a>
 
-                <a href="{% url 'main:aboutme' %}">
-                    <h2>PROFILE</h2>
+                <a href="{% url 'main:show_aboutme' %}">
+                    <h2>ABOUT ME</h2>
                 </a>
-            </nav>
 
+                <a href="{% url 'main:show_education' %}">
+                    <h2>EDUCATION</h2>
+                </a>
+
+                <a href="{% url 'main:show_experience' %}">
+                    <h2>EXPERIENCE</h2>
+                </a>
+        </div>
         </div>
     </header>
 
