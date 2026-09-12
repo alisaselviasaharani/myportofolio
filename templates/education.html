@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <!-- <title>Alisa Selvia Saharani - Portfolio</title> -->
     <title>{{ name }} - Portofolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,12 +19,20 @@
             <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
             <a href="#profile" class="brand">{{ name }}</a>
             <nav>
-                <a href="">Profile</a>
-                <a href="#experience">Experience</a>
+                <a href="{% url 'main:show_home' %}">
+                    <h2>HOME</h2>
+                </a>
+                <a href="">
+                    <h2>PROFILE</h2>
+                </a>
+                <a href="{% url 'main:show_experience' %}">
+                    <h2>EXPERIENCE</h2>
+                </a>
             </nav>
         </div>
 
     </header>
+
 
     <main class="pages">
 
@@ -79,11 +88,11 @@
                     <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
                     <!-- Peringatan untuk NEXT -->
-                    <div class="swipe-hint">
+                    <!-- <div class="swipe-hint">
                         <span>Next</span>
                         <span class="arrow">→</span>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
