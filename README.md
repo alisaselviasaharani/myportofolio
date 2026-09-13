@@ -1,12 +1,12 @@
-Nama : Alisa Selvia Saharani
-NPM : 2506618433
-Kelas : PBP D
+# Nama  : Alisa Selvia Saharani
+# NPM   : 2506618433
+# Kelas : PBP D
 
-Saya ingin menjelaskan beberapa ide yang saya buat untuk website portofolio ini:
-link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
+# Saya ingin menjelaskan beberapa ide yang saya buat untuk website portofolio ini:
+# Link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
 
 
-## Tugas 1
+### Tugas 1
     # Deskripsi Proyek
     Website portofolio pribadi yang saya buat menggunakan Django, HTML, dan CSS. Dalam proses pembuatannya, saya menggunakan Visual Studio Code sebagai code editor.Website ini berisi informasi mengenai profil diri, pendidikan, pengalaman, pencapaian,
     skills, dan kontak saya.
@@ -125,7 +125,7 @@ link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
 
     2.  pertanyaan saya: jadinya bagimana y biar tiap section panjangnya berbeda apakah mustahil untuk di lakukan jika 
         menggunakan pages> section semua akan ikut berubah semua maka dari itu kita harus bagaimana ya
-        jawaban gpt: 
+        jawaban gpt:
         Nggak mustahil sama sekali 😭 Bisa dibedakan. Justru dari CSS yang kamu kirim, masalahnya sekarang karena aturan ini:
         .pages > section {
             min-width: 100vw;
@@ -192,48 +192,98 @@ link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
 
 
 ### Tugas 2
+    # Deskripsi Proyek
+    # Design & Resources
+    - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
+    - Google Fonts (Space Groteks)
+    - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
+    - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
+    - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
+    - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
+    - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
+    - Python Django Admin Module Complete Guide All Features Explained in Django Python Admin Tutorial (https://www.youtube.com/watch?v=Q2ga-vtbaxQ)
+    - Django admin - Project set up (https://youtu.be/n5L7OqUG47s?si=LTLu1VSvbrvamNIZ)
+    - How Django Works (MVT Pattern) (https://youtu.be/cyP4Uw2b2XM?si=_0Fa9AHKhe72GFv9)
+
+
+    ## Struktur Halaman
+    - Home
+    - About me:
+        Dalam page About Me terdiri dari beberapa section, yaitu:
+        1. Achievements
+        2. Skills
+        3. Contact
+    - Education  -->> MVT
+    - Experience -->> MVT
+
+
     ## Weekly Progress Tugas 2
     Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
-    1.  9 Sepetember 2026
+    1.  9 September 2026
+        - Melakukan pengerjaan tutorial 2
+        - Membuat MVT experience sesuai dengan tutorial 2
+        - Melakukan Testing sesuai dengan arahan tutorial 2
         berikut ini progress commit di git hub yang telah saya lakukan:
         - Tutorial 02: Implementasi Model-View-Template (MVT) pada Django
         - Tutorial 2: Django 5.0
         - update hasil tutorial 2
     2.  11 September 2026
+        - Membuat 1 MVT yaitu Education (Education yg jadi MVT saya setelah experience)
+        - Menerapkan migration ke database
         berikut ini progress commit di git hub yang telah saya lakukan:
         - membuat pages terpisah untuk education, experience, achievements, skills, dan contact
         - mengembalikan file awal ke section about me karena hanya ingin menambahkan model Education
         - menambahkan model Education dan integrasi ke view
         - membuat fungsi show_education, menampilkan data context pada Education, dan membuat page Education secara dinamis
         - menerapkan migration ke database, mengatur URL Django, memperbaiki navbar, unit test, dan URL error
+    3. 12 September 2026
+        - Merapikan serta memperbaiki struktur sesuai dengan tugas 2
+        - Membuat NAV BAR yang konsisten di setiap page 
+        - Membuat FOOTER & HEADER yang konsisten setiap page
+        berikut ini progress commit di git hub yang telah saya lakukan:
+        - Memperbaiki tampilan dari experience yg sudah menerapkan MVT
+        - menambahkan create data Education supaya data dari model bisa ditampilkan di halaman
+        - Implementasi model dan migrasi sudah selesai. Migration 0001 sampai 0006 sudah berhasil dibuat dan diterapkan, ditandai dengan seluruh 
+          migration berstatus [X]
+        - merapikan navbar dan footer konsisten dengan halaman lain
+        - Menambahkan keterangan informasi ke readme.md dan juga menjawab pertanyaan refleksi
+        - menambahkan efek ketik di page home
+        - memperbaiki unit test dan styling portfolio
+
 
     ## Pertanyaan Reflektif
     1.  Jelaskan alur yang terjadi ketika pengguna membuka halaman portofolio baru, mulai dari permintaan yang diterima proyek hingga data
         ditampilkan pada browser. Dalam jawabanmu, jelaskan peran urls.py proyek, urls.py aplikasi, view, model, dan template.
         Jawab:
         Ketika pengguna membuka halaman portofolio baru, misalnya halaman Education, request dari browser pertama kali diterima oleh urls.py pada project Django. Kemudian request tersebut diteruskan ke urls.py pada aplikasi main menggunakan include. Pada main/urls.py, URL education/ diarahkan ke view show_education.
-
         View show_education kemudian mengambil data Education dari model menggunakan Education.objects.all(). Data tersebut dimasukkan ke dalam context dengan nama education_list, lalu dikirim ke template education.html. Di dalam template, data ditampilkan menggunakan Django Template Language (DTL) dengan perulangan {% for education in education_list %}. Setelah template selesai dirender, hasil HTML dikirim kembali kepada browser dan ditampilkan kepada pengguna.
 
         Alurnya:
-        Browser ===>> project urls.pymain/urls.py ===>> show_education() ===>> Education.objects.all() ===>> context: education_list ===> education.html ===>> Browser
+                Browser
+                    ↓
+                project urls.pymain/urls.py
+                    ↓
+                show_education()
+                    ↓
+                Education.objects.all()
+                    ↓
+                context: education_list
+                    ↓
+                education.html
+                    ↓
+                Browser
 
     2.  Mengapa data untuk bagian portofolio baru sebaiknya disimpan pada model dan tidak ditulis langsung di dalam template? Jelaskan dampaknya 
         terhadap kemudahan pemeliharaan dan pengembangan aplikasi.
         Jawab:
-        Data sebaiknya disimpan pada model dan bukan secara hardcode di html hal ini dilakukan demi menjaga arsitektur aplikasi agar tetap bersih, dan mudah dikelola. Hal ini juga mengacu pada pola desain MVT(Model-View-Template) yang sedang di terapkan. Model bertanggung jawab untuk menyimpan dan mengelola data, View bertanggung jawab untuk mengambil data dari model dan meneruskannya ke template, sedangkan Template berfokus pada menampilkan data kepada pengguna.
-
-        Dengan cara ini, ketika saya ingin menambah, mengubah, atau menghapus data pada bagian portofolio, saya tidak perlu mengubah kode HTML secara langsung. Data cukup diperbarui melalui database. Hal tersebut membuat aplikasi lebih mudah dipelihara dan dikembangkan, terutama ketika jumlah data semakin banyak.
+        Data sebaiknya disimpan pada model dan bukan secara hardcode di html hal ini dilakukan demi menjaga arsitektur aplikasi agar tetap bersih, dan mudah dikelola. Hal ini juga mengacu pada pola desain MVT(Model-View-Template) yang sedang di terapkan. Model bertanggung jawab untuk menyimpan dan mengelola data, View bertanggung jawab untuk mengambil data dari model dan meneruskannya ke template, sedangkan Template berfokus pada menampilkan data kepada pengguna. Dengan cara ini, ketika saya ingin menambah, mengubah, atau menghapus data pada bagian portofolio, saya tidak perlu mengubah kode HTML secara langsung. Data cukup diperbarui melalui database. Hal tersebut membuat aplikasi lebih mudah dipelihara dan dikembangkan, terutama ketika jumlah data semakin banyak.
 
     3.  Apa perbedaan fungsi makemigrations dan migrate pada Django? Berikan contoh perubahan model yang mengharuskanmu menjalankan kedua perintah 
         tersebut.
         Jawab:
         Perbedaan fungsi:
         makemigrations digunakan untuk mencatat rencana perubahan model sedangkan migrate digunakan untuk menerapkan file dari migration tersebut ke database sehingga struktur database akan bersesuaian dengn model yang telah dibuat.
-
-        contohnya, ketika saya menambahan model education dengan field institution, degree, period, logo, dan website, saya menjalankan:python manage.py makemigrations 
-        Namun, saat saya ingin membuat filemigration saya menjalankan: python manage.py migrate -> untuk menerapkan perubahan tersebut ke database.
-
+        Contohnya, ketika saya menambahan model education dengan field institution, degree, period, logo, dan website, saya menjalankan:python manage.py makemigrations. Namun, saat saya ingin membuat filemigration saya menjalankan: python manage.py migrate -> untuk menerapkan perubahan tersebut ke database.
         jadi alurnya:
             Perubahan models.py
                 ↓
@@ -247,5 +297,11 @@ link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
 
 
     # AI Disclosure & Usage
+      Pada tugas 2 ini saya menggunakan ChatGPT dalam menelaah informasi yang saya kurang pahami dengan baik terutama mengenai syntax django, dan beberapa penerapan konsep MVT. Saya menggunakan ChatGPT untuk meminta penjelasan, contoh penggunaan kode, serta membantu memahami error yang saya temui selama mengerjakan tugas. Setelah itu, saya menerapkan dan menyesuaikan hasilnya sendiri ke dalam project yang saya kerjakan. Saya menggunakan AI untuk mendapatkan penjelasan dan arahan, kemudian menerapkan dan menyesuaikannya sendiri pada project yang saya buat.
+
+      Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
+      1. 
+
+
   
 

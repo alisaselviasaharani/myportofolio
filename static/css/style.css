@@ -218,6 +218,7 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
 
 .ketik-home h1 {
     font-size: clamp(40px, 5vw, 80px);
+    size: 40px;
     width: 0;
     overflow: hidden;
     white-space: nowrap;

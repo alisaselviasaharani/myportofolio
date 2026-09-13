@@ -1,0 +1,74 @@
+[
+{
+  "model": "main.experience",
+  "pk": "76db1f6f-ff05-4ba2-a8f3-69fdf4e60c20",
+  "fields": {
+    "title": "Math Club Chairperson",
+    "institution": "MTSN 12 Jakarta",
+    "description": "Led the Math Club and organized activities to help members improve their mathematics skills.",
+    "category": "part-time",
+    "period": "2019 - 2022",
+    "logo": "/static/img/logomts.png",
+    "website": "https://www.mtsn12jkt.sch.id/"
+  }
+},
+{
+  "model": "main.experience",
+  "pk": "7f4888f5-7b40-466c-b06a-dd19a8141354",
+  "fields": {
+    "title": "Active Participant - Young Health Program",
+    "institution": "Young Health Programme (YHP)",
+    "description": "Actively participated as a youth health cadre in health education and disease prevention campaigns.",
+    "category": "volunteer",
+    "period": "2023-2025",
+    "logo": "/static/img/logoYHP.jpeg",
+    "website": "https://www.yhp.astrazeneca.com/programmes/indonesia-1.html"
+  }
+},
+{
+  "model": "main.experience",
+  "pk": "d525dcb2-eab5-4fcf-9a07-6357fea38b17",
+  "fields": {
+    "title": "Vice Chairperson of IT Club 65",
+    "institution": "SMAN 65 JAKARTA",
+    "description": "Assisted in coordinating IT Club activities and supporting members in learning and developing their technology skills.",
+    "category": "part-time",
+    "period": "2024 - 2025",
+    "logo": "/static/img/logoIT65.png",
+    "website": "https://www.youtube.com/@itclubsman6575/videos"
+  }
+},
+{
+  "model": "main.education",
+  "pk": 1,
+  "fields": {
+    "institution": "Universitas Indonesia",
+    "degree": "S1 Ilmu Komputer",
+    "period": "2025 - Present",
+    "logo": "/static/img/logoUI.png",
+    "website": "https://cs.ui.ac.id/"
+  }
+},
+{
+  "model": "main.education",
+  "pk": 2,
+  "fields": {
+    "institution": "SMAN 65 Jakarta",
+    "degree": "Natural Science",
+    "period": "2022 - 2025",
+    "logo": "/static/img/logo65.jpg",
+    "website": "https://sman65jakarta.sch.id/"
+  }
+},
+{
+  "model": "main.education",
+  "pk": 3,
+  "fields": {
+    "institution": "MTSN 12 Jakarta",
+    "degree": "",
+    "period": "2019 - 2022",
+    "logo": "/static/img/logomts.png",
+    "website": "https://www.mtsn12jkt.sch.id/"
+  }
+}
+]
