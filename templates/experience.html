@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- Menentukan bahasa utama (ENGLISH) -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <title>Alisa Selvia Saharani - Portfolio</title> -->
     <title>{{ name }} - Portofolio</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -15,40 +13,44 @@
 </head>
 
 <body>
-
     <header class="site-header">
+        <!-- mengatur posisi dan lebar navbar -->
         <div class="container">
 
-            <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
+            <!-- Judul navbar nama saya -->
+            <!-- Note: bagian heaer/navbar yg menampilkan nama saya -->
             <a href="#profile" class="brand">{{ name }}</a>
 
+            <!-- MENU NAVBAR EXPERIENCE -->
+            <!-- note: dlm navbar ini digunakan django untuk mencari URL berdasarkan nama route yg sudah dibuat di main/urls.py -->
             <nav>
+                <!-- Link menuju page home -->
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
-
+                <!-- Link menuju page aboutme -->
                 <a href="{% url 'main:show_aboutme' %}">
                     <h2>ABOUT ME</h2>
                 </a>
-
+                <!-- Link menuju page education -->
                 <a href="{% url 'main:show_education' %}">
                     <h2>EDUCATION</h2>
                 </a>
-
+                <!-- Link menuju page experience -->
                 <a href="{% url 'main:show_experience' %}">
                     <h2>EXPERIENCE</h2>
                 </a>
-        </div>
+            </nav>
         </div>
     </header>
 
 
     <main class="pages">
-
-        <!-- PAGE 3 : EXPERIENCE -->
+        <!-- PAGE : EXPERIENCE -->
         <section class="experience-page" id="experience">
 
             <!-- Gelembung -->
+            <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
             <div class="bubbles">
                 <span></span>
                 <span></span>
@@ -60,70 +62,69 @@
                 <span></span>
             </div>
 
+            <!-- container untuk isi seluruh page experience -->
             <div class="experience-content">
 
                 <!-- Judul Experience -->
+                <!-- container untuk efek ketik  -->
                 <div class="ketik">
+                    <!-- judul halaman -->
                     <h1>EXPERIENCE</h1>
                 </div>
 
                 <!-- Kartu Experience -->
                 <div class="experience-cards">
 
+                    <!-- ambil tiap data experience dari experience_list yg dikirim view  -->
                     {% for experience in experience_list %}
-
                     <div class="experience-card">
 
+                        <!-- membuat link menuju website dari experience saya  -->
                         {% if experience.website %}
-
                         <a href="{{ experience.website }}" class="experience-link" target="_blank">
 
+                            <!--  mengecek logo dari experience tersedia -->
                             {% if experience.logo %}
-
                             <img class="experience-logo" src="{{ experience.logo }}"
                                 alt="{{ experience.institution|default:experience.title }}">
-
                             {% endif %}
 
                         </a>
 
                         {% endif %}
-
+                        <!-- menampilkan judul experience yang berasal dari field model experience -->
                         <h2>{{ experience.title }}</h2>
 
+                        <!-- mengecek institution tersedia -->
                         {% if experience.institution %}
+                        <!-- menampilkan nama institution -->
                         <p>{{ experience.institution }}</p>
                         {% endif %}
 
+                        <!-- mengecek period tersedia -->
                         {% if experience.period %}
+                        <!-- menampilkan period -->
                         <p>{{ experience.period }}</p>
                         {% endif %}
 
+                        <!-- menggunakan choices dalam milih kategori -->
                         <p>{{ experience.get_category_display }}</p>
-
+                        <!-- menampilkan deskripsi sesuai dari data base  -->
                         <p>{{ experience.description }}</p>
-
                     </div>
 
+                    <!-- kalau g ada data maka blm ada pengalaman -->
                     {% empty %}
-
                     <p>Belum ada pengalaman yang ditambahkan.</p>
-
                     {% endfor %}
-
                 </div>
-
-            </div>
-
         </section>
-
     </main>
 
 
+    <!-- Footer Experience -->
     <footer class="site-footer">
         <div class="container">
-
-            <!-- <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p> -->
             <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
 
         </div>

@@ -217,27 +217,35 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
 }
 
 .ketik-home h1 {
-    font-size: clamp(40px, 5vw, 80px);
-    size: 40px;
+    font-size: clamp(32px, 4vw, 70px);
     width: 0;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 3px solid black;
+    border-right: 3.5px solid black;
     animation:
-        mengetik 3s steps(18, end) forwards,
+        mengetik 5s steps(16, end) infinite,
         kursor 0.7s step-end infinite;
 }
 
 
-@keyframes mengetik {
-    from {
+@keyframes mengetik{
+    0% {
         width: 0;
     }
 
-    to {
-        width: 18ch;
+    40% {
+        width: 16ch;
+    }
+
+    60% {
+        width: 16ch;
+    }
+
+    100% {
+        width: 0;
     }
 }
+
 
 @keyframes kursor {
     50% {
@@ -1245,7 +1253,8 @@ h2,
     }
 }
 
-
+/*
+CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 .experience-section {
     padding: 4rem 0;
     border-top: 1px solid var(--line);
@@ -1298,4 +1307,4 @@ h2,
     margin-top: 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-}
+} */
