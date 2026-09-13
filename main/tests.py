@@ -5,7 +5,7 @@ from main.models import Experience, Education
 
 class MainTest(TestCase):
     # --------->>>>> SETUP EXPERIENCE TEST <<<<<---------
-    # Note: menguji data yang saya punya dengan beberapa test
+    # Note: menguji data yang saya punya dengan beberapa testt
     def setUp(self):
         self.experience = Experience.objects.create(
             title="Vice Chairperson of IT Club 65",
@@ -129,6 +129,6 @@ class MainTest(TestCase):
 
         # Mengakses halaman Education setelah database kosong
         response = self.client.get(reverse("main:show_education"))
-        
+
         # Memastikan pesan empty state ditampilkan.
         self.assertContains(response,"Belum ada data pendidikan.")
