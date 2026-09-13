@@ -13,31 +13,32 @@
 
 <body>
     <header class="site-header">
+        <!-- mengatur posisi dan lebar navbar -->
         <div class="container">
-            <a href="#profile" class="brand">Alisa Selvia Saharani</a>
-            <nav>
 
-                <!--  Menu -->
+            <!-- Judul navbar nama saya -->
+            <!-- Note: bagian heaer/navbar yg menampilkan nama saya -->
+            <a href="#profile" class="brand"> {{ name }}</a>
+
+            <!-- MENU NAVBAR EXPERIENCE -->
+            <!-- note: dlm navbar ini digunakan django untuk mencari URL berdasarkan nama route yg sudah dibuat di main/urls.py -->
             <nav>
+                <!-- Link menuju page home -->
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
-
+                <!-- Link menuju page aboutme -->
                 <a href="{% url 'main:show_aboutme' %}">
                     <h2>ABOUT ME</h2>
                 </a>
-
+                <!-- Link menuju page education -->
                 <a href="{% url 'main:show_education' %}">
                     <h2>EDUCATION</h2>
                 </a>
-
+                <!-- Link menuju page experience -->
                 <a href="{% url 'main:show_experience' %}">
                     <h2>EXPERIENCE</h2>
                 </a>
-
-            </nav>
-        </div>
-
             </nav>
         </div>
     </header>
@@ -54,11 +55,22 @@
 
                 <!-- membuat deskripsi perkenalan agar pengunjung terkesan di page utama home saya :) -->
                 <div class="ketik-home">
-                    <h1> Hello, I'm Alisa</h1>
+                    <!-- <h1> Hello, I'm Alisa</h1> -->
+                                <!-- | -->
+                                <!-- ↓ -->
+                    <!-- menggunakan context Django -->
+                        <h1>{{ perkenalan }}</h1>
                 </div>
-                <p> I'm a Computer Science student at Universitas Indonesia.</p>
+
+                <!-- <p> I'm a Computer Science student at Universitas Indonesia.</p>
                 <p> Welcome to my portofolio!!!</p>
-                <p> This is a little space where I share more about myself.</p>
+                <p> This is a little space where I share more about myself.</p> -->
+                                            <!-- | -->
+                                            <!-- ↓ -->
+                                <!-- menggunakan context Django -->
+                                        <p>{{ bio }}</p>
+                                        <p>{{ bio1 }}</p>
+                                        <p> {{ bio2 }} </p>
 
                 <!-- membuat button untuk menunjukkan ke halaman selanjutnya -->
                 <a href="{% url 'main:show_aboutme' %}" class="button-about">Get to know me → </a>
@@ -67,12 +79,13 @@
 
     </main>
 
+    <!-- Container untuk isi footer -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p>
-        </div>
-    </footer>
-
+            <!-- {{ name }} mengambil nama dari context View Django. -->
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+        </div> <!-- Menutup container footer -->
+    </footer> <!-- Menutup footer -->
 </body>
 
 </html>

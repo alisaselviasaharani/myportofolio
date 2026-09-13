@@ -180,44 +180,45 @@
         Ya, dalam pembuatan website ini saya menggunakan elemen semantik HTML5 dan salah satunya yaitu <section>. Saya menggunakan <section> untuk membagi halaman menjadi beberapa bagian berdasarkan informasi yang ingin saya tampilkan, seperti About Me, Education, Experience, Achievements, Skills, dan Contact. Penggunaan <section> membantu saya dalam menyusun struktur website agar setiap bagian memiliki fungsi dan tujuan yang jelas. Selain membuat kode HTML lebih terstruktur, penggunaan <section> juga memudahkan saya ketika mengatur tampilan setiap bagian menggunakan CSS. Misalnya, setiap section pada halaman About saya buat sebagai halaman yang dapat digeser secara horizontal (horizontal scrolling). Saya tidak banyak menggunakan elemen seperti <article> atau <aside> karena kebutuhan website saya lebih berfokus pada pembagian halaman berdasarkan bagian portofolio. Untuk struktur tersebut, penggunaan <section> sudah cukup memenuhi kebutuhan desain dan membantu saya mengorganisasi konten dengan lebih mudah. Dari proses ini, saya memahami bahwa elemen semantik tidak hanya digunakan agar HTML terlihat lebih rapi, tetapi juga membantu saya memahami struktur dan pembagian konten dalam website yang saya buat.
 
 
-    2.  Ketika Anda mengatur CSS Anda agar tetap responsive, tantangan tata letak apa yang Anda temukan? Bagaimana Anda     
-        mengevaluasi elemen mana yang harus diubah posisinya atau diprioritaskan ukurannya saat berpindah dari tampilan desktop ke mobile?
+    2.  Ketika Anda mengatur CSS Anda agar tetap responsive, tantangan tata letak apa yang Anda temukan? Bagaimana Anda mengevaluasi elemen mana yang harus diubah posisinya atau diprioritaskan ukurannya saat berpindah dari tampilan desktop ke mobile?
         jawab:
         Saat mengatur CSS agar website tetap responsive, salah satu tantangan terbesar yang saya temukan adalah menyesuaikan ukuran dan posisi beberapa elemen ketika ukuran layar berubah, terutama dari tampilan desktop ke mobile. Beberapa elemen seperti card, gambar, teks, dan bagian Contact yang terlihat cukup baik di desktop dapat menjadi terlalu besar atau tidak berada di posisi yang sesuai ketika dilihat pada layar yang lebih kecil. Untuk mengevaluasinya, saya mencoba melihat tampilan website pada ukuran layar yang berbeda dan memperhatikan elemen mana yang mulai terlihat terlalu besar, terlalu rapat, atau keluar dari area yang seharusnya. Saya kemudian menyesuaikan ukuran seperti width, height, padding, dan font-size, serta mengatur kembali posisi beberapa elemen menggunakan Flexbox dan CSS. Saya memprioritaskan informasi utama dan keterbacaan terlebih dahulu. Misalnya, ukuran teks dan card harus tetap nyaman dibaca, sedangkan elemen dekoratif seperti gambar dan animasi dapat disesuaikan ukurannya agar tidak mengganggu konten utama. Dari proses tersebut, saya memahami bahwa membuat website responsive bukan hanya dengan mengecilkan semua ukuran elemen, tetapi perlu mempertimbangkan susunan, keterbacaan, dan prioritas informasi pada setiap ukuran layar.
 
-    3.  Website yang Anda buat saat ini adalah static web murni. Batasan apa yang Anda rasakan saat mencoba menyajikan informasi 
-        pada portofolio Anda secara optimal? Berdasarkan batasan tersebut, fungsionalitas dinamis apa yang paling ingin Anda persiapkan dan tambahkan pada iterasi proyek selanjutnya?
+    3.  Website yang Anda buat saat ini adalah static web murni. Batasan apa yang Anda rasakan saat mencoba menyajikan informasi pada portofolio Anda secara optimal? Berdasarkan batasan tersebut, fungsionalitas dinamis apa yang paling ingin Anda persiapkan dan tambahkan pada iterasi proyek selanjutnya?
         jawab:
         Batasan yang saya rasakan saat membuat website static adalah informasi yang ditampilkan masih harus ditulis dan diubah secara langsung di dalam kode HTML. Jadi, ketika saya ingin menambahkan atau mengubah data seperti pengalaman, pencapaian, atau skills, saya perlu mengubah kode secara manual. Selain itu, interaksi dengan pengunjung juga masih terbatas karena website lebih berfungsi sebagai media untuk menampilkan informasi mengenai diri saya. Berdasarkan batasan tersebut, pada iterasi proyek selanjutnya saya paling ingin menambahkan fungsionalitas dinamis untuk mengelola dan menampilkan data portofolio. Misalnya, saya ingin membuat sistem agar data seperti education, experience, achievements, dan skills dapat disimpan di database dan ditampilkan secara otomatis pada website. Dengan begitu, saya tidak perlu mengubah HTML secara manual setiap kali ingin memperbarui informasi. Saya juga ingin menambahkan fitur interaktif seperti form contact sehingga pengunjung dapat mengirim pesan secara langsung melalui website. Menurut saya, fitur tersebut akan membuat website tidak hanya menjadi halaman untuk menampilkan informasi, tetapi juga menjadi media komunikasi yang lebih interaktif. Dari proses ini, saya memahami bahwa static web memiliki keterbatasan dalam pengelolaan data dan interaksi. Pengembangan ke arah website dinamis akan membuat portofolio lebih mudah diperbarui, dikelola, dan digunakan oleh pengunjung.
 
 
 ### Tugas 2
-    # Deskripsi Proyek
-    # Design & Resources
-    - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
-    - Google Fonts (Space Groteks)
-    - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
-    - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
-    - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
-    - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
-    - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
-    - Python Django Admin Module Complete Guide All Features Explained in Django Python Admin Tutorial (https://www.youtube.com/watch?v=Q2ga-vtbaxQ)
-    - Django admin - Project set up (https://youtu.be/n5L7OqUG47s?si=LTLu1VSvbrvamNIZ)
-    - How Django Works (MVT Pattern) (https://youtu.be/cyP4Uw2b2XM?si=_0Fa9AHKhe72GFv9)
+    ##  Deskripsi Proyek
+        Pada Tugas 2 ini, saya melanjutkan pengembangan website portofolio pribadi dengan menerapkan konsep Model-View-Template (MVT) menggunakan Django. Pada Tutorial 2, saya telah menerapkan MVT pada bagian Experience. Kemudian, pada Tugas 2 ini saya menerapkan kembali konsep tersebut pada bagian Education sebagai bagian portofolio baru. Pada implementasinya, saya membuat model `Education` yang digunakan untuk menyimpan data pendidikan. Data tersebut kemudian diambil melalui `view` dan diteruskan ke template menggunakan `context`. Pada halaman `education.html`, data ditampilkan secara dinamis menggunakan Django Template Language (DTL) dengan perulangan sehingga data tidak lagi ditulis secara langsung atau hard-coded di dalam HTML.
+        Selain membuat halaman Education, saya juga mempertahankan penerapan MVT pada halaman Experience yang telah dibuat pada Tutorial 2. Kedua halaman tersebut memiliki halaman masing-masing dan dapat diakses melalui navbar menggunakan named route Django. Dalam pengerjaan Tugas 2 ini, saya juga membuat migration untuk model `Education`, menerapkan unit test untuk memastikan halaman dapat berjalan dengan baik, serta melakukan pengecekan pada local dan PWS. Saya juga melakukan beberapa perbaikan pada navbar, footer, styling, dan struktur halaman agar tampilan tetap konsisten dengan halaman lainnya. Melalui tugas ini, saya menjadi lebih memahami bagaimana Model, View, Template, URL, dan database saling berhubungan dalam Django untuk menghasilkan halaman portofolio yang lebih dinamis dan mudah dikelola.
+
+    ##  Design & Resources
+        - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
+        - Google Fonts (Space Groteks)
+        - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
+        - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
+        - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
+        - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
+        - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
+        - Python Django Admin Module Complete Guide All Features Explained in Django Python Admin Tutorial (https://www.youtube.com/watch?v=Q2ga-vtbaxQ)
+        - Django admin - Project set up (https://youtu.be/n5L7OqUG47s?si=LTLu1VSvbrvamNIZ)
+        - How Django Works (MVT Pattern) (https://youtu.be/cyP4Uw2b2XM?si=_0Fa9AHKhe72GFv9)
 
 
-    ## Struktur Halaman
-    - Home
-    - About me:
-        Dalam page About Me terdiri dari beberapa section, yaitu:
-        1. Achievements
-        2. Skills
-        3. Contact
-    - Education  -->> MVT
-    - Experience -->> MVT
+    ##  Struktur Halaman
+        - Home
+        - About me:
+            Dalam page About Me terdiri dari beberapa section, yaitu:
+            1. Achievements
+            2. Skills
+            3. Contact
+        - Education  -->> MVT
+        - Experience -->> MVT
 
 
-    ## Weekly Progress Tugas 2
+    ##  Weekly Progress Tugas 2
     Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
     1.  9 September 2026
         - Melakukan pengerjaan tutorial 2
@@ -227,28 +228,41 @@
         - Tutorial 02: Implementasi Model-View-Template (MVT) pada Django
         - Tutorial 2: Django 5.0
         - update hasil tutorial 2
+
     2.  11 September 2026
         - Membuat 1 MVT yaitu Education (Education yg jadi MVT saya setelah experience)
         - Menerapkan migration ke database
+        
         berikut ini progress commit di git hub yang telah saya lakukan:
         - membuat pages terpisah untuk education, experience, achievements, skills, dan contact
         - mengembalikan file awal ke section about me karena hanya ingin menambahkan model Education
         - menambahkan model Education dan integrasi ke view
         - membuat fungsi show_education, menampilkan data context pada Education, dan membuat page Education secara dinamis
         - menerapkan migration ke database, mengatur URL Django, memperbaiki navbar, unit test, dan URL error
+        
     3. 12 September 2026
         - Merapikan serta memperbaiki struktur sesuai dengan tugas 2
-        - Membuat NAV BAR yang konsisten di setiap page 
+        - Membuat NAV BAR yang konsisten di setiap page
         - Membuat FOOTER & HEADER yang konsisten setiap page
+        
         berikut ini progress commit di git hub yang telah saya lakukan:
         - Memperbaiki tampilan dari experience yg sudah menerapkan MVT
-        - menambahkan create data Education supaya data dari model bisa ditampilkan di halaman
-        - Implementasi model dan migrasi sudah selesai. Migration 0001 sampai 0006 sudah berhasil dibuat dan diterapkan, ditandai dengan seluruh 
-          migration berstatus [X]
-        - merapikan navbar dan footer konsisten dengan halaman lain
+        - menambahkan create data Education supaya data dari model bisa ditampilkan di halaman.
+        - Implementasi model dan migrasi sudah selesai. Migration 0001 sampai 0006 sudah berhasil dibuat dan diterapkan, ditandai dengan seluruh migration berstatus [X].
+        - merapikan navbar dan footer konsisten dengan halaman lain.
         - Menambahkan keterangan informasi ke readme.md dan juga menjawab pertanyaan refleksi
         - menambahkan efek ketik di page home
-        - memperbaiki unit test dan styling portfolio
+
+
+    4. 13 September 2026
+        - Finishing tugas
+        - Finishing README.md
+
+        berikut ini progress commit di git hub yang telah saya lakukan:
+        - Menambahkan testing, memperbaiki unit test, styling dan data portofolio
+        - memberikan keterangan di experience
+        - fix: menambahkan trusted origin untuk PWS
+        - Finishing : Individual Assignment 2: Implementasi Model-View-Template (MVT) pada Django
 
 
     ## Pertanyaan Reflektif
@@ -282,26 +296,172 @@
         tersebut.
         Jawab:
         Perbedaan fungsi:
-        makemigrations digunakan untuk mencatat rencana perubahan model sedangkan migrate digunakan untuk menerapkan file dari migration tersebut ke database sehingga struktur database akan bersesuaian dengn model yang telah dibuat.
-        Contohnya, ketika saya menambahan model education dengan field institution, degree, period, logo, dan website, saya menjalankan:python manage.py makemigrations. Namun, saat saya ingin membuat filemigration saya menjalankan: python manage.py migrate -> untuk menerapkan perubahan tersebut ke database.
-        jadi alurnya:
-            Perubahan models.py
-                ↓
-            makemigrations
-                ↓
-            File migration dibuat
-                ↓
-            migrate
-                ↓
-            Database diperbarui
+        `makemigrations` digunakan untuk mencatat rencana perubahan model dan membuat file migration, sedangkan `migrate` digunakan untuk menerapkan file migration tersebut ke database sehingga struktur database akan bersesuaian dengan model yang telah dibuat.
+        Contohnya, ketika saya menambahkan model `Education` dengan field `institution`, `degree`, `period`, `logo`, dan `website`, saya menjalankan `python manage.py makemigrations` untuk membuat file migration. Setelah itu, saya menjalankan `python manage.py migrate` untuk menerapkan perubahan tersebut ke database.
+        Jadi alurnya:
 
+            Perubahan models.py
+                    ↓
+            makemigrations
+                    ↓
+            File migration dibuat
+                    ↓
+                migrate
+                    ↓
+            Database diperbarui
 
     # AI Disclosure & Usage
       Pada tugas 2 ini saya menggunakan ChatGPT dalam menelaah informasi yang saya kurang pahami dengan baik terutama mengenai syntax django, dan beberapa penerapan konsep MVT. Saya menggunakan ChatGPT untuk meminta penjelasan, contoh penggunaan kode, serta membantu memahami error yang saya temui selama mengerjakan tugas. Setelah itu, saya menerapkan dan menyesuaikan hasilnya sendiri ke dalam project yang saya kerjakan. Saya menggunakan AI untuk mendapatkan penjelasan dan arahan, kemudian menerapkan dan menyesuaikannya sendiri pada project yang saya buat.
 
       Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
-      1. 
+      1.Pertanyaan saya: kalo mau pake user yg sama di django administration biar kyk login langsung bisa ga
+        Jawaban GPT:
+        Bisa. Kalau maksudmu **ingin username/password yang sama dengan akun yang biasa kamu pakai**, bisa — **asal akun tersebut memang dibuat sebagai superuser/staff di database PWS**.
+        Di layar itu kamu sedang berada di:
+        ```text
+        Username (leave blank to use 'root'):
+        ```
+        Kalau ingin menggunakan username yang sama seperti akunmu, **ketik username tersebut**, misalnya:
+        ```text
+        Username (leave blank to use 'root'): alisa
+        ```
+        Lalu:
+        ```text
+        Email address: emailkamu@example.com
+        Password: ...
+        Password (again): ...
+        ```
+        Tapi kalau yang kamu maksud akun login PWS/UI
+        Kalau kamu biasanya login PWS menggunakan **akun UI/PWS**, belum tentu username/password itu bisa langsung dipakai sebagai akun Django Admin.
+        `createsuperuser` membuat **akun Django**, yang tersimpan di database Django PWS.
 
+        Jadi paling aman:
+        ```text
+        Username: username yang kamu inginkan
+        Password: password yang kamu inginkan
+        ```
 
-  
+        Setelah selesai, login ke:
+
+        ```text
+        /admin/
+        ```
+
+        dengan username/password tersebut.
+        **Kalau kamu ingin username-nya sama persis dengan akun yang sebelumnya sudah kamu buat di database PWS**, jangan lanjut dulu. Kita bisa cek apakah user tersebut sudah ada supaya tidak membuat akun duplikat.
+
+    2.  Pertanyaan saya: <a href="#profile" class="brand">{{ name }}</a> ini gunanyau ntuk apa
+        Jawaban GPT:
+        Itu fungsinya ada **2 bagian**:
+        ```html
+        <a href="#profile" class="brand">{{ name }}</a>
+        ```
+        ### 1. `{{ name }}`
+        Ini menampilkan **nama yang dikirim dari View Django**.
+        Misalnya di `views.py`:
+        ```python
+        context = {
+            "name": "Alisa Selvia Saharani",
+        }
+        ```
+        Maka di halaman akan muncul:
+        **Alisa Selvia Saharani**
+        Jadi `{{ name }}` = mengambil data dari **context View**.
+        ---
+        ### 2. `href="#profile"`
+        Ini menentukan **ketika nama tersebut diklik, browser pergi ke elemen yang punya `id="profile"`**.
+        Contohnya:
+        ```html
+        <section id="profile">
+        ```
+        Maka:
+        ```html
+        <a href="#profile">
+        ```
+        akan scroll ke bagian tersebut.
+        **Tapi**, di halaman `experience.html` kamu sekarang tidak ada:
+        ```html
+        id="profile"
+        ```
+        Jadi `href="#profile"` sebenarnya **tidak terlalu berguna di halaman Experience**.
+        ### Jadi kalau tujuanmu hanya menampilkan nama di navbar:
+        ```html
+        <a href="#profile" class="brand">{{ name }}</a>
+        ```
+        bisa saja dipertahankan.
+        Kalau kamu ingin nama **tidak menjadi tombol/link**, cukup:
+        ```html
+        <span class="brand">{{ name }}</span>
+        ```
+        Kalau kamu ingin nama tersebut ketika diklik **kembali ke Home**, lebih tepat:
+        ```html
+        <a href="{% url 'main:show_home' %}" class="brand">{{ name }}</a>
+        ```
+        Untuk tugas Django kamu, **yang paling masuk akal adalah yang terakhir** kalau brand nama memang ingin berfungsi sebagai tombol Home.
+
+    3.  Pertanyaan saya: white-space ini untuk apa
+        Jawaban GPT:
+        `white-space: nowrap;` itu digunakan supaya **teks tidak turun ke baris berikutnya**.
+        Contohnya teks:
+        ```text
+        HELLO, I'M ALISA
+        ```
+        Dengan:
+        ```css
+        white-space: nowrap;
+        ```
+        teks akan dipaksa tetap **satu baris**:
+        ```text
+        HELLO, I'M ALISA
+        ```
+        Bukan menjadi:
+        ```text
+        HELLO, I'M
+        ALISA
+        ```
+        ### Kenapa penting untuk efek mengetik?
+        Karena kita menggunakan:
+        ```css
+        width: 0;
+        overflow: hidden;
+        ```
+        Lebar teks awalnya 0, kemudian perlahan diperbesar oleh animasi. `nowrap` memastikan teks yang sedang "diketik" **tetap berada dalam satu baris** dan tidak melakukan wrapping.
+        Jadi untuk efek typewriter kamu, **sebaiknya tetap pakai**:
+        ```css
+        white-space: nowrap;
+        ```
+
+        Sedangkan:
+        ```css
+        overflow: hidden;
+        ```
+        berfungsi menyembunyikan bagian teks yang belum "terketik".
+
+    
+    # Tantangan yang dihadapi selama Tugas 2 berlangsung
+    Berikut ini refleksi dari saya:
+    Dalam tugas 2 ini, tugasnya adalah mengubah yang semulanya codenya menggunakan hardcode yaitu codenya langsung di html dan di buat dengan MVT melalui Django. Saya menghadapi beberapa kendala yaitu:
+    1.  Eror saat mencantumkan link url
+        Tantangan pertama yang saya hadapi yaitu, seringnya terjadi eror bagian url saat mencantumkan link navbar baik di local maupun pws.
+        Setelah mempelajarinya lebih lanjut, saya memahami bahwa penggunaan `{% url %}` pada template digunakan untuk mengambil URL berdasarkan nama route yang sudah dibuat di `main/urls.py`.
+        Contohnya adalah:
+                ```django
+                <a href="{% url 'main:show_education' %}">
+                    <h2>EDUCATION</h2>
+                </a>
+        Dari masalah tersebut, saya menjadi lebih memahami hubungan antara urls.py, view, dan template dalam konsep MVT.
+
+    2.  PWS tidak muncul data base yang saya buat
+        Pada tutorial 2 menggunakan MVT experience dan kemudian di tugas 2 saya menggunakan MVT education. Namun, setelah saya memasukan data di local berhasil di tampilkan namun saat di push PWS keterangannya "Belum ada pengalaman" dan "Belum ada pendidikan". Awalnya ini menjadi bug yang menjadi sebuah misteri untuk saya. Namun, karena bug ini menjadi sebuah motivasi bagi saya untuk mengulik dan mencari kendalanya. Tapi ada satu hal yang selalu saya pastikan/cek yaitu melalui Django administration.
+        Untuk local, Django Administration dapat diakses melalui http://127.0.0.1:8000/admin/. Pada local, database Django juga tersimpan dengan baik dan data dapat dicek melalui Django Administration maupun terminal. Namun, ketika project di-push ke PWS, data tersebut tidak langsung muncul sehingga saya perlu mencari tahu penyebab perbedaannya antara database local dan database pada PWS.
+
+        Selama beberapa hari, saya hanya menemukan solusi dengan memasukkan data melalui terminal PWS. Namun, cara tersebut kurang efisien karena saya harus selalu membuat dan memasukkan data kembali secara manual. Dari situ saya menyadari bahwa saya membutuhkan cara agar data dari local dapat dipindahkan ke PWS dengan lebih praktis tanpa harus memasukkannya satu per satu.
+
+        Setelah mencari dan mencoba beberapa cara, saya akhirnya menggunakan fixture Django dengan membuat file `portfolio_data.json` yang berisi data `Experience` dan `Education`. File tersebut kemudian dapat digunakan untuk memasukkan data ke database PWS menggunakan perintah `loaddata`. Dengan cara ini, proses pemindahan data menjadi lebih praktis dibandingkan harus membuat data satu per satu melalui terminal PWS.
+
+        Namun, solusi ini ternyata masih belum optimal. Ketika saya melakukan `git push` kembali ke GitHub dan PWS, data pada PWS kembali tidak muncul dan halaman kembali menampilkan pesan "Belum ada pengalaman" dan "Belum ada pendidikan". Dari kejadian tersebut, saya mulai menganalisis bahwa database local dan database PWS belum sesuai. Data yang tersimpan pada database local tidak otomatis tersedia pada database PWS. Saya kemudian memahami bahwa proses `git push` hanya mengirimkan source code dan file yang di-track oleh Git, bukan isi database local secara otomatis. Oleh karena itu, meskipun kode MVT sudah berhasil di-push, data `Experience` dan `Education` yang ada pada database local belum tentu tersedia pada database PWS.
+
+        Kemudian, saya berinisiatif untuk memeriksa Django Administration melalui PWS. Untuk PWS, Django Administration dapat diakses melalui `https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/admin/`. Saat saya melakukan login, saya menemukan bahwa seluruh section pada Django Administration masih kosong, termasuk data `Experience` dan `Education`. Dari situ saya semakin memahami bahwa data yang ada pada database local memang belum masuk ke database PWS. Tanpa berlama-lama, saya kemudian menggunakan kembali file `portfolio_data.json` yang sebelumnya saya buat. Saya memasukkan data tersebut ke database PWS menggunakan fixture Django dengan perintah `loaddata`. Setelah proses tersebut berhasil, data `Experience` dan `Education` kembali muncul pada halaman portfolio PWS.
+
+        Dari pengalaman tersebut, saya menjadi lebih memahami perbedaan antara source code dan database dalam proses deployment. Saya juga memahami bahwa migration digunakan untuk menyamakan struktur database dengan model, sedangkan fixture dapat digunakan untuk membantu memindahkan data dari satu database ke database lainnya. Meskipun proses debugging ini cukup memakan waktu, masalah tersebut justru membantu saya memahami Django dan proses deployment dengan lebih baik.
 

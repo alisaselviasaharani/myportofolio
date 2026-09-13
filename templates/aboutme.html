@@ -14,27 +14,34 @@
 
 <body>
     <header class="site-header">
+        <!-- mengatur posisi dan lebar navbar -->
         <div class="container">
-            <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
+
+            <!-- Judul navbar nama saya -->
+            <!-- Note: bagian heaer/navbar yg menampilkan nama saya -->
             <a href="#profile" class="brand">{{ name }}</a>
+
+            <!-- MENU NAVBAR EXPERIENCE -->
+            <!-- note: dlm navbar ini digunakan django untuk mencari URL berdasarkan nama route yg sudah dibuat di main/urls.py -->
             <nav>
+                <!-- Link menuju page home -->
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
-
+                <!-- Link menuju page aboutme -->
                 <a href="{% url 'main:show_aboutme' %}">
                     <h2>ABOUT ME</h2>
                 </a>
-
+                <!-- Link menuju page education -->
                 <a href="{% url 'main:show_education' %}">
                     <h2>EDUCATION</h2>
                 </a>
-
+                <!-- Link menuju page experience -->
                 <a href="{% url 'main:show_experience' %}">
                     <h2>EXPERIENCE</h2>
                 </a>
+            </nav>
         </div>
-
     </header>
 
     <main class="pages">
@@ -100,6 +107,8 @@
             </div>
         </section>
 
+<!-- ==========>>>>>> INI DI COMMENT KARENA EDUCATION JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
+ <!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
         <!-- PAGE 2 : EDUCATION -->
         <!-- <section class="education-page" id="education"> -->
 
@@ -173,6 +182,9 @@
 
         </section> -->
 
+
+<!-- ==========>>>>>> INI DI COMMENT KARENA EXPERIENCE JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
+<!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
         <!-- PAGE 3 : EXPERIENCE -->
         <!-- <section class="experience-page" id="experience"> -->
 

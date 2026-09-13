@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- Menentukan bahasa utama (ENGLISH) -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- <title>Alisa Selvia Saharani - Portfolio</title> -->
+
+    <!-- nama header di navbar -->
     <title>{{ name }} - Portofolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,36 +15,43 @@
 
 <body>
     <header class="site-header">
+        <!-- mengatur posisi dan lebar navbar -->
         <div class="container">
-            <!-- <a href="#profile" class="brand">Alisa Selvia Saharani</a> -->
+
+            <!-- Judul navbar nama saya -->
+            <!-- Note: bagian heaer/navbar yg menampilkan nama saya -->
             <a href="#profile" class="brand">{{ name }}</a>
+
+            <!-- MENU NAVBAR EDUCATION -->
+            <!-- note: dlm navbar ini digunakan django untuk mencari URL berdasarkan nama route yg sudah dibuat di main/urls.py -->
             <nav>
+                <!-- Link menuju page home -->
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
-
+                <!-- Link menuju page aboutme -->
                 <a href="{% url 'main:show_aboutme' %}">
                     <h2>ABOUT ME</h2>
                 </a>
-
+                <!-- Link menuju page education -->
                 <a href="{% url 'main:show_education' %}">
                     <h2>EDUCATION</h2>
                 </a>
-
+                <!-- Link menuju page experience -->
                 <a href="{% url 'main:show_experience' %}">
                     <h2>EXPERIENCE</h2>
                 </a>
-        </div>
-
-    </header>
+            </nav> <!-- Menutup menu navigasi -->
+        </div>    <!-- Menutup container navbar -->
+    </header>   <!-- Menutup header/navbar -->
 
 
     <main class="pages">
-
-        <!-- PAGE 2 : EDUCATION -->
+        <!-- PAGE : EDUCATION -->
         <section class="education-page" id="education">
 
             <!-- Gelembung -->
+            <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
             <div class="bubbles">
                 <span></span>
                 <span></span>
@@ -56,52 +63,60 @@
                 <span></span>
             </div>
 
-
+            <!-- container untuk isi seluruh page education -->
             <div class="education-content">
 
                 <!-- Judul Education -->
+                <!-- container untuk efek ketik  -->
                 <div class="ketik">
+                    <!-- judul halaman -->
                     <h1>EDUCATION</h1>
                 </div>
 
                 <!-- Kartu Education -->
                 <div class="education-cards">
+
+                    <!-- ambil tiap data experience dari experience_list yg dikirim view  -->
                     {% for education in education_list %}
                     <div class="education-card">
 
+                        <!-- membuat link menuju website eduaction saya -->
                         {% if education.website %}
                         <a href="{{education.website}}" class="education-link" target="_blank">
-                            
+
+                            <!-- mengecek logo education yg tersedia -->
                             {% if education.logo %}
                             <img class="education-logo" src="{{ education.logo }}" alt="{{ education.institution }}">
                             {% endif %}
                         </a>
 
                         {% endif %}
+                        <!-- menampilkan pendidikan saya yang berasal dari field model Education -->
                         <h2>{{ education.institution }}</h2>
+                        <!-- menampilkan jurusan saya yang berasal dari field model Education -->
                         <p>{{ education.degree }}</p>
+                        <!-- menampilkan periode pendidikan saya yang berasal dari field model Education -->
                         <p>{{ education.period }}</p>
                     </div>
 
+                    <!-- dijalankan saat education list tdk punya data (database=kosong) -->
                     {% empty %}
-
                     <p>Belum ada data pendidikan.</p>
 
                     {% endfor %}
-
-
                 </div>
 
         </section>
 
     </main>
 
+    <!-- Container untuk isi footer -->
     <footer class="site-footer">
         <div class="container">
-            <!-- <p>&copy; 2026 Alisa Selvia Saharani. Universitas Indonesia.</p> -->
+            <!-- {{ name }} mengambil nama dari context View Django. -->
             <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
-        </div>
-    </footer>
+        </div> <!-- Menutup container footer -->
+    </footer> <!-- Menutup footer -->
 </body>
 
 </html>
