@@ -1,9 +1,9 @@
-# Nama  : Alisa Selvia Saharani
-# NPM   : 2506618433
-# Kelas : PBP D
+## Nama  : Alisa Selvia Saharani
+## NPM   : 2506618433
+## Kelas : PBP D
 
-# Saya ingin menjelaskan beberapa ide yang saya buat untuk website portofolio ini:
-# Link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
+## Saya ingin menjelaskan beberapa ide yang saya buat untuk website portofolio ini:
+## Link website: https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/
 
 
 ### Tugas 1
@@ -191,8 +191,21 @@
 
 ### Tugas 2
     ##  Deskripsi Proyek
-        Pada Tugas 2 ini, saya melanjutkan pengembangan website portofolio pribadi dengan menerapkan konsep Model-View-Template (MVT) menggunakan Django. Pada Tutorial 2, saya telah menerapkan MVT pada bagian Experience. Kemudian, pada Tugas 2 ini saya menerapkan kembali konsep tersebut pada bagian Education sebagai bagian portofolio baru. Pada implementasinya, saya membuat model `Education` yang digunakan untuk menyimpan data pendidikan. Data tersebut kemudian diambil melalui `view` dan diteruskan ke template menggunakan `context`. Pada halaman `education.html`, data ditampilkan secara dinamis menggunakan Django Template Language (DTL) dengan perulangan sehingga data tidak lagi ditulis secara langsung atau hard-coded di dalam HTML.
-        Selain membuat halaman Education, saya juga mempertahankan penerapan MVT pada halaman Experience yang telah dibuat pada Tutorial 2. Kedua halaman tersebut memiliki halaman masing-masing dan dapat diakses melalui navbar menggunakan named route Django. Dalam pengerjaan Tugas 2 ini, saya juga membuat migration untuk model `Education`, menerapkan unit test untuk memastikan halaman dapat berjalan dengan baik, serta melakukan pengecekan pada local dan PWS. Saya juga melakukan beberapa perbaikan pada navbar, footer, styling, dan struktur halaman agar tampilan tetap konsisten dengan halaman lainnya. Melalui tugas ini, saya menjadi lebih memahami bagaimana Model, View, Template, URL, dan database saling berhubungan dalam Django untuk menghasilkan halaman portofolio yang lebih dinamis dan mudah dikelola.
+        Pada Tugas 2 ini, saya melanjutkan pengembangan website portofolio pribadi dengan menerapkan konsep 
+        Model-View-Template (MVT) menggunakan Django. Pada Tutorial 2, saya telah menerapkan MVT pada bagian 
+        Experience. Kemudian, pada Tugas 2 ini saya menerapkan kembali konsep tersebut pada bagian Education sebagai 
+        bagian portofolio baru. Pada implementasinya, saya membuat model `Education` yang digunakan untuk menyimpan 
+        data pendidikan. Data tersebut kemudian diambil melalui `view` dan diteruskan ke template menggunakan 
+        `context`. Pada halaman `education.html`, data ditampilkan secara dinamis menggunakan Django Template Language 
+        (DTL) dengan perulangan sehingga data tidak lagi ditulis secara langsung atau hard-coded di dalam HTML.
+        Selain membuat halaman Education, saya juga mempertahankan penerapan MVT pada halaman Experience yang telah 
+        dibuat pada Tutorial 2. Kedua halaman tersebut memiliki halaman masing-masing dan dapat diakses melalui navbar 
+        menggunakan named route Django. Dalam pengerjaan Tugas 2 ini, saya juga membuat migration untuk model 
+        `Education`, menerapkan unit test untuk memastikan halaman dapat berjalan dengan baik, serta melakukan 
+        pengecekan pada local dan PWS. Saya juga melakukan beberapa perbaikan pada navbar, footer, styling, dan 
+        struktur halaman agar tampilan tetap konsisten dengan halaman lainnya. Melalui tugas ini, saya menjadi lebih 
+        memahami bagaimana Model, View, Template, URL, dan database saling berhubungan dalam Django untuk menghasilkan 
+        halaman portofolio yang lebih dinamis dan mudah dikelola.
 
     ##  Design & Resources
         - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
@@ -237,7 +250,8 @@
         - membuat pages terpisah untuk education, experience, achievements, skills, dan contact
         - mengembalikan file awal ke section about me karena hanya ingin menambahkan model Education
         - menambahkan model Education dan integrasi ke view
-        - membuat fungsi show_education, menampilkan data context pada Education, dan membuat page Education secara dinamis
+        - membuat fungsi show_education, menampilkan data context pada Education, dan membuat page Education secara 
+          dinamis
         - menerapkan migration ke database, mengatur URL Django, memperbaiki navbar, unit test, dan URL error
         
     3. 12 September 2026
@@ -248,7 +262,8 @@
         berikut ini progress commit di git hub yang telah saya lakukan:
         - Memperbaiki tampilan dari experience yg sudah menerapkan MVT
         - menambahkan create data Education supaya data dari model bisa ditampilkan di halaman.
-        - Implementasi model dan migrasi sudah selesai. Migration 0001 sampai 0006 sudah berhasil dibuat dan diterapkan, ditandai dengan seluruh migration berstatus [X].
+        - Implementasi model dan migrasi sudah selesai. Migration 0001 sampai 0006 sudah berhasil dibuat dan 
+          diterapkan, ditandai dengan seluruh migration berstatus [X].
         - merapikan navbar dan footer konsisten dengan halaman lain.
         - Menambahkan keterangan informasi ke readme.md dan juga menjawab pertanyaan refleksi
         - menambahkan efek ketik di page home
@@ -264,13 +279,29 @@
         - fix: menambahkan trusted origin untuk PWS
         - Finishing : Individual Assignment 2: Implementasi Model-View-Template (MVT) pada Django
 
+    5. 14 September 2026
+        - finihing tugas
+
+        berikut ini progress commit di git hub yang telah saya lakukan:
+        FINISHING TUGAS 2: MEMPERBAIKI TATA LETAK & MERAPIKAN PENULISAN DI README.md
 
     ## Pertanyaan Reflektif
-    1.  Jelaskan alur yang terjadi ketika pengguna membuka halaman portofolio baru, mulai dari permintaan yang diterima proyek hingga data
-        ditampilkan pada browser. Dalam jawabanmu, jelaskan peran urls.py proyek, urls.py aplikasi, view, model, dan template.
+    1.  Jelaskan alur yang terjadi ketika pengguna membuka halaman portofolio baru, mulai dari permintaan yang diterima 
+        proyek hingga data ditampilkan pada browser. Dalam jawabanmu, jelaskan peran urls.py proyek, urls.py aplikasi, 
+        view, model, dan template.
         Jawab:
-        Ketika pengguna membuka halaman portofolio baru, misalnya halaman Education, request dari browser pertama kali diterima oleh urls.py pada project Django. Kemudian request tersebut diteruskan ke urls.py pada aplikasi main menggunakan include. Pada main/urls.py, URL education/ diarahkan ke view show_education.
-        View show_education kemudian mengambil data Education dari model menggunakan Education.objects.all(). Data tersebut dimasukkan ke dalam context dengan nama education_list, lalu dikirim ke template education.html. Di dalam template, data ditampilkan menggunakan Django Template Language (DTL) dengan perulangan {% for education in education_list %}. Setelah template selesai dirender, hasil HTML dikirim kembali kepada browser dan ditampilkan kepada pengguna.
+        Ketika pengguna membuka halaman portofolio baru, misalnya halaman Education, browser akan mengirimkan request 
+        ke proyek Django. Request tersebut pertama kali diperiksa oleh urls.py pada project untuk menentukan aplikasi 
+        yang akan menangani URL tersebut. Dengan menggunakan include, request kemudian diteruskan ke urls.py pada 
+        aplikasi main.
+        Pada main/urls.py, URL education/ akan diarahkan ke view show_education. View ini bertugas mengatur proses yang 
+        diperlukan untuk menampilkan halaman. Di dalam show_education, data Education diambil dari database melalui 
+        model menggunakan Education.objects.all().
+        Data yang sudah diambil kemudian dimasukkan ke dalam context, misalnya dengan nama education_list. Context 
+        tersebut dikirim oleh view ke template education.html. Selanjutnya, template menggunakan Django Template 
+        Language (DTL), misalnya {% for education in education_list %}, untuk menampilkan setiap data Education ke 
+        halaman. Setelah proses rendering selesai, Django menghasilkan halaman HTML dan mengirimkannya kembali ke 
+        browser sehingga halaman Education beserta datanya dapat dilihat oleh pengguna.
 
         Alurnya:
                 Browser
@@ -287,19 +318,31 @@
                     ↓
                 Browser
 
-    2.  Mengapa data untuk bagian portofolio baru sebaiknya disimpan pada model dan tidak ditulis langsung di dalam template? Jelaskan dampaknya 
+    2.  Mengapa data untuk bagian portofolio baru sebaiknya disimpan pada model dan tidak ditulis langsung di dalam 
+        template? Jelaskan dampaknya 
         terhadap kemudahan pemeliharaan dan pengembangan aplikasi.
         Jawab:
-        Data sebaiknya disimpan pada model dan bukan secara hardcode di html hal ini dilakukan demi menjaga arsitektur aplikasi agar tetap bersih, dan mudah dikelola. Hal ini juga mengacu pada pola desain MVT(Model-View-Template) yang sedang di terapkan. Model bertanggung jawab untuk menyimpan dan mengelola data, View bertanggung jawab untuk mengambil data dari model dan meneruskannya ke template, sedangkan Template berfokus pada menampilkan data kepada pengguna. Dengan cara ini, ketika saya ingin menambah, mengubah, atau menghapus data pada bagian portofolio, saya tidak perlu mengubah kode HTML secara langsung. Data cukup diperbarui melalui database. Hal tersebut membuat aplikasi lebih mudah dipelihara dan dikembangkan, terutama ketika jumlah data semakin banyak.
+        Data untuk bagian portofolio sebaiknya disimpan di model daripada ditulis langsung di template karena data akan 
+        lebih mudah dikelola. Dalam konsep MVT, model digunakan untuk menyimpan dan mengelola data, view mengambil data 
+        dari model, sedangkan template digunakan untuk menampilkan data kepada pengguna. Dengan menyimpan data di 
+        model, saya tidak perlu mengubah kode HTML setiap kali ingin menambah, mengubah, atau menghapus data 
+        portofolio. Saya cukup mengubah data yang ada di database. Cara ini juga membuat kode lebih rapi dan memudahkan 
+        pemeliharaan aplikasi ketika data portofolio semakin banyak. Selain itu, jika nantinya aplikasi dikembangkan, 
+        data yang sama dapat digunakan kembali oleh bagian lain tanpa harus menulis ulang datanya di setiap template.
 
-    3.  Apa perbedaan fungsi makemigrations dan migrate pada Django? Berikan contoh perubahan model yang mengharuskanmu menjalankan kedua perintah 
+    3.  Apa perbedaan fungsi makemigrations dan migrate pada Django? Berikan contoh perubahan model yang mengharuskanmu 
+        menjalankan kedua perintah 
         tersebut.
         Jawab:
         Perbedaan fungsi:
-        `makemigrations` digunakan untuk mencatat rencana perubahan model dan membuat file migration, sedangkan `migrate` digunakan untuk menerapkan file migration tersebut ke database sehingga struktur database akan bersesuaian dengan model yang telah dibuat.
-        Contohnya, ketika saya menambahkan model `Education` dengan field `institution`, `degree`, `period`, `logo`, dan `website`, saya menjalankan `python manage.py makemigrations` untuk membuat file migration. Setelah itu, saya menjalankan `python manage.py migrate` untuk menerapkan perubahan tersebut ke database.
+        `makemigrations` digunakan untuk mencatat rencana perubahan model dan membuat file migration, sedangkan 
+        `migrate` digunakan untuk menerapkan file migration tersebut ke database sehingga struktur database akan 
+        bersesuaian dengan model yang telah dibuat.
+        Contohnya, ketika saya menambahkan model `Education` dengan field `institution`, `degree`, `period`, `logo`, 
+        dan `website`, saya menjalankan `python manage.py makemigrations` untuk membuat file migration. Setelah itu,
+        saya menjalankan `python manage.py migrate` untuk menerapkan perubahan tersebut ke database.
+        
         Jadi alurnya:
-
             Perubahan models.py
                     ↓
             makemigrations
@@ -311,12 +354,17 @@
             Database diperbarui
 
     # AI Disclosure & Usage
-      Pada tugas 2 ini saya menggunakan ChatGPT dalam menelaah informasi yang saya kurang pahami dengan baik terutama mengenai syntax django, dan beberapa penerapan konsep MVT. Saya menggunakan ChatGPT untuk meminta penjelasan, contoh penggunaan kode, serta membantu memahami error yang saya temui selama mengerjakan tugas. Setelah itu, saya menerapkan dan menyesuaikan hasilnya sendiri ke dalam project yang saya kerjakan. Saya menggunakan AI untuk mendapatkan penjelasan dan arahan, kemudian menerapkan dan menyesuaikannya sendiri pada project yang saya buat.
+      Pada tugas 2 ini saya menggunakan ChatGPT dalam menelaah informasi yang saya kurang pahami dengan baik terutama 
+      mengenai syntax django, dan beberapa penerapan konsep MVT. Saya menggunakan ChatGPT untuk meminta penjelasan, 
+      contoh penggunaan kode, serta membantu memahami error yang saya temui selama mengerjakan tugas. Setelah itu, saya 
+      menerapkan dan menyesuaikan hasilnya sendiri ke dalam project yang saya kerjakan. Saya menggunakan AI untuk 
+      mendapatkan penjelasan dan arahan, kemudian menerapkan dan menyesuaikannya sendiri pada project yang saya buat.
 
       Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
       1.Pertanyaan saya: kalo mau pake user yg sama di django administration biar kyk login langsung bisa ga
         Jawaban GPT:
-        Bisa. Kalau maksudmu **ingin username/password yang sama dengan akun yang biasa kamu pakai**, bisa — **asal akun tersebut memang dibuat sebagai superuser/staff di database PWS**.
+        Bisa. Kalau maksudmu **ingin username/password yang sama dengan akun yang biasa kamu pakai**, bisa — **asal 
+        akun tersebut memang dibuat sebagai superuser/staff di database PWS**.
         Di layar itu kamu sedang berada di:
         ```text
         Username (leave blank to use 'root'):
@@ -332,7 +380,8 @@
         Password (again): ...
         ```
         Tapi kalau yang kamu maksud akun login PWS/UI
-        Kalau kamu biasanya login PWS menggunakan **akun UI/PWS**, belum tentu username/password itu bisa langsung dipakai sebagai akun Django Admin.
+        Kalau kamu biasanya login PWS menggunakan **akun UI/PWS**, belum tentu username/password itu bisa langsung 
+        dipakai sebagai akun Django Admin.
         `createsuperuser` membuat **akun Django**, yang tersimpan di database Django PWS.
 
         Jadi paling aman:
@@ -340,13 +389,10 @@
         Username: username yang kamu inginkan
         Password: password yang kamu inginkan
         ```
-
         Setelah selesai, login ke:
-
         ```text
         /admin/
         ```
-
         dengan username/password tersebut.
         **Kalau kamu ingin username-nya sama persis dengan akun yang sebelumnya sudah kamu buat di database PWS**, jangan lanjut dulu. Kita bisa cek apakah user tersebut sudah ada supaya tidak membuat akun duplikat.
 
@@ -397,7 +443,8 @@
         ```html
         <a href="{% url 'main:show_home' %}" class="brand">{{ name }}</a>
         ```
-        Untuk tugas Django kamu, **yang paling masuk akal adalah yang terakhir** kalau brand nama memang ingin berfungsi sebagai tombol Home.
+        Untuk tugas Django kamu, **yang paling masuk akal adalah yang terakhir** kalau brand nama memang ingin 
+        berfungsi sebagai tombol Home.
 
     3.  Pertanyaan saya: white-space ini untuk apa
         Jawaban GPT:
@@ -425,7 +472,8 @@
         width: 0;
         overflow: hidden;
         ```
-        Lebar teks awalnya 0, kemudian perlahan diperbesar oleh animasi. `nowrap` memastikan teks yang sedang "diketik" **tetap berada dalam satu baris** dan tidak melakukan wrapping.
+        Lebar teks awalnya 0, kemudian perlahan diperbesar oleh animasi. `nowrap` memastikan teks yang sedang "diketik" 
+        **tetap berada dalam satu baris** dan tidak melakukan wrapping.
         Jadi untuk efek typewriter kamu, **sebaiknya tetap pakai**:
         ```css
         white-space: nowrap;
@@ -440,28 +488,59 @@
     
     # Tantangan yang dihadapi selama Tugas 2 berlangsung
     Berikut ini refleksi dari saya:
-    Dalam tugas 2 ini, tugasnya adalah mengubah yang semulanya codenya menggunakan hardcode yaitu codenya langsung di html dan di buat dengan MVT melalui Django. Saya menghadapi beberapa kendala yaitu:
+    Dalam tugas 2 ini, tugasnya adalah mengubah yang semulanya codenya menggunakan hardcode yaitu codenya langsung di 
+    html dan di buat dengan MVT melalui Django. Saya menghadapi beberapa kendala yaitu:
     1.  Eror saat mencantumkan link url
-        Tantangan pertama yang saya hadapi yaitu, seringnya terjadi eror bagian url saat mencantumkan link navbar baik di local maupun pws.
-        Setelah mempelajarinya lebih lanjut, saya memahami bahwa penggunaan `{% url %}` pada template digunakan untuk mengambil URL berdasarkan nama route yang sudah dibuat di `main/urls.py`.
+        Tantangan pertama yang saya hadapi yaitu, seringnya terjadi eror bagian url saat mencantumkan link navbar baik 
+        di local maupun pws.
+        Setelah mempelajarinya lebih lanjut, saya memahami bahwa penggunaan `{% url %}` pada template digunakan untuk 
+        mengambil URL berdasarkan nama route yang sudah dibuat di `main/urls.py`.
         Contohnya adalah:
-                ```django
                 <a href="{% url 'main:show_education' %}">
                     <h2>EDUCATION</h2>
                 </a>
         Dari masalah tersebut, saya menjadi lebih memahami hubungan antara urls.py, view, dan template dalam konsep MVT.
 
     2.  PWS tidak muncul data base yang saya buat
-        Pada tutorial 2 menggunakan MVT experience dan kemudian di tugas 2 saya menggunakan MVT education. Namun, setelah saya memasukan data di local berhasil di tampilkan namun saat di push PWS keterangannya "Belum ada pengalaman" dan "Belum ada pendidikan". Awalnya ini menjadi bug yang menjadi sebuah misteri untuk saya. Namun, karena bug ini menjadi sebuah motivasi bagi saya untuk mengulik dan mencari kendalanya. Tapi ada satu hal yang selalu saya pastikan/cek yaitu melalui Django administration.
-        Untuk local, Django Administration dapat diakses melalui http://127.0.0.1:8000/admin/. Pada local, database Django juga tersimpan dengan baik dan data dapat dicek melalui Django Administration maupun terminal. Namun, ketika project di-push ke PWS, data tersebut tidak langsung muncul sehingga saya perlu mencari tahu penyebab perbedaannya antara database local dan database pada PWS.
+        Pada tutorial 2 menggunakan MVT experience dan kemudian di tugas 2 saya menggunakan MVT education. Namun, 
+        setelah saya memasukan data di local berhasil di tampilkan namun saat di push PWS keterangannya "Belum ada 
+        pengalaman" dan "Belum ada pendidikan". Awalnya ini menjadi bug yang menjadi sebuah misteri untuk saya. Namun, 
+        karena bug ini menjadi sebuah motivasi bagi saya untuk mengulik dan mencari kendalanya. Tapi ada satu hal yang 
+        selalu saya pastikan/cek yaitu melalui Django administration.
+        Untuk local, Django Administration dapat diakses melalui http://127.0.0.1:8000/admin/. Pada local, database 
+        Django juga tersimpan dengan baik dan data dapat dicek melalui Django Administration maupun terminal. Namun, 
+        ketika project di-push ke PWS, data tersebut tidak langsung muncul sehingga saya perlu mencari tahu penyebab 
+        perbedaannya antara database local dan database pada PWS.
 
-        Selama beberapa hari, saya hanya menemukan solusi dengan memasukkan data melalui terminal PWS. Namun, cara tersebut kurang efisien karena saya harus selalu membuat dan memasukkan data kembali secara manual. Dari situ saya menyadari bahwa saya membutuhkan cara agar data dari local dapat dipindahkan ke PWS dengan lebih praktis tanpa harus memasukkannya satu per satu.
+        Selama beberapa hari, saya hanya menemukan solusi dengan memasukkan data melalui terminal PWS. Namun, cara 
+        tersebut kurang efisien karena saya harus selalu membuat dan memasukkan data kembali secara manual. Dari situ 
+        saya menyadari bahwa saya membutuhkan cara agar data dari local dapat dipindahkan ke PWS dengan lebih praktis 
+        tanpa harus memasukkannya satu per satu.
 
-        Setelah mencari dan mencoba beberapa cara, saya akhirnya menggunakan fixture Django dengan membuat file `portfolio_data.json` yang berisi data `Experience` dan `Education`. File tersebut kemudian dapat digunakan untuk memasukkan data ke database PWS menggunakan perintah `loaddata`. Dengan cara ini, proses pemindahan data menjadi lebih praktis dibandingkan harus membuat data satu per satu melalui terminal PWS.
+        Setelah mencari dan mencoba beberapa cara, saya akhirnya menggunakan fixture Django dengan membuat file 
+        `portfolio_data.json` yang berisi data `Experience` dan `Education`. File tersebut kemudian dapat digunakan 
+        untuk memasukkan data ke database PWS menggunakan perintah `loaddata`. Dengan cara ini, proses pemindahan data 
+        menjadi lebih praktis dibandingkan harus membuat data satu per satu melalui terminal PWS.
 
-        Namun, solusi ini ternyata masih belum optimal. Ketika saya melakukan `git push` kembali ke GitHub dan PWS, data pada PWS kembali tidak muncul dan halaman kembali menampilkan pesan "Belum ada pengalaman" dan "Belum ada pendidikan". Dari kejadian tersebut, saya mulai menganalisis bahwa database local dan database PWS belum sesuai. Data yang tersimpan pada database local tidak otomatis tersedia pada database PWS. Saya kemudian memahami bahwa proses `git push` hanya mengirimkan source code dan file yang di-track oleh Git, bukan isi database local secara otomatis. Oleh karena itu, meskipun kode MVT sudah berhasil di-push, data `Experience` dan `Education` yang ada pada database local belum tentu tersedia pada database PWS.
+        Namun, solusi ini ternyata masih belum optimal. Ketika saya melakukan `git push` kembali ke GitHub dan PWS, 
+        data pada PWS kembali tidak muncul dan halaman kembali menampilkan pesan "Belum ada pengalaman" dan "Belum ada 
+        pendidikan". Dari kejadian tersebut, saya mulai menganalisis bahwa database local dan database PWS belum 
+        sesuai. Data yang tersimpan pada database local tidak otomatis tersedia pada database PWS. Saya kemudian 
+        memahami bahwa proses `git push` hanya mengirimkan source code dan file yang di-track oleh Git, bukan isi 
+        database local secara otomatis. Oleh karena itu, meskipun kode MVT sudah berhasil di-push, data `Experience` 
+        dan `Education` yang ada pada database local belum tentu tersedia pada database PWS.
 
-        Kemudian, saya berinisiatif untuk memeriksa Django Administration melalui PWS. Untuk PWS, Django Administration dapat diakses melalui `https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/admin/`. Saat saya melakukan login, saya menemukan bahwa seluruh section pada Django Administration masih kosong, termasuk data `Experience` dan `Education`. Dari situ saya semakin memahami bahwa data yang ada pada database local memang belum masuk ke database PWS. Tanpa berlama-lama, saya kemudian menggunakan kembali file `portfolio_data.json` yang sebelumnya saya buat. Saya memasukkan data tersebut ke database PWS menggunakan fixture Django dengan perintah `loaddata`. Setelah proses tersebut berhasil, data `Experience` dan `Education` kembali muncul pada halaman portfolio PWS.
+        Kemudian, saya berinisiatif untuk memeriksa Django Administration melalui PWS. Untuk PWS, Django Administration 
+        dapat diakses melalui `https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/admin/`. Saat saya melakukan login, 
+        saya menemukan bahwa seluruh section pada Django Administration masih kosong, termasuk data `Experience` dan 
+        `Education`. Dari situ saya semakin memahami bahwa data yang ada pada database local memang belum masuk ke 
+        database PWS. Tanpa berlama-lama, saya kemudian menggunakan kembali file `portfolio_data.json` yang sebelumnya 
+        saya buat. Saya memasukkan data tersebut ke database PWS menggunakan fixture Django dengan perintah `loaddata`. 
+        Setelah proses tersebut berhasil, data `Experience` dan `Education` kembali muncul pada halaman portfolio PWS.
 
-        Dari pengalaman tersebut, saya menjadi lebih memahami perbedaan antara source code dan database dalam proses deployment. Saya juga memahami bahwa migration digunakan untuk menyamakan struktur database dengan model, sedangkan fixture dapat digunakan untuk membantu memindahkan data dari satu database ke database lainnya. Meskipun proses debugging ini cukup memakan waktu, masalah tersebut justru membantu saya memahami Django dan proses deployment dengan lebih baik.
+        Dari pengalaman tersebut, saya menjadi lebih memahami perbedaan antara source code dan database dalam proses 
+        deployment. Saya juga memahami bahwa migration digunakan untuk menyamakan struktur database dengan model, 
+        sedangkan fixture dapat digunakan untuk membantu memindahkan data dari satu database ke database lainnya. 
+        Meskipun proses debugging ini cukup memakan waktu, masalah tersebut justru membantu saya memahami Django dan 
+        proses deployment dengan lebih baik.
 

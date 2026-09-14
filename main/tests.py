@@ -79,7 +79,7 @@ class MainTest(TestCase):
         #memastikan periode muncul
         self.assertContains(response,self.experience.period)
 
-   # Test empty state experience
+    # Test empty state experience
     def test_empty_experience_page(self):
         # Menghapus seluruuh data experiece dari data base
         Experience.objects.all().delete()
