@@ -70,5 +70,19 @@
       "logo": "/static/img/logomts.png",
       "website": "https://www.mtsn12jkt.sch.id/"
     }
+  },
+  {
+    "title": "BurhanQuest",
+    "description": "Aplikasi permainan berbasis Java yang menerapkan konsep Object-Oriented Programming dan sistem quest untuk pemain.",
+    "tech_stack": "Java, OOP, Array, JUnit",
+    "project_url": "",
+    "project_image_url": ""
+  },
+  {
+    "title": "Portfolio Website",
+    "description": "Website portofolio pribadi yang dikembangkan menggunakan Django dengan penerapan konsep Model-View-Template.",
+    "tech_stack": "Django, Python, HTML, CSS",
+    "project_url": "",
+    "project_image_url": ""
   }
 ]
