@@ -60,6 +60,17 @@
       "website": "https://sman65jakarta.sch.id/"
     }
   },
+    {
+    "model": "main.education",
+    "pk": 3,
+    "fields": {
+      "institution": "MTSN 12 Jakarta",
+      "degree": "",
+      "period": "2019 - 2022",
+      "logo": "/static/img/logomts.png",
+      "website": "https://www.mtsn12jkt.sch.id/"
+    }
+  },
   {
     "model": "main.project",
     "pk": "550e8400-e29b-41d4-a716-446655440000",
