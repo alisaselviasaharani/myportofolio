@@ -57,7 +57,7 @@ def create_project(request):
         return redirect("main:show_projects")
 
     context = {
-        "name": "Burhan",
+        "name": "Alisa Selvia Saharani",
         "form": form,
     }
     return render(request, "projects_form.html", context)
@@ -74,7 +74,7 @@ def show_projects(request):
     title_query = request.GET.get("title", "").strip()
 
     context = {
-        "name": "Burhan",
+        "name": "Alisa Selvia Saharani",
         "project_list": projects,
         "title_query": title_query,
     }
