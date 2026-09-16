@@ -72,19 +72,17 @@
     }
   },
   {
-    "model": "main.project",
-    "title": "BurhanQuest",
-    "description": "Aplikasi permainan berbasis Java yang menerapkan konsep Object-Oriented Programming dan sistem quest untuk pemain.",
-    "tech_stack": "Java, OOP, Array, JUnit",
-    "project_url": "",
-    "project_image_url": ""
+      "title": "Fern AI Assistant",
+      "description": "Build personal AI Assistant with Hermes and characterizing Gemini API model into Fern's personality, helping daily tasks and reminder of schedules and deadlines. Also can automate some programming tasks.",
+      "tech_stack": "AWS, Gemini API, Hermes, ElevenLabs, Discord Bot",
+      "project_url": "",
+      "project_image_url": "https://drive.google.com/thumbnail?id=1qbdofeOckPIbbj77svGTLNa2Ps8ogMET&sz=w1000"
   },
   {
-    "model": "main.project",
-    "title": "Portfolio Website",
-    "description": "Website portofolio pribadi yang dikembangkan menggunakan Django dengan penerapan konsep Model-View-Template.",
-    "tech_stack": "Django, Python, HTML, CSS",
-    "project_url": "",
-    "project_image_url": ""
+      "title": "Living Green Lantern's Bird",
+      "description": "In my training program with Hal Jordan, he told me to create some living thing with his green lantern's ring in order to evaluate my creativity skill. I've created Green Living Bird who can live miles without the ring power and survived up to 12+ hours.",
+      "tech_stack": "Green Lantern's Ring, Creativity, Arts, Nature",
+      "project_url": "",
+      "project_image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMQQ0x2GeB4AH8xPAmf77qV_btUQyVb24Y56R4z2g3YA&s=10"
   }
 ]
