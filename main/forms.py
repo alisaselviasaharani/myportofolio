@@ -1,52 +1,50 @@
-from django.forms import ModelForm, TextInput, Textarea, URLInput
+from django import forms
+from .models import Achievements
 
-from main.models import Project
 
-class ProjectForm(ModelForm):
+class AchievementsForm(forms.ModelForm):
+    secret_code=forms.CharField(label="Secret Code", widget=forms.PasswordInput(attrs={"placeholder": "Masukkan kode rahasia anda..."}))
     class Meta:
-        model = Project
+        model = Achievements
         fields = [
-            "title",
-            "description",
-            "tech_stack",
-            "project_url",
-            "project_image_url",
+            'title',
+            'period',
+            'description',
+            'category',
+            'achievements_image_url'
         ]
 
         labels = {
-            "title": "Nama Proyek",
-            "description": "Deskripsi Proyek",
-            "tech_stack": "Teknologi yang Digunakan",
-            "project_url": "URL Proyek",
-            "project_image_url": "URL Gambar Proyek",
+            "title": "Nama Penghargaan",
+            "period": "Periode Penghargaan",
+            "description": "Deskripsi Penghargaan",
+            "category": "Kategori Penghargaan",
+            "achievements_image_url": "URL Gambar Penghargaan",
         }
 
         widgets = {
-            "title": TextInput(
+            "title": forms.TextInput(
                 attrs={
-                    "placeholder": "Portfolio Website",
+                    "placeholder": "Nama Penghargaan",
                     "maxlength": 255,
                 }
             ),
-            "description": Textarea(
+            "description": forms.Textarea(
                 attrs={
-                    "placeholder": "Ceritakan Proyekmu",
+                    "placeholder": "Ceritakan Penghargaanmu",
                     "rows": 3,
                 }
             ),
-            "tech_stack": TextInput(
+            "category": forms.Select(),
+            "period": forms.TextInput(
                 attrs={
-                    "placeholder": "Django, Python, HTML, CSS",
-                }
+                    "placeholder":  "Masukkan periode penghargaan",
+                    }
             ),
-            "project_url": URLInput(
-                attrs={
-                    "placeholder": "https://github.com/kakBurhan/burhanquestv4",
-                }
-            ),
-            "project_image_url": URLInput(
+            "achievements_image_url": forms.URLInput(
                 attrs={
                     "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
                 }
             ),
+
         }

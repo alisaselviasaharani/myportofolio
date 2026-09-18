@@ -1310,7 +1310,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 } */
 
 
-.project-form {
+.achievements-form {
     width: 100%;
     max-width: 100%;
     margin-top: 1.5rem;
@@ -1371,7 +1371,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 
 /* projects */
 
-.project-header {
+.achievements-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -1380,16 +1380,16 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     margin-bottom: 1.5rem;
 }
 
-.project-grid {
+.achievements-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.project-grid .experience-card {
+.achievements-grid .experience-card {
     display: flex;
     flex-direction: column;
 }
 
-.project-image {
+.achievements-image {
     display: block;
     width: 100%;
     height: auto;
@@ -1397,28 +1397,28 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     border-radius: var(--radius);
 }
 
-.project-header h1 {
+.achievements-header h1 {
     margin-bottom: 0;
 }
 
-.project-add-button {
+.achievements-add-button {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
 }
 
-.project-add-button span {
+.achievements-add-button span {
     font-size: 1.25rem;
     line-height: 1;
 }
 
-.project-search {
+.achievements-search {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-.project-search__input {
+.achievements-search__input {
     width: 100%;
     min-width: 0;
     padding: 0.7rem;
@@ -1429,12 +1429,12 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     font: inherit;
 }
 
-.project-search__input:focus {
+.achievements-search__input:focus {
     outline: 2px solid var(--accent);
     border-color: var(--accent);
 }
 
-.project-actions {
+.achievements-actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -1442,12 +1442,12 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     margin-top: 1rem;
 }
 
-.project-actions .button {
+.achievements-actions .button {
     font-size: 0.85rem;
     font-weight: 600;
 }
 
-.project-card-actions {
+.achievements-card-actions {
     display: flex;
     flex-direction: column;
     margin-top: auto;
@@ -1457,11 +1457,11 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     display: none !important;
 }
 
-.project-actions .experience-status {
+.achievements-actions .experience-status {
     margin-top: 0;
 }
 
-.project-delete-modal {
+.achievements-delete-modal {
     display: none;
     position: fixed;
     inset: 0;
@@ -1478,11 +1478,11 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     justify-content: center;
 }
 
-.project-delete-modal:popover-open {
+.achievements-delete-modal:popover-open {
     display: flex;
 }
 
-.project-delete-modal__backdrop {
+.achievements-delete-modal__backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -1493,7 +1493,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     cursor: default;
 }
 
-.project-delete-modal__content {
+.achievements-delete-modal__content {
     position: relative;
     z-index: 1;
     width: min(100%, 480px);
@@ -1504,7 +1504,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
 }
 
-.project-delete-modal__content h2 {
+.achievements-delete-modal__content h2 {
     margin: 0 0 0.75rem;
     font-family:
         "Space Grotesk",
@@ -1513,7 +1513,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     font-size: 1.5rem;
 }
 
-.project-delete-modal__close {
+.achievements-delete-modal__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -1526,7 +1526,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     cursor: pointer;
 }
 
-.project-delete-modal__actions {
+.achievements-delete-modal__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
@@ -1538,41 +1538,108 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 }
 
 @media (max-width: 600px) {
-    .project-header {
+    .achievements-header {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    .project-add-button {
+    .achievements-add-button {
         width: 100%;
         justify-content: center;
     }
 
-    .project-search {
+    .achievements-search {
         flex-direction: column;
     }
 
-    .project-search .button {
+    .achievements-search .button {
         width: 100%;
     }
 
-    .project-delete-modal {
+    .achievements-delete-modal {
         align-items: flex-end;
         padding: 0;
     }
 
-    .project-delete-modal__content {
+    .achievements-delete-modal__content {
         width: 100%;
         padding: 1.25rem;
         border-radius: var(--radius) var(--radius) 0 0;
     }
 
-    .project-delete-modal__actions {
+    .achievements-delete-modal__actions {
         flex-direction: column-reverse;
     }
 
-    .project-delete-modal__actions .button {
+    .achievements-delete-modal__actions .button {
         width: 100%;
         text-align: center;
     }
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 40px;
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.navbar-dropdown {
+    position: relative;
+}
+
+/* Tombol ☰ */
+.navbar-dropdown summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.navbar-dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Menu yang muncul ke bawah */
+.navbar-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 220px;
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 100;
+}
+
+/* Link */
+.navbar-menu a {
+    padding: 12px 16px;
+
+    color: #111;
+    text-decoration: none;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    border-radius: 8px;
+}
+
+.navbar-menu a:hover {
+    background: rgba(0, 0, 0, 0.08);
 }

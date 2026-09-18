@@ -6,39 +6,51 @@
 
 {% block content %}
 
-    <main> <!-- -> wadah page utama -->
-        <section class="intro">
-            <div class="intro-card">
+<main> <!-- -> wadah page utama -->
+    <!-- Gelembung -->
+    <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
+    <div class="bubbles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <section class="intro">
+        <div class="intro-card">
 
-                <!-- menambahkan foto ikonik yang saya sukai yaitu nailong agar pengunjung merasa terhibur dengan keimutan dan lucunya nailong kuning >_< -->
-                <div class="intro-image">
-                    <img class="avatar" src="/static/img/nailong.png" alt="Photo of nailong">
-                </div>
+            <!-- menambahkan foto ikonik yang saya sukai yaitu nailong agar pengunjung merasa terhibur dengan keimutan dan lucunya nailong kuning >_< -->
+            <div class="intro-image">
+                <img class="avatar" src="/static/img/nailong.png" alt="Photo of nailong">
+            </div>
 
-                <!-- membuat deskripsi perkenalan agar pengunjung terkesan di page utama home saya :) -->
-                <div class="ketik-home">
-                    <!-- <h1> Hello, I'm Alisa</h1> -->
-                    <!-- | -->
-                    <!-- ↓ -->
-                    <!-- menggunakan context Django -->
-                    <h1>{{ perkenalan }}</h1>
-                </div>
-
-                <!-- <p> I'm a Computer Science student at Universitas Indonesia.</p>
-                <p> Welcome to my portofolio!!!</p>
-                <p> This is a little space where I share more about myself.</p> -->
+            <!-- membuat deskripsi perkenalan agar pengunjung terkesan di page utama home saya :) -->
+            <div class="ketik-home">
+                <!-- <h1> Hello, I'm Alisa</h1> -->
                 <!-- | -->
                 <!-- ↓ -->
                 <!-- menggunakan context Django -->
-                <p>{{ bio }}</p>
-                <p>{{ bio1 }}</p>
-                <p> {{ bio2 }} </p>
-
-                <!-- membuat button untuk menunjukkan ke halaman selanjutnya -->
-                <a href="{% url 'main:show_aboutme' %}" class="button-about">Get to know me → </a>
+                <h1>{{ perkenalan }}</h1>
             </div>
-        </section>
 
-    </main>
+            <!-- <p> I'm a Computer Science student at Universitas Indonesia.</p>
+                <p> Welcome to my portofolio!!!</p>
+                <p> This is a little space where I share more about myself.</p> -->
+            <!-- | -->
+            <!-- ↓ -->
+            <!-- menggunakan context Django -->
+            <p>{{ bio }}</p>
+            <p>{{ bio1 }}</p>
+            <p> {{ bio2 }} </p>
 
-    {% endblock content %}
+            <!-- membuat button untuk menunjukkan ke halaman selanjutnya -->
+            <a href="{% url 'main:show_aboutme' %}" class="button-about">Get to know me → </a>
+        </div>
+    </section>
+
+</main>
+
+{% endblock content %}

@@ -26,7 +26,7 @@
                 {{ name }}
             </a>
 
-            <nav>
+            <!-- <nav>
                 <a href="{% url 'main:show_home' %}">
                     <h2>HOME</h2>
                 </a>
@@ -43,9 +43,28 @@
                     <h2>EXPERIENCE</h2>
                 </a>
 
-                <a href="{% url 'main:show_projects' %}">
-                    <h2>PROJECT</h2>
+                <a href="{% url 'main:show_achievements' %}">
+                    <h2>ACHIEVEMENTS</h2>
                 </a>
+            </nav> -->
+
+            <nav class="navbar">
+
+                <div class="navbar-brand"> My Portofolio </div>
+
+                <details class="navbar-dropdown">
+                    <summary>☰</summary>
+
+                    <div class="navbar-menu">
+                        <a href="{% url 'main:show_home' %}">HOME</a>
+                        <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
+                        <a href="{% url 'main:show_education' %}">EDUCATION</a>
+                        <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
+                        <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
+                    </div>
+
+                </details>
+
             </nav>
 
         </div>

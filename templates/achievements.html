@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Achievements - {{ name }}</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
+
+    <!-- Gelembung -->
+    <!-- Note: Elemen-elemen span digunakan untuk membuat efek gelembung/background melalui CSS. -->
+    <div class="bubbles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <section class="experience-section" id="achievements">
+        <div class="container">
+
+            <div class="education-content">
+
+                <!-- Judul Achievements -->
+                <div class="ketik">
+                    <h1>ACHIEVEMENTS</h1>
+                </div>
+
+                <!-- Tombol tambah achievement -->
+                <a href="{% url 'main:create_achievements' %}" class="button project-add-button">
+                    <span aria-hidden="true">+</span>
+                    Tambah Penghargaan
+                </a>
+
+            </div>
+
+            <!-- Form pencarian -->
+            <form method="get" action="{% url 'main:show_achievements' %}" class="achievements">
+
+                <input type="search" name="title" value="{{ title_query }}"
+                    placeholder="Cari berdasarkan nama penghargaan" class="achievements-search__input"
+                    aria-label="Cari berdasarkan nama penghargaan">
+
+                <button type="submit" class="button">
+                    Cari
+                </button>
+
+            </form>
+
+            <!-- Daftar Achievements -->
+            <div class="experience-grid project-grid">
+
+                {% for achievement in achievements_list %}
+
+                <article class="experience-card">
+
+                    <!-- Gambar Achievement -->
+                    {% if achievement.achievements_image_url %}
+                    <img src="{{ achievement.achievements_image_url }}" alt="Gambar {{ achievement.title }}"
+                        class="achievements-image">
+                    {% endif %}
+
+                    <!-- Nama Achievement -->
+                    <h2>{{ achievement.title }}</h2>
+
+                    <!-- Kategori Achievement -->
+                    {% if achievement.category %}
+                    <span class="experience-category">
+                        {{ achievement.get_category_display }}
+                    </span>
+                    {% endif %}
+
+                    <!-- Periode Achievement -->
+                    {% if achievement.period %}
+                    <span class="experience-period">
+                        {{ achievement.period }}
+                    </span>
+                    {% endif %}
+
+                    <!-- Deskripsi Achievement -->
+                    <p class="experience-description">
+                        {{ achievement.description }}
+                    </p>
+
+                    <!-- Action -->
+                    <div class="achievements-card-actions">
+                        <div class="achievements-actions">
+
+                            <form method="post" action="{% url 'main:delete_achievements' achievement.id %}">
+                                {% csrf_token %}
+
+                                <button type="submit" class="button button-danger">
+                                    Hapus
+                                </button>
+
+                            </form>
+
+                            <a href="{% url 'main:update_achievements' achievement.id %}" class="button button-danger">
+                                    Edit
+                                
+                            </a>
+
+                        </div>
+                    </div>
+
+                </article>
+
+                {% empty %}
+
+                {% if title_query %}
+                <p class="empty-state">
+                    Tidak ada penghargaan dengan nama tersebut.
+                </p>
+                {% else %}
+                <p class="empty-state">
+                    Belum ada penghargaan yang ditambahkan.
+                </p>
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+{% endblock content %}

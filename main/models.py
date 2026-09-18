@@ -44,9 +44,9 @@ class Experience(models.Model):
     def __str__(self):
         return self.title
     
-    @property
-    def is_ongoing(self):
-        return self.ended_at is None
+    # @property
+    # def is_ongoing(self):
+    #     return self.ended_at is None
     
 # ----->>>>> MODEL EDUCATION <<<<<-----
 # Note: saya membagi beberapa kategori dlm bagian yg saya gunakan sebelumnya di tugas 1
@@ -71,13 +71,21 @@ class Education(models.Model):
     def __str__(self):
         return self.institution
 
-class Project(models.Model):
+class Achievements(models.Model):
+    ACHIEVEMENTS_CHOICES = [
+        ('academic', 'Academic'),
+        ('competition', 'Competition'),
+        ('certification', 'Certification'),
+        ('award', 'Award'),
+        ('other', 'Other'),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
+    period=models.CharField(max_length=50, blank=True,null=True)
     description = models.TextField()
-    tech_stack = models.CharField(max_length=255)
-    project_url = models.URLField(blank=True)
-    project_image_url = models.URLField(blank=True, max_length=500)
+    category=models.CharField(max_length=20, choices=ACHIEVEMENTS_CHOICES, null=True, blank=True)
+    achievements_image_url = models.URLField(blank=True, max_length=500)
 
     def __str__(self):
         return self.title

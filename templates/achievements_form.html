@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>
+    {% if achievement %}
+    Edit Achievement - {{ name }}
+    {% else %}
+    Add Achievements - {{ name }}
+    {% endif %}
+</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
+
+    <!-- Gelembung -->
+    <div class="bubbles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <section class="experience-section">
+        <div class="container">
+
+            {% if achievement %}
+            <h1>Edit Achievement</h1>
+            {% else %}
+            <h1>Add New Achievement</h1>
+            {% endif %}
+
+            {% if achievement %}
+            <form method="post" action="{% url 'main:update_achievements' achievement.id %}" class="achievements-form">
+                {% else %}
+                <form method="post" action="{% url 'main:create_achievements' %}" class="achievements-form">
+                    {% endif %}
+
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="form-group">
+
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                        <p class="form-error">
+                            {{ error }}
+                        </p>
+                        {% endfor %}
+
+                    </div>
+                    {% endfor %}
+
+                    {% if achievement %}
+                    <button type="submit" class="button">
+                        Simpan Perubahan
+                    </button>
+                    {% else %}
+                    <button type="submit" class="button">
+                        Tambah Penghargaan
+                    </button>
+                    {% endif %}
+
+                    <a href="{% url 'main:show_achievements' %}" class="button button-secondary">
+                        Batal
+                    </a>
+
+                </form>
+
+        </div>
+    </section>
+
+</main>
+{% endblock content %}

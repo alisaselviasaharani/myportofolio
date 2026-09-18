@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_home, show_aboutme, show_experience, show_education, show_projects, create_project, get_projects_json,delete_project
+from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
 app_name = "main"
@@ -18,12 +18,13 @@ urlpatterns = [
     # URL halaman Education.
     path("education/", show_education, name="show_education"),
     
-    path("projects/", show_projects, name="show_projects"),
+    path("achievements/", show_achievements, name="show_achievements"),
 
-    path("projects/add/", create_project, name="create_project"),
+    path("achievements/add/", create_achievements, name="create_achievements"),
 
+    path("api/achievements/", get_achievements_json, name="get_achievements_json"),
 
-    path("api/projects/", get_projects_json, name="get_projects_json"),
+    path("achievements/<uuid:achievements_id>/delete/", delete_achievements, name="delete_achievements"),
 
-    path("projects/<uuid:project_id>/delete/", delete_project, name="delete_project"),
+    path("achievements/<uuid:achievements_id>/update/", update_achievements, name="update_achievements"),
 ]
