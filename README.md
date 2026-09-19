@@ -544,3 +544,106 @@
         Meskipun proses debugging ini cukup memakan waktu, masalah tersebut justru membantu saya memahami Django dan 
         proses deployment dengan lebih baik.
 
+
+### Tugas 3
+
+    ##  Design & Resources
+        - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
+        - Google Fonts (Space Groteks)
+        - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
+        - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
+        - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
+        - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
+        - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
+        - Python Django Admin Module Complete Guide All Features Explained in Django Python Admin Tutorial (https://www.youtube.com/watch?v=Q2ga-vtbaxQ)
+        - Django admin - Project set up (https://youtu.be/n5L7OqUG47s?si=LTLu1VSvbrvamNIZ)
+        - How Django Works (MVT Pattern) (https://youtu.be/cyP4Uw2b2XM?si=_0Fa9AHKhe72GFv9)
+        - Django 2.1 - Membuat dan menangani Formulir - 10/14 (https://youtu.be/A-6OlcXgaYA?si=3sO6hN6fP3_POMUW)
+        - Django Forms Full Course - Django Forms. Render with template, receive data (https://www.youtube.com/playlist?list=PLaUQIPIyD0z43DiRKM0x8YNEB-1QNCOwR)
+        - Food Delivery Web App With Python 3 and Django (https://www.youtube.com/playlist?list=PLPSM8rIid1a0qiCpbfujex5lZoXr2SRFC)
+
+    ##  Struktur Halaman
+        - Home
+        - About me:
+            Dalam page About Me terdiri dari beberapa section, yaitu:
+            1. Achievements
+            2. Skills
+            3. Contact
+        - Education  -->> MVT
+        - Experience -->> MVT
+        - Achievements -->>
+
+    ##  Weekly Progress Tugas 2
+        Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
+        
+
+    ## Pertanyaan Reflektif
+        1.  Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu,
+            jelaskan pula mengapa kita diwajibkan menambahkan {% csrf_token %} pada form tersebut!
+            Jawab:
+            ModelForm digunakan untuk menghubungkan form sebagai wadah bagi user untuk mengisi data secara langsung dengan
+            model Django. Dengan ModelForm, field pada form dapat disesuaikan dengan field yang telah dibuat pada model,
+            sehingga data yang diinput dapat divalidasi dan disimpan ke database dengan lebih mudah. Data yang telah diisi
+             juga dapat langsung disimpan ke database menggunakan form.save(). Hal ini membuat kode lebih sederhana dan
+             mengurangi kebutuhan untuk membuat serta menangani form HTML secara manual.
+
+            {% csrf_token %} digunakan untuk memberikan token keamanan CSRF (Cross-Site Request Forgery) pada form. Token 
+            ini membantu Django memverifikasi bahwa request POST berasal dari form yang sah dari aplikasi kita, sehingga 
+            dapat membantu mencegah serangan CSRF dari situs lain.
+
+        2.  Pada Tutorial 03, kita membahas format data JSON dan XML. Mengapa JSON lebih disukai dalam pengembangan aplikasi
+            web modern dibandingkan XML?
+            Jawab:
+            Karena format yang dimiliki JSON itu lebih sederhana, ringkas, dan mudah dibaca serta dimengerti dibandingkan
+            XML. Struktur yang digunakan JSON adalah key-value, sedangkan XML menggunakan tag pembuka dan penutup sehingga
+            biasanya membutuhkan lebih banyak karakter. Oleh karena itu, JSON lebih praktis digunakan untuk pertukaran data
+            dalam pengembangan aplikasi web modern.
+
+            Contoh Format Json:
+            {
+                "title": "My First Achievement",
+                "period": "2026",
+                "description": "Received an award for outstanding academic performance.",
+                "category": "Academic"
+            }
+
+            Contoh Format XML:
+            <achievement>
+                <title>My First Achievement</title>
+                <period>2026</period>
+                <description>Received an award for outstanding academic performance.</description>
+                <category>Academic</category>
+            </achievement>
+
+
+        3.  Jelaskan alur yang terjadi saat kamu menggunakan fungsi view untuk mengembalikan data portofoliomu dalam bentuk JSON.
+            Mengapa kita perlu melakukan proses serialization pada model Django sebelum datanya dikembalikan?
+            Jawab:
+            Berikut ini 4 alur yang terjadi saat menggunakan fungsi view untuk mengembalikan portofolio dalam bentuk JSON:
+            Catatan: Saya menggunakan Achievement dalam tugas 3 ini
+            1.  View mengambil data Achievements dari database menggunakan Django ORM:
+                achievements = Achievements.objects.all()
+            2.  Data tersebut kemudian dilakukan serialization:
+                achievements_json = serializers.serialize("json", achievements)
+            3.  Serialization mengubah objek/queryset Django menjadi format JSON yang dapat dikirim melalui HTTP.
+            4.  JSON kemudian dikembalikan menggunakan:
+                return HttpResponse(achievements_json, content_type="application/json")
+            Alurnya:
+                Database
+                    ↓
+                Django Model / QuerySet
+                    ↓
+                Serialization
+                    ↓
+                JSON
+                    ↓
+                HttpResponse
+                    ↓
+                Client / Browser
+
+            Pentingnya melakukan proses serialization:
+            Jadi, proses serialization diperlukan karena data yang diperoleh dari database berupa objek/queryset Django, 
+            bukan data JSON secara langsung. Dengan serialization, objek tersebut diubah menjadi format JSON sehingga 
+            dapat dikirim dan dibaca oleh client atau aplikasi lain melalui web.
+
+

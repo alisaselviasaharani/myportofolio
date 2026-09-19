@@ -1312,7 +1312,10 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 
 .experience-description,
 .empty-state h2 {
-    color: var(--text-muted);
+    color: white;
+    font-family: "Taste Bread";
+    font-size: 7px;
+
 }
 
 .achievements-form {
