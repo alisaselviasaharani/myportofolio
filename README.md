@@ -575,7 +575,7 @@
             3. Contact
         - Education  -->> MVT
         - Experience -->> MVT
-        - Achievements -->>
+        - Achievements -->> Form & Data Delivery
 
 
     ##  Weekly Progress Tugas 2
@@ -602,6 +602,11 @@
             - Menambahkan informasi di README.md
             - Menghapus url image dari achievements
             - mengubah desain dari penulisan belum ada pengalaman, pendidikan, penghargaan
+
+        4. 20 September 2026
+            - feat: implement JSON deserialization for achievements dan menambahkan deskripsi dari README.md
+            - Menambahkan kan UUID pada achievements di JSON
+            - update Menambahkan kan UUID pada achievements di JSON
 
 
     ## Pertanyaan Reflektif

@@ -59,10 +59,10 @@
                 <article class="experience-card">
 
                     <!-- Gambar Achievement -->
-                    <!-- {% if achievement.achievements_image_url %}
+                    {% if achievement.achievements_image_url %}
                     <img src="{{ achievement.achievements_image_url }}" alt="Gambar {{ achievement.title }}"
                         class="achievements-image">
-                    {% endif %} -->
+                    {% endif %}
 
                     <!-- Nama Achievement -->
                     <h2>{{ achievement.object.title }}</h2>
@@ -86,6 +86,13 @@
                         {{ achievement.object.description }}
                     </p>
 
+                    <!-- sertifikat -->
+                    {% if achievement.object.achievements_image_url %}
+                    <a href="{{ achievement.object.achievements_image_url }}" target="_blank" class="button">
+                        View Certificate
+                    </a>
+                    {% endif %}
+
                     <!-- Action -->
                     <div class="achievements-card-actions">
                         <div class="achievements-actions">
@@ -99,7 +106,8 @@
 
                             </form>
 
-                            <a href="{% url 'main:update_achievements' achievement.object.id %}" class="button button-danger">
+                            <a href="{% url 'main:update_achievements' achievement.object.id %}"
+                                class="button button-danger">
                                 Edit
                             </a>
 
