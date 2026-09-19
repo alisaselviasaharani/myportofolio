@@ -1310,6 +1310,10 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     font-weight: 600;
 } */
 
+.experience-description,
+.empty-state h2 {
+    color: var(--text-muted);
+}
 
 .achievements-form {
     width: 100%;
@@ -1750,3 +1754,4 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
         grid-template-columns: 1fr;
     }
 }
+

@@ -7,67 +7,68 @@
 {% block content %}
 
 
-    <main class="pages">
-        <!-- PAGE : EDUCATION -->
-        <section class="education-page" id="education">
+<main class="pages">
+    <!-- PAGE : EDUCATION -->
+    <section class="education-page" id="education">
 
-            <!-- Gelembung -->
-            <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
-            <div class="bubbles">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <!-- Gelembung -->
+        <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
+        <div class="bubbles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- container untuk isi seluruh page education -->
+        <div class="education-content">
+
+            <!-- Judul Education -->
+            <!-- container untuk efek ketik  -->
+            <div class="ketik">
+                <!-- judul halaman -->
+                <h1>EDUCATION</h1>
             </div>
 
-            <!-- container untuk isi seluruh page education -->
-            <div class="education-content">
+            <!-- Kartu Education -->
+            <div class="education-cards">
 
-                <!-- Judul Education -->
-                <!-- container untuk efek ketik  -->
-                <div class="ketik">
-                    <!-- judul halaman -->
-                    <h1>EDUCATION</h1>
-                </div>
+                <!-- ambil tiap data experience dari experience_list yg dikirim view  -->
+                {% for education in education_list %}
+                <div class="education-card">
 
-                <!-- Kartu Education -->
-                <div class="education-cards">
+                    <!-- membuat link menuju website eduaction saya -->
+                    {% if education.website %}
+                    <a href="{{education.website}}" class="education-link" target="_blank">
 
-                    <!-- ambil tiap data experience dari experience_list yg dikirim view  -->
-                    {% for education in education_list %}
-                    <div class="education-card">
-
-                        <!-- membuat link menuju website eduaction saya -->
-                        {% if education.website %}
-                        <a href="{{education.website}}" class="education-link" target="_blank">
-
-                            <!-- mengecek logo education yg tersedia -->
-                            {% if education.logo %}
-                            <img class="education-logo" src="{{ education.logo }}" alt="{{ education.institution }}">
-                            {% endif %}
-                        </a>
-
+                        <!-- mengecek logo education yg tersedia -->
+                        {% if education.logo %}
+                        <img class="education-logo" src="{{ education.logo }}" alt="{{ education.institution }}">
                         {% endif %}
-                        <!-- menampilkan pendidikan saya yang berasal dari field model Education -->
-                        <h2>{{ education.institution }}</h2>
-                        <!-- menampilkan jurusan saya yang berasal dari field model Education -->
-                        <p>{{ education.degree }}</p>
-                        <!-- menampilkan periode pendidikan saya yang berasal dari field model Education -->
-                        <p>{{ education.period }}</p>
-                    </div>
+                    </a>
 
-                    <!-- dijalankan saat education list tdk punya data (database=kosong) -->
-                    {% empty %}
-                    <p>Belum ada data pendidikan.</p>
-
-                    {% endfor %}
+                    {% endif %}
+                    <!-- menampilkan pendidikan saya yang berasal dari field model Education -->
+                    <h2>{{ education.institution }}</h2>
+                    <!-- menampilkan jurusan saya yang berasal dari field model Education -->
+                    <p>{{ education.degree }}</p>
+                    <!-- menampilkan periode pendidikan saya yang berasal dari field model Education -->
+                    <p>{{ education.period }}</p>
                 </div>
 
-        </section>
+                <!-- dijalankan saat education list tdk punya data (database=kosong) -->
+                {% empty %}
+                <div class="empty-state" >
+                    <h2>Belum ada data pendidikan.</h2>
+                </div>
+                {% endfor %}
+            </div>
 
-    </main>
+    </section>
+
+</main>
 {% endblock content %}
