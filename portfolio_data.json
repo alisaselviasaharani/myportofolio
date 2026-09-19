@@ -70,5 +70,48 @@
       "logo": "/static/img/logomts.png",
       "website": "https://www.mtsn12jkt.sch.id/"
     }
+  },
+
+[
+  {
+    "model": "main.achievements",
+    "pk": "4bad628f-24a3-456d-83a8-b28ed37117e0",
+    "fields": {
+      "title": "Kumon Mathematics Completer",
+      "period": "2012 - 2023",
+      "description": "Successfully completed the Kumon Mathematics program.",
+      "category": "certification"
+    }
+  },
+  {
+    "model": "main.achievements",
+    "pk": "35b805f3-f35c-4b1c-b7e3-441860ee76a2",
+    "fields": {
+      "title": "2nd Overall Academic Ranking At SMAN 65 JAKARTA",
+      "period": "2022-2025",
+      "description": "Achieved 2nd place in the overall academic ranking among students in the same grade.",
+      "category": "academic"
+    }
+  },
+  {
+    "model": "main.achievements",
+    "pk": "a1090dc4-4123-44c4-add9-78c924ff9702",
+    "fields": {
+      "title": "Juara Harapan III Matematika Terintegras - KSM (Kompetisi Sains Madrasah) 2021",
+      "period": "2021",
+      "description": "Kompetisi Sains Madrasah 2021 Tingkat Kabupaten/Kota MTSN 12 Jakarta",
+      "category": "competition"
+    }
+  },
+  {
+    "model": "main.achievements",
+    "pk": "241b55e1-bfdc-4fd4-a46d-ba19a8b442f8",
+    "fields": {
+      "title": "DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK",
+      "period": "2023",
+      "description": "Certificate of completion for the LearningX course titled DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK.",
+      "category": "certification"
+    }
   }
+]
 ]
