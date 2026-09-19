@@ -27,18 +27,22 @@
 
     <section class="experience-section">
         <div class="container">
-
-            {% if achievement %}
-            <h1>Edit Achievement</h1>
-            {% else %}
-            <h1>Add New Achievement</h1>
-            {% endif %}
-
             {% if achievement %}
             <form method="post" action="{% url 'main:update_achievements' achievement.id %}" class="achievements-form">
                 {% else %}
                 <form method="post" action="{% url 'main:create_achievements' %}" class="achievements-form">
                     {% endif %}
+                    <div class="achievement-edit">
+                        {% if achievement %}
+                        <h1>Edit Achievement</h1>
+                        <h1>
+                    </div>
+
+                    </h1>
+                    {% else %}
+                    <h1>Add New Achievement</h1>
+                    {% endif %}
+
 
                     {% csrf_token %}
 
@@ -52,9 +56,10 @@
                         {{ field }}
 
                         {% for error in field.errors %}
-                        <p class="form-error">
-                            {{ error }}
-                        </p>
+                        <div class="form-error">
+                            <span class="error-icon">!</span>
+                            <span>{{ error }}</span>
+                        </div>
                         {% endfor %}
 
                     </div>

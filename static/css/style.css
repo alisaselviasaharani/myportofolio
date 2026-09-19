@@ -228,7 +228,7 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
 }
 
 
-@keyframes mengetik{
+@keyframes mengetik {
     0% {
         width: 0;
     }
@@ -252,6 +252,7 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
         border-color: transparent;
     }
 }
+
 /* =================== BODY =================== */
 body {
     margin: 0;
@@ -748,7 +749,7 @@ h2,
 }
 
 /* logo */
-.experience-logo  {
+.experience-logo {
     width: 300px;
     height: 300px;
     object-fit: contain;
@@ -1642,4 +1643,110 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 
 .navbar-menu a:hover {
     background: rgba(0, 0, 0, 0.08);
+}
+
+/* Error pada form */
+.form-error {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background-color: #ffe8e8;
+    color: #d32f2f;
+
+    border: 1px solid #ffb3b3;
+    border-radius: 8px;
+
+    padding: 14px 18px;
+    margin-top: 10px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+.form-group input:has(+ .form-error),
+.form-group textarea:has(+ .form-error),
+.form-group select:has(+ .form-error) {
+    border: 2px solid #ef5350;
+}
+
+.form-group input:has(+ .form-error):focus,
+.form-group textarea:has(+ .form-error):focus,
+.form-group select:has(+ .form-error):focus {
+    outline: none;
+    border: 2px solid #ef5350;
+    box-shadow: 0 0 0 2px rgba(239, 83, 80, 0.15);
+}
+
+/* Lingkaran merah dengan tanda seru */
+.error-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    background-color: #d71920;
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 19px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+
+.achievements-form input,
+.achievements-form textarea,
+.achievements-form select {
+    background: rgba(255, 255, 255, 0.9);
+
+    border: 2px solid white;
+    border-radius: 8px;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.25);
+
+    box-sizing: border-box;
+}
+
+.achievements-form {
+    background: rgba(255, 255, 255, 0.35);
+
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.15),
+        0 8px 30px rgba(0, 0, 0, 0.08);
+
+    backdrop-filter: blur(5px);
+}
+
+.achievement-edit h1{
+    margin-bottom: 15px;
+}
+
+.experience-grid.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .experience-grid.project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .experience-grid.project-grid {
+        grid-template-columns: 1fr;
+    }
 }

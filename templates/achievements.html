@@ -30,26 +30,26 @@
                     <h1>ACHIEVEMENTS</h1>
                 </div>
 
-                <!-- Tombol tambah achievement -->
-                <a href="{% url 'main:create_achievements' %}" class="button project-add-button">
-                    <span aria-hidden="true">+</span>
-                    Tambah Penghargaan
-                </a>
-
             </div>
 
             <!-- Form pencarian -->
-            <form method="get" action="{% url 'main:show_achievements' %}" class="achievements">
+            <form method="get" action="{% url 'main:show_achievements' %}" class="achievements-search">
 
                 <input type="search" name="title" value="{{ title_query }}"
                     placeholder="Cari berdasarkan nama penghargaan" class="achievements-search__input"
                     aria-label="Cari berdasarkan nama penghargaan">
 
                 <button type="submit" class="button">
-                    Cari
+                    Search
                 </button>
 
             </form>
+
+            <!-- Tombol tambah achievement -->
+            <a href="{% url 'main:create_achievements' %}" class="button project-add">
+                <span aria-hidden="true">+</span>
+                Tambah Penghargaan
+            </a>
 
             <!-- Daftar Achievements -->
             <div class="experience-grid project-grid">
@@ -100,8 +100,8 @@
                             </form>
 
                             <a href="{% url 'main:update_achievements' achievement.id %}" class="button button-danger">
-                                    Edit
-                                
+                                Edit
+
                             </a>
 
                         </div>
