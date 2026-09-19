@@ -11,7 +11,7 @@ class AchievementsForm(forms.ModelForm):
             'period',
             'description',
             'category',
-            'achievements_image_url'
+            # 'achievements_image_url'
         ]
 
         labels = {
@@ -19,7 +19,7 @@ class AchievementsForm(forms.ModelForm):
             "period": "Periode Penghargaan",
             "description": "Deskripsi Penghargaan",
             "category": "Kategori Penghargaan",
-            "achievements_image_url": "URL Gambar Penghargaan",
+            # "achievements_image_url": "URL Gambar Penghargaan",
         }
 
         widgets = {
@@ -41,10 +41,10 @@ class AchievementsForm(forms.ModelForm):
                     "placeholder":  "Masukkan periode penghargaan",
                     }
             ),
-            "achievements_image_url": forms.URLInput(
-                attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
-                }
-            ),
+            # "achievements_image_url": forms.URLInput(
+            #     attrs={
+            #         "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
+            #     }
+            # ),
 
         }

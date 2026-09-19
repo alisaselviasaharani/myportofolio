@@ -85,7 +85,7 @@ class Achievements(models.Model):
     period=models.CharField(max_length=50, blank=True,null=True)
     description = models.TextField()
     category=models.CharField(max_length=20, choices=ACHIEVEMENTS_CHOICES, null=True, blank=True)
-    achievements_image_url = models.URLField(blank=True, max_length=500)
+    # achievements_image_url = models.URLField(blank=True, max_length=500)
 
     def __str__(self):
         return self.title

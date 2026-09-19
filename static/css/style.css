@@ -1310,11 +1310,9 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     font-weight: 600;
 } */
 
-.experience-description,
 .empty-state h2 {
     color: white;
     font-family: "Taste Bread";
-    font-size: 7px;
 
 }
 
@@ -1758,3 +1756,10 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     }
 }
 
+.project-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
