@@ -60,7 +60,7 @@
       "website": "https://sman65jakarta.sch.id/"
     }
   },
-    {
+  {
     "model": "main.education",
     "pk": 3,
     "fields": {
@@ -71,8 +71,6 @@
       "website": "https://www.mtsn12jkt.sch.id/"
     }
   },
-
-[
   {
     "model": "main.achievements",
     "pk": "4bad628f-24a3-456d-83a8-b28ed37117e0",
@@ -113,5 +111,4 @@
       "category": "certification"
     }
   }
-]
 ]
