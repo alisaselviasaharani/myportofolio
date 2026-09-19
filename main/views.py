@@ -88,9 +88,16 @@ def show_achievements(request):
     if title_query:
         achievements = achievements.filter(title__icontains=title_query)
 
+    # Serialize data menjadi JSON
+    achievements_json = serializers.serialize("json", achievements)
+
+    # Deserialize JSON kembali menjadi objek Django
+    achievements_data = list(
+        serializers.deserialize("json", achievements_json)
+    )
     context = {
         "name": "Alisa Selvia Saharani",
-        "achievements_list": achievements,
+        "achievements_list": achievements_data,
         "title_query": title_query,
     }
 

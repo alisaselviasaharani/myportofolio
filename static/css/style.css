@@ -1598,6 +1598,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     font-size: 28px;
     font-weight: 700;
     white-space: nowrap;
+    font-family: Milky Cream;
 }
 
 .navbar-dropdown {
@@ -1608,8 +1609,9 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 .navbar-dropdown summary {
     list-style: none;
     cursor: pointer;
-    font-size: 32px;
+    font-size: 29px;
     font-weight: bold;
+    font-family: Milky Cream;
 }
 
 .navbar-dropdown summary::-webkit-details-marker {

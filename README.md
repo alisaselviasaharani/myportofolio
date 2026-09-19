@@ -546,6 +546,9 @@
 
 
 ### Tugas 3
+    ##  Deskripsi Proyek
+        Pada Tugas 3 ini, saya mengimplementasikan fitur Form dan Data Delivery untuk Achievements. Pada halaman Achievements, saya menyediakan fitur search untuk mencari achievement sesuai dengan yang diinginkan. Selain itu, terdapat fitur untuk menambahkan, memperbarui, dan menghapus data achievement. Namun, yang dapat menambahkan hanya diri saya sendiri. Orang lain tidak dapat menambahkan, update, ataupun menghapus karena sudah dilengkapi secret code bagi yang tahu saja, yaitu saya sendiri. Secret code tersebut hanya diketahui oleh saya sebagai pemilik portofolio sehingga data achievements dapat tetap terjaga.   
+
 
     ##  Design & Resources
         - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
@@ -562,6 +565,7 @@
         - Django Forms Full Course - Django Forms. Render with template, receive data (https://www.youtube.com/playlist?list=PLaUQIPIyD0z43DiRKM0x8YNEB-1QNCOwR)
         - Food Delivery Web App With Python 3 and Django (https://www.youtube.com/playlist?list=PLPSM8rIid1a0qiCpbfujex5lZoXr2SRFC)
 
+
     ##  Struktur Halaman
         - Home
         - About me:
@@ -573,9 +577,32 @@
         - Experience -->> MVT
         - Achievements -->>
 
+
     ##  Weekly Progress Tugas 2
         Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
-        
+        1. 16 September 2026
+            - Tutorial 03: Form dan Data Delivery
+            - finishing: tutorial 3
+            - Tutorial 03: Form dan Data Delivery
+            - Tutorial 03: Form dan Data Delivery
+            - Tutorial 03: Form dan Data Delivery
+            - Tutorial 03: Form dan Data Delivery
+            - Tutorial 03: Form dan Data Delivery
+            - fix: finishing tutorial 3
+            - finishing fix: Tutorial 03: Form dan Data Delivery
+
+        2. 18 September 2026
+            - chore: ignore env file
+            - tugas 3 saya mengimplementasi dari achievements, dan menambahkan fitur update
+
+        3. 19 September 2026
+            - Menambahkan bg form edit dan add achievement. Kemudian mempercantik tampilan dan saat memasukkan password 
+              yang salah ada tulisan merah bahwa yang di masukkan secret codenya salah
+            - Mengganti format tulisan belum ada penghargaan, pendidikan, pengalaman
+            - Menambahkan informasi di README.md
+            - Menghapus url image dari achievements
+            - mengubah desain dari penulisan belum ada pengalaman, pendidikan, penghargaan
+
 
     ## Pertanyaan Reflektif
         1.  Jelaskan mengapa kita menggunakan ModelForm pada Django alih-alih membuat form HTML secara manual. Selain itu,
@@ -587,7 +614,7 @@
              juga dapat langsung disimpan ke database menggunakan form.save(). Hal ini membuat kode lebih sederhana dan
              mengurangi kebutuhan untuk membuat serta menangani form HTML secara manual.
 
-            {% csrf_token %} digunakan untuk memberikan token keamanan CSRF (Cross-Site Request Forgery) pada form. Token 
+            {% csrf_token %} digunakan untuk memberikan token keamanan CSRF (Cross-Site Request Forgery) pada form. Token
             ini membantu Django memverifikasi bahwa request POST berasal dari form yang sah dari aplikasi kita, sehingga 
             dapat membantu mencegah serangan CSRF dari situs lain.
 
@@ -646,4 +673,80 @@
             bukan data JSON secara langsung. Dengan serialization, objek tersebut diubah menjadi format JSON sehingga 
             dapat dikirim dan dibaca oleh client atau aplikasi lain melalui web.
 
+    ##  AI Disclosure & Usage
+        Pada Tugas 3 ini saya menggunakan ChatGPT untuk membantu menelaah informasi yang kurang saya pahami, terutama terkait ModelForm, CSRF token, serialization, JSON, dan XML. ChatGPT digunakan sebagai media pembelajaran untuk membantu saya memahami konsep dan menyelesaikan bagian yang masih belum saya mengerti.
 
+        Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
+        1.  Pertanyaan saya: agar navbar juga ganti font gimana
+            Jawaban GPT:
+            Oh, maksudmu **posisi tulisan “Alisa Selvia Saharani” di navbar**.
+
+            `align-items: center` sudah benar untuk membuat nama berada di tengah secara vertikal. 
+
+            Kalau mau nama sedikit lebih besar dan tetap rapi:
+
+            ```css
+            .navbar-brand {
+                font-family: "Space Grotesk", sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            ```
+
+            **Saya tidak menyarankan mengubah `position: absolute` atau memberi `margin-top` besar.** Layout `flex` yang sekarang sudah paling aman.
+
+            Jadi:
+
+            ```text
+            ┌─────────────────────────────────────────────────────┐
+            │  Alisa Selvia Saharani             My Portofolio  ☰ │
+            └─────────────────────────────────────────────────────┘
+            ```
+
+            **Posisi kiri-kanannya sudah pas.** Kalau yang kamu maksud adalah ingin **“Alisa Selvia Saharani” diganti font custom**, itu tinggal ubah `font-family` saja.
+
+        2.  Pertanyaan saya: Apakah tampilan halaman saya kurang warnanya
+            Jawaban GPT:
+            Iya, kalau dibandingkan dengan halaman **Achievements** sebelumnya, halaman **Experience** ini memang terlihat agak kurang “berwarna” di bagian tengah. Background-nya sudah bagus, tetapi teks putih membuat area tengah terasa kosong.
+
+            Yang paling aman: **jangan mengubah background lautnya**, tetapi beri aksen warna pada teks kosongnya.
+
+            Kalau ingin seperti desain bawah laut yang lebih hidup, coba:
+
+            ```css
+            .empty-state h2 {
+                color: #fff4c2;
+                font-family: "Taste Bread";
+                font-size: 28px;
+                text-shadow:
+                    2px 2px 0 #1c1917,
+                    0 0 8px rgba(255, 255, 255, 0.5);
+            }
+            ```
+
+            Hasilnya tulisan **“Belum ada pengalaman yang ditambahkan.”** akan lebih menonjol tanpa merusak background.
+
+            Kalau mau **lebih konsisten dengan warna laut**, gunakan:
+
+            ```css
+            .empty-state h2 {
+                color: #e8f7fa;
+                font-family: "Taste Bread";
+                font-size: 28px;
+                text-shadow:
+                    3px 3px 0 #1c1917,
+                    0 0 10px rgba(57, 177, 217, 0.8);
+            }
+            ```
+
+            ### Menurut saya untuk desainmu
+
+            Saya pilih **versi kedua** karena cocok dengan warna biru laut:
+
+            **Background:** biru laut
+            **Judul:** putih + outline hitam
+            **Empty message:** putih kebiruan + glow biru
+            **Card:** biru/transparan ketika ada data
+
+            Jadi tidak perlu menambahkan warna terlalu banyak. Cukup **putih + biru + sedikit hitam sebagai outline**, supaya tema underwater tetap konsisten.

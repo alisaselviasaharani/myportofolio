@@ -65,32 +65,32 @@
                     {% endif %} -->
 
                     <!-- Nama Achievement -->
-                    <h2>{{ achievement.title }}</h2>
+                    <h2>{{ achievement.object.title }}</h2>
 
                     <!-- Kategori Achievement -->
-                    {% if achievement.category %}
+                    {% if achievement.object.category %}
                     <span class="experience-category">
-                        {{ achievement.get_category_display }}
+                        {{ achievement.object.get_category_display }}
                     </span>
                     {% endif %}
 
                     <!-- Periode Achievement -->
-                    {% if achievement.period %}
+                    {% if achievement.object.period %}
                     <span class="experience-period">
-                        {{ achievement.period }}
+                        {{ achievement.object.period }}
                     </span>
                     {% endif %}
 
                     <!-- Deskripsi Achievement -->
                     <p class="experience-description">
-                        {{ achievement.description }}
+                        {{ achievement.object.description }}
                     </p>
 
                     <!-- Action -->
                     <div class="achievements-card-actions">
                         <div class="achievements-actions">
 
-                            <form method="post" action="{% url 'main:delete_achievements' achievement.id %}">
+                            <form method="post" action="{% url 'main:delete_achievements' achievement.object.id %}">
                                 {% csrf_token %}
 
                                 <button type="submit" class="button button-danger">
@@ -99,9 +99,8 @@
 
                             </form>
 
-                            <a href="{% url 'main:update_achievements' achievement.id %}" class="button button-danger">
+                            <a href="{% url 'main:update_achievements' achievement.object.id %}" class="button button-danger">
                                 Edit
-
                             </a>
 
                         </div>
@@ -117,7 +116,7 @@
                 </p>
                 {% else %}
                 <div class="empty-state">
-                   <h2>Belum ada penghargaan yang ditambahkan.</h2>
+                    <h2>Belum ada penghargaan yang ditambahkan.</h2>
                 </div>
                 {% endif %}
 
