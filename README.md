@@ -581,6 +581,9 @@
     ##  Weekly Progress Tugas 2
         Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
         1. 16 September 2026
+            - menyelesaikan tutorial 3
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
             - Tutorial 03: Form dan Data Delivery
             - finishing: tutorial 3
             - Tutorial 03: Form dan Data Delivery
@@ -592,10 +595,18 @@
             - finishing fix: Tutorial 03: Form dan Data Delivery
 
         2. 18 September 2026
+            - membuat pw agar tidak bisa diakses semua orang
+            - menambahkan fitur update
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
             - chore: ignore env file
             - tugas 3 saya mengimplementasi dari achievements, dan menambahkan fitur update
 
         3. 19 September 2026
+            - mempercantik tampilan
+            - menambahkan bg form edit dan add
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
             - Menambahkan bg form edit dan add achievement. Kemudian mempercantik tampilan dan saat memasukkan password 
               yang salah ada tulisan merah bahwa yang di masukkan secret codenya salah
             - Mengganti format tulisan belum ada penghargaan, pendidikan, pengalaman
@@ -604,9 +615,15 @@
             - mengubah desain dari penulisan belum ada pengalaman, pendidikan, penghargaan
 
         4. 20 September 2026
+            - finishing hasil
+            - menambahkan bukti sertifikat
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
             - feat: implement JSON deserialization for achievements dan menambahkan deskripsi dari README.md
             - Menambahkan kan UUID pada achievements di JSON
             - update Menambahkan kan UUID pada achievements di JSON
+            - menambahkann kembali achievements_image_url dan menambahkan view certificate untuk melihat dokumetasi
+            - update menambahkan link di json
 
 
     ## Pertanyaan Reflektif

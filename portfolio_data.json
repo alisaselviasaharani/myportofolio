@@ -71,16 +71,7 @@
       "website": "https://www.mtsn12jkt.sch.id/"
     }
   },
-  {
-    "model": "main.achievements",
-    "pk": "4bad628f-24a3-456d-83a8-b28ed37117e0",
-    "fields": {
-      "title": "Kumon Mathematics Completer",
-      "period": "2012 - 2023",
-      "description": "Successfully completed the Kumon Mathematics program.",
-      "category": "certification"
-    }
-  },
+
   {
     "model": "main.achievements",
     "pk": "35b805f3-f35c-4b1c-b7e3-441860ee76a2",
@@ -88,7 +79,8 @@
       "title": "2nd Overall Academic Ranking At SMAN 65 JAKARTA",
       "period": "2022-2025",
       "description": "Achieved 2nd place in the overall academic ranking among students in the same grade.",
-      "category": "academic"
+      "category": "academic",
+      "achievements_image_url": "https://drive.google.com/thumbnail?id=1zcyWAr5fqv4NbD5DqbpU9R3p7rP-4wJB&sz=w1000"
     }
   },
   {
@@ -98,7 +90,8 @@
       "title": "Juara Harapan III Matematika Terintegras - KSM (Kompetisi Sains Madrasah) 2021",
       "period": "2021",
       "description": "Kompetisi Sains Madrasah 2021 Tingkat Kabupaten/Kota MTSN 12 Jakarta",
-      "category": "competition"
+      "category": "competition",
+      "achievements_image_url": "https://drive.google.com/thumbnail?id=1hqDXvg96on0jGuaBtsZICl3J-Jq2Dj83&sz=w1000"
     }
   },
   {
@@ -108,7 +101,19 @@
       "title": "DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK",
       "period": "2023",
       "description": "Certificate of completion for the LearningX course titled DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK.",
-      "category": "certification"
+      "category": "certification",
+      "achievements_image_url": "https://drive.google.com/thumbnail?id=1wc-VzUOxBIIz4Sopibqff_kUbbISYdAS&sz=w1000"
+    }
+  },
+  {
+    "model": "main.achievements",
+    "pk": "a595cbc8-f1dd-43d3-91e3-f209fdd09d17",
+    "fields": {
+      "title": "Kumon Mathematics Completer",
+      "period": "2012 - 2023",
+      "description": "Successfully completed the Kumon Mathematics program.",
+      "category": "certification",
+      "achievements_image_url": "https://drive.google.com/thumbnail?id=1TMZWZ7qnCUdewqEu0Qg9cj2vxsysZ886&sz=w1000"
     }
   }
 ]
