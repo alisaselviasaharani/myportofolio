@@ -1311,9 +1311,12 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 } */
 
 .empty-state h2 {
-    color: white;
+    color: #e8f7fa;
     font-family: "Taste Bread";
-
+    font-size: 28px;
+    text-shadow:
+        3px 3px 0 #1c1917,
+        0 0 10px rgba(57, 177, 217, 0.8);
 }
 
 .achievements-form {
