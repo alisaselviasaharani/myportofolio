@@ -624,6 +624,7 @@
             - update Menambahkan kan UUID pada achievements di JSON
             - menambahkann kembali achievements_image_url dan menambahkan view certificate untuk melihat dokumetasi
             - update menambahkan link di json
+            - finishing tugas 3
 
 
     ## Pertanyaan Reflektif
