@@ -1752,7 +1752,7 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     backdrop-filter: blur(5px);
 }
 
-.achievement-edit h1{
+.achievement-edit h1 {
     margin-bottom: 15px;
 }
 
@@ -1782,3 +1782,39 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     margin-bottom: 20px;
 }
 
+.star-form {
+    display: inline;
+}
+
+.button-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ink);
+}
+
+.button-star.is-starred {
+    background: var(--accent);
+}
+
+.star-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+}
+
+.navbar-menu nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.navbar-menu nav a,
+.navbar-menu nav .nav-user {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+}

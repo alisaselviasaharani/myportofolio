@@ -6,76 +6,81 @@
 
 {% block content %}
 
-    <main class="pages">
-        <section class="hero" id="profile">
-            <div class="container hero-grid">
-                <div class="hero-identity">
-                    <a href="https://cs.ui.ac.id/" class="hero-kicker">Computer Science · Universitas Indonesia</a>
-                    <h1>Alisa Selvia Saharani</h1>
-                </div>
+<main class="pages">
+    <section class="hero" id="profile">
+        <div class="container hero-grid">
+            <div class="hero-identity">
+                <a href="https://cs.ui.ac.id/" class="hero-kicker">Computer Science · Universitas Indonesia</a>
+                <h1>Alisa Selvia Saharani</h1>
+            </div>
 
-                <!-- ket: pada page ini saya ingin menambahkan foto saya dan sosial media saya sehingga membuat kesanpertaa pengunjung tau bagaimana wujud saya -->
-                <!-- PAGE 1 : ABOUTME -->
-                <div class="hero-photo">
-                    <div class="photo-block"></div>
-                    <!-- <img class="avatar" src="/static/img/alisa.png" alt="Photo of Alisa Selvia Saharani"> -->
-                    <img class="avatar" src="/static/img/alisa.png" alt="Photo of {{ name }}">
-                </div>
+            <!-- ket: pada page ini saya ingin menambahkan foto saya dan sosial media saya sehingga membuat kesanpertaa pengunjung tau bagaimana wujud saya -->
+            <!-- PAGE 1 : ABOUTME -->
+            <div class="hero-photo">
+                <div class="photo-block"></div>
+                <!-- <img class="avatar" src="/static/img/alisa.png" alt="Photo of Alisa Selvia Saharani"> -->
+                <img class="avatar" src="/static/img/alisa.png" alt="Photo of {{ name }}">
+            </div>
 
-                <!-- berikut ini sedikit deskripsi tentang saya -->
-                <div class="hero-details">
-                    <!-- <p class="bio">
+            <!-- berikut ini sedikit deskripsi tentang saya -->
+            <div class="hero-details">
+                <!-- <p class="bio">
                         Computer Science student at Universitas Indonesia who is interested in learning,
                         exploring new things, and developing skills in technology and data.
                     </p> -->
-                    <p class="bio">{{ bio }}</p>
+                <p class="bio">{{ bio }}</p>
 
-                    <dl class="meta-list">
-                        <div class="meta-row">
-                            <dt>NPM</dt>
-                            <!-- <dd>2506618433</dd> -->
-                            <dd style="color: black !important; display: block !important;">
-                                {{ npm }}
-                            </dd>
-                        </div>
-
-                        <div class="meta-row">
-                            <dt>Program</dt>
-                            <!-- <dd>S1 Ilmu Komputer</dd> -->
-                            <!-- <dd>{{ study_program }}</dd> -->
-                            <dd style="color: black !important; display: block !important;">
-                                {{ study_program }}
-                            </dd>
-                        </div>
-                    </dl>
-
-                    <!-- sosial link jika ingin saling follow :) -->
-                    <div class="social-links">
-                        <a href="https://github.com/alisaselviasaharani" class="social-link">GitHub</a>
-                        <a href="https://www.linkedin.com/in/alisaselviasaharani" class="social-link">LinkedIn</a>
-                        <a href="mailto:alisa.selvia@ui.ac.id" class="social-link">Email</a>
+                <dl class="meta-list">
+                    <div class="meta-row">
+                        <dt>NPM</dt>
+                        <!-- <dd>2506618433</dd> -->
+                        <dd style="color: black !important; display: block !important;">
+                            {{ npm }}
+                        </dd>
                     </div>
-                </div>
 
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+                    <div class="meta-row">
+                        <dt>Program</dt>
+                        <!-- <dd>S1 Ilmu Komputer</dd> -->
+                        <!-- <dd>{{ study_program }}</dd> -->
+                        <dd style="color: black !important; display: block !important;">
+                            {{ study_program }}
+                        </dd>
+                    </div>
+
+                    <div class="meta-row">
+                        <dt>Sesi Terakhir Login</dt>
+                        <dd>{{ last_login }}</dd>
+                    </div>
+                </dl>
+
+                <!-- sosial link jika ingin saling follow :) -->
+                <div class="social-links">
+                    <a href="https://github.com/alisaselviasaharani" class="social-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/alisaselviasaharani" class="social-link">LinkedIn</a>
+                    <a href="mailto:alisa.selvia@ui.ac.id" class="social-link">Email</a>
+                </div>
+            </div>
+
+            <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk swipe-hint -->
-                <div class="swipe-hint">
-                    <span>Swipe/ Scroll to explore</span>
-                    <span class="arrow">→</span>
-
-                </div>
+            <!-- Peringatan untuk swipe-hint -->
+            <div class="swipe-hint">
+                <span>Swipe/ Scroll to explore</span>
+                <span class="arrow">→</span>
 
             </div>
-        </section>
 
-<!-- ==========>>>>>> INI DI COMMENT KARENA EDUCATION JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
- <!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
-        <!-- PAGE 2 : EDUCATION -->
-        <!-- <section class="education-page" id="education"> -->
+        </div>
+    </section>
 
-        <!-- Gelembung -->
-        <!-- <div class="bubbles">
+    <!-- ==========>>>>>> INI DI COMMENT KARENA EDUCATION JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
+    <!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
+    <!-- PAGE 2 : EDUCATION -->
+    <!-- <section class="education-page" id="education"> -->
+
+    <!-- Gelembung -->
+    <!-- <div class="bubbles">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -87,18 +92,18 @@
             </div> -->
 
 
-        <!-- <div class="education-content"> -->
+    <!-- <div class="education-content"> -->
 
-        <!-- Judul Education -->
-        <!-- <div class="ketik">
+    <!-- Judul Education -->
+    <!-- <div class="ketik">
                     <h1>EDUCATION</h1>
                 </div> -->
 
-        <!-- Kartu Education -->
-        <!-- <div class="education-cards"> -->
+    <!-- Kartu Education -->
+    <!-- <div class="education-cards"> -->
 
-        <!-- Universitas Indonesia -->
-        <!-- <div class="education-card">
+    <!-- Universitas Indonesia -->
+    <!-- <div class="education-card">
 
                         <a href="https://cs.ui.ac.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logoUI.png" alt="Logo Universitas Indonesia">
@@ -109,8 +114,8 @@
 
                     </div> -->
 
-        <!-- SMAN 65 Jakarta -->
-        <!-- <div class="education-card">
+    <!-- SMAN 65 Jakarta -->
+    <!-- <div class="education-card">
                         <a href="https://sman65jakarta.sch.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logo65.jpg" alt="Logo SMAN 65 Jakarta">
                         </a>
@@ -120,8 +125,8 @@
                         <p>2022 - 2025</p>
                     </div> -->
 
-        <!-- MTSN 12 Jakarta -->
-        <!-- <div class="education-card">
+    <!-- MTSN 12 Jakarta -->
+    <!-- <div class="education-card">
                         <a href="https://www.mtsn12jkt.sch.id/" class="education-link" target="_blank">
                             <img class="education-logo" src="/static/img/logomts.png" alt="Logo MTSN 12 Jakarta">
                         </a>
@@ -131,10 +136,10 @@
 
                 </div> -->
 
-        <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+    <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-        <!-- Peringatan untuk NEXT -->
-        <!-- <div class="swipe-hint">
+    <!-- Peringatan untuk NEXT -->
+    <!-- <div class="swipe-hint">
                     <span>Next</span>
                     <span class="arrow">→</span>
 
@@ -145,13 +150,13 @@
         </section> -->
 
 
-<!-- ==========>>>>>> INI DI COMMENT KARENA EXPERIENCE JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
-<!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
-        <!-- PAGE 3 : EXPERIENCE -->
-        <!-- <section class="experience-page" id="experience"> -->
+    <!-- ==========>>>>>> INI DI COMMENT KARENA EXPERIENCE JADI MVT YG TERLIHAT DI MENU BAR <<<<<<==========-->
+    <!-- NOTE: SAYA SENGAJA COMMENT KARENA SAYA TIDAK MAU MERASA KEHILANGAN T_T -->
+    <!-- PAGE 3 : EXPERIENCE -->
+    <!-- <section class="experience-page" id="experience"> -->
 
-            <!-- Gelembung -->
-            <!-- <div class="bubbles">
+    <!-- Gelembung -->
+    <!-- <div class="bubbles">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -164,13 +169,13 @@
 
             <div class="experience-content"> -->
 
-                <!-- Judul Experience -->
-                <!-- <div class="ketik">
+    <!-- Judul Experience -->
+    <!-- <div class="ketik">
                     <h1>Experience</h1>
                 </div> -->
 
-                <!-- Kartu Experience -->
-                <!-- <div class="experience-cards">
+    <!-- Kartu Experience -->
+    <!-- <div class="experience-cards">
 
                     <div class="experience-card">
                         <a href="https://www.youtube.com/@itclubsman6575/videos" class="experience-link"
@@ -220,20 +225,20 @@
 
 
                 </div> -->
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+    <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk NEXT -->
-                <!-- <div class="swipe-hint">
+    <!-- Peringatan untuk NEXT -->
+    <!-- <div class="swipe-hint">
                     <span>Next</span>
                     <span class="arrow">→</span>
                 </div>
         </section> -->
 
-        <!-- PAGE 4 : ACHIEVEMENTS -->
-        <!-- <section class="achievements-page" id="achievements"> -->
+    <!-- PAGE 4 : ACHIEVEMENTS -->
+    <!-- <section class="achievements-page" id="achievements"> -->
 
-            <!-- Gelembung -->
-            <!-- <div class="bubbles">
+    <!-- Gelembung -->
+    <!-- <div class="bubbles">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -244,18 +249,18 @@
                 <span></span>
             </div> -->
 
-            <!-- <div class="achievements-content"> -->
+    <!-- <div class="achievements-content"> -->
 
-                <!-- Judul Achievements -->
-                <!-- <div class="ketik">
+    <!-- Judul Achievements -->
+    <!-- <div class="ketik">
                     <h1>ACHIEVEMENTS </h1>
                 </div> -->
 
-                <!-- Kartu Achievements -->
-                <!-- <div class="achievements-cards"> -->
+    <!-- Kartu Achievements -->
+    <!-- <div class="achievements-cards"> -->
 
-                    <!-- Achievement 1 -->
-                    <!-- <div class="achievements-card">
+    <!-- Achievement 1 -->
+    <!-- <div class="achievements-card">
                         <h2>Juara Harapan III</h2>
                         <h3>Matematika Terintegrasi</h3>
                         <p>Kompetisi Sains Madrasah 2021</p>
@@ -263,8 +268,8 @@
                         <p>MTsN 12 Jakarta</p>
                     </div> -->
 
-                    <!-- Achievement 2 -->
-                    <!-- <div class="achievements-card">
+    <!-- Achievement 2 -->
+    <!-- <div class="achievements-card">
                         <h2>2nd Overall Academic Ranking</h2>
                         <p>SMAN 65 Jakarta</p>
                         <p>2022 - 2025</p>
@@ -276,8 +281,8 @@
 
                     </div> -->
 
-                    <!-- Achievement 3 -->
-                    <!-- <div class="achievements-card">
+    <!-- Achievement 3 -->
+    <!-- <div class="achievements-card">
                         <h2>Kumon Mathematics Completer</h2>
                         <p>Kumon Mathematics Program</p>
                         <p>2012 - 2023</p>
@@ -288,10 +293,10 @@
                     </div>
 
                 </div> -->
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+    <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                     saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk NEXT -->
-                <!-- <div class="swipe-hint">
+    <!-- Peringatan untuk NEXT -->
+    <!-- <div class="swipe-hint">
                     <span>Next</span>
                     <span class="arrow">→</span>
                 </div>
@@ -299,136 +304,136 @@
 
         </section> -->
 
-        <!-- PAGE 5 : SKILLS -->
-        <section class="skills-page" id="skills">
+    <!-- PAGE 5 : SKILLS -->
+    <section class="skills-page" id="skills">
 
-            <!-- Gelembung -->
-            <div class="bubbles">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <!-- Gelembung -->
+        <div class="bubbles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="skills-content">
+
+            <div class="ketik">
+                <h1>SKILLS</h1>
             </div>
 
-            <div class="skills-content">
+            <div class="skills-cards">
 
-                <div class="ketik">
-                    <h1>SKILLS</h1>
+                <!-- Skill 1 -->
+                <div class="skills-card">
+                    <img class="skills-logo" src="/static/img/technical-skills.png" alt="Logo technical-skills">
+                    <h2>Technical Skills</h2>
+                    <p>Python</p>
+                    <p>Java</p>
+                    <p>Visual Studio Code</p>
+                    <p>Sublime Text</p>
+                    <p>Notepad++</p>
+                    <p>Microsoft Word</p>
+                    <p>Microsoft Excel</p>
+                    <p>Microsoft PowerPoint</p>
                 </div>
 
-                <div class="skills-cards">
-
-                    <!-- Skill 1 -->
-                    <div class="skills-card">
-                        <img class="skills-logo" src="/static/img/technical-skills.png" alt="Logo technical-skills">
-                        <h2>Technical Skills</h2>
-                        <p>Python</p>
-                        <p>Java</p>
-                        <p>Visual Studio Code</p>
-                        <p>Sublime Text</p>
-                        <p>Notepad++</p>
-                        <p>Microsoft Word</p>
-                        <p>Microsoft Excel</p>
-                        <p>Microsoft PowerPoint</p>
-                    </div>
-
-                    <!-- Skill 2 -->
-                    <div class="skills-card">
-                        <img class="skills-logo" src="/static/img/soft-skills.png" alt="Logo soft-skills">
-                        <h2> Soft Skills</h2>
-                        <p>Problem Solving</p>
-                        <p>Communication</p>
-                        <p>Leadership</p>
-                        <p>Adaptability</p>
-                        <p>Time Management</p>
-                        <p>Analysis</p>
-                    </div>
+                <!-- Skill 2 -->
+                <div class="skills-card">
+                    <img class="skills-logo" src="/static/img/soft-skills.png" alt="Logo soft-skills">
+                    <h2> Soft Skills</h2>
+                    <p>Problem Solving</p>
+                    <p>Communication</p>
+                    <p>Leadership</p>
+                    <p>Adaptability</p>
+                    <p>Time Management</p>
+                    <p>Analysis</p>
                 </div>
+            </div>
 
-                <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+            <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-                <!-- Peringatan untuk NEXT -->
-                <div class="swipe-hint">
-                    <span>Next</span>
-                    <span class="arrow">→</span>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- PAGE 6 : CONTACT -->
-        <section class="contact-page" id="contact">
-
-            <!-- Gelembung -->
-            <div class="bubbles">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- Peringatan untuk NEXT -->
+            <div class="swipe-hint">
+                <span>Next</span>
+                <span class="arrow">→</span>
             </div>
 
-            <div class="contact-content">
+        </div>
+    </section>
 
-                <div class="ketik">
-                    <h1>CONTACT</h1>
+    <!-- PAGE 6 : CONTACT -->
+    <section class="contact-page" id="contact">
+
+        <!-- Gelembung -->
+        <div class="bubbles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="contact-content">
+
+            <div class="ketik">
+                <h1>CONTACT</h1>
+            </div>
+
+            <!-- Bagian pesan + Nailong -->
+            <div class="contact-message">
+
+                <div class="message-box">
+                    <h2>Thank You for</h2>
+                    <h2>Visiting My Portfolio!</h2>
                 </div>
 
-                <!-- Bagian pesan + Nailong -->
-                <div class="contact-message">
-
-                    <div class="message-box">
-                        <h2>Thank You for</h2>
-                        <h2>Visiting My Portfolio!</h2>
-                    </div>
-
-                    <img class="nailong" src="/static/img/nailong1.png" alt="Nailong">
-
-                </div>
-
-                <h2 class="connect-title">Let's Connect!</h2>
-
-                <!-- Contact buttons -->
-                <div class="contact-cards">
-
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/in/alisaselviasaharani" class="contact-card" target="_blank">
-
-                        <img class="contact-logo" src="/static/img/linkedin.png" alt="LinkedIn">
-
-                        <span>LinkedIn</span>
-
-                    </a>
-
-                    <!-- GitHub -->
-                    <a href="https://github.com/alisaselviasaharani" class="contact-card" target="_blank">
-
-                        <img class="contact-logo" src="/static/img/github.png" alt="GitHub">
-
-                        <span>GitHub</span>
-
-                    </a>
-
-                    <!-- Gmail -->
-                    <a href="mailto:alisa.selvia@ui.ac.id" class="contact-card">
-
-                        <img class="contact-logo" src="/static/img/gmail.png" alt="Email">
-
-                        <span>Email</span>
-
-                    </a>
-
-                </div>
+                <img class="nailong" src="/static/img/nailong1.png" alt="Nailong">
 
             </div>
-        </section>
-    </main>
+
+            <h2 class="connect-title">Let's Connect!</h2>
+
+            <!-- Contact buttons -->
+            <div class="contact-cards">
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/alisaselviasaharani" class="contact-card" target="_blank">
+
+                    <img class="contact-logo" src="/static/img/linkedin.png" alt="LinkedIn">
+
+                    <span>LinkedIn</span>
+
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/alisaselviasaharani" class="contact-card" target="_blank">
+
+                    <img class="contact-logo" src="/static/img/github.png" alt="GitHub">
+
+                    <span>GitHub</span>
+
+                </a>
+
+                <!-- Gmail -->
+                <a href="mailto:alisa.selvia@ui.ac.id" class="contact-card">
+
+                    <img class="contact-logo" src="/static/img/gmail.png" alt="Email">
+
+                    <span>Email</span>
+
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+</main>
 
 {% endblock content %}

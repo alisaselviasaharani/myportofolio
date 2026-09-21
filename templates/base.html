@@ -56,11 +56,21 @@
                     <summary>☰</summary>
 
                     <div class="navbar-menu">
-                        <a href="{% url 'main:show_home' %}">HOME</a>
-                        <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
-                        <a href="{% url 'main:show_education' %}">EDUCATION</a>
-                        <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
-                        <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
+                        <nav>
+                            <a href="{% url 'main:show_home' %}">HOME</a>
+                            <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
+                            <a href="{% url 'main:show_education' %}">EDUCATION</a>
+                            <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
+                            <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
+
+                            {% if user.is_authenticated %}
+                            <span class="nav-user">{{ user.username }}</span>
+                            <a href="{% url 'main:logout' %}">LOGOUT</a>
+                            {% else %}
+                            <a href="{% url 'main:login' %}">LOGIN</a>
+                            <a href="{% url 'main:register' %}">REGISTER</a>
+                            {% endif %}
+                        </nav>
                     </div>
 
                 </details>

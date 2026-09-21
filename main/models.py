@@ -1,5 +1,6 @@
 import uuid #impor library uuid untuk buat id unik secara otomatis
-from django.db import models #impor models django untuk membuat model dan field database
+from django.contrib.auth.models import User  
+from django.db import models
 
 # ----->>>>> MODEL EXPERIENCE <<<<<-----
 class Experience(models.Model):
@@ -87,5 +88,8 @@ class Achievements(models.Model):
     category=models.CharField(max_length=20, choices=ACHIEVEMENTS_CHOICES, null=True, blank=True)
     achievements_image_url = models.URLField(blank=True, max_length=500)
 
+    starred_by = models.ManyToManyField(
+        User, related_name="starred_achievements", blank=True
+    )
     def __str__(self):
         return self.title
