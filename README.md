@@ -566,13 +566,13 @@
         - Food Delivery Web App With Python 3 and Django (https://www.youtube.com/playlist?list=PLPSM8rIid1a0qiCpbfujex5lZoXr2SRFC)
 
 
-    ##  Struktur Halaman
+    ##  Struktur Halaman 
+        Untuk Tugas ini Saya memutuskan untuk membuat garis 3 sebagai menu(summary) -->> "my portofolio ☰":
         - Home
         - About me:
             Dalam page About Me terdiri dari beberapa section, yaitu:
-            1. Achievements
-            2. Skills
-            3. Contact
+            1. Skills
+            2. Contact
         - Education  -->> MVT
         - Experience -->> MVT
         - Achievements -->> Form & Data Delivery
