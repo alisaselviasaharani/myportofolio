@@ -1,3 +1,4 @@
+{% if user.is_authenticated %}
 <form method="post" action="{% url 'main:toggle_star' achievement.id %}" class="star-form">
     {% csrf_token %}
 
@@ -18,3 +19,13 @@
         </span>
     </button>
 </form>
+{% else %}
+<a href="{% url 'main:login' %}" class="button">
+    Login untuk memberi Star
+</a>
+
+<span class="star-count">
+    ⭐ {{ achievement.starred_by.count }}
+</span>
+
+{% endif %}
