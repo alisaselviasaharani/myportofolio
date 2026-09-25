@@ -159,10 +159,10 @@ def delete_achievements(request, achievements_id):
 
 
 # UPDATE ACHIEVEMENTS
-# UPDATE ACHIEVEMENTS
 @login_required(login_url="/login/")
 def update_achievements(request, achievements_id):
-    if not request.user.is_superuser:
+    is_editor=request.user.groups.filter(name="Editor").exists()
+    if not request.user.is_superuser and not is_editor:
         raise PermissionDenied
 
     achievement = get_object_or_404(
