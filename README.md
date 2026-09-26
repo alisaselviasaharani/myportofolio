@@ -773,3 +773,23 @@
             **Card:** biru/transparan ketika ada data
 
             Jadi tidak perlu menambahkan warna terlalu banyak. Cukup **putih + biru + sedikit hitam sebagai outline**, supaya tema underwater tetap konsisten.
+
+### Tugas 4
+    ##  Deskripsi Proyek
+
+
+    ##  Design & Resources
+        - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
+        - Google Fonts (Space Groteks)
+        - CSS Animation (Dalam hal ini saya mengunakan teks berjalan untuk di setiap judul)
+        - Pinterest (Saya mendapatkan background website dari sini) -> link: https://share.google/UybGaoSdsQbTsy5rf
+        - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
+        - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
+        - Belajar HTML & CSS untuk PEMULA - Full Lengkap (https://youtu.be/3U1AhjEf7DM?si=qZGXQCKLpz655w1c)
+        - Python Django Admin Module Complete Guide All Features Explained in Django Python Admin Tutorial (https://www.youtube.com/watch?v=Q2ga-vtbaxQ)
+        - Django admin - Project set up (https://youtu.be/n5L7OqUG47s?si=LTLu1VSvbrvamNIZ)
+        - How Django Works (MVT Pattern) (https://youtu.be/cyP4Uw2b2XM?si=_0Fa9AHKhe72GFv9)
+        - Django 2.1 - Membuat dan menangani Formulir - 10/14 (https://youtu.be/A-6OlcXgaYA?si=3sO6hN6fP3_POMUW)
+        - Django Forms Full Course - Django Forms. Render with template, receive data (https://www.youtube.com/playlist?list=PLaUQIPIyD0z43DiRKM0x8YNEB-1QNCOwR)
+        - Food Delivery Web App With Python 3 and Django (https://www.youtube.com/playlist?list=PLPSM8rIid1a0qiCpbfujex5lZoXr2SRFC)
+        - 

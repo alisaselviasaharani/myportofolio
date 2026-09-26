@@ -40,40 +40,10 @@
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(0, 0, 0, 0.15);
     border-bottom: 1px solid var(--line);
-}
-
-.site-header nav {
-    display: flex;
-    gap: 2rem;
-}
-
-.site-header nav a {
-    position: relative;
-    color: var(--ink);
-    text-decoration: none;
-    transition: 0.3s ease;
-
-}
-
-.site-header nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0;
-    height: 3px;
-    background: white;
-    border-radius: 10px;
-    transition: 0.3s ease;
-}
-
-.site-header nav a:hover {
-    color: white;
-}
-
-.site-header nav a:hover::after {
     width: 100%;
+    padding: 25px 3%;
 }
+
 
 .site-header .container {
     display: flex;
@@ -338,16 +308,10 @@ membuat protofolio yang unik jadi sambil menyelam sambil melihat ke kanan untuk 
 
 
 /* =================== TYPOGRAPHY =================== */
-h2,
-.brand {
+h2{
     font-family: "Space Grotesk", sans-serif;
 }
 
-.education-card:hover {
-    transform: translateY(-10px) scale(1.03);
-
-    background: rgba(88, 191, 255, 0.95);
-}
 
 /* =================== CONTAINER =================== */
 .container {
@@ -802,9 +766,6 @@ h2,
     font-family: "SimpleHandmade";
 }
 
-.experience-content .avatar {
-    border: none;
-}
 
 
 /* =================== PAGE ACHIEVEMENT =================== */
@@ -887,10 +848,6 @@ h2,
     font-size: 23px;
     margin: 5px 0;
     font-family: "SimpleHandmade";
-}
-
-.achievements-content .avatar {
-    border: none;
 }
 
 
@@ -1254,62 +1211,6 @@ h2,
     }
 }
 
-/*
-CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
-.experience-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--line);
-}
-
-.section-kicker {
-    color: var(--accent-dark);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.experience-section h1 {
-    margin: 0.4rem 0 1.5rem;
-    font-size: 2rem;
-}
-
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-}
-
-.experience-card {
-    padding: 1.25rem;
-    background-color: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-}
-
-.experience-category {
-    color: var(--accent-dark);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.experience-card h2 {
-    margin: 0.5rem 0;
-    font-size: 1.25rem;
-}
-
-.experience-description,
-.empty-state {
-    color: var(--text-muted);
-}
-
-.experience-status {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-} */
-
 .empty-state h2 {
     color: #e8f7fa;
     font-family: "Taste Bread";
@@ -1319,11 +1220,6 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
         0 0 10px rgba(57, 177, 217, 0.8);
 }
 
-.achievements-form {
-    width: 100%;
-    max-width: 100%;
-    margin-top: 1.5rem;
-}
 
 .form-group {
     margin-bottom: 1.25rem;
@@ -1354,11 +1250,6 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     border-color: var(--accent);
 }
 
-.form-error {
-    color: #b42318;
-    font-size: 0.85rem;
-    margin-top: 0.35rem;
-}
 
 .button {
     display: inline-block;
@@ -1586,73 +1477,173 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     }
 }
 
-.navbar {
-    position: relative;
+.navbar-container {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 70px;
+    margin: 0 auto;
+    padding: 10px 40px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 7px 40px;
+    position: relative;
 }
 
 .navbar-brand {
     font-size: 28px;
     font-weight: 700;
     white-space: nowrap;
-    font-family: Milky Cream;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+    text-decoration: none;
 }
 
-.navbar-dropdown {
+.mobile-menu {
+    display: block;
     position: relative;
 }
 
-/* Tombol ☰ */
-.navbar-dropdown summary {
+.mobile-menu summary {
     list-style: none;
     cursor: pointer;
-    font-size: 29px;
-    font-weight: bold;
-    font-family: Milky Cream;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: black;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1;
+    user-select: none;
 }
 
-.navbar-dropdown summary::-webkit-details-marker {
+.mobile-menu summary::-webkit-details-marker {
     display: none;
 }
 
-/* Menu yang muncul ke bawah */
-.navbar-menu {
+.mobile-menu-content {
     position: absolute;
-    top: 50px;
+    top: 55px;
     right: 0;
-
+    width: 280px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
-
-    min-width: 220px;
-    padding: 10px;
-
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-
-    z-index: 100;
+    gap: 18px;
+    z-index: 1000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-/* Link */
-.navbar-menu a {
-    padding: 12px 16px;
-
-    color: #111;
+.mobile-menu-content a {
+    color: black;
     text-decoration: none;
-
     font-size: 18px;
     font-weight: 700;
+    padding: 8px 0;
+}
 
-    border-radius: 8px;
+.mobile-menu-content a:hover {
+    color: var(--accent);
+    transform: translateY(1.2px);
+}
+
+.navbar-menu {
+    position: absolute;
+    top: 55px;
+    right: 0;
+
+    display: none;
+    flex-direction: column;
+
+    width: 280px;
+    padding: 25px;
+
+    background: #111a1e;
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+
+    align-items: stretch;
+    gap: 18px;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 8px 0;
 }
 
 .navbar-menu a:hover {
-    background: rgba(0, 0, 0, 0.08);
+    color: var(--accent);
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar-auth a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+.btn-login {
+    color: var(--accent);
+    ;
+    border: 2px solid var(--accent);
+    ;
+}
+
+.btn-register {
+    color: white;
+    background: var(--accent);
+    ;
+    border: 2px solid var(--accent);
+    ;
+}
+
+.nav-user {
+    color: var(--accent);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+@media (max-width: 1000px) {
+    .site-header {
+        padding: 20px 4%;
+    }
+
+    .navbar-container {
+        min-height: 80px;
+
+        padding: 15px 25px;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .navbar-auth {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
 }
 
 /* Error pada form */
@@ -1739,17 +1730,16 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
 
 .achievements-form {
     background: rgba(255, 255, 255, 0.35);
-
     border: 2px solid rgba(255, 255, 255, 0.7);
     border-radius: 12px;
-
     padding: 30px;
-
     box-shadow:
         0 0 0 3px rgba(255, 255, 255, 0.15),
         0 8px 30px rgba(0, 0, 0, 0.08);
-
     backdrop-filter: blur(5px);
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
 }
 
 .achievement-edit h1 {
@@ -1802,19 +1792,4 @@ CSS DARI TUTORIAL TAPI SAYA TIDAK MENGGUNAKANNYA
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.25);
     font-size: 0.8rem;
-}
-
-.navbar-menu nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 2rem;
-}
-
-.navbar-menu nav a,
-.navbar-menu nav .nav-user {
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--ink);
-    text-decoration: none;
 }
