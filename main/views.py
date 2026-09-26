@@ -107,13 +107,13 @@ def show_achievements(request):
     achievements_json = serializers.serialize("json", achievements)
 
     # Deserialize JSON kembali menjadi objek Django
-    achievements_data = list(
-        serializers.deserialize("json", achievements_json)
-    )
+    achievements_data = list(serializers.deserialize("json", achievements_json))
+    is_editor = request.user.groups.filter(name="Editor").exists()
     context = {
         "name": "Alisa Selvia Saharani",
         "achievements_list": achievements_data,
         "title_query": title_query,
+        "is_editor":is_editor
     }
 
     return render(request, "achievements.html", context)

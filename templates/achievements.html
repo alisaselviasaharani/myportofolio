@@ -45,8 +45,8 @@
 
             </form>
 
-            <!-- Tombol tambah achievement -->
             {% if user.is_superuser %}
+            <!-- Tombol tambah achievement -->
             <a href="{% url 'main:create_achievements' %}" class="button project-add">
                 <span aria-hidden="true">+</span>
                 Tambah Penghargaan
@@ -103,7 +103,6 @@
                             {% include "components/achievements_star.html" with achievement=achievement.object %}
 
                             {% if user.is_superuser %}
-
                             <!-- Hapus -->
                             <form method="post" action="{% url 'main:delete_achievements' achievement.object.id %}">
                                 {% csrf_token %}
@@ -112,7 +111,9 @@
                                     Hapus
                                 </button>
                             </form>
+                            {% endif %}
 
+                            {% if user.is_superuser or is_editor%}
                             <!-- Edit -->
                             <a href="{% url 'main:update_achievements' achievement.object.id %}"
                                 class="button button-danger">
