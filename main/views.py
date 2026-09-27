@@ -261,4 +261,3 @@ def toggle_star(request, achievements_id):
 
     return redirect("main:show_achievements")
 
-

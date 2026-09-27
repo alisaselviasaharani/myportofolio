@@ -223,6 +223,10 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* =================== BODY =================== */
 body {
     margin: 0;
@@ -329,11 +333,9 @@ h2 {
 .hero-grid {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
-
     grid-template-areas:
         "identity photo"
         "details photo";
-
     gap: 1.5rem 3rem;
 }
 
@@ -348,16 +350,12 @@ h2 {
 /* =================== KICKER =================== */
 .hero-kicker {
     display: inline-block;
-
     font-size: 0.95rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-
     color: #fffaf0;
     font-weight: 700;
-
     margin-bottom: 0.75rem;
-
     text-decoration: none !important;
 
     /* Membuat tulisan lebih jelas */
@@ -428,19 +426,13 @@ h2 {
 
 .social-link {
     display: inline-block;
-
     font-size: 0.85rem;
     font-weight: 600;
-
     text-decoration: none;
-
     color: var(--paper);
     background-color: var(--ink);
-
     border-radius: var(--radius);
-
     padding: 0.5rem 1.1rem;
-
     transition: background-color 0.2s ease;
 }
 
@@ -458,54 +450,45 @@ h2 {
 
 .photo-block {
     position: absolute;
-
     top: 1.25rem;
     left: 1.25rem;
-
     width: 100%;
     height: 100%;
-
     background-color: var(--accent);
-
     border-radius: var(--radius);
-
     z-index: 0;
 }
 
 .avatar {
     position: relative;
     z-index: 1;
-
     display: block;
-
     width: 100%;
     aspect-ratio: 1 / 1;
-
     object-fit: cover;
-
     border-radius: var(--radius);
-
     border: 3px solid var(--ink);
 }
 
 
 /* =================== FOOTER =================== */
 .site-footer {
+    margin-top: auto;
     padding: 12px 20px;
     color: white;
     font-size: 14px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     background: rgba(0, 0, 0, 0.15);
+    
 }
+
 
 
 /* RESPONSIVE / HP */
 @media (max-width: 600px) {
-
     .hero-grid {
         grid-template-columns: 1fr;
-
         grid-template-areas:
             "identity"
             "photo"
@@ -526,7 +509,6 @@ h2 {
 .education-page {
     padding-top: 30px;
     padding-bottom: 30px;
-
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -553,15 +535,10 @@ h2 {
     text-shadow:
         3px 3px 0 #1c1917,
         0 0 10px rgba(255, 224, 102, 0.35);
-
-
     white-space: nowrap;
     overflow: hidden;
-
     width: 0;
-
     border-right: 4px solid orange;
-
     animation:
         ketikan 2.5s steps(9, end) forwards,
         kedip 0.75s step-end infinite;
@@ -731,16 +708,12 @@ h2 {
 .experience-link {
     width: 280px;
     min-height: 330px;
-
     padding: 25px;
-
     border-radius: 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     box-sizing: border-box;
 }
 
@@ -1431,6 +1404,10 @@ h2 {
     justify-content: flex-end;
     gap: 0.75rem;
     margin-top: 1.5rem;
+}
+
+.achievements-form .form-help {
+    margin-left: 15px;
 }
 
 .button-danger {

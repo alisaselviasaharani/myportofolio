@@ -776,7 +776,23 @@
 
 ### Tugas 4
     ##  Deskripsi Proyek
-
+        Pada Tugas 4 ini, saya menambahkan pengaturan hak akses bagi admin dan editor sesuai dengan instruksi tugas. 
+        Pembatasan akses diterapkan pada bagian Achievements, di mana pengunjung tetap dapat melihat data, tetapi jika ingin 
+        melakukan tindakan seperti memberikan star (bintang) untuk menandai penghargaan yang disukai, akan tetapi pengguna harus login terlebih dahulu.
+        Menurut saya hak akses dalam website yang saya buat terbagi menjadi 4 kategori, yaitu:
+        1.  Admin ->> Admin memiliki hak akses paling luas, seperti mengakses Django Admin, menambahkan Achievement, 
+            meng-update atau mengedit Achievement, serta menghapus Achievement.
+        2.  Editor ->> Editor merupakan user yang ditambahkan oleh Admin ke dalam Group Editor melalui Django Admin. Editor 
+            tidak memiliki akses penuh ke seluruh halaman atau fitur website seperti Admin. Editor hanya memiliki hak untuk meng-update atau mengedit Achievement, tetapi tidak dapat menambahkan maupun menghapus Achievement.
+        3.  User Biasa ->> User yang sudah melakukan registrasi dan login. User dapat melihat Achievement serta memberikan 
+            atau membatalkan star, tetapi tidak dapat menambahkan, meng-update, maupun menghapus Achievement.
+        4.  Guests (Tamu) ->> Guest (tamu) adalah pengunjung yang memiliki hak akses untuk melihat atau membaca konten pada 
+            website. Guest tidak dapat melakukan tindakan yang memerlukan akun, seperti memberikan star. Untuk memberikan star, guest harus melakukan registrasi dan login terlebih dahulu.
+        Kesimpulannya:
+        Admin/Superuser → create, update, delete, star
+        Editor → update, star
+        User Biasa → star
+        Guest → hanya melihat
 
     ##  Design & Resources
         - Custom Fonts (AGENTORANGE, Matcha Mint, SimpleHandmade)--> font ini saya dapatkan dari website dafont.com (https://www.dafont.com/theme.php?cat=101)
@@ -792,4 +808,195 @@
         - Django 2.1 - Membuat dan menangani Formulir - 10/14 (https://youtu.be/A-6OlcXgaYA?si=3sO6hN6fP3_POMUW)
         - Django Forms Full Course - Django Forms. Render with template, receive data (https://www.youtube.com/playlist?list=PLaUQIPIyD0z43DiRKM0x8YNEB-1QNCOwR)
         - Food Delivery Web App With Python 3 and Django (https://www.youtube.com/playlist?list=PLPSM8rIid1a0qiCpbfujex5lZoXr2SRFC)
-        - 
+        - Session Vs JWT: The Differences You May Not Know!(https://youtu.be/fyTxwIa-1U0?si=o4-OL6F2x84zFT44)
+        - Sessions vs Cookies vs Tokens | Explained with Computer Examples (https://youtu.be/Ve7A3-_BxiQ?si=xMMjjUW1Rm0OtO1x)
+        - Learn Session-based (Cookie-based) Authentication in 5 Minutes(https://youtu.be/m_xV3u8aEj4?si=w5-wxZME3ZxR0n5I)
+        - Django Documentation (https://docs.djangoproject.com/en/6.1/)
+
+    ##  Struktur Halaman
+        Untuk Tugas ini Saya memutuskan untuk membuat garis 3 sebagai menu(summary) -->> "my portofolio ☰":
+        - Home
+        - About me:
+            Dalam page About Me terdiri dari beberapa section, yaitu:
+            1. Skills
+            2. Contact
+        - Education  -->> MVT
+        - Experience -->> MVT
+        - Achievements -->> Form & Data Delivery
+        - Login
+        - Register
+        - Logout → tersedia setelah pengguna berhasil login.
+
+
+    ##  Weekly Progress Tugas 2
+        Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
+        1. 21 September 2026
+            - Menyelesaikan Tutorial 4
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Menyelesaikan Tutorial 4
+        
+        2. 25 September 2026
+            - penambahan fitur star yang hanya dapat diakses oleh user yang sudah login serta pemberian komentar pada 
+              bagian View Certificate. 
+            - menambahkan pembatasan akses pada halaman Achievements, sehingga hanya user dengan role editor yang dapat 
+              mengupdate isi halaman tersebut.
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Menambahkan fitur yang dapat akses star hanya bagi user yang login
+            - Comment bagian View Certificate
+            - Menambah akses hanya editor yang dapat mengupdate isi tampilan page achievements
+        
+        3. 26 September 2026
+            - menambahkan group editor di admin django
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - menambahka editor bisa update dan membuat Editor melalui Django Group/Permission
+
+        4. 27 September 2026
+            - merapikan tampilan navar syupaya lebih cakepdi lihat
+            - memperbarui dan update beberapa fitur navbar, hak akses Editor, fitur Star/Unstar Achievement, pembatasan 
+              Create/Update/Delete,autentikasi, dan endpoint JSON.
+            - Menamahkan popup jadi tiap ada perubahan ada massage dalam bentuk popup
+
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Merapikan CSS dan base.html untuk memperbaiki tampilan navbar.
+            - Memperbarui tampilan navbar, hak akses Editor, fitur Star/Unstar Achievement, pembatasan Create/Update/Delete,
+              autentikasi, dan endpoint JSON.
+            - Menambahkan messages.success() dan pop-up untuk memberikan notifikasi kepada user.
+            - Finishing Tugas 4 (menambahkan dan melengkapi README.md dan memberikan tampilan agar tetap smooth saat        
+              berpindah navbar)
+    
+
+    ##  AI Disclosure & Usage
+        Pada Tugas 4 ini saya menggunakan ChatGPT sebagai alat bantu untuk memahami konsep, mencari kesalahan kode, dan mendapatkan contoh implementasi yang kemudian saya sesuaikan dengan kebutuhan project. Salah satu penggunaannya adalah saat debugging untuk membantu menganalisis error pada kode, URL, template, dan konfigurasi Django.
+        Saya memberikan potongan kode dan pesan error kepada ChatGPT untuk mendapatkan penjelasan atau alternatif solusi. Setiap solusi kemudian saya periksa, sesuaikan, dan uji sendiri. Implementasi akhir tetap saya kerjakan berdasarkan pemahaman dan instruksi Tugas 4.
+
+        Berikut ini beberapa pertanyaan yang saya tanyakan kepada chat gpt;
+        1.  pertanyaan saya: section contact ada dalam aboutme
+            Jawaban gpt:
+            Ohh, kalau section Contact memang berada di dalam aboutme.html, kamu nggak perlu membuat contact.html terpisah. 👍
+            Misalnya di aboutme.html kamu punya:
+
+            <section id="contact">
+                <!-- isi Contact -->
+            </section>
+
+            Maka dari navbar kamu tinggal arahkan ke:
+
+            <a href="{% url 'main:show_aboutme' %}#contact">
+                Contact
+            </a>
+
+            Artinya:
+
+            {% url 'main:show_aboutme' %} → buka halaman About Me
+            #contact → langsung lompat ke section yang punya id="contact"
+
+            Kalau sudah berada di halaman About Me, cukup:
+
+            <a href="#contact">Contact</a>
+
+            Dan agar perpindahannya halus:
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            Jadi strukturmu bisa tetap:
+
+            aboutme.html
+            │
+            ├── About Me
+            ├── Education
+            ├── Experience
+            ├── Achievements
+            └── Contact
+
+            Tanpa membuat contact.html.
+
+        2.  pertanyaan saya: File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed File 
+            "C:\Users\Asya\myportofolio\main\urls.py", line 2, in <module> from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login,logout,login_user,logout_user,register,toggle_star, show_contact ImportError: cannot import name 'show_contact' from 'main.views' (C:\Users\Asya\myportofolio\main\views.py)
+            jawaban gpt:
+            Ini errornya jelas dari main/urls.py, bukan dari CSS. 👇
+            Pesan utamanya:
+            ImportError: cannot import name 'show_contact' from 'main.views'
+            Artinya di main/urls.py kamu punya:
+            from main.views import ..., show_contact
+            tetapi di main/views.py tidak ada function show_contact.
+            Solusi paling gampang
+            Kalau halaman Contact memang tidak sedang kamu gunakan, hapus show_contact dari import.
+
+            Cari:
+            from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login,logout,login_user,logout_user,register,toggle_star, show_contact
+
+            ubah menjadi:
+            from main.views import (
+                show_home,
+                show_aboutme,
+                show_experience,
+                show_education,
+                show_achievements,
+                create_achievements,
+                get_achievements_json,
+                delete_achievements,
+                update_achievements,
+                login_user,
+                logout_user,
+                register,
+                toggle_star,
+            )
+
+            Perhatikan juga: hapus login, logout dari import kalau memang kamu tidak punya function login dan logout di views.py. Kamu sudah menggunakan:
+            from django.contrib.auth import login, logout
+            di views.py, jadi urls.py tidak perlu mengimpor keduanya.
+            Setelah itu jalankan lagi:
+            python manage.py check
+            Kalau muncul:
+            System check identified no issues (0 silenced).
+            lanjut:
+            python manage.py runserver
+            Error yang kamu kirim bukan masalah migration atau Tugas 4, hanya urls.py meminta show_contact yang tidak ada di views.py.
+
+        3.  pertanyaan saya: Your password can’t be too similar to your other personal information.
+            Your password must contain at least 8 characters.
+            Your password can’t be a commonly used password.
+            Your password can’t be entirely numeric. saya mau ini deger ke kanan dikit
+            jawaban gpt:
+            Ohh, yang mau kamu geser ke kanan itu 4 tulisan aturan password-nya, bukan input password-nya. 😄
+
+            Di register.html, bagian itu berasal dari:
+
+            {% if field.help_text %}
+            <div class="form-help">{{ field.help_text }}</div>
+            {% endif %}
+
+            Jadi tambahkan CSS ini:
+
+            .form-help {
+                margin-left: 10px;
+            }
+
+            Kalau mau sedikit lebih ke kanan:
+
+            .form-help {
+                margin-left: 15px;
+            }
+
+            Saya sarankan 15px supaya terlihat jelas tapi tetap rapi.
+
+            Kalau mau hanya aturan password yang bergeser tanpa memengaruhi help text lainnya, bisa pakai:
+
+            .achievements-form .form-help {
+                margin-left: 15px;
+            }
+
+            Jadi tidak perlu mengubah register.html, cukup tambahkan CSS tersebut di style.css.
+
+        4.  pertanyaan saya: agar smooth tambahil css
+            Jawaban gpt:
+            Iya, tinggal tambahkan html {} di CSS kamu supaya perpindahan terasa smooth:
+
+            html {
+                scroll-behavior: smooth;
+            }

@@ -17,21 +17,20 @@ urlpatterns = [
     
     # URL halaman Education.
     path("education/", show_education, name="show_education"),
-    
+
+    # URL Halaman achievemets
     path("achievements/", show_achievements, name="show_achievements"),
-
     path("achievements/add/", create_achievements, name="create_achievements"),
-
     path("api/achievements/", get_achievements_json, name="get_achievements_json"),
-
     path("achievements/<uuid:achievements_id>/delete/", delete_achievements, name="delete_achievements"),
-
     path("achievements/<uuid:achievements_id>/update/", update_achievements, name="update_achievements"),
+    path("achievements/<uuid:achievements_id>/star/",toggle_star,name="toggle_star",),
 
+    # URL halaman regis, login, logout
     path("register/", register, name="register"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
 
-    # Tambahkan path ini ke dalam urlpatterns
-    path("achievements/<uuid:achievements_id>/star/",toggle_star,name="toggle_star",),
+
+
 ]
