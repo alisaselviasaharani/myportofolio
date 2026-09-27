@@ -18,6 +18,12 @@
 </head>
 
 <body>
+    {% for message in messages %}
+    <div class="popup-message">
+        <span>✓</span>
+        {{ message }}
+    </div>
+    {% endfor %}
 
     <header class="site-header">
         <div class="navbar-container">

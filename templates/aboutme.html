@@ -7,6 +7,12 @@
 {% block content %}
 
 <main class="pages">
+    {% for message in messages %}
+    <div class="popup-message">
+        <span>✓</span>
+        {{ message }}
+    </div>
+    {% endfor %}
     <section class="hero" id="profile">
         <div class="container hero-grid">
             <div class="hero-identity">

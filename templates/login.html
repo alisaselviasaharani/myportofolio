@@ -8,7 +8,7 @@
         <div class="container">
 
             {% for message in messages %}
-            <p class="form-message">{{ message }}</p>
+            <p class="popup-message">{{ message }}</p>
             {% endfor %}
             <form method="post" action="{% url 'main:login' %}" class="achievements-form">
                 

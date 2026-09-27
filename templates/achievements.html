@@ -6,7 +6,12 @@
 
 {% block content %}
 <main>
-
+    {% for message in messages %}
+    <div class="popup-message">
+        <span>✓</span>
+        {{ message }}
+    </div>
+    {% endfor %}
     <!-- Gelembung -->
     <!-- Note: Elemen-elemen span digunakan untuk membuat efek gelembung/background melalui CSS. -->
     <div class="bubbles">

@@ -184,12 +184,7 @@ def update_achievements(request, achievements_id):
                 )
             else:
                 form.save()
-
-                messages.success(
-                    request,
-                    "Penghargaan berhasil diperbarui!!"
-                )
-
+                messages.success(request,"Penghargaan berhasil diperbarui!!")
                 return redirect("main:show_achievements")
     else:
         form = AchievementsForm(
@@ -226,14 +221,12 @@ def login_user(request):
 
     if request.method == "POST" and form.is_valid():
         login(request, form.get_user())
-
+        messages.success(request,"Selamat Anda Telah Berhasil Login ke Website milik Alisa Selvia Saharani :)")
         response = redirect("main:show_aboutme")
-
         response.set_cookie(
             "last_login",
             timezone.localtime().strftime("%d %B %Y, %H:%M:%S")
         )
-
         return response
 
     context = {
@@ -245,6 +238,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
+    messages.success(request, "Yeayy!! Selamat Anda Sudah Logout!!")
     response = redirect("main:show_home")
     response.delete_cookie('last_login')
     return response
