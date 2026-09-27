@@ -42,7 +42,7 @@
                 <span class="nav-user">
                     {{ user.username }}
                 </span>
-                <a href="{% url 'main:logout' %}" class="btn-login">LOGOUT</a>
+                <a href="{% url 'main:logout' %}" class="btn-login">LOGOUT ➜]</a>
 
                 {% else %}
                 <a href="{% url 'main:login' %}" class="btn-login">LOGIN</a>
@@ -64,19 +64,12 @@
 
                     {% if user.is_authenticated %}
 
-                    <span class="nav-user">
-                        {{ user.username }}
-                    </span>
-
-                    <a href="{% url 'main:logout' %}">LOGOUT </a>
-
+                    <span class="nav-user">{{ user.username }}</span>
+                    <a href="{% url 'main:logout' %}">LOGOUT ➜] </a>
                     {% else %}
-
                     <a href="{% url 'main:login' %}"> LOGIN</a>
                     <a href="{% url 'main:register' %}">REGISTER</a>
-
                     {% endif %}
-
                 </div>
 
             </details>

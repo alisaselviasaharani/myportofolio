@@ -308,7 +308,7 @@ membuat protofolio yang unik jadi sambil menyelam sambil melihat ke kanan untuk 
 
 
 /* =================== TYPOGRAPHY =================== */
-h2{
+h2 {
     font-family: "Space Grotesk", sans-serif;
 }
 
@@ -1601,23 +1601,37 @@ h2{
 
 .btn-login {
     color: var(--accent);
-    ;
     border: 2px solid var(--accent);
-    ;
+}
+
+.btn-login:hover {
+    background: white;
+    border-color: white;
 }
 
 .btn-register {
     color: white;
     background: var(--accent);
-    ;
     border: 2px solid var(--accent);
-    ;
+}
+
+.btn-register:hover {
+    border-color: white;
 }
 
 .nav-user {
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 600;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.mobile-menu-content .nav-user {
+    color: #111;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 8px 0;
+    display: block;
 }
 
 
@@ -1792,4 +1806,23 @@ h2{
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.25);
     font-size: 0.8rem;
+}
+
+.register-text {
+    margin-top: 20px;
+    text-align: center;
+    color: #555;
+}
+
+.register-text a {
+    color: black;
+    font-weight: 700;
+}
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+.login-jarak {
+    padding-bottom: 15px;
 }
