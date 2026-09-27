@@ -889,10 +889,8 @@
             </a>
 
             Artinya:
-
             {% url 'main:show_aboutme' %} → buka halaman About Me
             #contact → langsung lompat ke section yang punya id="contact"
-
             Kalau sudah berada di halaman About Me, cukup:
 
             <a href="#contact">Contact</a>
