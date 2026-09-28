@@ -828,7 +828,7 @@
         - Logout → tersedia setelah pengguna berhasil login.
 
 
-    ##  Weekly Progress Tugas 2
+    ##  Weekly Progress Tugas 4
         Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
         1. 21 September 2026
             - Menyelesaikan Tutorial 4
