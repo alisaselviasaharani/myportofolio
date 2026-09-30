@@ -10,8 +10,10 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required  # Tambahkan baris ini
 from django.core.exceptions import PermissionDenied        # Tambahkan baris ini
 from django.utils import timezone
+from django.http import JsonResponse
+from main.forms import AchievementsForm
+from django.views.decorators.http import require_POST
 
-# VIEW PAGE HOME
 # VIEW PAGE HOME
 def show_home(request):
     context = {
@@ -113,7 +115,8 @@ def show_achievements(request):
         "name": "Alisa Selvia Saharani",
         "achievements_list": achievements_data,
         "title_query": title_query,
-        "is_editor":is_editor
+        "is_editor":is_editor,
+        "form":AchievementsForm(),
     }
 
     return render(request, "achievements.html", context)
@@ -122,26 +125,30 @@ def show_achievements(request):
 def get_achievements_json(request):
     title_query = request.GET.get("title", "").strip()
 
-    achievements = Achievements.objects.all()
+    # achievements = Achievements.objects.all()
+    achievements=Achievements.objects.prefetch_related('starred_by').all()
 
     if title_query:
-        achievements = achievements.filter(
-            title__icontains=title_query
-        )
+        achievements = achievements.filter(title__icontains=title_query)
 
-    achievements_json = serializers.serialize(
-        "json",
-        achievements,
-        fields=(
-            "title",
-            "period",
-            "description",
-            "category",
-            "achievements_image_url",
-        ),
-    )
+    data=[]
+    for achievement in achievements:
+        starred_users = achievement.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+        data.append({
+                    "pk": str(achievement.id),
+                    "fields": {
+                        "title": achievement.title,
+                        "description": achievement.description,
+                        "achivements_image_url": achievement.achievements_image_url,
+                        "star_count": starred_users.count(),
+                        "is_starred": is_starred,
+                        "starred_by_names": starred_by_names,
+                    }
+                })
 
-    return HttpResponse(achievements_json,content_type="application/json")
+    return JsonResponse(data, safe=False)
 
 # VIEW DELETE ACHIEVEMENTS
 @login_required(login_url="/login/")
@@ -261,3 +268,20 @@ def toggle_star(request, achievements_id):
 
     return redirect("main:show_achievements")
 
+@require_POST
+def create_achievements_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Hanya pemilik portofolio yang dapat menambahkan proyek."},
+            status=403,
+        )
+
+    form = AchievementsForm(request.POST)
+    if form.is_valid():
+        achievement = form.save()
+        return JsonResponse(
+            {"message": "Penghargaan berhasil ditambahkan.", "pk": str(achievement.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
