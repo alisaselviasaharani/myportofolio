@@ -1,17 +1,15 @@
 import os
 from django.contrib import messages
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from main.models import Experience, Education, Achievements
 from main.forms import AchievementsForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.decorators import login_required  # Tambahkan baris ini
-from django.core.exceptions import PermissionDenied        # Tambahkan baris ini
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.utils import timezone
-from django.http import JsonResponse
-from main.forms import AchievementsForm
 from django.views.decorators.http import require_POST
 
 # VIEW PAGE HOME
@@ -134,18 +132,15 @@ def get_achievements_json(request):
     data=[]
     for achievement in achievements:
         starred_users = achievement.starred_by.all()
-        is_starred = request.user in starred_users if request.user.is_authenticated else False
-        starred_by_names = ", ".join([u.username for u in starred_users])
+        is_starred = (request.user in starred_users if request.user.is_authenticated else False)
         data.append({
-                    "pk": str(achievement.id),
-                    "fields": {
+                    "id": str(achievement.id),
                         "title": achievement.title,
                         "description": achievement.description,
-                        "achivements_image_url": achievement.achievements_image_url,
+                        "category": achievement.category,
+                        # "achievements_image_url": achievement.achievements_image_url,
                         "star_count": starred_users.count(),
                         "is_starred": is_starred,
-                        "starred_by_names": starred_by_names,
-                    }
                 })
 
     return JsonResponse(data, safe=False)

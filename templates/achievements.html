@@ -127,8 +127,8 @@
 
     // Membuat elemen card achievements
     function buildachievementsCardElement(item) {
-        const achievements = item.fields;
-        const achievementsId = item.pk;
+        const achievements = item;
+        const achievementsId = item.id;
 
         const articleElement = document.createElement('article');
         articleElement.className = 'experience-card';
@@ -158,16 +158,15 @@
         const starText = achievements.is_starred ? "Unstar" : "Star";
 
         const starTitle = achievements.star_count > 0
-            ? `Dibintangi oleh ${escapeHtml(project.starred_by_names)}`
+            ? `${achievements.star_count} orang telah memberi star`
             : "Jadilah yang pertama memberi star";
-
 
         // Komponen card
         const completeCardHtml = `
             ${imageHtml}
             <h2>${achievements.title}</h2>
             ${console.log("TEST" + escapeHtml(achievements.title))}
-            <span class="experience-category">${escapeHtml(achievements.tech_stack)}</span>
+            <span class="experience-category">${escapeHtml(achievements.category)}</span>
             <p class="experience-description">${escapeHtml(achievements.description)}</p>
             <div class="achievements-card-actions">
                 <div class="achievements-actions">
