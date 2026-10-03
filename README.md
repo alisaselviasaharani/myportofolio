@@ -998,3 +998,57 @@
             html {
                 scroll-behavior: smooth;
             }
+
+### Tugas 5
+    ##  Deskripsi Proyek
+        Dalam Tugas 5 ini, saya mengimplementasikan JavaScript, AJAX, debouncing, modal, dan notifikasi toast agar website menjadi lebih dinamis dan interaktif. Saya juga menerapkan perlindungan XSS pada data yang ditampilkan. Sebagai tambahan untuk meningkatkan kesan yang mendalam bagi user, saya menambahkan audio instrumental bernuansa laut yang selaras dengan tema website portofolio saya.
+
+
+    ##  Design & Resources
+
+    ##  Struktur Halaman
+        Untuk Tugas ini Saya memutuskan untuk membuat garis 3 sebagai menu(summary) -->> "my portofolio ☰":
+        - Home
+        - About me:
+            Dalam page About Me terdiri dari beberapa section, yaitu:
+            1. Skills
+            2. Contact
+        - Education  -->> MVT
+        - Experience -->> MVT
+        - Achievements -->> Form & Data Delivery
+        - Login
+        - Register
+        - Logout → tersedia setelah pengguna berhasil login.
+
+
+    ##  Weekly Progress Tugas 5
+        Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
+        1. 30 Oktober 2026
+            - Menyelesaikan tutorial 5
+            
+
+    
+    ##  Pertanyaan Reflektif
+        1. Jelaskan apa itu debouncing dan mengapa teknik ini penting diterapkan pada fitur pencarian yang menggunakan AJAX!
+        Jawab:
+        Debouncing adalah teknik dalam menunda eksekusi suatu fungsi sampai pengguna berhentu melakukan suatu aktivitas selama waktu tertentu. AJAX diimplementasikan pada fitur pencarian, debouncing diguakna agar request ke server tidak dikir tiap kali user ngetik tiap karakter. 
+        Misalnya saat user ngetik 'Achievement'. Kalau tanpa adanya debouncing, tiap perubahan akan menyebabkan request AJAX baru sehingga server menerima banyak request secara berurutan. Maka dari itulah perannya debouncing sehinga request hanya dikirim seteleh pengguna berheti mengetik selama beberapa waktu misalnya 300 milidetik.
+        Teknik ini penting karena dapat mengurangi jumlah request ke server, menghemat sumber daya, dan membuat fitur pencarian menjadi lebih efisien dan responsif.
+
+        2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+        Jawab:
+        fetch() menjadi operasi asynchronous yang mengembalikan sebuah Promise. Penggunaan await membuat program menunggu sampai Promise tersebut selesai sebelum melanjutkan ke baris kode berikutnya.
+        Contohnya:
+        const response = await fetch(url);
+        const data = await response.json();
+
+        Pada kode tersebut, program menunggu hasil dari fetch() terlebih dahulu, kemudian membaca response dalam bentuk JSON. Jika tidak menggunakan await, fetch() langsung mengembalikan Promise, bukan hasil response-nya. Akibatnya, kode berikutnya dapat berjalan sebelum data dari server selesai diterima. Hal tersebut dapat menyebabkan kita belum dapat menggunakan data response ketika sebenarnya data tersebut masih dalam proses pengambilan. Dengan demikian, await membantu membuat alur kode asynchronous lebih mudah dibaca dan memastikan hasil dari operasi asynchronous tersedia sebelum digunakan.
+        
+        3. Jelaskan apa itu serangan XSS (Cross-Site Scripting) dan mengapa data yang ditampilkan melalui AJAX/JavaScript lebih rentan terhadap serangan ini daripada data yang ditampilkan langsung melalui template Django!
+        Jawab:
+        XSS (Cross-Site Scripting) merupakan serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam data yang ditampilkan pada halaman web, sehingga kode tersebut dapat dijalankan oleh browser pengguna. Pada template Django, data umumnya mendapatkan auto-escaping, sehingga karakter seperti < dan > diubah menjadi bentuk aman dan tidak dianggap sebagai tag HTML. Sedangkan pada AJAX/JavaScript, jika data JSON dimasukkan menggunakan innerHTML, Django tidak melakukan auto-escaping lagi. Karena itu, diperlukan escapeHtml() sebelum data dimasukkan ke HTML.
+
+        Kesimpulannya:
+        XSS adalah serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam data yang ditampilkan di halaman web. Untuk mencegahnya, data AJAX perlu di-escape dengan escapeHtml() dan input dari form dapat dibersihkan menggunakan strip_tags().
+
+    ##  AI Disclosure & Usage

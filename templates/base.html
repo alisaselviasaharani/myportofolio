@@ -19,7 +19,7 @@
 
 <body>
 
-    <audio id="oceanSound" loop>
+    <audio id="oceanSound" autoplay loop>
         <source src="{% static 'audio/Sound Of Ocean.mp3' %}" type="audio/mpeg">
     </audio>
 
@@ -31,61 +31,56 @@
         const oceanSound = document.getElementById("oceanSound");
         const soundButton = document.getElementById("soundButton");
 
+        // Ambil posisi lagu terakhir
         const savedTime = sessionStorage.getItem("oceanTime");
-        const oceanEnabled = sessionStorage.getItem("oceanEnabled");
-
         if (savedTime !== null) {
             oceanSound.currentTime = parseFloat(savedTime);
         }
 
-        if (oceanEnabled === "true") {
-            oceanSound.volume = 0.25;
-            oceanSound.play()
-                .then(() => {
-                    soundButton.textContent = "🔊 Suara Laut ON";
-                })
-                .catch(() => {
-                    // Browser bisa menolak autoplay
-                    soundButton.textContent = "🌊 Klik untuk Suara Laut";
-                });
-        }
+        // Tombol ON / OFF
         soundButton.addEventListener("click", async function () {
-
             if (oceanSound.paused) {
                 oceanSound.volume = 0.25;
-
                 try {
                     await oceanSound.play();
-                    // Simpan bahwa user sudah mengaktifkan suara
-                    sessionStorage.setItem("oceanEnabled", "true");
                     soundButton.textContent = "🔊 Suara Laut ON";
-
                 } catch (error) {
                     console.log("Audio gagal dimainkan:", error);
                 }
-
             } else {
                 oceanSound.pause();
-                // Simpan status OFF
-                sessionStorage.setItem("oceanEnabled", "false");
                 soundButton.textContent = "🔇 Suara Laut OFF";
             }
         });
 
-        setInterval(function () {
-            if (!oceanSound.paused) {
-                sessionStorage.setItem("oceanTime",oceanSound.currentTime);
-            }
-
-        }, 1000);
-
+        // Simpan posisi lagu ketika pindah halaman
         window.addEventListener("beforeunload", function () {
             sessionStorage.setItem(
                 "oceanTime",
                 oceanSound.currentTime
             );
-
         });
+
+        // Simpan posisi setiap 1 detik
+        setInterval(function () {
+
+            if (!oceanSound.paused) {
+                sessionStorage.setItem(
+                    "oceanTime",
+                    oceanSound.currentTime
+                );
+            }
+
+        }, 1000);
+
+            window.addEventListener("beforeunload", () => {
+
+        sessionStorage.setItem(
+            "oceanTime",
+            oceanSound.currentTime
+        );
+
+    });
     </script>
     {% for message in messages %}
     <div class="popup-message">
