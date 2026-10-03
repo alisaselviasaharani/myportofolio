@@ -1993,3 +1993,22 @@ h2 {
         text-align: center;
     }
 }
+
+.sound-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+
+    padding: 12px 18px;
+    border: none;
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.15);
+}
