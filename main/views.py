@@ -273,10 +273,16 @@ def create_achievements_ajax(request):
 
     form = AchievementsForm(request.POST)
     if form.is_valid():
-        achievement = form.save()
-        return JsonResponse(
-            {"message": "Penghargaan berhasil ditambahkan.", "pk": str(achievement.id)},
-            status=201,
-        )
+        if form.cleaned_data["secret_code"] != os.getenv("PORTOFOLIO_SECRET"):
+            form.add_error(
+                "secret_code",
+                "Kode rahasia yang anda masukkan salah."
+            )
+        else:
+            achievement = form.save()
+            return JsonResponse(
+                {"message": "Penghargaan berhasil ditambahkan.", "pk": str(achievement.id)},
+                status=201,
+            )
 
     return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
