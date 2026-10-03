@@ -1293,9 +1293,7 @@
                 period = models.CharField(max_length=50, blank=True, null=True)
                 description = models.TextField(...)
             ```
-
             Database lama masih seperti:
-
             ```text
             id
             title
@@ -1308,29 +1306,42 @@
             period
             ```
             Makanya ketika `/achievements/` dibuka, Django meminta kolom yang belum ada → **OperationalError**.
-
             ## Yang perlu kamu lakukan cek migration di lokal
             Di terminal project:
 
             ```bash
             python manage.py makemigrations
             ```
-
             Kalau muncul sesuatu seperti:
-
             ```text
             Migrations for 'main':
             main/migrations/000X_....py
             ```
-
             berarti memang `period` belum masuk migration.
-
             Lalu:
 
             ```bash
             python manage.py migrate
             ```
-
+            Eror karena database PWS berbeda dengan database lokal.
+            PWS masih punya tabel:
+            main_achievements
+            tetapi tabel tersebut tidak mempunyai:
+            period
+            Sehingga ketika model sekarang menjalankan:
+            Achievements.objects.all()
+            Django otomatis meminta:
+            SELECT ..., main_achievements.period, ...
+            SQLite PWS menjawab:
+            no such column: main_achievements.period
+            Jadi masalahnya:
+                        LOCAL                 PWS
+                        ─────                 ───
+            Migration    sudah benar           belum sinkron
+            Database     period ada ✅         period tidak ada ❌
+            Website      jalan ✅              error ❌
+            Kesimpulannya
+            Penyebab awalnya adalah migration 0007_project.py tertimpa/berubah dari migration yang membuat Project menjadi migration yang membuat Achievements.Sedangkan error period di PWS adalah masalah schema database PWS yang tertinggal/tidak sinkron dengan model sekarang.
 
 
 

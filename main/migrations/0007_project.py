@@ -12,14 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Achievements',
+            name='Project',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=255)),
                 ('description', models.TextField()),
                 ('tech_stack', models.CharField(max_length=255)),
-                ('achievements_url', models.URLField(blank=True)),
-                ('achievements_image_url', models.URLField(blank=True, max_length=500)),
+                ('project_url', models.URLField(blank=True)),
+                ('project_image_url', models.URLField(blank=True, max_length=500)),
             ],
         ),
     ]
