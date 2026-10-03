@@ -1001,10 +1001,19 @@
 
 ### Tugas 5
     ##  Deskripsi Proyek
-        Dalam Tugas 5 ini, saya mengimplementasikan JavaScript, AJAX, debouncing, modal, dan notifikasi toast agar website menjadi lebih dinamis dan interaktif. Saya juga menerapkan perlindungan XSS pada data yang ditampilkan. Sebagai tambahan untuk meningkatkan kesan yang mendalam bagi user, saya menambahkan audio instrumental bernuansa laut yang selaras dengan tema website portofolio saya.
+        Dalam Tugas 5 ini, saya mengimplementasikan JavaScript, AJAX, debouncing, modal, dan notifikasi toast agar website
+        menjadi lebih dinamis dan interaktif. Saya juga menerapkan perlindungan XSS pada data yang ditampilkan. Sebagai
+        tambahan untuk meningkatkan kesan yang mendalam bagi user, saya menambahkan audio instrumental bernuansa laut
+        yang selaras dengan tema website portofolio saya.
 
 
     ##  Design & Resources
+        - Django Documentation (https://docs.djangoproject.com/en/6.1/)
+        - AJAX Tutorials (https://youtube.com/playlist?list=PL0eyrZgxdwhyeIDc3EA4XGsI9HoWLc6nF&si=fCiog5RNHeNQy4ap)
+        - XSS Attack: Simpel Tapi Mematikan di Laravel! (https://youtube.com/shorts/b-VTCmyaPRg?si=a_F225GBmovfnanb)
+        - Hacking Tutorial XSS (Cross Site Scripting) (https://youtu.be/wWSZgIhBKeM?si=mf6HLDmpS-SkSdyi)
+        - Sound Of Ocean (Sound of Ocean by Ryo Yoshimata - Legend of The Blue Sea OST) (https://music.youtube.com/watch?v=5JqEW5s1wBE&
+          si=1ZuXlRZ4ofCSroqi)
 
     ##  Struktur Halaman
         Untuk Tugas ini Saya memutuskan untuk membuat garis 3 sebagai menu(summary) -->> "my portofolio ☰":
@@ -1019,36 +1028,310 @@
         - Login
         - Register
         - Logout → tersedia setelah pengguna berhasil login.
+        *Ket: menambahkan fitur dengarkan audio tiap page dan section terlihat
 
 
     ##  Weekly Progress Tugas 5
         Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
         1. 30 Oktober 2026
             - Menyelesaikan tutorial 5
-            
+            Berikut ini aktivitas commit yang telah saya lakukan di github:
+            - remove sensitive env file
+            - Menyelesaikan Tutorial 05: Web Interactivity with JavaScript
+        
+        2. 3 Oktober 2026
+            - merapikan tugas 5
+            - finishing tugas 5
+
+            Berikut ini aktivitas commit yang telah saya lakukan di github:
+            - Implement AJAX achievements with debounce and modal
+            - menabahkan audio bagi pengunjung yang inginmenikati websaya sabil - mendengarkan audio
+            - Menambahkan interaksi AJAX pada penghargaan dengan modal dan validasi
+            - menambahkan informasi di readme.md
+            - finishing tugas 5
 
     
     ##  Pertanyaan Reflektif
-        1. Jelaskan apa itu debouncing dan mengapa teknik ini penting diterapkan pada fitur pencarian yang menggunakan AJAX!
-        Jawab:
-        Debouncing adalah teknik dalam menunda eksekusi suatu fungsi sampai pengguna berhentu melakukan suatu aktivitas selama waktu tertentu. AJAX diimplementasikan pada fitur pencarian, debouncing diguakna agar request ke server tidak dikir tiap kali user ngetik tiap karakter. 
-        Misalnya saat user ngetik 'Achievement'. Kalau tanpa adanya debouncing, tiap perubahan akan menyebabkan request AJAX baru sehingga server menerima banyak request secara berurutan. Maka dari itulah perannya debouncing sehinga request hanya dikirim seteleh pengguna berheti mengetik selama beberapa waktu misalnya 300 milidetik.
-        Teknik ini penting karena dapat mengurangi jumlah request ke server, menghemat sumber daya, dan membuat fitur pencarian menjadi lebih efisien dan responsif.
+        1.  Jelaskan apa itu debouncing dan mengapa teknik ini penting diterapkan pada fitur pencarian yang menggunakan AJAX!
+            Jawab:
+            Debouncing adalah teknik dalam menunda eksekusi suatu fungsi sampai pengguna berhentu melakukan suatu aktivitas
+            selama waktu tertentu. AJAX diimplementasikan pada fitur pencarian, debouncing diguakna agar request ke server
+            tidak dikir tiap kali user ngetik tiap karakter.
+            Misalnya saat user ngetik 'Achievement'. Kalau tanpa adanya debouncing, tiap perubahan akan menyebabkan request
+            AJAX baru sehingga server menerima banyak request secara berurutan. Maka dari itulah perannya debouncing sehinga
+            request hanya dikirim seteleh pengguna berheti mengetik selama beberapa waktu misalnya 300 milidetik.
+            Teknik ini penting karena dapat mengurangi jumlah request ke server, menghemat sumber daya, dan membuat fitur
+            pencarian menjadi lebih efisien dan responsif.
 
-        2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
-        Jawab:
-        fetch() menjadi operasi asynchronous yang mengembalikan sebuah Promise. Penggunaan await membuat program menunggu sampai Promise tersebut selesai sebelum melanjutkan ke baris kode berikutnya.
-        Contohnya:
-        const response = await fetch(url);
-        const data = await response.json();
+        2.  Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+            Jawab:
+            fetch() menjadi operasi asynchronous yang mengembalikan sebuah Promise. Penggunaan await membuat program menunggu
+            sampai Promise tersebut selesai sebelum melanjutkan ke baris kode berikutnya.
+            Contohnya:
+            const response = await fetch(url);
+            const data = await response.json();
 
-        Pada kode tersebut, program menunggu hasil dari fetch() terlebih dahulu, kemudian membaca response dalam bentuk JSON. Jika tidak menggunakan await, fetch() langsung mengembalikan Promise, bukan hasil response-nya. Akibatnya, kode berikutnya dapat berjalan sebelum data dari server selesai diterima. Hal tersebut dapat menyebabkan kita belum dapat menggunakan data response ketika sebenarnya data tersebut masih dalam proses pengambilan. Dengan demikian, await membantu membuat alur kode asynchronous lebih mudah dibaca dan memastikan hasil dari operasi asynchronous tersedia sebelum digunakan.
-        
-        3. Jelaskan apa itu serangan XSS (Cross-Site Scripting) dan mengapa data yang ditampilkan melalui AJAX/JavaScript lebih rentan terhadap serangan ini daripada data yang ditampilkan langsung melalui template Django!
-        Jawab:
-        XSS (Cross-Site Scripting) merupakan serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam data yang ditampilkan pada halaman web, sehingga kode tersebut dapat dijalankan oleh browser pengguna. Pada template Django, data umumnya mendapatkan auto-escaping, sehingga karakter seperti < dan > diubah menjadi bentuk aman dan tidak dianggap sebagai tag HTML. Sedangkan pada AJAX/JavaScript, jika data JSON dimasukkan menggunakan innerHTML, Django tidak melakukan auto-escaping lagi. Karena itu, diperlukan escapeHtml() sebelum data dimasukkan ke HTML.
+            Pada kode tersebut, program menunggu hasil dari fetch() terlebih dahulu, kemudian membaca response dalam bentuk
+            JSON. Jika tidak menggunakan await, fetch() langsung mengembalikan Promise, bukan hasil response-nya. Akibatnya,
+            kode berikutnya dapat berjalan sebelum data dari server selesai diterima. Hal tersebut dapat menyebabkan kita belum
+            dapat menggunakan data response ketika sebenarnya data tersebut masih dalam proses pengambilan. Dengan demikian,
+            await membantu membuat alur kode asynchronous lebih mudah dibaca dan memastikan hasil dari operasi asynchronous
+            tersedia sebelum digunakan.
+            
+        3.  Jelaskan apa itu serangan XSS (Cross-Site Scripting) dan mengapa data yang ditampilkan melalui AJAX/JavaScript
+            lebih rentan terhadap serangan ini daripada data yang ditampilkan langsung melalui template Django!
+            Jawab:
+            XSS (Cross-Site Scripting) merupakan serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam
+            data yang ditampilkan pada halaman web, sehingga kode tersebut dapat dijalankan oleh browser pengguna. Pada
+            template Django, data umumnya mendapatkan auto-escaping, sehingga karakter seperti < dan > diubah menjadi
+            bentuk aman dan tidak dianggap sebagai tag HTML. Sedangkan pada AJAX/JavaScript, jika data JSON dimasukkan
+            menggunakan innerHTML, Django tidak melakukan auto-escaping lagi. Karena itu, diperlukan escapeHtml()
+            sebelum data dimasukkan ke HTML.
 
-        Kesimpulannya:
-        XSS adalah serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam data yang ditampilkan di halaman web. Untuk mencegahnya, data AJAX perlu di-escape dengan escapeHtml() dan input dari form dapat dibersihkan menggunakan strip_tags().
+            Kesimpulannya:
+            XSS adalah serangan dengan menyisipkan kode HTML atau JavaScript berbahaya ke dalam data yang ditampilkan di
+            halaman web. Untuk mencegahnya, data AJAX perlu di-escape dengan escapeHtml() dan input dari form dapat dibersihkan
+            menggunakan strip_tags().
+
 
     ##  AI Disclosure & Usage
+        Dalam Tugas 5, saya menggunakan ChatGPT sebagai alat bantu untuk memahami implementasi AJAX, debouncing, fetch(),
+        await, modal, CSRF, toast, dan perlindungan XSS. Saya biasanya memberikan potongan kode atau error yang saya temui,
+        kemudian meminta penjelasan dan alternatif solusi. Setelah mendapatkan saran, saya memeriksa dan menyesuaikannya
+        kembali dengan struktur project saya serta melakukan pengujian secara manual. Namun, beberapa saran AI tidak
+        langsung sesuai dengan struktur kode saya sehingga saya tetap perlu mengubah kode secara manual dan melakukan pengecekan ulang.
+
+        Berikut eberapa pertanyaan yang saya tanyakan ke AI:
+        1.  Pertanyaan Saya :BIAR LAGUNYA GA KEPOTONG2 GITU GMN SII
+            Jawaban GPT:
+            OHH, maksud kamu lagunya jangan restart dari awal setiap pindah halaman 😭🌊
+            Kalau sekarang audio ditaruh di setiap halaman, misalnya:
+            <audio autoplay loop>
+            maka ketika pindah:
+            Home → About → Achievements
+            halaman melakukan reload → <audio> dibuat lagi → lagu mulai dari 0 lagi.
+            Solusi paling cocok untuk website Django kamu
+            Karena semua halaman kamu memakai:
+            {% extends "base.html" %}
+            kita taruh audio sekali di base.html. Tapi ini saja belum cukup kalau navigasi tetap melakukan full page reload.
+            Kalau kamu ingin benar-benar:
+            🌊 buka Home → musik mulai → klik About → musik lanjut dari posisi sebelumnya
+            kita perlu mempertahankan posisi audio menggunakan sessionStorage.
+
+        2.  pertanyaan saya: saya ingin menambahakna musik gitu deh kan saya webny pake laut jadi mau ada suar alau2 gitu
+            caranya giamna ya
+            Jawaban GPT:
+            Bisa banget 😄 Kalau tema web kamu laut/ocean, kamu bisa kasih suara ambience ombak laut sebagai background
+            supaya terasa seperti berada di pantai.
+            Untuk website Django kamu, cara paling gampang adalah memakai file audio lokal, misalnya ocean-waves.mp3.
+            1.  Simpan musik di static
+                Struktur project kamu kira-kira:
+                static/
+                ├── css/
+                ├── img/
+                └── audio/
+                    └── ocean-waves.mp3
+                Jadi buat folder:
+                static/audio/
+                lalu masukkan:
+                ocean-waves.mp3
+            2.  Tambahkan di base.html
+                Karena kamu ingin suara muncul di seluruh website, paling enak taruh di base.html.
+                Di bagian atas template:
+                {% load static %}
+                Kemudian sebelum </body> tambahkan
+                Hasilnya
+                Awalnya:
+                🌊 Suara Laut
+                Pengunjung klik → suara ombak mulai:
+                🔊 Suara Laut ON
+                Klik lagi:
+                🔇 Suara Laut OFF
+            3.  Kenapa saya sarankan tombol?
+                Karena browser modern sering memblokir audio yang otomatis dimainkan tanpa interaksi pengguna.
+                Jadi jangan langsung:
+                <audio autoplay loop>
+                karena kemungkinan besar browser akan memblokir autoplay tersebut.
+                Dengan tombol, pengunjung sendiri yang mengaktifkan suara.
+        
+        3.  Pertanyaan saya: KYNYA MUSIC KONTROLNY AJUGA HARSU BUAT
+            Jawaban gpt:
+            Iyaaa, nah ini lebih masuk akal 😭. Kalau memang mau ada fitur ganti lagu, sebaiknya kita bikin music
+            control yang memang didesain sebagai satu komponen, bukan tombol-tombol yang ditempel begitu saja.
+            Konsepnya kita bikin music player kecil/floating:
+            ┌─────────────────────────┐
+            │  🎵  Sound Of Ocean    │
+            │      ────────────────   │
+            │       ◀    ▶    ▶     │
+            └─────────────────────────┘
+            Tapi ukurannya kecil dan transparan supaya nggak mengganggu desain website.
+            Saya sarankan komponennya:
+            🎵 nama lagu
+            ⏮ previous
+            ▶/⏸ play/pause
+            ⏭ next
+            🔊 volume
+            tetap position: fixed
+            ukurannya kecil
+            bisa dipindah ke pojok kanan bawah supaya tidak menabrak navbar/content
+            Misalnya tampilannya:
+                                    ┌─────────────────────┐
+                                    │ 🎵 Sound Of Ocean   │
+                                    │                     │
+                                    │   ⏮   ▶   ⏭   🔊   │
+                                    └─────────────────────┘
+            Kalau kamu mau, kita bisa bikin music-controls sebagai komponen CSS/HTML khusus, lalu JS playlist kamu
+            tinggal mengontrol komponen itu. Jadi struktur kodenya juga lebih jelas:
+
+            base.html
+                ↓
+            music-controls
+                ↓
+            music-controls.css
+                ↓
+            music-controls.js
+
+            Dengan begitu base.html kamu nggak penuh kode musik.
+        
+        4.  Pertanyaan saya:
+            # OperationalError at /achievements/
+            ```
+            no such column: main_achievements.period
+            ```
+            |  Request Method: | GET                                                                                                                              |
+            | ---------------: | -------------------------------------------------------------------------------------------------------------------------------- |
+            |     Request URL: | [http://alisa-selvia-myportofolio.pws.cs.ui.ac.id/achievements/](http://alisa-selvia-myportofolio.pws.cs.ui.ac.id/achievements/) |
+            |  Django Version: | 5.0                                                                                                                              |
+            |  Exception Type: | OperationalError                                                                                                                 |
+            | Exception Value: |                                                                                                                                  |
+            ```
+            no such column: main_achievements.period
+            ```
+            | Exception Location: | /usr/local/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py, line 328, in execute |
+            | ------------------: | ------------------------------------------------------------------------------------------------ |
+            |      Raised during: | main.views.show_achievements                                                                     |
+            |  Python Executable: | /usr/local/bin/python3.13                                                                        |
+            |     Python Version: | 3.13.16                                                                                          |
+            |        Python Path: |                                                                                                  |
+            ```
+            ['/app',
+            '/usr/local/bin',
+            '/usr/local/lib/python313.zip',
+            '/usr/local/lib/python3.13',
+            '/usr/local/lib/python3.13/lib-dynload',
+            '/usr/local/lib/python3.13/site-packages']
+            ```
+            | Server time: | Sat, 03 Oct 2026 20:23:31 +0700 |
+            | -----------: | ------------------------------- |
+            ## Traceback [Switch to copy-and-paste view](https://alisa-selvia-myportofolio.pws.cs.ui.ac.id/achievements/#)
+            - `/usr/local/lib/python3.13/site-packages/django/db/backends/utils.py`, line 105, in \_execute
+            105.
+            ```
+                            return self.cursor.execute(sql, params)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            ```
+            …
+
+            Local vars
+            | Variable             | Value |
+            | :------------------- | :---- |
+            | ignored_wrapper_args |       |
+            ```
+            (False,
+            {'connection': <DatabaseWrapper vendor='sqlite' alias='default'>,
+                'cursor': <django.db.backends.utils.CursorDebugWrapper object at 0x73c829b886e0>})
+            ```
+            | params |   |
+            | ------ | - |
+            ```
+            ()
+            ```
+            | self |   |
+            | ---- | - |
+            ```
+            <django.db.backends.utils.CursorDebugWrapper object at 0x73c829b886e0>
+            ```
+            | sql |   |
+            | --- | - |
+            ```
+            ('SELECT "main_achievements"."id", "main_achievements"."title", '
+            '"main_achievements"."period", "main_achievements"."description", '
+            '"main_achievements"."category", "main_achievements"."achievements_image_url" '
+            'FROM "main_achievements"')
+            ```
+            - `/usr/local/lib/python3.13/site-packages/django/db/backends/sqlite3/base.py`, line 328, in execute
+            Jawaban GPT:
+            Iya, ini **bukan karena AJAX Tugas 5-nya tiba-tiba rusak**. Dari traceback-nya kelihatan jelas masalahnya:
+            ```text
+            no such column: main_achievements.period
+            ```
+            Django sekarang membaca model `Achievements` yang punya field:
+            ```python
+            period = models.CharField(...)
+            ```
+            tetapi **database SQLite di PWS belum memiliki kolom `period`**.
+            SQL yang gagal adalah:
+
+            ```sql
+            SELECT
+                "main_achievements"."id",
+                "main_achievements"."title",
+                "main_achievements"."period",
+                ...
+            FROM "main_achievements"
+            ```
+
+            Jadi model Python dan struktur database **tidak sinkron**.
+            ### Kenapa bisa tiba-tiba?
+            Kemungkinan besar sebelumnya kamu **menambahkan `period` ke model `Achievements`**, tetapi migration-nya belum dibuat/diterapkan ke database yang sedang dipakai PWS.
+            Misalnya model sekarang:
+
+            ```python
+            class Achievements(models.Model):
+                id = models.UUIDField(...)
+                title = models.CharField(...)
+                period = models.CharField(max_length=50, blank=True, null=True)
+                description = models.TextField(...)
+            ```
+
+            Database lama masih seperti:
+
+            ```text
+            id
+            title
+            description
+            category
+            achievements_image_url
+            ```
+            belum ada:
+            ```text
+            period
+            ```
+            Makanya ketika `/achievements/` dibuka, Django meminta kolom yang belum ada → **OperationalError**.
+
+            ## Yang perlu kamu lakukan cek migration di lokal
+            Di terminal project:
+
+            ```bash
+            python manage.py makemigrations
+            ```
+
+            Kalau muncul sesuatu seperti:
+
+            ```text
+            Migrations for 'main':
+            main/migrations/000X_....py
+            ```
+
+            berarti memang `period` belum masuk migration.
+
+            Lalu:
+
+            ```bash
+            python manage.py migrate
+            ```
+
+
+
+
+     
