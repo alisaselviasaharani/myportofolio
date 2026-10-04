@@ -45,7 +45,7 @@
             <!-- Form pencarian -->
             <form id="achievements-search-form" class="achievements-search">
 
-                <input id="search-input" type="search" name="title" value="{{ title_query }}"
+                <input id="search-input" type="search" name="title" value=""
                     placeholder="Cari berdasarkan nama penghargaan" class="achievements-search__input"
                     aria-label="Cari berdasarkan nama penghargaan">
 
@@ -133,13 +133,13 @@
         const articleElement = document.createElement('article');
         articleElement.className = 'experience-card';
 
-        const imageHtml = achievements.achievements_image_url
-            ? `<img src="${achievements.achievements_image_url}" alt="Gambar ${achievements.title}" class="achievements-image">`
-            : '';
+        // const imageHtml = achievements.achievements_image_url
+        //     ? `<img src="${achievements.achievements_image_url}" alt="Gambar ${achievements.title}" class="achievements-image">`
+        //     : '';
 
-        const urlHtml = achievements.achievements_url
-            ? `<a href="${achievements.achievements_url}" class="button">Lihat achievements</a>`
-            : '';
+        // const urlHtml = achievements.achievements_url
+        //     ? `<a href="${achievements.achievements_url}" class="button">Lihat achievements</a>`
+        //     : '';
 
         // Dummy UUID digunakan untuk digantikan oleh ID asli dari data JSON
         const deleteUrl = "{% url 'main:delete_achievements' '00000000-0000-0000-0000-000000000000' %}"
@@ -163,18 +163,16 @@
 
         // Komponen card
         const completeCardHtml = `
-            ${imageHtml}
-            <h2>${achievements.title}</h2>
-            ${console.log("TEST" + escapeHtml(achievements.title))}
+            <h2>${escapeHtml(achievements.title)}</h2>
             <span class="experience-category">${escapeHtml(achievements.category)}</span>
             <p class="experience-description">${escapeHtml(achievements.description)}</p>
+
             <div class="achievements-card-actions">
                 <div class="achievements-actions">
-                    ${urlHtml}
-                    
+
                     <form method="post" action="${starUrl}" class="star-form">
                         {% csrf_token %}
-                        <button type="submit" 
+                        <button type="submit"
                                 class="button button-star${isStarredClass}"
                                 title="${starTitle}">
                             <span aria-hidden="true">★</span>
@@ -184,6 +182,7 @@
                     </form>
 
                     ${deleteHtml}
+
                 </div>
             </div>
         `;

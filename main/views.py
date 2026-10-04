@@ -267,8 +267,10 @@ def toggle_star(request, achievements_id):
         # Kalau belum, tambahkan star.
         if request.user in achievement.starred_by.all():
             achievement.starred_by.remove(request.user)
+            messages.success(request,"Kok dihapus starnya :(")
         else:
             achievement.starred_by.add(request.user)
+            messages.success(request,"Yeayy!! Anda berhasil menambahkan star >.<")
 
     return redirect("main:show_achievements")
 
@@ -287,6 +289,7 @@ def create_achievements_ajax(request):
                 "secret_code",
                 "Kode rahasia yang anda masukkan salah."
             )
+            
         else:
             achievement = form.save()
             return JsonResponse(

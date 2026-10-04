@@ -1049,6 +1049,13 @@
             - Menambahkan interaksi AJAX pada penghargaan dengan modal dan validasi
             - menambahkan informasi di readme.md
             - finishing tugas 5
+        
+        3. 5 Oktober 2026
+            - memberbaiki komponen dari achievements
+
+            Berikut ini aktivitas commit yang telah saya lakukan di github:
+            - memperbaiki views dan form
+            - memperbaiki komponen achievements.html, model.py, base.html, toast.js, toast.html, dan urls.py dan menambahkan pop up nontifikasi saat berhasil menambahkan star dan menghapus star
 
     
     ##  Pertanyaan Reflektif

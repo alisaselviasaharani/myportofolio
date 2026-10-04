@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login,logout,login_user,logout_user,register,toggle_star,create_achievements_ajax
+from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login_user,logout_user,register,toggle_star,create_achievements_ajax
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
 app_name = "main"

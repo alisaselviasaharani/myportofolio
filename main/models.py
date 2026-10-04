@@ -74,11 +74,11 @@ class Education(models.Model):
 
 class Achievements(models.Model):
     ACHIEVEMENTS_CHOICES = [
-        ('academic', 'Academic'),
-        ('competition', 'Competition'),
-        ('certification', 'Certification'),
-        ('award', 'Award'),
-        ('other', 'Other'),
+        ('Academic', 'academic'),
+        ('Competition', 'competition'),
+        ('Certification', 'certification'),
+        ('Award', 'award'),
+        ('Other', 'other'),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

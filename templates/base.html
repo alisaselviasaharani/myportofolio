@@ -73,14 +73,6 @@
 
         }, 1000);
 
-            window.addEventListener("beforeunload", () => {
-
-        sessionStorage.setItem(
-            "oceanTime",
-            oceanSound.currentTime
-        );
-
-    });
     </script>
     {% for message in messages %}
     <div class="popup-message">
