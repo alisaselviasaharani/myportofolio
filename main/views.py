@@ -1,6 +1,5 @@
 import os
 from django.contrib import messages
-from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from main.models import Experience, Education, Achievements
@@ -95,26 +94,36 @@ def create_achievements(request):
     return render(request, "achievements_form.html", context)
 
 # VIEW PAGE ACHIEVEMENTS
+# def show_achievements(request):
+#     title_query = request.GET.get("title", "").strip()
+
+#     achievements = Achievements.objects.all()
+
+#     if title_query:
+#         achievements = achievements.filter(title__icontains=title_query)
+
+#     # Serialize data menjadi JSON
+#     achievements_json = serializers.serialize("json", achievements)
+
+#     # Deserialize JSON kembali menjadi objek Django
+#     achievements_data = list(serializers.deserialize("json", achievements_json))
+#     is_editor = request.user.groups.filter(name="Editor").exists()
+#     context = {
+#         "name": "Alisa Selvia Saharani",
+#         "achievements_list": achievements_data,
+#         "title_query": title_query,
+#         "is_editor":is_editor,
+#         "form":AchievementsForm(),
+#     }
+
+#     return render(request, "achievements.html", context)
 def show_achievements(request):
-    title_query = request.GET.get("title", "").strip()
-
-    achievements = Achievements.objects.all()
-
-    if title_query:
-        achievements = achievements.filter(title__icontains=title_query)
-
-    # Serialize data menjadi JSON
-    achievements_json = serializers.serialize("json", achievements)
-
-    # Deserialize JSON kembali menjadi objek Django
-    achievements_data = list(serializers.deserialize("json", achievements_json))
     is_editor = request.user.groups.filter(name="Editor").exists()
+
     context = {
         "name": "Alisa Selvia Saharani",
-        "achievements_list": achievements_data,
-        "title_query": title_query,
-        "is_editor":is_editor,
-        "form":AchievementsForm(),
+        "is_editor": is_editor,
+        "form": AchievementsForm(),
     }
 
     return render(request, "achievements.html", context)
