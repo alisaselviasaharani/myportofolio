@@ -56,13 +56,71 @@ def show_education(request):
 
 # VIEW PAGE EXPERIENCE
 def show_experience(request):
+    is_editor = request.user.groups.filter(name="Editor").exists()
+
     context = {
         "name": "Alisa Selvia Saharani",
-        "experience_list": Experience.objects.all(),
+        "is_editor": is_editor,
+        "form": ExperienceForm(),
     }
 
     return render(request, "experience.html", context)
 
+# VIEW GET EXPERIENCE JSON
+def get_experience_json(request):
+    title_query = request.GET.get("title", "").strip()
+
+    experiences = Experience.objects.all()
+
+    if title_query:
+        experiences = experiences.filter(
+            title__icontains=title_query
+        )
+
+    data = []
+
+    for experience in experiences:
+        data.append({
+            "id": str(experience.id),
+            "title": experience.title,
+            "institution": experience.institution,
+            "period": experience.period,
+            "category": experience.get_category_display(),
+            "description": experience.description,
+            "logo": experience.logo,
+            "website": experience.website,
+        })
+
+    return JsonResponse(data, safe=False)
+@require_POST
+def create_experience_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {
+                "message": "Hanya pemilik portofolio yang dapat menambahkan experience."
+            },
+            status=403,
+        )
+
+    form = ExperienceForm(request.POST)
+
+    if form.is_valid():
+        experience = form.save()
+
+        return JsonResponse(
+            {
+                "message": "Experience berhasil ditambahkan.",
+                "pk": str(experience.id),
+            },
+            status=201,
+        )
+
+    return JsonResponse(
+        {
+            "errors": form.errors.get_json_data()
+        },
+        status=400,
+    )
 
 # VIEW PAGE CREATE ACHIEVEMENTS
 @login_required(login_url="/login/")

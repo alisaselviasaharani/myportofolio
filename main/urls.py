@@ -1,5 +1,5 @@
 from django.urls import path
-from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login_user,logout_user,register,toggle_star,create_achievements_ajax
+from main.views import show_home, show_aboutme, show_experience, show_education, show_achievements, create_achievements, get_achievements_json,delete_achievements, update_achievements,login_user,logout_user,register,toggle_star,create_achievements_ajax,     create_achievements_ajax, get_experience_json, create_experience_ajax
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
 app_name = "main"
@@ -32,5 +32,9 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
     path("achievements/add-ajax/", create_achievements_ajax, name="create_achievements_ajax"),
 
+   # URL JSON Experience untuk AJAX.
+    path("api/experience/",get_experience_json,name="get_experience_json"),
 
+    # URL tambah Experience melalui AJAX.
+    path("experience/add-ajax/",create_experience_ajax,name="create_experience_ajax"),
 ]
