@@ -148,6 +148,32 @@ def delete_experience(request, experience_id):
         status=200,
     )
 
+@require_POST
+@login_required(login_url="/login/")
+def update_experience_ajax(request, experience_id):
+    is_editor = request.user.groups.filter(name="Editor").exists()
+
+    if not request.user.is_superuser and not is_editor:
+        return JsonResponse(
+            {"message": "Anda tidak memiliki izin untuk memperbarui experience."},
+            status=403,
+        )
+
+    experience = get_object_or_404(Experience, pk=experience_id)
+    form = ExperienceForm(request.POST, instance=experience)
+
+    if form.is_valid():
+        form.save()
+        return JsonResponse(
+            {"message": "Experience berhasil diperbarui."},
+            status=200,
+        )
+
+    return JsonResponse(
+        {"errors": form.errors.get_json_data()},
+        status=400,
+    )
+
 # VIEW TOGGLE STAR EXPERIENCE
 @login_required(login_url="/login/")
 def toggle_star_experience(request, experience_id):

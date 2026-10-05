@@ -1,13 +1,13 @@
-<div id="add-experience-modal" class="experience-form-modal" popover="auto" role="dialog" aria-modal="true"
-    aria-labelledby="add-experience-modal-title">
-    <button type="button" class="experience-form-modal__backdrop" popovertarget="add-experience-modal"
-        popovertargetaction="hide" aria-label="Tutup form tambah experience"></button>
+<div id="experience-form-modal" class="experience-form-modal" popover="auto" role="dialog" aria-modal="true"
+    aria-labelledby="experience-form-modal-title">
+    <button type="button" class="experience-form-modal__backdrop" popovertarget="experience-form-modal"
+        popovertargetaction="hide" aria-label="Tutup form experience"></button>
 
     <div class="experience-form-modal__content">
-        <button type="button" class="experience-form-modal__close" popovertarget="add-experience-modal"
-            popovertargetaction="hide" aria-label="Tutup form tambah experience">×</button>
+        <button type="button" class="experience-form-modal__close" popovertarget="experience-form-modal"
+            popovertargetaction="hide" aria-label="Tutup form experience">×</button>
 
-        <h2 id="add-experience-modal-title">Tambah Experience Baru</h2>
+        <h2 id="experience-form-modal-title">Tambah Experience Baru</h2>
 
         <form id="experience-form" method="post" action="{% url 'main:create_experience_ajax' %}"
             class="experience-form">
@@ -17,7 +17,6 @@
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {{ field }}
-
                 {% for error in field.errors %}
                 <p class="form-error">{{ error }}</p>
                 {% endfor %}
@@ -25,10 +24,10 @@
             {% endfor %}
 
             <div class="experience-form-modal__actions">
-                <button type="button" class="button button-secondary" popovertarget="add-experience-modal"
+                <button type="button" class="button button-secondary" popovertarget="experience-form-modal"
                     popovertargetaction="hide">Batal</button>
 
-                <button type="submit" class="button">Tambah Experience</button>
+                <button type="submit" id="experience-form-submit" class="button">Tambah Experience</button>
             </div>
         </form>
     </div>

@@ -17,7 +17,8 @@ from main.views import (
     create_achievements_ajax,
     get_experience_json,
     create_experience_ajax,
-    toggle_star_experience
+    toggle_star_experience,
+    update_experience_ajax,
 )
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
@@ -63,4 +64,5 @@ urlpatterns = [
     path("achievements/add-ajax/", create_achievements_ajax, name="create_achievements_ajax"),
 
     path("experience/<uuid:experience_id>/star/",toggle_star_experience,name="toggle_star_experience"),
+    path("experience/<uuid:experience_id>/update-ajax/", update_experience_ajax, name="update_experience_ajax"),
 ]
