@@ -8,7 +8,8 @@
 
 <main class="pages">
     <!-- PAGE : EXPERIENCE -->
-    <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}" data-login-url="{% url 'main:login' %}" data-superuser="{{ user.is_superuser|yesno:'true,false' }}">
+    <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}"
+        data-login-url="{% url 'main:login' %}" data-superuser="{{ user.is_superuser|yesno:'true,false' }}">
         <!-- Gelembung -->
         <div class="bubbles">
             <span></span>
@@ -29,16 +30,18 @@
             </div>
 
             {% if user.is_superuser %}
-            <button type="button" class="button" popovertarget="add-experience-modal">
+            <button type="button" class="button" popovertarget="experience-form-modal">
                 Tambah Experience
             </button>
             {% endif %}
 
             <!-- Search Experience -->
             <form id="experience-search-form" class="experience-search">
-                <input id="experience-search-input" type="search" placeholder="Cari pengalaman..." aria-label="Cari pengalaman">
+                <span class="experience-search-icon">⌕</span>
+                <input id="experience-search-input" type="search" placeholder="Cari pengalaman..."
+                    aria-label="Cari pengalaman">
             </form>
-
+            
             <!-- Loading State -->
             <div id="experience-loading" class="empty-state hide">
                 <h2>Memuat pengalaman...</h2>
@@ -65,7 +68,7 @@
     </section>
 </main>
 
-{% include 'experience_form.html' %}
+{% include 'components/experience_form_modal.html' %}
 
 <script>
     const EXPERIENCE_ENDPOINT = "{% url 'main:get_experience_json' %}";
@@ -278,7 +281,7 @@
                 return;
             }
 
-            const modal = document.getElementById("add-experience-modal");
+            const modal = document.getElementById("experience-form-modal");
             modal.hidePopover();
             experienceForm.reset();
             await fetchExperiences();
