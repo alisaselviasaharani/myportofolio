@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>{{ name }} - Education</title>
+<title>{{ name }} - Experience</title>
 {% endblock meta %}
 
 {% block content %}
-
 
 <main class="pages">
     <!-- PAGE : EXPERIENCE -->
     <section class="experience-page" id="experience">
 
         <!-- Gelembung -->
-        <!-- Note:  Elemen-elemen span ini digunakan untuk membuat efek gelembung/background melalui CSS. -->
         <div class="bubbles">
             <span></span>
             <span></span>
@@ -24,65 +22,216 @@
             <span></span>
         </div>
 
-        <!-- container untuk isi seluruh page experience -->
+        <!-- Container seluruh page experience -->
         <div class="experience-content">
 
             <!-- Judul Experience -->
-            <!-- container untuk efek ketik  -->
             <div class="ketik">
-                <!-- judul halaman -->
                 <h1>EXPERIENCE</h1>
             </div>
 
-            <!-- Kartu Experience -->
-            <div class="experience-cards">
+            <!-- Search Experience -->
+            <form id="experience-search-form" class="experience-search">
+                <input
+                    id="experience-search-input"
+                    type="search"
+                    placeholder="Cari pengalaman..."
+                    aria-label="Cari pengalaman"
+                >
+            </form>
 
-                <!-- ambil tiap data experience dari experience_list yg dikirim view  -->
-                {% for experience in experience_list %}
-                <div class="experience-card">
-
-                    <!-- membuat link menuju website dari experience saya  -->
-                    {% if experience.website %}
-                    <a href="{{ experience.website }}" class="experience-link" target="_blank">
-
-                        <!--  mengecek logo dari experience tersedia -->
-                        {% if experience.logo %}
-                        <img class="experience-logo" src="{{ experience.logo }}"
-                            alt="{{ experience.institution|default:experience.title }}">
-                        {% endif %}
-
-                    </a>
-
-                    {% endif %}
-                    <!-- menampilkan judul experience yang berasal dari field model experience -->
-                    <h2>{{ experience.title }}</h2>
-
-                    <!-- mengecek institution tersedia -->
-                    {% if experience.institution %}
-                    <!-- menampilkan nama institution -->
-                    <p>{{ experience.institution }}</p>
-                    {% endif %}
-
-                    <!-- mengecek period tersedia -->
-                    {% if experience.period %}
-                    <!-- menampilkan period -->
-                    <p>{{ experience.period }}</p>
-                    {% endif %}
-
-                    <!-- menggunakan choices dalam milih kategori -->
-                    <p>{{ experience.get_category_display }}</p>
-                    <!-- menampilkan deskripsi sesuai dari data base  -->
-                    <p>{{ experience.description }}</p>
-                </div>
-
-                <!-- kalau g ada data maka blm ada pengalaman -->
-                {% empty %}
-                <div class="empty-state">
-                    <h2>Belum ada pengalaman yang ditambahkan.</h2>
-                </div>
-                {% endfor %}
+            <!-- Loading State -->
+            <div id="experience-loading" class="empty-state hide">
+                <h2>Memuat pengalaman...</h2>
             </div>
+
+            <!-- Error State -->
+            <div id="experience-error" class="empty-state hide">
+                <h2>Gagal memuat data pengalaman.</h2>
+                <p>Silakan coba lagi.</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="experience-empty" class="empty-state hide">
+                <h2>Belum ada pengalaman yang ditambahkan.</h2>
+            </div>
+
+            <!-- Kartu Experience akan dibuat oleh JavaScript -->
+            <div id="experience-grid" class="experience-cards hide">
+            </div>
+
+        </div>
     </section>
 </main>
+
+<script>
+    const EXPERIENCE_ENDPOINT = "{% url 'main:get_experience_json' %}";
+    const experienceGrid = document.getElementById("experience-grid");
+    const experienceLoading = document.getElementById("experience-loading");
+    const experienceError = document.getElementById("experience-error");
+    const experienceEmpty = document.getElementById("experience-empty");
+
+    const experienceSearchInput =
+        document.getElementById("experience-search-input");
+
+    const experienceSearchForm =
+        document.getElementById("experience-search-form");
+
+    function displayExperienceState({
+        loading = false,
+        error = false,
+        empty = false,
+        grid = false
+    }) {
+        experienceLoading.classList.toggle("hide", !loading);
+        experienceError.classList.toggle("hide", !error);
+        experienceEmpty.classList.toggle("hide", !empty);
+        experienceGrid.classList.toggle("hide", !grid);
+    }
+
+
+    // Mencegah XSS ketika data dari server dimasukkan ke HTML
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#39;");
+    }
+
+    // Membuat satu kartu Experience
+    function buildExperienceCard(experience) {
+        const article = document.createElement("div");
+        article.className = "experience-card"
+        let logoHtml = "";
+        if (experience.logo) {
+            logoHtml = `
+                <img
+                    class="experience-logo"
+                    src="${escapeHtml(experience.logo)}"
+                    alt="${escapeHtml(
+                        experience.institution || experience.title
+                    )}"
+                >
+            `;
+        }
+
+        let websiteHtml = "";
+        if (experience.website) {
+            websiteHtml = `
+                <a
+                    href="${escapeHtml(experience.website)}"
+                    class="experience-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    ${logoHtml}
+                </a>
+            `;
+        } else {
+            websiteHtml = logoHtml;
+        }
+
+        article.innerHTML = `
+            ${websiteHtml}
+            <h2>${escapeHtml(experience.title)}</h2>
+            ${
+                experience.institution
+                    ? `<p>${escapeHtml(experience.institution)}</p>`
+                    : ""
+            }
+            ${
+                experience.period
+                    ? `<p>${escapeHtml(experience.period)}</p>`
+                    : ""
+            }
+            <p>${escapeHtml(experience.category)}</p>
+            <p>${escapeHtml(experience.description)}</p>
+        `;
+        return article;
+    }
+
+
+    // Mengambil data Experience dari endpoint JSON
+    async function fetchExperiences(searchQuery = "") {
+        try {
+            displayExperienceState({
+                loading: true
+            });
+            let url = EXPERIENCE_ENDPOINT;
+            if (searchQuery) {
+                url += `?title=${encodeURIComponent(searchQuery)}`;
+            }
+
+            const response = await fetch(url, {
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Gagal mengambil data experience.");
+            }
+
+            const experiences = await response.json();
+
+            experienceGrid.innerHTML = "";
+
+            // Jika data kosong
+            if (experiences.length === 0) {
+                displayExperienceState({
+                    empty: true
+                });
+                return;
+            }
+
+            // Buat semua kartu Experience
+            experiences.forEach(function(experience) {
+                experienceGrid.appendChild(
+                    buildExperienceCard(experience)
+                );
+            });
+
+            displayExperienceState({
+                grid: true
+            });
+
+        } catch (error) {
+            console.error(error);
+            displayExperienceState({
+                error: true
+            });
+        }
+    }
+
+
+    // Debounce search
+    let experienceSearchDebounceTimer;
+    experienceSearchInput.addEventListener("input", function() {
+        clearTimeout(experienceSearchDebounceTimer);
+        experienceSearchDebounceTimer = setTimeout(function() {
+            fetchExperiences(
+                experienceSearchInput.value.trim()
+            );
+
+        }, 300);
+    });
+
+
+    // Submit search tanpa reload halaman
+    experienceSearchForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        clearTimeout(experienceSearchDebounceTimer);
+        fetchExperiences(
+            experienceSearchInput.value.trim()
+        );
+    });
+
+
+    // Load data pertama kali
+    fetchExperiences();
+
+</script>
 
 {% endblock content %}
