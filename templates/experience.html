@@ -28,6 +28,12 @@
                 <h1>EXPERIENCE</h1>
             </div>
 
+            {% if user.is_superuser %}
+            <button type="button" class="button" popovertarget="add-experience-modal">
+                Tambah Experience
+            </button>
+            {% endif %}
+
             <!-- Search Experience -->
             <form id="experience-search-form" class="experience-search">
                 <input id="experience-search-input" type="search" placeholder="Cari pengalaman..." aria-label="Cari pengalaman">
@@ -58,6 +64,8 @@
         </div>
     </section>
 </main>
+
+{% include 'experience_form.html' %}
 
 <script>
     const EXPERIENCE_ENDPOINT = "{% url 'main:get_experience_json' %}";
@@ -222,6 +230,39 @@
         event.preventDefault();
         clearTimeout(experienceSearchDebounceTimer);
         fetchExperiences(experienceSearchInput.value.trim());
+    });
+
+    const experienceForm = document.getElementById("experience-form");
+
+    experienceForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(experienceForm);
+
+        try {
+            const response = await fetch(experienceForm.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRFToken": CSRF_TOKEN,
+                    "Accept": "application/json"
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                console.error(result);
+                return;
+            }
+
+            const modal = document.getElementById("add-experience-modal");
+            modal.hidePopover();
+            experienceForm.reset();
+            await fetchExperiences();
+        } catch (error) {
+            console.error(error);
+        }
     });
 
     // Load data pertama kali
