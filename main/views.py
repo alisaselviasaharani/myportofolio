@@ -132,18 +132,21 @@ def create_experience_ajax(request):
 
 # VIEW DELETE EXPERIENCE
 @login_required(login_url="/login/")
+@require_POST
 def delete_experience(request, experience_id):
     if not request.user.is_superuser:
-        raise PermissionDenied
+        return JsonResponse(
+            {"message": "Hanya pemilik portofolio yang dapat menghapus experience."},
+            status=403,
+        )
 
     experience = get_object_or_404(Experience, pk=experience_id)
+    experience.delete()
 
-    if request.method == "POST":
-        experience.delete()
-        messages.success(request, "Experience berhasil dihapus!")
-        return redirect("main:show_experience")
-
-    return redirect("main:show_experience")
+    return JsonResponse(
+        {"message": "Experience berhasil dihapus."},
+        status=200,
+    )
 
 # VIEW TOGGLE STAR EXPERIENCE
 @login_required(login_url="/login/")

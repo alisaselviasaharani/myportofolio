@@ -8,7 +8,7 @@
 
 <main class="pages">
     <!-- PAGE : EXPERIENCE -->
-    <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}" data-login-url="{% url 'main:login' %}">
+    <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}" data-login-url="{% url 'main:login' %}" data-superuser="{{ user.is_superuser|yesno:'true,false' }}">
         <!-- Gelembung -->
         <div class="bubbles">
             <span></span>
@@ -72,6 +72,7 @@
     const experiencePage = document.getElementById("experience");
     const LOGIN_URL = experiencePage.dataset.loginUrl;
     const IS_AUTHENTICATED = experiencePage.dataset.authenticated === "true";
+    const IS_SUPERUSER = experiencePage.dataset.superuser === "true";
     const csrfInput = document.querySelector("#experience-csrf-form input[name='csrfmiddlewaretoken']");
     const CSRF_TOKEN = csrfInput ? csrfInput.value : "";
     const experienceGrid = document.getElementById("experience-grid");
@@ -159,6 +160,20 @@
             `;
         }
 
+        let deleteHtml = "";
+
+        if (IS_SUPERUSER) {
+            deleteHtml = `
+                <button
+                    type="button"
+                    class="button button-danger experience-delete-button"
+                    data-delete-url="/experience/${encodeURIComponent(experience.id)}/delete/"
+                >
+                    Hapus
+                </button>
+            `;
+        }
+
         article.innerHTML = `
             ${websiteHtml}
             <h2>${escapeHtml(experience.title)}</h2>
@@ -169,6 +184,7 @@
             <div class="experience-star">
                 ${starHtml}
             </div>
+            ${deleteHtml}
         `;
 
         return article;
@@ -270,6 +286,45 @@
         } catch (error) {
             console.error(error);
             showToast("Error", "Terjadi kesalahan saat menambahkan Experience.", "error");
+        }
+    });
+
+    document.addEventListener("click", async function (event) {
+        const deleteButton = event.target.closest(".experience-delete-button");
+
+        if (!deleteButton) {
+            return;
+        }
+
+        if (!confirm("Apakah kamu yakin ingin menghapus Experience ini?")) {
+            return;
+        }
+
+        try {
+            const response = await fetch(deleteButton.dataset.deleteUrl, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": CSRF_TOKEN,
+                    "Accept": "application/json"
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                if (response.status === 403) {
+                    showToast("Akses Ditolak", result.message || "Anda tidak memiliki izin untuk menghapus Experience.", "error");
+                } else {
+                    showToast("Gagal", result.message || "Experience gagal dihapus.", "error");
+                }
+                return;
+            }
+
+            await fetchExperiences(experienceSearchInput.value.trim());
+            showToast("Berhasil", result.message || "Experience berhasil dihapus.", "success");
+        } catch (error) {
+            console.error(error);
+            showToast("Error", "Terjadi kesalahan saat menghapus Experience.", "error");
         }
     });
 
