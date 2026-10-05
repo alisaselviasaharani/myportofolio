@@ -40,7 +40,11 @@ class Experience(models.Model):
 
     #website pengalaman maks 255 karakter boleh kosong (optional) krn kalau blank=True dan null= True
     website = models.CharField(max_length=255, blank=True, null=True)
-
+    starred_by = models.ManyToManyField(
+        User,
+        related_name="starred_experiences",
+        blank=True
+    )
     # Menentukan representasi object Experience ketika object tersebut ditampilkan sebagai string.
     def __str__(self):
         return self.title

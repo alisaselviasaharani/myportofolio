@@ -8,8 +8,7 @@
 
 <main class="pages">
     <!-- PAGE : EXPERIENCE -->
-    <section class="experience-page" id="experience">
-
+    <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}" data-login-url="{% url 'main:login' %}">
         <!-- Gelembung -->
         <div class="bubbles">
             <span></span>
@@ -24,7 +23,6 @@
 
         <!-- Container seluruh page experience -->
         <div class="experience-content">
-
             <!-- Judul Experience -->
             <div class="ketik">
                 <h1>EXPERIENCE</h1>
@@ -32,12 +30,7 @@
 
             <!-- Search Experience -->
             <form id="experience-search-form" class="experience-search">
-                <input
-                    id="experience-search-input"
-                    type="search"
-                    placeholder="Cari pengalaman..."
-                    aria-label="Cari pengalaman"
-                >
+                <input id="experience-search-input" type="search" placeholder="Cari pengalaman..." aria-label="Cari pengalaman">
             </form>
 
             <!-- Loading State -->
@@ -57,38 +50,35 @@
             </div>
 
             <!-- Kartu Experience akan dibuat oleh JavaScript -->
-            <div id="experience-grid" class="experience-cards hide">
-            </div>
+            <div id="experience-grid" class="experience-cards hide"></div>
 
+            <form id="experience-csrf-form" style="display: none;">
+                {% csrf_token %}
+            </form>
         </div>
     </section>
 </main>
 
 <script>
     const EXPERIENCE_ENDPOINT = "{% url 'main:get_experience_json' %}";
+    const experiencePage = document.getElementById("experience");
+    const LOGIN_URL = experiencePage.dataset.loginUrl;
+    const IS_AUTHENTICATED = experiencePage.dataset.authenticated === "true";
+    const csrfInput = document.querySelector("#experience-csrf-form input[name='csrfmiddlewaretoken']");
+    const CSRF_TOKEN = csrfInput ? csrfInput.value : "";
     const experienceGrid = document.getElementById("experience-grid");
     const experienceLoading = document.getElementById("experience-loading");
     const experienceError = document.getElementById("experience-error");
     const experienceEmpty = document.getElementById("experience-empty");
+    const experienceSearchInput = document.getElementById("experience-search-input");
+    const experienceSearchForm = document.getElementById("experience-search-form");
 
-    const experienceSearchInput =
-        document.getElementById("experience-search-input");
-
-    const experienceSearchForm =
-        document.getElementById("experience-search-form");
-
-    function displayExperienceState({
-        loading = false,
-        error = false,
-        empty = false,
-        grid = false
-    }) {
+    function displayExperienceState({ loading = false, error = false, empty = false, grid = false }) {
         experienceLoading.classList.toggle("hide", !loading);
         experienceError.classList.toggle("hide", !error);
         experienceEmpty.classList.toggle("hide", !empty);
         experienceGrid.classList.toggle("hide", !grid);
     }
-
 
     // Mencegah XSS ketika data dari server dimasukkan ke HTML
     function escapeHtml(value) {
@@ -103,21 +93,21 @@
     // Membuat satu kartu Experience
     function buildExperienceCard(experience) {
         const article = document.createElement("div");
-        article.className = "experience-card"
+        article.className = "experience-card";
         let logoHtml = "";
+
         if (experience.logo) {
             logoHtml = `
                 <img
                     class="experience-logo"
                     src="${escapeHtml(experience.logo)}"
-                    alt="${escapeHtml(
-                        experience.institution || experience.title
-                    )}"
+                    alt="${escapeHtml(experience.institution || experience.title)}"
                 >
             `;
         }
 
         let websiteHtml = "";
+
         if (experience.website) {
             websiteHtml = `
                 <a
@@ -133,33 +123,55 @@
             websiteHtml = logoHtml;
         }
 
+        let starHtml = "";
+
+        if (IS_AUTHENTICATED) {
+            starHtml = `
+                <form method="post" action="/experience/${encodeURIComponent(experience.id)}/star/" class="star-form">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="${escapeHtml(CSRF_TOKEN)}">
+                    <button
+                        type="submit"
+                        class="button button-star ${experience.is_starred ? "is-starred" : ""}"
+                        title="${experience.is_starred ? "Unstar" : "Star"}"
+                    >
+                        <span aria-hidden="true">★</span>
+                        ${experience.is_starred ? "Unstar" : "Star"}
+                        <span class="star-count">${escapeHtml(experience.star_count)}</span>
+                    </button>
+                </form>
+            `;
+        } else {
+            starHtml = `
+                <a href="${escapeHtml(LOGIN_URL)}" class="button">
+                    Login untuk memberi Star
+                </a>
+                <span class="star-count">
+                    ⭐ ${escapeHtml(experience.star_count)}
+                </span>
+            `;
+        }
+
         article.innerHTML = `
             ${websiteHtml}
             <h2>${escapeHtml(experience.title)}</h2>
-            ${
-                experience.institution
-                    ? `<p>${escapeHtml(experience.institution)}</p>`
-                    : ""
-            }
-            ${
-                experience.period
-                    ? `<p>${escapeHtml(experience.period)}</p>`
-                    : ""
-            }
+            ${experience.institution ? `<p>${escapeHtml(experience.institution)}</p>` : ""}
+            ${experience.period ? `<p>${escapeHtml(experience.period)}</p>` : ""}
             <p>${escapeHtml(experience.category)}</p>
             <p>${escapeHtml(experience.description)}</p>
+            <div class="experience-star">
+                ${starHtml}
+            </div>
         `;
+
         return article;
     }
-
 
     // Mengambil data Experience dari endpoint JSON
     async function fetchExperiences(searchQuery = "") {
         try {
-            displayExperienceState({
-                loading: true
-            });
+            displayExperienceState({ loading: true });
             let url = EXPERIENCE_ENDPOINT;
+
             if (searchQuery) {
                 url += `?title=${encodeURIComponent(searchQuery)}`;
             }
@@ -175,59 +187,42 @@
             }
 
             const experiences = await response.json();
-
             experienceGrid.innerHTML = "";
 
             // Jika data kosong
             if (experiences.length === 0) {
-                displayExperienceState({
-                    empty: true
-                });
+                displayExperienceState({ empty: true });
                 return;
             }
 
             // Buat semua kartu Experience
-            experiences.forEach(function(experience) {
-                experienceGrid.appendChild(
-                    buildExperienceCard(experience)
-                );
+            experiences.forEach(function (experience) {
+                experienceGrid.appendChild(buildExperienceCard(experience));
             });
 
-            displayExperienceState({
-                grid: true
-            });
-
+            displayExperienceState({ grid: true });
         } catch (error) {
             console.error(error);
-            displayExperienceState({
-                error: true
-            });
+            displayExperienceState({ error: true });
         }
     }
 
-
     // Debounce search
     let experienceSearchDebounceTimer;
-    experienceSearchInput.addEventListener("input", function() {
-        clearTimeout(experienceSearchDebounceTimer);
-        experienceSearchDebounceTimer = setTimeout(function() {
-            fetchExperiences(
-                experienceSearchInput.value.trim()
-            );
 
+    experienceSearchInput.addEventListener("input", function () {
+        clearTimeout(experienceSearchDebounceTimer);
+        experienceSearchDebounceTimer = setTimeout(function () {
+            fetchExperiences(experienceSearchInput.value.trim());
         }, 300);
     });
 
-
     // Submit search tanpa reload halaman
-    experienceSearchForm.addEventListener("submit", function(event) {
+    experienceSearchForm.addEventListener("submit", function (event) {
         event.preventDefault();
         clearTimeout(experienceSearchDebounceTimer);
-        fetchExperiences(
-            experienceSearchInput.value.trim()
-        );
+        fetchExperiences(experienceSearchInput.value.trim());
     });
-
 
     // Load data pertama kali
     fetchExperiences();

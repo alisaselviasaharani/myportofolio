@@ -1,0 +1,31 @@
+<form method="post" action="{% url 'main:create_experience_ajax' %}" class="experience-form" id="experience-form">
+
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">
+            {{ field.label }}
+        </label>
+
+        {{ field }}
+
+        {% for error in field.errors %}
+        <div class="form-error">
+            <span class="error-icon">!</span>
+            <span>{{ error }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="button">
+        Tambah Experience
+    </button>
+
+    <button type="button" class="button button-secondary" popovertarget="add-experience-modal"
+        popovertargetaction="hide">
+        Batal
+    </button>
+
+</form>
