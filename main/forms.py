@@ -109,7 +109,14 @@ class ExperienceForm(forms.ModelForm):
         return strip_tags(
             logo or ""
         ).strip()
-    
+
+    def clean_website(self):
+        website = self.cleaned_data.get("website")
+
+        return strip_tags(
+            website or ""
+        ).strip()
+
 class AchievementsForm(forms.ModelForm):
     secret_code=forms.CharField(label="Secret Code", widget=forms.PasswordInput(attrs={"placeholder": "Masukkan kode rahasia anda..."}))
     class Meta:
