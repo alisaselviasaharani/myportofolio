@@ -2,7 +2,7 @@ import os
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from main.models import Experience, Education, Achievements
+from main.models import Contact, Experience, Education, Achievements
 from main.forms import AchievementsForm,ExperienceForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from django.http import HttpResponse, QueryDict
+from django.views.decorators.http import require_http_methods
 
 # VIEW PAGE HOME
 def show_home(request):
@@ -423,3 +425,44 @@ def create_achievements_ajax(request):
             )
 
     return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
+
+def contact_add(request):
+    if request.method == "POST":
+        Contact.objects.create(
+            name=request.POST.get("name"),
+            email=request.POST.get("email"),
+        )
+    contacts = Contact.objects.all()
+    return render(request, "_contact_rows.html", {"contacts": contacts})
+
+def contact_search(request):
+    query = request.GET.get("q", "")
+    contacts = Contact.objects.filter(name__icontains=query) if query else Contact.objects.all()
+    return render(request, "_contact_rows.html", {"contacts": contacts})
+
+@require_http_methods(["DELETE"])
+def contact_delete(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    contact.delete()
+    return HttpResponse("")
+
+def contact_list(request):
+    contacts=Contact.objects.all()
+    return render (request, "index.html", {"contacts":contacts})
+
+def contact_edit(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, "_contact_edit_row.html", {"contact": contact})
+
+def contact_row(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, "_contact_row.html", {"contact": contact})
+
+@require_http_methods(["PUT"])
+def contact_update(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    data = QueryDict(request.body)
+    contact.name = data.get("name", contact.name)
+    contact.email = data.get("email", contact.email)
+    contact.save()
+    return render(request, "_contact_row.html", {"contact": contact})

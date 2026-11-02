@@ -19,6 +19,13 @@ from main.views import (
     create_experience_ajax,
     toggle_star_experience,
     update_experience_ajax,
+    contact_list,
+    contact_edit,
+    contact_row,
+    contact_update,
+    contact_add,
+    contact_search,
+    contact_delete
 )
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
@@ -65,4 +72,14 @@ urlpatterns = [
 
     path("experience/<uuid:experience_id>/star/",toggle_star_experience,name="toggle_star_experience"),
     path("experience/<uuid:experience_id>/update-ajax/", update_experience_ajax, name="update_experience_ajax"),
+
+    # URL HTMX - Contacts
+    path("contacts/", contact_list, name="contact_list"),
+    path("contacts/add/", contact_add, name="contact_add"),
+    path("contacts/search/", contact_search, name="contact_search"),
+    path("contacts/<int:pk>/delete/", contact_delete, name="contact_delete"),
+    path("contacts/<int:pk>/edit/", contact_edit, name="contact_edit"),
+    path("contacts/<int:pk>/row/", contact_row, name="contact_row"),
+    path("contacts/<int:pk>/update/", contact_update, name="contact_update"),
+
 ]
