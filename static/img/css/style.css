@@ -1,4 +1,4 @@
-/* =================== FONT =================== */
+/*  FONT  */
 /* 
     Mengaktifkan font yang sudah di download di dafont 
 */
@@ -35,15 +35,8 @@
 }
 
 
-/* =================== HEADER =================== */
-.site-header {
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    background: rgba(0, 0, 0, 0.15);
-    border-bottom: 1px solid var(--line);
-    width: 100%;
-    padding: 25px 3%;
-}
-
+/*  HEADER  */
+/* NOTE: .site-header ada di bagian "NAVBAR BERTEMA LAUT" di bawah */
 
 .site-header .container {
     display: flex;
@@ -61,7 +54,7 @@
 }
 
 
-/* =================== TOMBOL ABOUT =================== */
+/*  TOMBOL ABOUT  */
 /* NOTE: jadi ini untuk mendesain tombol yang ada di home nanti ngelink ke bagian about me setelah di pencet*/
 .button-about {
     display: inline-block;
@@ -91,7 +84,7 @@
     box-sizing: border-box;
 }
 
-/* =================== PAGES =================== */
+/*  PAGES  */
 /* NOTE: Intinya ini untuk pengaturan ukuran dll setiap halamannya */
 .pages {
     display: flex;
@@ -132,7 +125,7 @@ Sebenernay dapat dilakukan menggunaka JS tapi untuk tugas ini hanya di batasi pe
 }
 
 
-/* =================== PAGE HOME =================== */
+/*  PAGE HOME  */
 .intro {
     text-align: center;
     min-height: calc(100vh-100px);
@@ -227,7 +220,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* =================== BODY =================== */
+/*  BODY  */
 body {
     margin: 0;
     overflow-x: hidden;
@@ -248,7 +241,7 @@ body {
 }
 
 
-/* =================== SWIPE HINT =================== */
+/*  SWIPE HINT  */
 /* NOTE: jadi pada intinya alasan saya menggunakan swipe ke kanan di bandingkan dengan scroll ke bawah karna saya ingin
 membuat protofolio yang unik jadi sambil menyelam sambil melihat ke kanan untuk mendapatkan informasi. */
 .swipe-hint {
@@ -311,13 +304,13 @@ membuat protofolio yang unik jadi sambil menyelam sambil melihat ke kanan untuk 
 }
 
 
-/* =================== TYPOGRAPHY =================== */
+/*  TYPOGRAPHY  */
 h2 {
     font-family: "Space Grotesk", sans-serif;
 }
 
 
-/* =================== CONTAINER =================== */
+/*  CONTAINER  */
 .container {
     max-width: 960px;
     margin: 0 auto;
@@ -325,7 +318,7 @@ h2 {
 }
 
 
-/* =================== HERO =================== */
+/*  HERO  */
 .hero {
     padding: 4.5rem 0 5rem;
 }
@@ -347,7 +340,7 @@ h2 {
     grid-area: details;
 }
 
-/* =================== KICKER =================== */
+/*  KICKER  */
 .hero-kicker {
     display: inline-block;
     font-size: 0.95rem;
@@ -471,7 +464,7 @@ h2 {
 }
 
 
-/* =================== FOOTER =================== */
+/*  FOOTER  */
 .site-footer {
     margin-top: auto;
     padding: 12px 20px;
@@ -505,7 +498,7 @@ h2 {
 }
 
 
-/* =================== PAGE EDUCATION =================== */
+/*  PAGE EDUCATION  */
 .education-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -521,7 +514,7 @@ h2 {
 }
 
 
-/* =================== JUDUL EDUCATION SAMBIL DIKETIK =================== */
+/*  JUDUL (EDUCATION, EXPERIENCE, ACHIEVEMENT, SKILLS) SAMBIL DIKETIK  */
 .ketik {
     display: flex;
     justify-content: center;
@@ -603,7 +596,9 @@ h2 {
 }
 
 /* memberikan link di logo jadi saat mengeklik akan menuju halaman link yg saya cantumkan */
-.education-link {
+/* (dipakai bersama oleh Education dan Experience) */
+.education-link,
+.experience-link {
     width: 280px;
     min-height: 330px;
     padding: 25px;
@@ -638,7 +633,7 @@ h2 {
 }
 
 
-/* =================== PAGE EXPERIENCE =================== */
+/*  PAGE EXPERIENCE  */
 .experience-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -652,14 +647,6 @@ h2 {
     width: 90%;
     max-width: 1100px;
     text-align: center;
-}
-
-
-/* JUDUL EXPERIENCE */
-.experience-content .ketik {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
 }
 
 
@@ -705,21 +692,10 @@ h2 {
     background: rgba(88, 191, 255, 0.95);
 }
 
-.experience-link {
-    width: 280px;
-    min-height: 330px;
-    padding: 25px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
 
-
-/* LOGO EXPERIENCE */
-.experience-card .avatar {
+/* LOGO EXPERIENCE & ACHIEVEMENTS */
+.experience-card .avatar,
+.achievements-card .avatar {
     width: 300px;
     height: 300px;
     object-fit: contain;
@@ -741,7 +717,7 @@ h2 {
 
 
 
-/* =================== PAGE ACHIEVEMENT =================== */
+/*  PAGE ACHIEVEMENT  */
 .achievements-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -755,13 +731,6 @@ h2 {
     width: 90%;
     max-width: 1100px;
     text-align: center;
-}
-
-/* JUDUL ACHIEVEMENT */
-.achievements-content .ketik {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
 }
 
 /* ACHIEVEMENT CARDS */
@@ -797,20 +766,7 @@ h2 {
     background: rgba(88, 191, 255, 0.95);
 }
 
-.achievements-card .avatar {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;
-    border: none;
-    margin-bottom: 20px;
-}
-
-.achievements-card h2 {
-    font-size: 25px;
-    margin: 10px 0;
-    font-family: "SimpleHandmade";
-}
-
+.achievements-card h2,
 .achievements-card h3 {
     font-size: 25px;
     margin: 10px 0;
@@ -824,7 +780,7 @@ h2 {
 }
 
 
-/* =================== PAGE - SKILLS =================== */
+/*  PAGE - SKILLS  */
 .skills-page {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -838,13 +794,6 @@ h2 {
     width: 90%;
     max-width: 1100px;
     text-align: center;
-}
-
-/* JUDUL SKILLS */
-.skills-content .ketik {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
 }
 
 /* SKILLS CARDS */
@@ -915,26 +864,8 @@ h2 {
     font-family: "SimpleHandmade";
 }
 
-/* =================== PAGE - CONTACT =================== */
-.contact-page {
-    padding-top: 30px;
-    padding-bottom: 30px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.contact-content {
-    width: 90%;
-    max-width: 1100px;
-
-    text-align: center;
-
-    position: relative;
-    z-index: 2;
-}
+/*  PAGE - CONTACT  */
+/* NOTE: .contact-page dan .contact-content ada di bagian "UNDERWATER CONTACT DASHBOARD" di bawah */
 
 /* MESSAGE + NAILONG*/
 .contact-message {
@@ -1257,11 +1188,6 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.achievements-grid .experience-card {
-    display: flex;
-    flex-direction: column;
-}
-
 .achievements-image {
     display: block;
     width: 100%;
@@ -1454,10 +1380,11 @@ h2 {
     }
 }
 
-/* =================== NAVBAR BERTEMA LAUT =================== */
+/*  NAVBAR BERTEMA LAUT  */
 .site-header {
     position: relative;
     z-index: 100;
+    width: 100%;
     padding: 0 3% 14px;
     border: 0;
     background:
@@ -1470,7 +1397,9 @@ h2 {
     /* garis cahaya permukaan air */
     content: "";
     position: absolute;
-    left: 0; right: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #8ff3ff, #fff, #8ff3ff, transparent);
     box-shadow: 0 0 12px 2px rgba(120, 240, 255, .9);
@@ -1491,12 +1420,25 @@ h2 {
     height: 22px;
 }
 
-.wave-back { fill: rgba(255, 255, 255, .10); animation: waveMove 14s linear infinite; }
-.wave-front { fill: rgba(120, 235, 255, .16); height: 16px; animation: waveMove 9s linear infinite reverse; }
+.wave-back {
+    fill: rgba(255, 255, 255, .10);
+    animation: waveMove 14s linear infinite;
+}
+
+.wave-front {
+    fill: rgba(120, 235, 255, .16);
+    height: 16px;
+    animation: waveMove 9s linear infinite reverse;
+}
 
 @keyframes waveMove {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .bubble {
@@ -1505,21 +1447,71 @@ h2 {
     border-radius: 50%;
     border: 1.5px solid rgba(255, 255, 255, .55);
     background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .7), rgba(255, 255, 255, .08) 60%);
-    animation: bubbleUp 7s ease-in infinite;
+    animation: navBubbleUp 7s ease-in infinite;
     opacity: 0;
 }
 
-.bubble.b1 { left: 6%;  width: 10px; height: 10px; animation-delay: 0s; }
-.bubble.b2 { left: 24%; width: 7px;  height: 7px;  animation-delay: 2s;   animation-duration: 6s; }
-.bubble.b3 { left: 47%; width: 12px; height: 12px; animation-delay: 4s;   animation-duration: 8s; }
-.bubble.b4 { left: 68%; width: 8px;  height: 8px;  animation-delay: 1s;   animation-duration: 6.5s; }
-.bubble.b5 { left: 82%; width: 11px; height: 11px; animation-delay: 3.2s; animation-duration: 7.5s; }
-.bubble.b6 { left: 94%; width: 6px;  height: 6px;  animation-delay: 5s; }
+.bubble.b1 {
+    left: 6%;
+    width: 10px;
+    height: 10px;
+    animation-delay: 0s;
+}
 
-@keyframes bubbleUp {
-    0% { transform: translateY(0) translateX(0); opacity: 0; }
-    15% { opacity: .9; }
-    100% { transform: translateY(-90px) translateX(12px); opacity: 0; }
+.bubble.b2 {
+    left: 24%;
+    width: 7px;
+    height: 7px;
+    animation-delay: 2s;
+    animation-duration: 6s;
+}
+
+.bubble.b3 {
+    left: 47%;
+    width: 12px;
+    height: 12px;
+    animation-delay: 4s;
+    animation-duration: 8s;
+}
+
+.bubble.b4 {
+    left: 68%;
+    width: 8px;
+    height: 8px;
+    animation-delay: 1s;
+    animation-duration: 6.5s;
+}
+
+.bubble.b5 {
+    left: 82%;
+    width: 11px;
+    height: 11px;
+    animation-delay: 3.2s;
+    animation-duration: 7.5s;
+}
+
+.bubble.b6 {
+    left: 94%;
+    width: 6px;
+    height: 6px;
+    animation-delay: 5s;
+}
+
+/* Nama keyframes dibedakan dari bubbleUp (halaman contact) supaya tidak saling menimpa */
+@keyframes navBubbleUp {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .9;
+    }
+
+    100% {
+        transform: translateY(-90px) translateX(12px);
+        opacity: 0;
+    }
 }
 
 .navbar-container {
@@ -1539,6 +1531,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
     font-family: "Space Grotesk", system-ui, sans-serif;
     font-size: 26px;
     font-weight: 700;
@@ -1551,12 +1544,15 @@ h2 {
 .brand-shell {
     width: 40px;
     height: 40px;
+    flex-shrink: 0;
     filter: drop-shadow(0 0 8px rgba(190, 150, 255, .8));
     animation: shellFloat 4s ease-in-out infinite;
 }
 
 @keyframes shellFloat {
-    50% { transform: translateY(-3px) rotate(-4deg); }
+    50% {
+        transform: translateY(-3px) rotate(-4deg);
+    }
 }
 
 /* ---- menu tengah ---- */
@@ -1600,7 +1596,10 @@ h2 {
     stroke-linejoin: round;
 }
 
-.user-chip svg.fill { fill: currentColor; stroke: none; }
+.user-chip svg.fill {
+    fill: currentColor;
+    stroke: none;
+}
 
 .nav-pill:hover {
     background: rgba(255, 255, 255, .18);
@@ -1651,11 +1650,28 @@ h2 {
     transform: translateY(-2px);
 }
 
-.user-menu { position: relative; }
-.user-chip { list-style: none; user-select: none; }
-.user-chip::-webkit-details-marker { display: none; }
-.user-chip .chev { width: 16px; height: 16px; transition: transform .25s; }
-.user-menu[open] .chev { transform: rotate(180deg); }
+.user-menu {
+    position: relative;
+}
+
+.user-chip {
+    list-style: none;
+    user-select: none;
+}
+
+.user-chip::-webkit-details-marker {
+    display: none;
+}
+
+.user-chip .chev {
+    width: 16px;
+    height: 16px;
+    transition: transform .25s;
+}
+
+.user-menu[open] .chev {
+    transform: rotate(180deg);
+}
 
 .user-dropdown {
     position: absolute;
@@ -1683,8 +1699,15 @@ h2 {
 }
 
 @keyframes dropIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: none; }
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .user-dropdown a {
@@ -1702,32 +1725,52 @@ h2 {
 }
 
 .user-dropdown a:hover,
-.user-dropdown a.active { background: #bdf1fb; }
-.user-dropdown hr { border: 0; border-top: 1px solid #e3eef2; margin: 6px 8px; }
+.user-dropdown a.active {
+    background: #bdf1fb;
+}
+
+.user-dropdown hr {
+    border: 0;
+    border-top: 1px solid #e3eef2;
+    margin: 6px 8px;
+}
 
 /* ---- mobile ---- */
-.mobile-menu { display: none; position: relative; }
+.mobile-menu {
+    display: none;
+    position: relative;
+}
 
 .mobile-menu summary {
     list-style: none;
     cursor: pointer;
     color: #fff;
     font-family: "Space Grotesk", sans-serif;
-    font-size: 22px;
+    font-size: 16px;
     font-weight: 700;
     padding: 8px 16px;
     border: 2px solid rgba(255, 255, 255, .8);
     border-radius: 999px;
     user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, .08);
+    transition: background .25s, box-shadow .25s;
 }
 
-.mobile-menu summary::-webkit-details-marker { display: none; }
+.mobile-menu summary::-webkit-details-marker {
+    display: none;
+}
 
 .mobile-menu-content {
     position: absolute;
     top: 58px;
     right: 0;
-    width: 260px;
+    width: min(280px, calc(100vw - 32px));
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
     padding: 18px;
     background: #fff;
     border-radius: 18px;
@@ -1736,9 +1779,11 @@ h2 {
     gap: 6px;
     z-index: 1000;
     box-shadow: 0 14px 34px rgba(0, 50, 80, .35);
+    animation: dropIn .22s ease;
 }
 
 .mobile-menu-content a {
+    display: block;
     color: #0b3b55;
     text-decoration: none;
     font-size: 16px;
@@ -1747,7 +1792,9 @@ h2 {
     border-radius: 10px;
 }
 
-.mobile-menu-content a:hover { background: #bdf1fb; }
+.mobile-menu-content a:hover {
+    background: #bdf1fb;
+}
 
 .mobile-menu-content .nav-user {
     color: #0b3b55;
@@ -1758,14 +1805,35 @@ h2 {
 }
 
 @media (max-width: 1100px) {
+
     .navbar-menu,
-    .navbar-auth { display: none; }
-    .mobile-menu { display: block; }
-    .navbar-brand { font-size: 20px; }
+    .navbar-auth {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .navbar-container {
+        min-height: 70px;
+        gap: 12px;
+        padding: 10px 4px 6px;
+    }
+
+    .navbar-brand {
+        flex: 1 1 auto;
+        font-size: 20px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .bubble, .ocean-wave, .brand-shell { animation: none; }
+
+    .bubble,
+    .ocean-wave,
+    .brand-shell {
+        animation: none;
+    }
 }
 
 /* Error pada form */
@@ -1842,12 +1910,7 @@ h2 {
 }
 
 .achievements-form select {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 18px;
-    border-radius: 12px;
     border: 2px solid rgba(255, 255, 255, 0.8);
-    box-sizing: border-box;
 }
 
 .achievements-form {
@@ -1872,12 +1935,6 @@ h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-}
-
-@media (max-width: 900px) {
-    .experience-grid.achievements-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 600px) {
@@ -2039,7 +2096,9 @@ h2 {
     border-left: 4px solid var(--accent);
 }
 
-.achievements-form-modal {
+/* MODAL FORM (dipakai bersama oleh Achievements dan Experience) */
+.achievements-form-modal,
+.experience-form-modal {
     display: none;
     position: fixed;
     inset: 0;
@@ -2056,11 +2115,13 @@ h2 {
     justify-content: center;
 }
 
-.achievements-form-modal:popover-open {
+.achievements-form-modal:popover-open,
+.experience-form-modal:popover-open {
     display: flex;
 }
 
-.achievements-form-modal__backdrop {
+.achievements-form-modal__backdrop,
+.experience-form-modal__backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -2071,7 +2132,8 @@ h2 {
     cursor: default;
 }
 
-.achievements-form-modal__content {
+.achievements-form-modal__content,
+.experience-form-modal__content {
     position: relative;
     z-index: 1;
     width: min(100%, 640px);
@@ -2084,13 +2146,15 @@ h2 {
     box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
 }
 
-.achievements-form-modal__content h2 {
+.achievements-form-modal__content h2,
+.experience-form-modal__content h2 {
     margin: 0 2.5rem 1.25rem 0;
     font-family: "Space Grotesk", -apple-system, sans-serif;
     font-size: 1.5rem;
 }
 
-.achievements-form-modal__close {
+.achievements-form-modal__close,
+.experience-form-modal__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -2103,7 +2167,8 @@ h2 {
     cursor: pointer;
 }
 
-.achievements-form-modal__actions {
+.achievements-form-modal__actions,
+.experience-form-modal__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
@@ -2111,23 +2176,28 @@ h2 {
 }
 
 @media (max-width: 600px) {
-    .achievements-form-modal {
+
+    .achievements-form-modal,
+    .experience-form-modal {
         align-items: flex-end;
         padding: 0;
     }
 
-    .achievements-form-modal__content {
+    .achievements-form-modal__content,
+    .experience-form-modal__content {
         width: 100%;
         max-height: 90vh;
         padding: 1.25rem;
         border-radius: var(--radius) var(--radius) 0 0;
     }
 
-    .achievements-form-modal__actions {
+    .achievements-form-modal__actions,
+    .experience-form-modal__actions {
         flex-direction: column-reverse;
     }
 
-    .achievements-form-modal__actions .button {
+    .achievements-form-modal__actions .button,
+    .experience-form-modal__actions .button {
         width: 100%;
         text-align: center;
     }
@@ -2150,100 +2220,6 @@ h2 {
 
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.15);
-}
-
-.experience-form-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
-    margin: 0;
-    padding: 1rem;
-    border: 0;
-    background: transparent;
-    z-index: 10;
-    align-items: center;
-    justify-content: center;
-}
-
-.experience-form-modal:popover-open {
-    display: flex;
-}
-
-.experience-form-modal__backdrop {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    padding: 0;
-    background: rgba(28, 25, 23, 0.58);
-    cursor: default;
-}
-
-.experience-form-modal__content {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 640px);
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
-    padding: 1.5rem;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
-}
-
-.experience-form-modal__content h2 {
-    margin: 0 2.5rem 1.25rem 0;
-    font-family: "Space Grotesk", -apple-system, sans-serif;
-    font-size: 1.5rem;
-}
-
-.experience-form-modal__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    border: 0;
-    padding: 0;
-    background: transparent;
-    color: var(--text-muted);
-    font-size: 1.8rem;
-    line-height: 1;
-    cursor: pointer;
-}
-
-.experience-form-modal__actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-}
-
-@media (max-width: 600px) {
-    .experience-form-modal {
-        align-items: flex-end;
-        padding: 0;
-    }
-
-    .experience-form-modal__content {
-        width: 100%;
-        max-height: 90vh;
-        padding: 1.25rem;
-        border-radius: var(--radius) var(--radius) 0 0;
-    }
-
-    .experience-form-modal__actions {
-        flex-direction: column-reverse;
-    }
-
-    .experience-form-modal__actions .button {
-        width: 100%;
-        text-align: center;
-    }
 }
 
 .experience-search {
@@ -2296,21 +2272,27 @@ h2 {
 }
 
 
-/* ========================================
+/* 
    UNDERWATER CONTACT DASHBOARD
-======================================== */
+*/
 
 .contact-page {
     min-height: 100vh;
     padding: 35px 0 60px;
     position: relative;
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .contact-content {
     width: 90%;
     max-width: 1200px;
     margin: auto;
+    text-align: center;
     position: relative;
     z-index: 1;
 }
@@ -2330,14 +2312,14 @@ h2 {
     text-shadow:
         3px 4px 0 #075d78,
         -2px -2px 0 #ffffff,
-        0 5px 15px rgba(0,0,0,.35);
+        0 5px 15px rgba(0, 0, 0, .35);
 }
 
 .contact-hero p {
     display: inline-block;
     padding: 8px 24px;
     border-radius: 30px;
-    background: rgba(220,250,255,.85);
+    background: rgba(220, 250, 255, .85);
     color: #075d78;
     font-weight: 700;
     font-size: 18px;
@@ -2360,12 +2342,12 @@ h2 {
     justify-content: center;
     gap: 20px;
 
-    background: rgba(255,255,255,.72);
+    background: rgba(255, 255, 255, .72);
     backdrop-filter: blur(12px);
-    border: 2px solid rgba(255,255,255,.85);
+    border: 2px solid rgba(255, 255, 255, .85);
     border-radius: 25px;
 
-    box-shadow: 0 6px 18px rgba(0,60,90,.12);
+    box-shadow: 0 6px 18px rgba(0, 60, 90, .12);
     transition: .3s;
 }
 
@@ -2406,11 +2388,11 @@ h2 {
     padding: 25px;
     border-radius: 27px;
 
-    background: rgba(255,255,255,.76);
+    background: rgba(255, 255, 255, .76);
     backdrop-filter: blur(14px);
 
-    border: 2px solid rgba(255,255,255,.9);
-    box-shadow: 0 8px 25px rgba(0,50,80,.15);
+    border: 2px solid rgba(255, 255, 255, .9);
+    box-shadow: 0 8px 25px rgba(0, 50, 80, .15);
 }
 
 .contact-manager-card h2 {
@@ -2429,7 +2411,7 @@ h2 {
     padding: 0 17px;
     height: 55px;
 
-    background: rgba(255,255,255,.65);
+    background: rgba(255, 255, 255, .65);
     border: 2px solid white;
     border-radius: 30px;
 }
@@ -2466,7 +2448,7 @@ h2 {
 
 .contact-row td {
     padding: 20px 8px;
-    border-top: 2px solid rgba(255,255,255,.8);
+    border-top: 2px solid rgba(255, 255, 255, .8);
 }
 
 .contact-info {
@@ -2536,10 +2518,10 @@ h2 {
     box-sizing: border-box;
     padding: 15px 17px;
 
-    border: 2px solid rgba(255,255,255,.9);
+    border: 2px solid rgba(255, 255, 255, .9);
     border-radius: 15px;
 
-    background: rgba(255,255,255,.72);
+    background: rgba(255, 255, 255, .72);
     font-size: 17px;
     color: #075d78;
 }
@@ -2547,7 +2529,7 @@ h2 {
 .contact-add-form input:focus {
     outline: none;
     border-color: #36c5df;
-    box-shadow: 0 0 0 3px rgba(54,197,223,.15);
+    box-shadow: 0 0 0 3px rgba(54, 197, 223, .15);
 }
 
 .contact-add-form button {
@@ -2566,7 +2548,7 @@ h2 {
 
 .contact-add-form button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0,100,140,.25);
+    box-shadow: 0 6px 15px rgba(0, 100, 140, .25);
 }
 
 /* LOADING */
@@ -2637,63 +2619,80 @@ h2 {
 }
 
 
-/* =====================================================================
+/* 
    RESPONSIVE (HP & TABLET) — ditaruh paling bawah agar menimpa aturan lama
-   ===================================================================== */
+    */
 
 /* Cegah elemen media/teks panjang melebar keluar layar */
-img, svg, video { max-width: 100%; }
-html { -webkit-text-size-adjust: 100%; }
+img,
+svg,
+video {
+    max-width: 100%;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
 
 /* ---- Navbar mobile bertema laut ---- */
-.navbar-brand { min-width: 0; }
-.navbar-brand .brand-name { overflow: hidden; text-overflow: ellipsis; }
-.brand-shell { flex-shrink: 0; }
-
-.mobile-menu summary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    font-size: 16px;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, .08);
-    transition: background .25s, box-shadow .25s;
+.navbar-brand .brand-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .mobile-menu summary:hover,
 .mobile-menu[open] summary {
     background: rgba(255, 255, 255, .22);
     box-shadow: 0 0 14px rgba(120, 240, 255, .6);
 }
-.mobile-menu summary svg {
-    width: 22px; height: 22px;
-    fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round;
-}
-.mobile-menu-content {
-    width: min(280px, calc(100vw - 32px));
-    max-height: calc(100vh - 110px);
-    overflow-y: auto;
-    animation: dropIn .22s ease;
-}
-.mobile-menu-content a { display: block; }
 
-@media (max-width: 1100px) {
-    .navbar-container { min-height: 70px; gap: 12px; padding: 10px 4px 6px; }
-    .navbar-brand { flex: 1 1 auto; }
+.mobile-menu summary svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
 }
 
 @media (max-width: 600px) {
-    .site-header { padding: 0 12px 12px; }
-    .navbar-container { padding-left: 0; padding-right: 0; }
-    .navbar-brand { font-size: 17px; gap: 8px; }
-    .brand-shell { width: 32px; height: 32px; }
-    .mobile-menu summary { padding: 7px 12px; font-size: 15px; }
+    .site-header {
+        padding: 0 12px 12px;
+    }
+
+    .navbar-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .navbar-brand {
+        font-size: 17px;
+        gap: 8px;
+    }
+
+    .brand-shell {
+        width: 32px;
+        height: 32px;
+    }
+
+    .mobile-menu summary {
+        padding: 7px 12px;
+        font-size: 15px;
+    }
 }
 
 @media (max-width: 380px) {
-    .navbar-brand { font-size: 15px; }
-    .mobile-menu summary span { display: none; }
-    .mobile-menu summary { padding: 8px 10px; }
+    .navbar-brand {
+        font-size: 15px;
+    }
+
+    .mobile-menu summary span {
+        display: none;
+    }
+
+    .mobile-menu summary {
+        padding: 8px 10px;
+    }
 }
 
 /* ---- Background tetap (fixed) bermasalah di iOS: pakai layer fixed ---- */
@@ -2702,6 +2701,7 @@ html { -webkit-text-size-adjust: 100%; }
         background-image: none;
         background-color: #0a5f7e;
     }
+
     body::before {
         content: "";
         position: fixed;
@@ -2717,36 +2717,74 @@ html { -webkit-text-size-adjust: 100%; }
 .education-cards,
 .experience-cards,
 .achievements-cards,
-.skills-cards { flex-wrap: wrap; }
+.skills-cards {
+    flex-wrap: wrap;
+}
 
 .education-card,
 .education-link,
 .experience-card,
 .experience-link,
 .achievements-card,
-.skills-card { max-width: 100%; }
+.skills-card {
+    max-width: 100%;
+}
 
-.experience-grid.achievements-grid > .experience-card { width: auto; }
+.experience-grid.achievements-grid>.experience-card {
+    width: auto;
+}
 
 /* ---- Tablet ---- */
 @media (max-width: 900px) {
-    .ketik h1 { font-size: clamp(26px, 7vw, 44px); }
-    .contact-message { flex-wrap: wrap; }
-    .contact-cards { flex-wrap: wrap; }
-    .nailong { width: min(300px, 70vw); height: auto; aspect-ratio: 1; }
-    .message-box { width: min(420px, 100%); }
+    .ketik h1 {
+        font-size: clamp(26px, 7vw, 44px);
+    }
+
+    .contact-message {
+        flex-wrap: wrap;
+    }
+
+    .contact-cards {
+        flex-wrap: wrap;
+    }
+
+    .nailong {
+        width: min(300px, 70vw);
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .message-box {
+        width: min(420px, 100%);
+    }
+
     .experience-card .avatar,
-    .achievements-card .avatar { width: min(300px, 100%); height: auto; aspect-ratio: 1; }
-    .experience-logo { width: min(300px, 100%); height: auto; aspect-ratio: 1; }
+    .achievements-card .avatar {
+        width: min(300px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+    }
+
+    .experience-logo {
+        width: min(300px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+    }
 }
 
 /* ---- HP ---- */
 @media (max-width: 600px) {
+
     /* halaman swipe: satu layar = lebar viewport sebenarnya */
-    .pages > section { min-width: 100%; }
+    .pages>section {
+        min-width: 100%;
+    }
 
     /* Judul: tanpa efek ketik agar tidak terpotong, boleh turun baris */
-    .ketik { margin-bottom: 24px; }
+    .ketik {
+        margin-bottom: 24px;
+    }
+
     .ketik h1 {
         width: auto;
         max-width: 100%;
@@ -2759,84 +2797,276 @@ html { -webkit-text-size-adjust: 100%; }
     }
 
     /* Home */
-    .intro { padding: 24px 12px; }
-    .intro-card { width: 100%; padding: 16px 12px; }
-    .intro-image img { width: min(200px, 60vw); height: min(200px, 60vw); }
-    .ketik-home h1 { font-size: clamp(20px, 6.5vw, 32px); }
-    .intro-card p { font-size: 22px; line-height: 1.3; }
+    .intro {
+        padding: 24px 12px;
+    }
+
+    .intro-card {
+        width: 100%;
+        padding: 16px 12px;
+    }
+
+    .intro-image img {
+        width: min(200px, 60vw);
+        height: min(200px, 60vw);
+    }
+
+    .ketik-home h1 {
+        font-size: clamp(20px, 6.5vw, 32px);
+    }
+
+    .intro-card p {
+        font-size: 22px;
+        line-height: 1.3;
+    }
 
     /* About */
-    .hero { padding: 2rem 0 3rem; }
-    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
-    .hero-grid > * { min-width: 0; }
-    .hero-kicker { font-size: .8rem; }
-    .hero-identity h1 { font-size: clamp(2rem, 11vw, 2.8rem); line-height: 1.1; overflow-wrap: anywhere; }
-    .meta-list { flex-direction: column; gap: .75rem; width: 100%; }
-    .meta-row dd { overflow-wrap: anywhere; }
-    .swipe-hint { font-size: 14px; padding: 8px 14px; }
+    .hero {
+        padding: 2rem 0 3rem;
+    }
+
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.25rem;
+    }
+
+    .hero-grid>* {
+        min-width: 0;
+    }
+
+    .hero-kicker {
+        font-size: .8rem;
+    }
+
+    .hero-identity h1 {
+        font-size: clamp(2rem, 11vw, 2.8rem);
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+    }
+
+    .meta-list {
+        flex-direction: column;
+        gap: .75rem;
+        width: 100%;
+    }
+
+    .meta-row dd {
+        overflow-wrap: anywhere;
+    }
+
+    .swipe-hint {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
 
     /* Education / Experience / Achievements / Skills */
-    .education-page, .experience-page, .achievements-page, .skills-page { padding-top: 20px; }
-    .education-content, .experience-content, .achievements-content, .skills-content { width: 92%; }
-    .education-cards, .experience-cards, .achievements-cards, .skills-cards { gap: 16px; }
-    .education-card, .education-link, .experience-card, .experience-link,
-    .achievements-card, .skills-card { width: 100%; min-height: 0; }
-    .education-logo { width: min(180px, 60vw); height: min(180px, 60vw); }
-    .skills-logo { width: min(200px, 60vw); height: min(200px, 60vw); }
-    .skills-card { min-height: 0; }
-    .education-card h2, .experience-card h2, .achievements-card h2, .skills-card h2 { font-size: 22px; }
-    .education-card p, .experience-card p, .achievements-card p { font-size: 20px; }
-    .skills-card p { font-size: 20px; }
-    .skills-list p { font-size: 18px; }
-    .experience-card:hover, .achievements-card:hover, .education-card:hover,
-    .skills-card:hover { transform: none; }
+    .education-page,
+    .experience-page,
+    .achievements-page,
+    .skills-page {
+        padding-top: 20px;
+    }
 
-    .experience-search { width: 100%; }
+    .education-content,
+    .experience-content,
+    .achievements-content,
+    .skills-content {
+        width: 92%;
+    }
+
+    .education-cards,
+    .experience-cards,
+    .achievements-cards,
+    .skills-cards {
+        gap: 16px;
+    }
+
+    .education-card,
+    .education-link,
+    .experience-card,
+    .experience-link,
+    .achievements-card,
+    .skills-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .education-logo {
+        width: min(180px, 60vw);
+        height: min(180px, 60vw);
+    }
+
+    .skills-logo {
+        width: min(200px, 60vw);
+        height: min(200px, 60vw);
+    }
+
+    .skills-card {
+        min-height: 0;
+    }
+
+    .education-card h2,
+    .experience-card h2,
+    .achievements-card h2,
+    .skills-card h2 {
+        font-size: 22px;
+    }
+
+    .education-card p,
+    .experience-card p,
+    .achievements-card p {
+        font-size: 20px;
+    }
+
+    .skills-card p {
+        font-size: 20px;
+    }
+
+    .skills-list p {
+        font-size: 18px;
+    }
+
+    .experience-card:hover,
+    .achievements-card:hover,
+    .education-card:hover,
+    .skills-card:hover {
+        transform: none;
+    }
+
+    .experience-search {
+        width: 100%;
+    }
 
     /* Contact (halaman swipe di About) */
-    .message-box { padding: 18px 20px; }
-    .message-box h2 { font-size: 22px; }
-    .message-box::after { display: none; }
-    .contact-cards { gap: 14px; }
-    .contact-card { width: calc(50% - 7px); max-width: 180px; height: 150px; }
-    .contact-logo { width: 64px; height: 64px; }
+    .message-box {
+        padding: 18px 20px;
+    }
+
+    .message-box h2 {
+        font-size: 22px;
+    }
+
+    .message-box::after {
+        display: none;
+    }
+
+    .contact-cards {
+        gap: 14px;
+    }
+
+    .contact-card {
+        width: calc(50% - 7px);
+        max-width: 180px;
+        height: 150px;
+    }
+
+    .contact-logo {
+        width: 64px;
+        height: 64px;
+    }
 
     /* Contact dashboard (HTMX) */
-    .contact-page { padding: 24px 0 40px; }
-    .contact-hero p { font-size: 15px; padding: 8px 16px; }
-    .contact-info strong { font-size: 18px; }
-    .contact-info span { font-size: 14px; }
-    .contact-actions { white-space: normal; }
-    .contact-actions button { margin: 2px 0 2px 4px; }
+    .contact-page {
+        padding: 24px 0 40px;
+    }
+
+    .contact-hero p {
+        font-size: 15px;
+        padding: 8px 16px;
+    }
+
+    .contact-info strong {
+        font-size: 18px;
+    }
+
+    .contact-info span {
+        font-size: 14px;
+    }
+
+    .contact-actions {
+        white-space: normal;
+    }
+
+    .contact-actions button {
+        margin: 2px 0 2px 4px;
+    }
 
     /* Form login / register / modal */
-    .achievements-form { padding: 20px 16px; }
-    .achievements-form input, .achievements-form textarea, .achievements-form select { font-size: 16px; padding: 12px 14px; }
-    .experience-section .container { padding: 0 1rem; }
-    .form-group input, .form-group textarea, .form-group select { font-size: 16px; } /* cegah auto-zoom iOS */
+    .achievements-form {
+        padding: 20px 16px;
+    }
+
+    .achievements-form input,
+    .achievements-form textarea,
+    .achievements-form select {
+        font-size: 16px;
+        padding: 12px 14px;
+    }
+
+    .experience-section .container {
+        padding: 0 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
+    }
+
+    /* cegah auto-zoom iOS */
 
     /* Tombol suara & toast */
-    .sound-button { bottom: 12px; right: 12px; padding: 9px 13px; font-size: 12px; }
-    .toast-component { inset: auto 1rem 4.5rem 1rem; }
-    .popup-message { width: calc(100% - 24px); top: 14px; font-size: 14px; padding: 12px 16px; }
+    .sound-button {
+        bottom: 12px;
+        right: 12px;
+        padding: 9px 13px;
+        font-size: 12px;
+    }
 
-    .achievements-header { margin-bottom: 1rem; }
-    .site-footer { padding: 12px; font-size: 12px; }
+    .toast-component {
+        inset: auto 1rem 4.5rem 1rem;
+    }
+
+    .popup-message {
+        width: calc(100% - 24px);
+        top: 14px;
+        font-size: 14px;
+        padding: 12px 16px;
+    }
+
+    .achievements-header {
+        margin-bottom: 1rem;
+    }
+
+    .site-footer {
+        padding: 12px;
+        font-size: 12px;
+    }
 }
 
 /* Layar sangat kecil */
 @media (max-width: 360px) {
-    .contact-card { width: 100%; max-width: none; height: 120px; }
-    .contact-statistics { gap: 8px; }
+    .contact-card {
+        width: 100%;
+        max-width: none;
+        height: 120px;
+    }
+
+    .contact-statistics {
+        gap: 8px;
+    }
 }
 
 /* Tiap "halaman swipe" harus persis selebar layar, bukan selebar isinya */
 @media (max-width: 1000px) {
-    .pages > section {
+    .pages>section {
         flex: 0 0 100%;
         width: 100%;
         min-width: 0;
         max-width: 100%;
     }
-    .pages > section .container { width: 100%; }
+
+    .pages>section .container {
+        width: 100%;
+    }
 }
