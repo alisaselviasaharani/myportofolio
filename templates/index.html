@@ -1,52 +1,113 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Contacts</title>
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"></script>
-</head>
+{% block meta %}
+<title>Contacts | Alisa Selvia</title>
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"></script>
+{% endblock meta %}
 
-<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+{% block content %}
 
-    <h1>Daftar Kontak</h1>
+<section class="contact-page">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nama</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-        </thead>
+    <div class="contact-content">
 
-        <tbody id="contact-rows">
-            {% include "_contact_rows.html" %}
-        </tbody>
-    </table>
+        <!-- HERO TITLE -->
+        <div class="contact-hero">
+            <div class="ketik">
+                <h1>CONTACTS</h1>
+            </div>
+            <p>Let's stay connected under the sea! 🐬</p>
+        </div>
 
-    <h1>Tambah Kontak</h1>
+        <!-- STATISTICS -->
+        <div class="contact-statistics">
 
-    <form hx-post="{% url 'main:contact_add' %}" hx-target="#contact-rows" hx-swap="innerHTML"
-        hx-on::after-request="if (event.detail.successful) this.reset()">
+            <div class="contact-stat-card">
+                <div class="stat-icon">🪸</div>
+                <div>
+                    <h2>{{ contacts|length|stringformat:"02d" }}</h2>
+                    <p>All Contacts</p>
+                </div>
+            </div>
 
-        {% csrf_token %}
+            <div class="contact-stat-card">
+                <div class="stat-icon">🐚</div>
+                <div>
+                    <h2>{{ contacts|length|stringformat:"02d" }}</h2>
+                    <p>Saved</p>
+                </div>
+            </div>
 
-        <input type="text" name="name" placeholder="Nama" required>
-        <input type="email" name="email" placeholder="Email" required>
+            <div class="contact-stat-card">
+                <div class="stat-icon">⭐</div>
+                <div>
+                    <h2>{{ contacts|length|stringformat:"02d" }}</h2>
+                    <p>Results</p>
+                </div>
+            </div>
 
-        <button type="submit">Tambah</button>
-    </form>
+        </div>
 
-    <h2>Cari Kontak</h2>
+        <!-- MAIN DASHBOARD -->
+        <div class="contact-dashboard">
 
-    <input type="search" name="q" placeholder="Cari kontak..." hx-get="{% url 'main:contact_search' %}"
-        hx-trigger="keyup changed delay:300ms, search" hx-target="#contact-rows" hx-indicator="#search-indicator">
+            <!-- CONTACT LIST -->
+            <div class="contact-manager-card contact-list-card">
 
-    <span id="search-indicator" class="htmx-indicator">
-        Mencari...
-    </span>
+                <h2>🐚 My Contact List</h2>
 
-</body>
+                <!-- SEARCH -->
+                <div class="contact-search">
+                    <span>🔍</span>
+                    <input type="search" name="q" placeholder="Search contacts..."
+                        hx-get="{% url 'main:contact_search' %}" hx-trigger="keyup changed delay:300ms, search"
+                        hx-target="#contact-rows" hx-indicator="#search-indicator">
+                </div>
 
-</html>
+                <span id="search-indicator" class="htmx-indicator">
+                    Searching...
+                </span>
+
+                <!-- TABLE -->
+                <div class="contact-table-wrapper">
+                    <table class="contact-table">
+
+                        <tbody id="contact-rows">
+                            {% include "_contact_rows.html" %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- ADD CONTACT -->
+            <div class="contact-manager-card add-contact-card">
+
+                <h2>🪸 Add New Contact</h2>
+
+                <form class="contact-add-form" hx-post="{% url 'main:contact_add' %}" hx-target="#contact-rows"
+                    hx-swap="innerHTML" hx-on::after-request="if (event.detail.successful) this.reset()">
+
+                    {% csrf_token %}
+
+                    <input type="text" name="name" placeholder="Full name" required>
+
+                    <input type="email" name="email" placeholder="Email address" required>
+
+                    <button type="submit">
+                        + Add Contact
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}

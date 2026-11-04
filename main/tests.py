@@ -1,6 +1,12 @@
+import os
+from unittest import mock
+
+from django.contrib.auth.models import Group, User
 from django.test import TestCase
 from django.urls import reverse
-from main.models import Experience, Education
+
+from main.forms import AchievementsForm, ExperienceForm
+from main.models import Achievements, Contact, Education, Experience
 
 
 class MainTest(TestCase):
@@ -54,30 +60,25 @@ class MainTest(TestCase):
         self.assertEqual(self.experience.period,"2024-2025")
 
     # Test halaman experience
+    # Note: sejak Tutorial 05 kartu dirender oleh JavaScript dari API, jadi HTML server
+    # tidak lagi memuat judulnya. Yang diuji: halaman memuat endpoint API DRF dan
+    # API mengembalikan data experience yang sama.
     def test_experience_page(self):
-        #mengakses halaman experience
         response = self.client.get(reverse("main:show_experience"))
-
-        #Memastikan page berhasil diakses (status code 200= berhasil)
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "experience.html")
 
-        #memastikan halaman menggunakan template aboutme.html
-        self.assertTemplateUsed(response,"experience.html")
+        # Halaman memanggil endpoint DRF
+        self.assertContains(response, reverse("api:experience-list"))
 
-        # Memastikan judul Experience muncul pada halaman.
-        self.assertContains(response,self.experience.title)
-
-        # Memastikan  DESKRIPSI muncul pada halaman.
-        self.assertContains(response, self.experience.description)
-
-        # Memastikan kategori
-        self.assertContains(response,"Part-Time")
-
-        #memastikan institusi muncul
-        self.assertContains(response,self.experience.institution)
-
-        #memastikan periode muncul
-        self.assertContains(response,self.experience.period)
+        # Data experience tersedia lewat API
+        data = self.client.get(reverse("api:experience-list")).json()
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["title"], self.experience.title)
+        self.assertEqual(data[0]["description"], self.experience.description)
+        self.assertEqual(data[0]["category_display"], "Part-Time")
+        self.assertEqual(data[0]["institution"], self.experience.institution)
+        self.assertEqual(data[0]["period"], self.experience.period)
 
     # Test empty state experience
     def test_empty_experience_page(self):
@@ -132,3 +133,470 @@ class MainTest(TestCase):
 
         # Memastikan pesan empty state ditampilkan.
         self.assertContains(response,"Belum ada data pendidikan.")
+
+
+# =====================================================================
+# TEST TAMBAHAN UNTUK SELURUH TUGAS (Tugas 1 - 6)
+# =====================================================================
+SECRET = "rahasia-test"
+STRONG_PASSWORD = "Str0ng-Pass-2026"
+
+
+class BaseSiteTestCase(TestCase):
+    """Data & akun dasar: pemilik (superuser), Editor, dan pengunjung biasa."""
+
+    def setUp(self):
+        patcher = mock.patch.dict(os.environ, {"PORTOFOLIO_SECRET": SECRET})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+        self.owner = User.objects.create_superuser("owner", "owner@example.com", "test-password")
+        self.editor = User.objects.create_user("editor", password="test-password")
+        self.editor.groups.add(Group.objects.create(name="Editor"))
+        self.visitor = User.objects.create_user("visitor", password="test-password")
+
+        self.achievement = Achievements.objects.create(
+            title="Juara 1 Lomba", description="Lomba web", category="Competition", period="2025",
+        )
+        self.experience = Experience.objects.create(
+            title="Asisten Lab", description="Membantu praktikum", category="part-time",
+            institution="Fasilkom UI", period="2025",
+        )
+
+    def login(self, user):
+        self.assertTrue(self.client.login(username=user.username, password="test-password"))
+
+    def achievement_data(self, **changes):
+        data = {
+            "title": "Penghargaan Baru", "period": "2026", "description": "Deskripsi",
+            "category": "Award", "achievements_image_url": "", "secret_code": SECRET,
+        }
+        data.update(changes)
+        return data
+
+    def experience_data(self, **changes):
+        data = {
+            "title": "Magang", "institution": "PT Contoh", "period": "2026",
+            "category": "internship", "description": "Belajar banyak",
+            "logo": "", "website": "",
+        }
+        data.update(changes)
+        return data
+
+
+# --------->>>>> TUGAS 1-2: HALAMAN & MODEL <<<<<---------
+class PagesAndModelsTest(BaseSiteTestCase):
+    def test_public_pages_are_accessible(self):
+        for name, template in [
+            ("main:show_home", "home.html"),
+            ("main:show_aboutme", "aboutme.html"),
+            ("main:show_experience", "experience.html"),
+            ("main:show_education", "education.html"),
+            ("main:show_achievements", "achievements.html"),
+            ("main:login", "login.html"),
+            ("main:register", "register.html"),
+        ]:
+            with self.subTest(page=name):
+                response = self.client.get(reverse(name))
+                self.assertEqual(response.status_code, 200)
+                self.assertTemplateUsed(response, template)
+
+    def test_aboutme_shows_profile(self):
+        response = self.client.get(reverse("main:show_aboutme"))
+        self.assertContains(response, "Alisa Selvia Saharani")
+        self.assertContains(response, "2506618433")
+
+    def test_model_str_and_uuid_primary_keys(self):
+        self.assertEqual(str(self.achievement), "Juara 1 Lomba")
+        self.assertEqual(str(self.experience), "Asisten Lab")
+        self.assertEqual(str(Contact.objects.create(name="Budi", email="budi@example.com")), "Budi")
+        self.assertEqual(str(Education.objects.create(
+            institution="UI", degree="S1", period="2025", logo="/l.png", website="https://ui.ac.id")), "UI")
+        self.assertEqual(len(str(self.achievement.id)), 36)
+        self.assertEqual(len(str(self.experience.id)), 36)
+
+    def test_achievements_page_uses_drf_endpoints(self):
+        response = self.client.get(reverse("main:show_achievements"))
+        self.assertContains(response, reverse("api:achievements-list"))
+        self.assertContains(response, "Belum ada penghargaan yang ditambahkan atau ditemukan.")
+        # modal tambah hanya untuk superuser
+        self.assertNotContains(response, 'id="add-achievements-modal"')
+        self.login(self.owner)
+        response = self.client.get(reverse("main:show_achievements"))
+        self.assertContains(response, 'id="add-achievements-modal"')
+
+    def test_experience_form_modal_has_all_fields(self):
+        response = self.client.get(reverse("main:show_experience"))
+        for field in ("title", "institution", "period", "category", "description", "logo", "website"):
+            self.assertContains(response, f'name="{field}"')
+
+
+# --------->>>>> TUGAS 3: FORM, CRUD ACHIEVEMENTS <<<<<---------
+class FormsTest(BaseSiteTestCase):
+    def test_experience_form_strips_tags_and_rejects_empty(self):
+        form = ExperienceForm(self.experience_data(title="<b>Magang</b>", description="<i>Seru</i>"))
+        self.assertTrue(form.is_valid(), form.errors)
+        self.assertEqual(form.cleaned_data["title"], "Magang")
+        self.assertEqual(form.cleaned_data["description"], "Seru")
+
+        form = ExperienceForm(self.experience_data(title="<img src=x onerror=alert(1)>"))
+        self.assertFalse(form.is_valid())
+        self.assertIn("title", form.errors)
+
+        form = ExperienceForm(self.experience_data(description="<p></p>"))
+        self.assertFalse(form.is_valid())
+        self.assertIn("description", form.errors)
+
+    def test_achievements_form_requires_secret_code_and_strips_tags(self):
+        data = self.achievement_data(title="<b>Hebat</b>", description="<i>Bagus</i>")
+        form = AchievementsForm(data)
+        self.assertTrue(form.is_valid(), form.errors)
+        self.assertEqual(form.cleaned_data["title"], "Hebat")
+        self.assertEqual(form.cleaned_data["description"], "Bagus")
+
+        data.pop("secret_code")
+        form = AchievementsForm(data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("secret_code", form.errors)
+
+        form = AchievementsForm(self.achievement_data(title="<img src=x>"))
+        self.assertFalse(form.is_valid())
+        self.assertIn("title", form.errors)
+
+
+class AchievementsCrudViewsTest(BaseSiteTestCase):
+    def test_create_page_permissions(self):
+        url = reverse("main:create_achievements")
+        response = self.client.get(url)
+        self.assertRedirects(response, f"/login/?next={url}", fetch_redirect_response=False)
+
+        self.login(self.visitor)
+        self.assertEqual(self.client.get(url).status_code, 403)
+
+        self.client.logout()
+        self.login(self.owner)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "achievements_form.html")
+
+    def test_owner_creates_with_correct_secret(self):
+        self.login(self.owner)
+        response = self.client.post(reverse("main:create_achievements"),
+                                    self.achievement_data(title="<b>Dibuat</b>"))
+        self.assertRedirects(response, reverse("main:show_achievements"), fetch_redirect_response=False)
+        self.assertTrue(Achievements.objects.filter(title="Dibuat").exists())
+
+    def test_wrong_secret_does_not_create(self):
+        self.login(self.owner)
+        response = self.client.post(reverse("main:create_achievements"),
+                                    self.achievement_data(secret_code="salah"))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("secret_code", response.context["form"].errors)
+        self.assertEqual(Achievements.objects.count(), 1)
+
+    def test_update_allowed_for_owner_and_editor_only(self):
+        url = reverse("main:update_achievements", args=[self.achievement.id])
+
+        self.login(self.visitor)
+        self.assertEqual(self.client.post(url, self.achievement_data(title="Hack")).status_code, 403)
+        self.client.logout()
+
+        for user, title in ((self.editor, "Diubah Editor"), (self.owner, "Diubah Owner")):
+            self.login(user)
+            response = self.client.post(url, self.achievement_data(title=title))
+            self.assertRedirects(response, reverse("main:show_achievements"), fetch_redirect_response=False)
+            self.achievement.refresh_from_db()
+            self.assertEqual(self.achievement.title, title)
+            self.client.logout()
+
+    def test_update_with_wrong_secret_changes_nothing(self):
+        self.login(self.editor)
+        url = reverse("main:update_achievements", args=[self.achievement.id])
+        response = self.client.post(url, self.achievement_data(title="Hack", secret_code="salah"))
+        self.assertEqual(response.status_code, 200)
+        self.achievement.refresh_from_db()
+        self.assertEqual(self.achievement.title, "Juara 1 Lomba")
+
+    def test_update_page_prefills_form(self):
+        self.login(self.editor)
+        response = self.client.get(reverse("main:update_achievements", args=[self.achievement.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Juara 1 Lomba")
+
+    def test_delete_only_owner_and_only_post(self):
+        url = reverse("main:delete_achievements", args=[self.achievement.id])
+
+        self.login(self.visitor)
+        self.assertEqual(self.client.post(url).status_code, 403)
+        self.client.logout()
+        self.login(self.editor)
+        self.assertEqual(self.client.post(url).status_code, 403)
+        self.client.logout()
+        self.assertEqual(Achievements.objects.count(), 1)
+
+        self.login(self.owner)
+        self.client.get(url)  # GET tidak menghapus
+        self.assertEqual(Achievements.objects.count(), 1)
+        self.client.post(url)
+        self.assertEqual(Achievements.objects.count(), 0)
+
+
+# --------->>>>> TUGAS 4: AUTENTIKASI, COOKIE, STAR, PERAN <<<<<---------
+class AuthenticationTest(BaseSiteTestCase):
+    def test_register_creates_user(self):
+        response = self.client.post(reverse("main:register"), {
+            "username": "baru", "password1": STRONG_PASSWORD, "password2": STRONG_PASSWORD,
+        })
+        self.assertRedirects(response, reverse("main:login"), fetch_redirect_response=False)
+        self.assertTrue(User.objects.filter(username="baru").exists())
+
+    def test_register_with_mismatched_passwords_fails(self):
+        response = self.client.post(reverse("main:register"), {
+            "username": "baru", "password1": STRONG_PASSWORD, "password2": "beda-sekali-2026",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(User.objects.filter(username="baru").exists())
+
+    def test_login_sets_last_login_cookie(self):
+        response = self.client.post(reverse("main:login"),
+                                    {"username": "visitor", "password": "test-password"})
+        self.assertRedirects(response, reverse("main:show_aboutme"), fetch_redirect_response=False)
+        self.assertIn("last_login", response.cookies)
+        self.assertNotEqual(response.cookies["last_login"].value, "")
+        self.assertEqual(self.client.session["_auth_user_id"], str(self.visitor.pk))
+
+    def test_login_with_wrong_password_fails(self):
+        response = self.client.post(reverse("main:login"),
+                                    {"username": "visitor", "password": "salah"})
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+    def test_logout_clears_session_and_cookie(self):
+        self.login(self.visitor)
+        self.client.cookies["last_login"] = "01 January 2026"
+        response = self.client.get(reverse("main:logout"))
+        self.assertRedirects(response, reverse("main:show_home"), fetch_redirect_response=False)
+        self.assertNotIn("_auth_user_id", self.client.session)
+        self.assertEqual(response.cookies["last_login"].value, "")
+
+    def test_aboutme_shows_last_login_cookie_or_default(self):
+        response = self.client.get(reverse("main:show_aboutme"))
+        self.assertContains(response, "Belum ada sesi login")
+        self.client.cookies["last_login"] = "01 January 2026"
+        response = self.client.get(reverse("main:show_aboutme"))
+        self.assertContains(response, "01 January 2026")
+
+
+class StarViewsTest(BaseSiteTestCase):
+    def test_achievement_star_requires_login(self):
+        url = reverse("main:toggle_star", args=[self.achievement.id])
+        response = self.client.post(url)
+        self.assertRedirects(response, f"/login/?next={url}", fetch_redirect_response=False)
+        self.assertEqual(self.achievement.starred_by.count(), 0)
+
+    def test_achievement_star_toggles_per_user(self):
+        url = reverse("main:toggle_star", args=[self.achievement.id])
+        self.login(self.visitor)
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse("main:show_achievements"), fetch_redirect_response=False)
+        self.assertEqual(self.achievement.starred_by.count(), 1)
+        self.client.post(url)
+        self.assertEqual(self.achievement.starred_by.count(), 0)
+
+        self.client.post(url)
+        self.client.logout()
+        self.login(self.editor)
+        self.client.post(url)
+        self.assertEqual(self.achievement.starred_by.count(), 2)
+
+    def test_get_does_not_change_star(self):
+        self.login(self.visitor)
+        self.client.get(reverse("main:toggle_star", args=[self.achievement.id]))
+        self.assertEqual(self.achievement.starred_by.count(), 0)
+
+    def test_experience_star_requires_login_and_toggles(self):
+        url = reverse("main:toggle_star_experience", args=[self.experience.id])
+        self.client.post(url)
+        self.assertEqual(self.experience.starred_by.count(), 0)
+
+        self.login(self.visitor)
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse("main:show_experience"), fetch_redirect_response=False)
+        self.assertEqual(self.experience.starred_by.count(), 1)
+        self.client.post(url)
+        self.assertEqual(self.experience.starred_by.count(), 0)
+
+
+class EditorRoleContextTest(BaseSiteTestCase):
+    def test_is_editor_flag_on_pages(self):
+        for name in ("main:show_experience", "main:show_achievements"):
+            with self.subTest(page=name):
+                self.login(self.editor)
+                self.assertTrue(self.client.get(reverse(name)).context["is_editor"])
+                self.client.logout()
+                self.login(self.visitor)
+                self.assertFalse(self.client.get(reverse(name)).context["is_editor"])
+                self.client.logout()
+
+
+# --------->>>>> TUGAS 5: ENDPOINT JSON & AJAX (versi JsonResponse) <<<<<---------
+class LegacyJsonEndpointsTest(BaseSiteTestCase):
+    def test_achievements_json_list_search_and_star_flag(self):
+        self.achievement.starred_by.add(self.visitor)
+        data = self.client.get(reverse("main:get_achievements_json")).json()
+        self.assertEqual(data[0]["id"], str(self.achievement.id))
+        self.assertEqual(data[0]["star_count"], 1)
+        self.assertFalse(data[0]["is_starred"])
+
+        self.login(self.visitor)
+        self.assertTrue(self.client.get(reverse("main:get_achievements_json")).json()[0]["is_starred"])
+
+        url = reverse("main:get_achievements_json")
+        self.assertEqual(len(self.client.get(url, {"title": "JUARA"}).json()), 1)
+        self.assertEqual(self.client.get(url, {"title": "tidak-ada"}).json(), [])
+
+    def test_experience_json_fields_and_search(self):
+        url = reverse("main:get_experience_json")
+        data = self.client.get(url).json()
+        self.assertEqual(data[0]["title"], "Asisten Lab")
+        self.assertEqual(data[0]["category"], "Part-Time")
+        self.assertEqual(data[0]["institution"], "Fasilkom UI")
+        self.assertEqual(len(self.client.get(url, {"title": "asisten"}).json()), 1)
+        self.assertEqual(self.client.get(url, {"title": "zzz"}).json(), [])
+
+
+class AchievementsAjaxTest(BaseSiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.url = reverse("main:create_achievements_ajax")
+
+    def test_only_post_allowed(self):
+        self.login(self.owner)
+        self.assertEqual(self.client.get(self.url).status_code, 405)
+
+    def test_guest_and_visitor_forbidden(self):
+        self.assertEqual(self.client.post(self.url, self.achievement_data()).status_code, 403)
+        self.login(self.visitor)
+        self.assertEqual(self.client.post(self.url, self.achievement_data()).status_code, 403)
+        self.assertEqual(Achievements.objects.count(), 1)
+
+    def test_owner_creates_with_secret(self):
+        self.login(self.owner)
+        response = self.client.post(self.url, self.achievement_data(title="<b>Ajax</b>"))
+        self.assertEqual(response.status_code, 201)
+        created = Achievements.objects.get(pk=response.json()["pk"])
+        self.assertEqual(created.title, "Ajax")
+
+    def test_wrong_secret_and_invalid_input_return_400(self):
+        self.login(self.owner)
+        response = self.client.post(self.url, self.achievement_data(secret_code="salah"))
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("secret_code", response.json()["errors"])
+
+        response = self.client.post(self.url, self.achievement_data(title="<img src=x>"))
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("title", response.json()["errors"])
+        self.assertEqual(Achievements.objects.count(), 1)
+
+
+class ExperienceAjaxTest(BaseSiteTestCase):
+    def test_create_permissions_and_validation(self):
+        url = reverse("main:create_experience_ajax")
+        self.assertEqual(self.client.post(url, self.experience_data()).status_code, 403)
+
+        for user in (self.visitor, self.editor):  # Editor tidak boleh membuat
+            self.login(user)
+            self.assertEqual(self.client.post(url, self.experience_data()).status_code, 403)
+            self.client.logout()
+        self.assertEqual(Experience.objects.count(), 1)
+
+        self.login(self.owner)
+        self.assertEqual(self.client.get(url).status_code, 405)
+        response = self.client.post(url, self.experience_data(title="<b>Magang Baru</b>"))
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(Experience.objects.get(pk=response.json()["pk"]).title, "Magang Baru")
+
+        response = self.client.post(url, self.experience_data(title="<i></i>"))
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("title", response.json()["errors"])
+
+    def test_update_allowed_for_owner_and_editor(self):
+        url = reverse("main:update_experience_ajax", args=[self.experience.id])
+
+        self.assertEqual(self.client.post(url, self.experience_data()).status_code, 302)  # ke login
+
+        self.login(self.visitor)
+        self.assertEqual(self.client.post(url, self.experience_data(title="Hack")).status_code, 403)
+        self.client.logout()
+
+        self.login(self.editor)
+        self.assertEqual(self.client.get(url).status_code, 405)
+        response = self.client.post(url, self.experience_data(title="Diubah Editor"))
+        self.assertEqual(response.status_code, 200)
+        self.experience.refresh_from_db()
+        self.assertEqual(self.experience.title, "Diubah Editor")
+
+        response = self.client.post(url, self.experience_data(title=" "))
+        self.assertEqual(response.status_code, 400)
+        self.experience.refresh_from_db()
+        self.assertEqual(self.experience.title, "Diubah Editor")
+
+    def test_delete_only_owner(self):
+        url = reverse("main:delete_experience", args=[self.experience.id])
+        self.assertEqual(self.client.post(url).status_code, 302)  # ke login
+
+        for user in (self.visitor, self.editor):
+            self.login(user)
+            self.assertEqual(self.client.post(url).status_code, 403)
+            self.client.logout()
+        self.assertEqual(Experience.objects.count(), 1)
+
+        self.login(self.owner)
+        self.assertEqual(self.client.get(url).status_code, 405)
+        self.assertEqual(self.client.post(url).status_code, 200)
+        self.assertEqual(Experience.objects.count(), 0)
+
+
+# --------->>>>> TUGAS 6 (HTMX, opsional): KONTAK <<<<<---------
+class ContactHtmxTest(BaseSiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.contact = Contact.objects.create(name="Budi", email="budi@example.com")
+
+    def test_list_and_search(self):
+        response = self.client.get(reverse("main:contact_list"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Budi")
+
+        response = self.client.get(reverse("main:contact_search"), {"q": "bud"})
+        self.assertContains(response, "Budi")
+        response = self.client.get(reverse("main:contact_search"), {"q": "zzz"})
+        self.assertContains(response, "Tidak ada kontak.")
+
+    def test_add_returns_rows_partial(self):
+        response = self.client.post(reverse("main:contact_add"),
+                                    {"name": "Sari", "email": "sari@example.com"})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "_contact_rows.html")
+        self.assertContains(response, "Sari")
+        self.assertEqual(Contact.objects.count(), 2)
+
+    def test_edit_row_update_and_delete(self):
+        response = self.client.get(reverse("main:contact_edit", args=[self.contact.pk]))
+        self.assertTemplateUsed(response, "_contact_edit_row.html")
+        response = self.client.get(reverse("main:contact_row", args=[self.contact.pk]))
+        self.assertTemplateUsed(response, "_contact_row.html")
+
+        response = self.client.put(
+            reverse("main:contact_update", args=[self.contact.pk]),
+            "name=Baru&email=baru%40example.com",
+            content_type="application/x-www-form-urlencoded",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.contact.refresh_from_db()
+        self.assertEqual((self.contact.name, self.contact.email), ("Baru", "baru@example.com"))
+
+        delete_url = reverse("main:contact_delete", args=[self.contact.pk])
+        self.assertEqual(self.client.get(delete_url).status_code, 405)
+        self.assertEqual(self.client.delete(delete_url).status_code, 200)
+        self.assertEqual(Contact.objects.count(), 0)
