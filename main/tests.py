@@ -135,9 +135,9 @@ class MainTest(TestCase):
         self.assertContains(response,"Belum ada data pendidikan.")
 
 
-# =====================================================================
+
 # TEST TAMBAHAN UNTUK SELURUH TUGAS (Tugas 1 - 6)
-# =====================================================================
+
 SECRET = "rahasia-test"
 STRONG_PASSWORD = "Str0ng-Pass-2026"
 

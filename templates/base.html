@@ -82,41 +82,106 @@
     {% endfor %}
 
     <header class="site-header">
+        <!-- Efek laut: gelembung + gelombang -->
+        <div class="ocean-fx" aria-hidden="true">
+            <span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span>
+            <span class="bubble b4"></span><span class="bubble b5"></span><span class="bubble b6"></span>
+            <svg class="ocean-wave wave-back" viewBox="0 0 1200 40" preserveAspectRatio="none">
+                <path d="M0 20 Q 75 0 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20 V40 H0Z" />
+            </svg>
+            <svg class="ocean-wave wave-front" viewBox="0 0 1200 40" preserveAspectRatio="none">
+                <path d="M0 20 Q 75 40 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20 V40 H0Z" />
+            </svg>
+        </div>
+
         <div class="navbar-container">
 
             <!-- Logo / Brand -->
             <a href="{% url 'main:show_home' %}" class="navbar-brand">
-                {{ name }}
+                <svg class="brand-shell" viewBox="0 0 64 64" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="shellG" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#d9b8ff" />
+                            <stop offset="1" stop-color="#8f6bd8" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M32 6C16 6 6 20 6 34c0 8 4 14 10 16l16 8 16-8c6-2 10-8 10-16C58 20 48 6 32 6z"
+                        fill="url(#shellG)" />
+                    <path d="M32 8v48M22 10l-6 42M42 10l6 42M13 18l-4 24M51 18l4 24" stroke="#fff" stroke-opacity=".55"
+                        stroke-width="2" fill="none" stroke-linecap="round" />
+                    <path d="M24 56h16l-8 6z" fill="#b99af0" />
+                </svg>
+                <span class="brand-name">{{ name|default:"Alisa Selvia Saharani" }}</span>
             </a>
 
-            <!-- Menu -->
-            <nav class="navbar-menu">
-                <a href="{% url 'main:show_home' %}">HOME</a>
-                <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
-                <a href="{% url 'main:show_education' %}">EDUCATION</a>
-                <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
-                <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
+            <!-- Menu tengah -->
+            <nav class="navbar-menu" aria-label="Menu utama">
+                <a href="{% url 'main:show_home' %}"
+                    class="nav-pill {% if request.resolver_match.url_name == 'show_home' %}active{% endif %}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 3l9 8M5 10v10h5v-6h4v6h5V10" /></svg>
+                    HOME
+                </a>
+                <a href="{% url 'main:show_aboutme' %}"
+                    class="nav-pill {% if request.resolver_match.url_name == 'show_aboutme' %}active{% endif %}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" /></svg>
+                    ABOUT
+                </a>
+                <a href="{% url 'main:contact_list' %}"
+                    class="nav-pill {% if request.resolver_match.url_name == 'contact_list' %}active{% endif %}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                    CONTACT
+                </a>
             </nav>
 
-            <!-- Login / Register -->
+            <!-- Kanan: user dropdown + login/logout -->
             <div class="navbar-auth">
                 {% if user.is_authenticated %}
-                <span class="nav-user">
-                    {{ user.username }}
-                </span>
-                <a href="{% url 'main:logout' %}" class="btn-login">LOGOUT ➜]</a>
-
+                <details class="user-menu">
+                    <summary class="user-chip">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="fill"><circle cx="12" cy="8" r="4.5" /><path d="M3.5 21c0-4.7 3.8-8 8.5-8s8.5 3.3 8.5 8z" /></svg>
+                        {{ user.username }}
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="chev"><path d="m6 9 6 6 6-6" /></svg>
+                    </summary>
+                    <div class="user-dropdown">
+                        <a href="{% url 'main:show_education' %}"
+                            class="{% if request.resolver_match.url_name == 'show_education' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5M22 9v6" /></svg>
+                            Education
+                        </a>
+                        <a href="{% url 'main:show_experience' %}"
+                            class="{% if request.resolver_match.url_name == 'show_experience' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18" /></svg>
+                            Experience
+                        </a>
+                        <a href="{% url 'main:show_achievements' %}"
+                            class="{% if request.resolver_match.url_name == 'show_achievements' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v6a4 4 0 0 1-8 0zM8 6H4v2a3 3 0 0 0 4 3M16 6h4v2a3 3 0 0 1-4 3M12 14v4M8 21h8M10 18h4" /></svg>
+                            Achievements
+                        </a>
+                        <a href="{% url 'main:show_aboutme' %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" /></svg>
+                            {{ user.username }}
+                        </a>
+                        <hr>
+                        <a href="{% url 'main:logout' %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9" /></svg>
+                            Logout ➜)
+                        </a>
+                    </div>
+                </details>
+                <a href="{% url 'main:logout' %}" class="btn-login">LOGOUT ➜)</a>
                 {% else %}
                 <a href="{% url 'main:login' %}" class="btn-login">LOGIN</a>
                 <a href="{% url 'main:register' %}" class="btn-register">REGISTER</a>
-
                 {% endif %}
-
             </div>
 
             <!-- Mobile Menu -->
             <details class="mobile-menu">
-                <summary>☰ Menu</summary>
+                <summary aria-label="Buka menu">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+                    <span>Menu</span>
+                </summary>
                 <div class="mobile-menu-content">
                     <a href="{% url 'main:show_home' %}">HOME</a>
                     <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
@@ -126,19 +191,26 @@
                     <a href="{% url 'main:contact_list' %}">CONTACT</a>
 
                     {% if user.is_authenticated %}
-
                     <span class="nav-user">{{ user.username }}</span>
-                    <a href="{% url 'main:logout' %}">LOGOUT ➜] </a>
+                    <a href="{% url 'main:logout' %}">LOGOUT ➜)</a>
                     {% else %}
-                    <a href="{% url 'main:login' %}"> LOGIN</a>
+                    <a href="{% url 'main:login' %}">LOGIN</a>
                     <a href="{% url 'main:register' %}">REGISTER</a>
                     {% endif %}
                 </div>
-
             </details>
 
         </div>
     </header>
+
+    <script>
+        // Tutup dropdown ketika klik di luar
+        document.addEventListener("click", function (e) {
+            document.querySelectorAll(".user-menu[open], .mobile-menu[open]").forEach(function (d) {
+                if (!d.contains(e.target)) d.removeAttribute("open");
+            });
+        });
+    </script>
 
     {% block content %}
     {% endblock content %}
@@ -146,7 +218,7 @@
     <footer class="site-footer">
         <div class="container">
             <p>
-                &copy; 2026 {{ name }}.
+                &copy; 2026 {{ name|default:"Alisa Selvia Saharani" }}.
                 Fakultas Ilmu Komputer, Universitas Indonesia.
             </p>
         </div>
