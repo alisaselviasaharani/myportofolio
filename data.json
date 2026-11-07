@@ -1,0 +1,608 @@
+[
+{
+  "model": "auth.group",
+  "fields": {
+    "name": "Editor",
+    "permissions": [
+      [
+        "change_achievements",
+        "main",
+        "achievements"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$QH5sJRtBlbDkFamCxNp1xE$dk/TT+MSXoksyyrMgZxMK0D4S4AHtuSrsd+EHs6LEVg=",
+    "last_login": "2026-10-05T16:38:56.393Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@example.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-09T08:33:37.937Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$WwCkLd1ud5WOQYvLzZB0Te$PFm1ExOTEB2UCn4JGTJI2yjIEvSBnrtd3UH/cH1P/fM=",
+    "last_login": "2026-09-28T16:33:40.483Z",
+    "is_superuser": false,
+    "username": "Asya",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-27T02:45:33Z",
+    "groups": [
+      [
+        "Editor"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$qXt6Jk34Qvtm6cIV4kkIBh$pK4tJBLPvTcWaCGR6JHXO4dlTkRyDITBPlq6YPXia9M=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "A",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-27T02:59:54.235Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$720000$phbdBYJ16VCfDfEFBAWdFO$nqIp1HQLK1rBW1QssdfRP8m4m/jy8ewlUQ61zoSAQmA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "b",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-27T03:05:30.365Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$SBP0wVBzCEfED7IutXtaF9$T4Lu933/E9iNwxH1s01kAOXUnq4Zqq0jfqbtt3tdE1g=",
+    "last_login": "2026-11-07T03:47:39.695Z",
+    "is_superuser": true,
+    "username": "asya",
+    "first_name": "",
+    "last_name": "",
+    "email": "asya@example.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-02T07:23:32.343Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "15mqap49842eehd479veuf4i6km1hl7m",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1xDliK:vE8gyriY_IEjVDePhiufW3YbU8SI6Fid4DvE75y38A4",
+    "expire_date": "2026-10-19T16:38:56.424Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "47m2whvgw03hx7s8y4nxvq4r34tmhk52",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1xDQbr:eiRMopv-Z-JlyUTAjbAcmlGUF-hvz4bURtNVA9iWN68",
+    "expire_date": "2026-10-18T18:06:51.201Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5ghs9uq9glj4cssoarcb04hacxhef209",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1x5adu:xtqPaWoD8bwm01-SZXZgXNtKneiiTuku3hZjQeTGr9w",
+    "expire_date": "2026-09-27T03:12:34.453Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7pcs21n46z70yhvb7mwry4wzchhh4c5i",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1xBojb:SQbjINFwxyvPQseB2JVo_ZTfqKclh9E0AevhQQJBnG8",
+    "expire_date": "2026-10-14T07:28:11.078Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "civw8lpxzc9gwmoluojb0y708f2s39h9",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pARmBZcuu8ZmoFhbNVAUtqV8e7apAvd_vfef6mRtnUat5aXcWZ1UZ06_W6R0iOXHfCdyq3qVMu6zFHvij5o00Pl_Lwe7t_BRG361slnGwBdLxk9B-ic4BnYUDBgrXRg0UuQXiD0ga3n6EgAk0PESGLU-wPJXTde:1xOYsO:Iq_vs8kmZ7oUyj_JX-2NctGhXlD9zEpFuXeeOSQwGUY",
+    "expire_date": "2026-11-18T11:09:56.756Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ctopil75mi6ogizc20o33w2qukseny3f",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrz9oOJT1nsNY_HECOFCcV4u5gKQW0b-bNi3nat-r3nlc_J3Zmkp1-t0DxkdsA6U7ttvC4tG2dAx8KP2jn1yXl5-Vw_wKVeh1ZJawsGgwpDdYl0FIAFSskpQBoJjQRCYJADFGhKRNKRd8TWhO1c-z9AablNj0:1x8dO3:FjQ8rQ5FJ6RZYi_WTBCiYsf6RArdsSz30cCtPYukoMs",
+    "expire_date": "2026-10-05T12:44:47.598Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k9wjvlbcy3gpjk5focy5il2fj6632b4f",
+  "fields": {
+    "session_data": ".eJxVjDEOAiEQRe9CbcgAAmJp7xnIDAyyaiBZdivj3XWTLbT9773_EhHXpcZ18BynLM5CicPvRpge3DaQ79huXabelnkiuSlyp0Nee-bnZXf_DiqO-q0DOcKjMaCN0tY6xdqhz6GoYoFCKQo1BeuASmD2J0jgrSePLmXDFsT7A81LN50:1x4Dki:PmdzasGEsvsIZIvwR6hYQS8rnKFK8n70Eqz88ArJcgk",
+    "expire_date": "2026-09-23T08:33:56.652Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "l4djhx0x3ck14f65uagrfwc6nw7z2ulf",
+  "fields": {
+    "session_data": "e30:1x8dJc:Qw4TkSG8BkNOAtNqwaBZ-HXFEBIIgKuODyEVd__P_Ik",
+    "expire_date": "2026-10-05T12:40:12.717Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lqnl6hbw83gokzjxucev3q0ucbrd6f7d",
+  "fields": {
+    "session_data": ".eJxVjDEOAiEQRe9CbcgAAmJp7xnIDAyyaiBZdivj3XWTLbT9773_EhHXpcZ18BynLM5CicPvRpge3DaQ79huXabelnkiuSlyp0Nee-bnZXf_DiqO-q0DOcKjMaCN0tY6xdqhz6GoYoFCKQo1BeuASmD2J0jgrSePLmXDFsT7A81LN50:1x4Dkg:ujWVfW08Sub3YNixKeRFfsP4NVft-GwLneLvP5XxSCk",
+    "expire_date": "2026-09-23T08:33:54.736Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mdwy2q7aw612d2xcsh5iqx24sfyml4ib",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSE8C7h07zeQGWCkaiAp7cr479qkC93ec859sQjbWuM2yhLnzM5Ms9PvhpAepe0g36HdOk-9rcuMfFf4QQe_9lyel8P9O6gw6rf2aGUGBwZsEgoU-ixIOKRkkDRNJivpTAhAFrWTQSo1JemNdURJgmPvD_QRN_g:1xAhMp:hPJBgW-7SEAlcgMGlKLJbmvjLv-nqh0WjtTk_gzaIdM",
+    "expire_date": "2026-10-11T05:24:03.879Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nt00x8iv0d29galhtg03713s8s10i6yc",
+  "fields": {
+    "session_data": "e30:1x8dIh:o_Sw2XOhPHKUDyYRzWKWAU8o4VFHnNrQCOZYJZOLa30",
+    "expire_date": "2026-10-05T12:39:15.112Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "of9gam1axxz4ymjvjytk3n4628hpdooi",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1x6rda:o6L3hf0GRhlgREY3DIhMG2Fvww6oS3BY_M0wc4nL39s",
+    "expire_date": "2026-09-30T15:33:30.950Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "olzwxi8zs4fxq35eqzhumrgpnsyqis97",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSE8C7h07zeQGWCkaiAp7cr479qkC93ec859sQjbWuM2yhLnzM5Ms9PvhpAepe0g36HdOk-9rcuMfFf4QQe_9lyel8P9O6gw6rf2aGUGBwZsEgoU-ixIOKRkkDRNJivpTAhAFrWTQSo1JemNdURJgmPvD_QRN_g:1xBEIO:3r3Y1LtbmTb0vPTMWSiSGh3foutXl2m-Zx3R8HaM0Mc",
+    "expire_date": "2026-10-12T16:33:40.515Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qhzexqi3lfxpcnigabxpifnmx3bxqsft",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrz9oOJT1nsNY_HECOFCcV4u5gKQW0b-bNi3nat-r3nlc_J3Zmkp1-t0DxkdsA6U7ttvC4tG2dAx8KP2jn1yXl5-Vw_wKVeh1ZJawsGgwpDdYl0FIAFSskpQBoJjQRCYJADFGhKRNKRd8TWhO1c-z9AablNj0:1x8ds7:FtzT-TU8jNLElmIK_j7kEPKI1xZx-ykjTymjshQBlZY",
+    "expire_date": "2026-10-05T13:15:51.268Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "s3moaxrjlseaxtvf5cs4igat6z0cchhx",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmb-E9JnzNYa-8GB5AjxUmFuDuylALaNzPvLSIee4lH4y0uJK7CisvvljA_uXZAD6z3Vea17tuSZFfkSZucVuLX7XT_Dgq20mtSCQdwCjSPxjLPij1oj5zdaAZnkwaYjQENlDzRoCCEESggogEbxOcL3WU3Xg:1xOYsQ:UWJdUu5LDrcp0_2XdmlLrsvVIbT3LEwpBa9tWrL8Sr4",
+    "expire_date": "2026-11-18T11:09:58.348Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "v3gf5qghedvve3woie8yq0re559t4csf",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1x6raY:DdAy7BQC5q0gmyLANW65gt1cnkNm1sDgrh_Gwb-c45w",
+    "expire_date": "2026-09-30T15:30:22.611Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vq8380lv466tpsrxwspc5b1g8qz8y289",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzNaRM7zOgZVmCkwgkY1dR7h4huUjaNzPvzQIcewlHpy2siV2ZYJffLQI-qQ6QHlDvjWOr-7ZGPhR-0s6Xluh1O92_gwK9jNpbRyYaM8us0YqsJTnEGEUGcOSVlXpKGRAm9DrhTOCy0s5GlYQ2gn2-AD04lg:1x5pIo:8XTV08TPtlzmHBjj30jxC5TuPJcafFpe1ZyRuxyWxvs",
+    "expire_date": "2026-09-27T18:51:46.307Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xwhpahvgt7z4fm5bww5avud5nlr6er1o",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmb-E9JnzNYa-8GB5AjxUmFuDuylALaNzPvLSIee4lH4y0uJK7CisvvljA_uXZAD6z3Vea17tuSZFfkSZucVuLX7XT_Dgq20mtSCQdwCjSPxjLPij1oj5zdaAZnkwaYjQENlDzRoCCEESggogEbxOcL3WU3Xg:1xPXP1:RC6VuWyMnmorwwGTvFCCp3AS6zVNuhI8Zbpw7jh5yWU",
+    "expire_date": "2026-11-21T03:47:39.714Z"
+  }
+},
+{
+  "model": "main.experience",
+  "pk": "76db1f6f-ff05-4ba2-a8f3-69fdf4e60c20",
+  "fields": {
+    "title": "Math Club Chairperson",
+    "institution": "MTSN 12 Jakarta",
+    "description": "Led the Math Club and organized activities to help members improve their mathematics skills.",
+    "category": "part-time",
+    "period": "2019 - 2022",
+    "logo": "/static/img/logomts.png",
+    "website": "https://www.mtsn12jkt.sch.id/",
+    "starred_by": [
+      [
+        "asya"
+      ]
+    ]
+  }
+},
+{
+  "model": "main.experience",
+  "pk": "7f4888f5-7b40-466c-b06a-dd19a8141354",
+  "fields": {
+    "title": "Active Participant - Young Health Program",
+    "institution": "Young Health Programme (YHP)",
+    "description": "Actively participated as a youth health cadre in health education and disease prevention campaigns.",
+    "category": "volunteer",
+    "period": "2023-2025",
+    "logo": "/static/img/logoYHP.jpeg",
+    "website": "https://www.yhp.astrazeneca.com/programmes/indonesia-1.html",
+    "starred_by": [
+      [
+        "asya"
+      ]
+    ]
+  }
+},
+{
+  "model": "main.experience",
+  "pk": "d525dcb2-eab5-4fcf-9a07-6357fea38b17",
+  "fields": {
+    "title": "Vice Chairperson of IT Club 65",
+    "institution": "SMAN 65 JAKARTA",
+    "description": "Assisted in coordinating IT Club activities and supporting members in learning and developing their technology skills.",
+    "category": "part-time",
+    "period": "2024 - 2025",
+    "logo": "/static/img/logoIT65.png",
+    "website": "https://www.youtube.com/@itclubsman6575/videos",
+    "starred_by": [
+      [
+        "asya"
+      ]
+    ]
+  }
+},
+{
+  "model": "main.education",
+  "pk": 1,
+  "fields": {
+    "institution": "Universitas Indonesia",
+    "degree": "S1 Ilmu Komputer",
+    "period": "2025 - Present",
+    "logo": "/static/img/logoUI.png",
+    "website": "https://cs.ui.ac.id/"
+  }
+},
+{
+  "model": "main.education",
+  "pk": 2,
+  "fields": {
+    "institution": "SMAN 65 Jakarta",
+    "degree": "Natural Science",
+    "period": "2022 - 2025",
+    "logo": "/static/img/logo65.jpg",
+    "website": "https://sman65jakarta.sch.id/"
+  }
+},
+{
+  "model": "main.education",
+  "pk": 3,
+  "fields": {
+    "institution": "MTSN 12 Jakarta",
+    "degree": "",
+    "period": "2019 - 2022",
+    "logo": "/static/img/logomts.png",
+    "website": "https://www.mtsn12jkt.sch.id/"
+  }
+},
+{
+  "model": "main.achievements",
+  "pk": "241b55e1-bfdc-4fd4-a46d-ba19a8b442f8",
+  "fields": {
+    "title": "DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK",
+    "period": "2023",
+    "description": "Certificate of completion for the LearningX course titled DKI Jakarta Computational Thinking Competence Diagnostic Test - SMA/SMK.",
+    "category": "certification",
+    "achievements_image_url": "https://drive.google.com/thumbnail?id=1wc-VzUOxBIIz4Sopibqff_kUbbISYdAS&sz=w1000",
+    "starred_by": []
+  }
+},
+{
+  "model": "main.achievements",
+  "pk": "35b805f3-f35c-4b1c-b7e3-441860ee76a2",
+  "fields": {
+    "title": "2nd Overall Academic Ranking At SMAN 65 JAKARTA",
+    "period": "2022-2025",
+    "description": "Achieved 2nd place in the overall academic ranking among students in the same grade.",
+    "category": "academic",
+    "achievements_image_url": "https://drive.google.com/thumbnail?id=17rR2Mo4Fn26tLHitK9RUl2A7hBRIg9GZ&sz=w1000",
+    "starred_by": []
+  }
+},
+{
+  "model": "main.achievements",
+  "pk": "a1090dc4-4123-44c4-add9-78c924ff9702",
+  "fields": {
+    "title": "Juara Harapan III Matematika Terintegras - KSM (Kompetisi Sains Madrasah) 2021",
+    "period": "2021",
+    "description": "Kompetisi Sains Madrasah 2021 Tingkat Kabupaten/Kota MTsN 12 Jakarta",
+    "category": "competition",
+    "achievements_image_url": "https://drive.google.com/file/d/1hqDXvg96on0jGuaBtsZICl3J-Jq2Dj83/view?usp=sharing",
+    "starred_by": []
+  }
+},
+{
+  "model": "main.achievements",
+  "pk": "a595cbc8-f1dd-43d3-91e3-f209fdd09d17",
+  "fields": {
+    "title": "Kumon Mathematics Completer",
+    "period": "2012 - 2023",
+    "description": "Successfully completed the Kumon Mathematics program.",
+    "category": "certification",
+    "achievements_image_url": "https://drive.google.com/file/d/1TMZWZ7qnCUdewqEu0Qg9cj2vxsysZ886/view?usp=sharing",
+    "starred_by": []
+  }
+},
+{
+  "model": "main.skill",
+  "pk": 1,
+  "fields": {
+    "jenis": "Hard Skill",
+    "nama": "Github",
+    "img": "static/github.png"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-09-12T03:35:43.321Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "main",
+      "experience"
+    ],
+    "object_id": "7f4888f5-7b40-466c-b06a-dd19a8141354",
+    "object_repr": "Active Participant - Young Health Program",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-09-12T03:36:44.008Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "main",
+      "experience"
+    ],
+    "object_id": "7f4888f5-7b40-466c-b06a-dd19a8141354",
+    "object_repr": "Active Participant - Young Health Program",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Category\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-09-12T04:03:59.060Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "main",
+      "experience"
+    ],
+    "object_id": "76db1f6f-ff05-4ba2-a8f3-69fdf4e60c20",
+    "object_repr": "Math Club Chairperson",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-09-12T04:07:11.749Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "main",
+      "experience"
+    ],
+    "object_id": "7f4888f5-7b40-466c-b06a-dd19a8141354",
+    "object_repr": "Active Participant - Young Health Program",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Institution\", \"Period\", \"Logo\", \"Website\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-09-12T04:09:02.925Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "main",
+      "experience"
+    ],
+    "object_id": "d525dcb2-eab5-4fcf-9a07-6357fea38b17",
+    "object_repr": "Vice Chairperson of IT Club 65",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Institution\", \"Period\", \"Logo\", \"Website\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-09-25T16:26:50.380Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "object_id": "1",
+    "object_repr": "Editor",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-09-27T02:44:53.627Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "2",
+    "object_repr": "Asya",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-09-27T02:45:34.585Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Asya",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-09-27T02:46:55.743Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Asya",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\", \"Groups\", \"Last login\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-09-27T02:48:03.569Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "object_id": "3",
+    "object_repr": "Asya",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-11-07T02:21:43.599Z",
+    "user": [
+      "asya"
+    ],
+    "content_type": [
+      "main",
+      "skill"
+    ],
+    "object_id": "1",
+    "object_repr": "Github",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-11-07T02:23:25.612Z",
+    "user": [
+      "asya"
+    ],
+    "content_type": [
+      "main",
+      "skill"
+    ],
+    "object_id": "1",
+    "object_repr": "Github",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Img\"]}}]"
+  }
+}
+]
