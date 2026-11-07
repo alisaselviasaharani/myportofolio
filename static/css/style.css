@@ -3823,9 +3823,13 @@ html {
 }
 
 .skill-item img {
-    width: 48px;
-    height: 48px;
+    width: 88px;
+    height: 88px;
     object-fit: contain;
+    padding: 0;
+    border-radius: 18px;
+    background: #fff;
+    border: 1px solid rgba(20, 40, 70, .08);
 }
 
 .skill-item p {

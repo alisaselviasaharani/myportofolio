@@ -1,0 +1,119 @@
+[
+    {
+    "model": "main.skill",
+    "pk": 1201,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Github",
+      "img": "img/skill-icons/github.png"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1202,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Java",
+      "img": "img/skill-icons/java.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1203,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Python",
+      "img": "img/skill-icons/python.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1204,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "PowerPoint",
+      "img": "img/skill-icons/powerpoint.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1205,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Word",
+      "img": "img/skill-icons/word.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1206,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Excel",
+      "img": "img/skill-icons/excel.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1207,
+    "fields": {
+      "jenis": "Hard Skill",
+      "nama": "Figma",
+      "img": "img/skill-icons/figma.jpe"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1208,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Leadership",
+      "img": "img/skill-icons/leadership.svg"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1209,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Problem Solving",
+      "img": "img/skill-icons/problem-solving.svg"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1210,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Graphic Design",
+      "img": "img/skill-icons/graphic-design.svg"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1211,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Project Planning",
+      "img": "img/skill-icons/project-planning.svg"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1212,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Project Management",
+      "img": "img/skill-icons/project-management.svg"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1213,
+    "fields": {
+      "jenis": "Soft Skill",
+      "nama": "Time Management",
+      "img": "img/skill-icons/time-management.svg"
+    }
+  }
+]

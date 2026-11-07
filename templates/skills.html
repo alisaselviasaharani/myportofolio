@@ -46,7 +46,7 @@
                 {% for skill in hard_skills %}
                 <div class="skill-item">
                     {% if skill.img %}
-                    <img src="{{ skill.img.url }}" alt="{{ skill.nama }}">
+                    <img src="{% static skill.img.name %}" alt="{{ skill.nama }} icon">
                     {% endif %}
                     <p>
                         {{ skill.nama }}
@@ -114,7 +114,7 @@
                 <div class="skill-item">
 
                     {% if skill.img %}
-                    <img src="{{ skill.img.url }}" alt="{{ skill.nama }}">
+                    <img src="{% static skill.img.name %}" alt="{{ skill.nama }} icon">
                     {% endif %}
 
                     <p>
