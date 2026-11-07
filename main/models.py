@@ -101,4 +101,14 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+class Skill(models.Model):
+    JENIS = [
+        ('Hard Skill', 'Hard Skill'),
+        ('Soft Skill', 'Soft Skill'),
+    ]
+    jenis = models.CharField(max_length=300,  choices=JENIS)
+    nama = models.CharField(max_length=300)
+    img = models.ImageField(upload_to='skills/')
+    def __str__(self):
+        return self.nama

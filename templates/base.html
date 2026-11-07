@@ -181,6 +181,10 @@
                             </svg>
                             Achievements
                         </a>
+                        <a href="{% url 'main:skills' %}"
+                            class="nav-pill {% if request.resolver_match.url_name == 'skills' %}active{% endif %}">
+                            SKILLS
+                        </a>
                         <a href="{% url 'main:show_aboutme' %}">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
                                 <circle cx="12" cy="8" r="4" />
@@ -219,6 +223,7 @@
                     <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
                     <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
                     <a href="{% url 'main:contact_list' %}">CONTACT</a>
+                    <a href="{% url 'main:skills' %}">Skill</a>
 
                     {% if user.is_authenticated %}
                     <span class="nav-user">{{ user.username }}</span>

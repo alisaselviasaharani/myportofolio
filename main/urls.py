@@ -25,7 +25,8 @@ from main.views import (
     contact_update,
     contact_add,
     contact_search,
-    contact_delete
+    contact_delete,
+    show_skills
 )
 
 # Memberikan namespace "main" untuk URL pada aplikasi main.
@@ -81,5 +82,6 @@ urlpatterns = [
     path("contacts/<int:pk>/edit/", contact_edit, name="contact_edit"),
     path("contacts/<int:pk>/row/", contact_row, name="contact_row"),
     path("contacts/<int:pk>/update/", contact_update, name="contact_update"),
+    path('skills/', show_skills, name='skills'),
 
 ]

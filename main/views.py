@@ -2,7 +2,7 @@ import os
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from main.models import Contact, Experience, Education, Achievements
+from main.models import Contact, Experience, Education, Achievements, Skill
 from main.forms import AchievementsForm,ExperienceForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
@@ -466,3 +466,12 @@ def contact_update(request, pk):
     contact.email = data.get("email", contact.email)
     contact.save()
     return render(request, "_contact_row.html", {"contact": contact})
+
+def show_skills(request):
+    hard_skills = Skill.objects.filter(jenis='Hard Skill')
+    soft_skills = Skill.objects.filter(jenis='Soft Skill')
+    context = {
+        'hard_skills': hard_skills,
+        'soft_skills': soft_skills,
+    }
+    return render(request, 'skills.html', context)
