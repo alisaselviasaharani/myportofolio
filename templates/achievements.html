@@ -25,7 +25,7 @@
         <span></span>
     </div>
 
-    <section class="experience-section" id="achievements">
+    <section class="experience-section" id="achievements" data-editor="{{ is_editor|yesno:'true,false' }}">
         <div class="container">
 
             <div class="education-content">
@@ -85,9 +85,7 @@
 
 
 </main>
-{% if user.is_superuser %}
 {% include "components/achievements_form_modal.html" %}
-{% endif %}
 
 
 {% csrf_token %}
@@ -98,6 +96,8 @@
     const STAR_ACHIEVEMENTS_ENDPOINT = "{% url 'api:achievements-star' '00000000-0000-0000-0000-000000000000' %}";
     const LOGIN_URL = "{% url 'main:login' %}";
     const IS_SUPERUSER = "{{ user.is_superuser|yesno:'true,false' }}" === "true";
+    const CAN_EDIT = IS_SUPERUSER || document.getElementById("achievements").dataset.editor === "true";
+    let editingAchievementId = null;
     const IS_AUTHENTICATED = "{{ user.is_authenticated|yesno:'true,false' }}" === "true";
     const SEARCH_DEBOUNCE_DELAY = 300;
 
@@ -158,10 +158,11 @@
                </button>`
             : `<a href="${escapeHtml(LOGIN_URL)}" class="button">Login untuk memberi Star (${escapeHtml(item.star_count)})</a>`;
 
+        const editHtml = CAN_EDIT
+            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(item.id)}">Edit</button>` : '';
         const deleteHtml = IS_SUPERUSER
             ? `<button type="button" class="button button-danger" data-action="delete"
-                    data-id="${escapeHtml(item.id)}">Hapus</button>`
-            : '';
+                    data-id="${escapeHtml(item.id)}">Hapus</button>` : '';
 
         articleElement.innerHTML = `
             <h2>${escapeHtml(item.title)}</h2>
@@ -170,6 +171,7 @@
             <div class="achievements-card-actions">
                 <div class="achievements-actions">
                     ${starHtml}
+                    ${editHtml}
                     ${deleteHtml}
                 </div>
             </div>
@@ -230,7 +232,19 @@
         return data;
     }
 
-    // Tambah achievements lewat modal
+    // Tombol tambah memulai mode create dan menampilkan kembali field secret code.
+    const addAchievementButton = document.querySelector('[popovertarget="add-achievements-modal"]');
+    if (addAchievementButton) addAchievementButton.addEventListener('click', function () {
+        editingAchievementId = null;
+        achievementsForm?.reset();
+        const secretField = achievementsForm?.elements.namedItem('secret_code');
+        if (secretField) secretField.closest('.form-group').hidden = false;
+        document.getElementById('add-achievements-modal-title').textContent = 'Tambah Penghargaan Baru';
+        const submit = achievementsForm?.querySelector('button[type="submit"]');
+        if (submit) submit.textContent = 'Tambah Penghargaan';
+    });
+
+    // Tambah atau edit achievements lewat modal
     async function addAchievements(event) {
         event.preventDefault();
 
@@ -244,10 +258,18 @@
                 'achievements_image_url', 'secret_code',
             ].map(name => [name, fields.get(name)]));
 
-            await writeAchievements(BASE_ACHIEVEMENTS_ENDPOINT, 'POST', payload);
+            const isEditing = Boolean(editingAchievementId);
+            const url = isEditing ? achievementsEndpoint(DETAIL_ACHIEVEMENTS_ENDPOINT, editingAchievementId) : BASE_ACHIEVEMENTS_ENDPOINT;
+            if (isEditing) delete payload.secret_code;
+            await writeAchievements(url, isEditing ? 'PATCH' : 'POST', payload);
             achievementsForm.reset();
+            const secretFieldAfter = achievementsForm.elements.namedItem('secret_code');
+            if (secretFieldAfter) secretFieldAfter.closest('.form-group').hidden = false;
+            editingAchievementId = null;
+            document.getElementById('add-achievements-modal-title').textContent = 'Tambah Penghargaan Baru';
+            achievementsForm.querySelector('button[type="submit"]').textContent = 'Tambah Penghargaan';
             document.getElementById('add-achievements-modal').hidePopover();
-            showToast('Berhasil', 'Penghargaan baru berhasil ditambahkan!', 'success');
+            showToast('Berhasil', isEditing ? 'Penghargaan berhasil diperbarui.' : 'Penghargaan baru berhasil ditambahkan!', 'success');
             await fetchAchievements(searchInput.value.trim());
         } catch (error) {
             showToast('Gagal menambahkan penghargaan', error.message, 'error');
@@ -264,6 +286,24 @@
         if (!button || button.disabled) return;
 
         const action = button.dataset.action;
+        if (action === 'edit') {
+            try {
+                const response = await fetch(achievementsEndpoint(DETAIL_ACHIEVEMENTS_ENDPOINT, button.dataset.id), { headers: { Accept: 'application/json' } });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const item = await response.json();
+                editingAchievementId = item.id;
+                for (const [key, value] of Object.entries(item)) {
+                    const field = achievementsForm.elements.namedItem(key);
+                    if (field) field.value = value ?? '';
+                }
+                const secretField = achievementsForm.elements.namedItem('secret_code');
+                if (secretField) secretField.closest('.form-group').hidden = true;
+                document.getElementById('add-achievements-modal-title').textContent = 'Edit Achievement';
+                achievementsForm.querySelector('button[type="submit"]').textContent = 'Simpan Perubahan';
+                document.getElementById('add-achievements-modal').showPopover();
+            } catch (error) { showToast('Gagal membuka data', error.message, 'error'); }
+            return;
+        }
         if (action === 'delete' && !window.confirm('Yakin ingin menghapus achievements ini?')) return;
 
         button.disabled = true;
