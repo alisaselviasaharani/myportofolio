@@ -8,10 +8,12 @@
 
 {% block content %}
 <main class="contact-hub">
-    <div class="contact-hub-inner contact-tabbed">
+    <div class="contact-hub-inner contact-tabbed" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
         <header class="contact-top">
-            <h1>Contact <span class="title-rays">✦</span></h1>
+            <div class="ketik">
+                <h1>CONTACT</h1>
+            </div>
             <div class="contact-tabs" role="tablist" aria-label="Pilih tampilan kontak">
                 <button type="button" class="contact-tab" id="tab-connect" role="tab" data-tab="connect"
                         aria-controls="panel-connect" aria-selected="true">💌 Let's Connect</button>

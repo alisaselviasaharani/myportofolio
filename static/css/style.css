@@ -4972,15 +4972,7 @@ html {
     width: min(100%, 1040px);
 }
 .contact-top { text-align: center; margin-bottom: 20px; }
-.contact-top h1 {
-    margin: 0 0 14px;
-    color: #fff;
-    font-family: "Taste Bread", "Space Grotesk", sans-serif;
-    font-weight: normal;
-    font-size: clamp(32px, 4.5vw, 48px);
-    line-height: 1.1;
-    text-shadow: 0 3px 0 rgba(7, 59, 90, .35), 0 6px 14px rgba(0, 50, 80, .3);
-}
+.contact-top .ketik { justify-content: center; margin-bottom: 18px; }
 .contact-tabs {
     display: inline-flex;
     gap: 4px;

@@ -13,6 +13,27 @@
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
+    <style>
+        /* Ikon konsisten untuk seluruh menu navigasi mobile */
+        .mobile-menu-content .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .mobile-menu-content .mobile-nav-link svg {
+            width: 19px;
+            height: 19px;
+            flex-shrink: 0;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+
+
     {% block meta %}
     {% endblock meta %}
 </head>
@@ -182,8 +203,11 @@
                             Achievements
                         </a>
                         <a href="{% url 'main:skills' %}"
-                            class="nav-pill {% if request.resolver_match.url_name == 'skills' %}active{% endif %}">
-                            SKILLS
+                            class="{% if request.resolver_match.url_name == 'skills' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />
+                            </svg>
+                            Skills
                         </a>
                         <a href="{% url 'main:show_aboutme' %}">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -217,13 +241,59 @@
                     <span>Menu</span>
                 </summary>
                 <div class="mobile-menu-content">
-                    <a href="{% url 'main:show_home' %}">HOME</a>
-                    <a href="{% url 'main:show_aboutme' %}">ABOUT ME</a>
-                    <a href="{% url 'main:show_education' %}">EDUCATION</a>
-                    <a href="{% url 'main:show_experience' %}">EXPERIENCE</a>
-                    <a href="{% url 'main:show_achievements' %}">ACHIEVEMENTS</a>
-                    <a href="{% url 'main:contact_list' %}">CONTACT</a>
-                    <a href="{% url 'main:skills' %}">Skill</a>
+                    <a href="{% url 'main:show_home' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'show_home' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 11 12 3l9 8M5 10v10h5v-6h4v6h5V10" />
+                        </svg>
+                        <span>HOME</span>
+                    </a>
+                    <a href="{% url 'main:show_aboutme' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'show_aboutme' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" />
+                            <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+                        </svg>
+                        <span>ABOUT ME</span>
+                    </a>
+                    <a href="{% url 'main:show_education' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'show_education' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m2 9 10-5 10 5-10 5zM6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5M22 9v6" />
+                        </svg>
+                        <span>EDUCATION</span>
+                    </a>
+                    <a href="{% url 'main:show_experience' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'show_experience' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="7" width="18" height="13" rx="2" />
+                            <path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M3 13h18" />
+                        </svg>
+                        <span>EXPERIENCE</span>
+                    </a>
+                    <a href="{% url 'main:show_achievements' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'show_achievements' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M8 4h8v6a4 4 0 0 1-8 0zM8 6H4v2a3 3 0 0 0 4 3M16 6h4v2a3 3 0 0 1-4 3M12 14v4M8 21h8M10 18h4" />
+                        </svg>
+                        <span>ACHIEVEMENTS</span>
+                    </a>
+                    <a href="{% url 'main:skills' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'skills' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />
+                        </svg>
+                        <span>SKILLS</span>
+                    </a>
+                    <a href="{% url 'main:contact_list' %}"
+                        class="mobile-nav-link {% if request.resolver_match.url_name == 'contact_list' %}active{% endif %}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                            <path d="m3 7 9 6 9-6" />
+                        </svg>
+                        <span>CONTACT</span>
+                    </a>
 
                     {% if user.is_authenticated %}
                     <span class="nav-user">{{ user.username }}</span>
