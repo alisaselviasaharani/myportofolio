@@ -557,7 +557,7 @@ class ExperienceAjaxTest(BaseSiteTestCase):
         self.assertEqual(Experience.objects.count(), 0)
 
 
-# --------->>>>> TUGAS 6 (HTMX, opsional): KONTAK <<<<<---------
+# --------->>>>> Tutorial 6 (HTMX): KONTAK <<<<<---------
 class ContactHtmxTest(BaseSiteTestCase):
     def setUp(self):
         super().setUp()
@@ -600,3 +600,113 @@ class ContactHtmxTest(BaseSiteTestCase):
         self.assertEqual(self.client.get(delete_url).status_code, 405)
         self.assertEqual(self.client.delete(delete_url).status_code, 200)
         self.assertEqual(Contact.objects.count(), 0)
+
+
+# --------->>>>> TUGAS 6: DRF API TESTS UNTUK EXPERIENCE & ACHIEVEMENTS <<<<<---------
+class PortfolioSectionAPITest(APITestCase):
+    """Menguji API DRF untuk empat peran sesuai rubrik Individual Assignment 6."""
+
+    def setUp(self):
+        patcher = mock.patch.dict(os.environ, {"PORTOFOLIO_SECRET": SECRET})
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.owner = User.objects.create_superuser("api_owner", "owner@example.com", "pass12345")
+        self.editor = User.objects.create_user("api_editor", password="pass12345")
+        self.editor.groups.add(Group.objects.create(name="Editor"))
+        self.visitor = User.objects.create_user("api_visitor", password="pass12345")
+        self.exp = Experience.objects.create(
+            title="Asisten Lab", institution="Fasilkom UI", period="2025",
+            category="part-time", description="Membantu praktikum",
+        )
+        self.achievement = Achievements.objects.create(
+            title="Juara Lomba", period="2025", description="Lomba pemrograman",
+            category="Competition",
+        )
+        self.exp_list = reverse("api:experience-list")
+        self.exp_detail = reverse("api:experience-detail", args=[self.exp.id])
+        self.exp_star = reverse("api:experience-star", args=[self.exp.id])
+        self.ach_list = reverse("api:achievements-list")
+        self.ach_detail = reverse("api:achievements-detail", args=[self.achievement.id])
+        self.ach_star = reverse("api:achievements-star", args=[self.achievement.id])
+
+    def exp_payload(self, **kwargs):
+        data = {"title": "Pengalaman Baru", "institution": "PT Contoh", "period": "2026",
+                "category": "internship", "description": "Belajar Django", "logo": "", "website": ""}
+        data.update(kwargs)
+        return data
+
+    def ach_payload(self, **kwargs):
+        data = {"title": "Penghargaan Baru", "period": "2026", "description": "Deskripsi",
+                "category": "Award", "achievements_image_url": "", "secret_code": SECRET}
+        data.update(kwargs)
+        return data
+
+    def test_public_read_and_guest_write_denied_for_both_sections(self):
+        for url in (self.exp_list, self.ach_list, self.exp_detail, self.ach_detail):
+            self.assertEqual(self.client.get(url).status_code, 200)
+        for url, payload in ((self.exp_list, self.exp_payload()), (self.ach_list, self.ach_payload())):
+            self.assertEqual(self.client.post(url, payload, format="json").status_code, 403)
+        self.assertEqual(Experience.objects.count(), 1)
+        self.assertEqual(Achievements.objects.count(), 1)
+
+    def test_regular_user_cannot_write_but_can_star(self):
+        self.client.force_authenticate(self.visitor)
+        for url, payload in ((self.exp_list, self.exp_payload()), (self.ach_list, self.ach_payload())):
+            self.assertEqual(self.client.post(url, payload, format="json").status_code, 403)
+        self.assertEqual(self.client.patch(self.exp_detail, {"title": "Hack"}, format="json").status_code, 403)
+        self.assertEqual(self.client.delete(self.ach_detail).status_code, 403)
+        self.assertEqual(self.client.post(self.exp_star).status_code, 200)
+        self.assertEqual(self.client.post(self.ach_star).status_code, 200)
+        self.assertEqual(Experience.objects.count(), 1)
+        self.assertEqual(Achievements.objects.count(), 1)
+        self.assertTrue(self.exp.starred_by.filter(pk=self.visitor.pk).exists())
+        self.assertTrue(self.achievement.starred_by.filter(pk=self.visitor.pk).exists())
+
+    def test_editor_can_patch_but_cannot_create_or_delete(self):
+        self.client.force_authenticate(self.editor)
+        self.assertEqual(self.client.post(self.exp_list, self.exp_payload(), format="json").status_code, 403)
+        self.assertEqual(self.client.post(self.ach_list, self.ach_payload(), format="json").status_code, 403)
+        self.assertEqual(self.client.patch(self.exp_detail, {"title": "Experience Diedit"}, format="json").status_code, 200)
+        # PATCH achievement tidak meminta secret_code karena kode hanya untuk create.
+        self.assertEqual(self.client.patch(self.ach_detail, {"title": "Achievement Diedit"}, format="json").status_code, 200)
+        self.assertEqual(self.client.delete(self.exp_detail).status_code, 403)
+        self.assertEqual(self.client.delete(self.ach_detail).status_code, 403)
+        self.exp.refresh_from_db(); self.achievement.refresh_from_db()
+        self.assertEqual(self.exp.title, "Experience Diedit")
+        self.assertEqual(self.achievement.title, "Achievement Diedit")
+        self.assertEqual(Experience.objects.count(), 1)
+        self.assertEqual(Achievements.objects.count(), 1)
+
+    def test_owner_can_create_update_and_delete_both_sections(self):
+        self.client.force_authenticate(self.owner)
+        response = self.client.post(self.exp_list, self.exp_payload(title="Experience Owner"), format="json")
+        self.assertEqual(response.status_code, 201)
+        new_exp_id = response.data["id"]
+        response = self.client.post(self.ach_list, self.ach_payload(title="Achievement Owner"), format="json")
+        self.assertEqual(response.status_code, 201)
+        new_ach_id = response.data["id"]
+        self.assertEqual(self.client.put(reverse("api:experience-detail", args=[new_exp_id]), self.exp_payload(title="Updated"), format="json").status_code, 200)
+        self.assertEqual(self.client.delete(reverse("api:experience-detail", args=[new_exp_id])).status_code, 204)
+        self.assertEqual(self.client.delete(reverse("api:achievements-detail", args=[new_ach_id])).status_code, 204)
+        self.assertFalse(Experience.objects.filter(pk=new_exp_id).exists())
+        self.assertFalse(Achievements.objects.filter(pk=new_ach_id).exists())
+
+    def test_validation_and_search(self):
+        self.client.force_authenticate(self.owner)
+        response = self.client.post(self.exp_list, self.exp_payload(title="<script></script>"), format="json")
+        self.assertEqual(response.status_code, 400)
+        response = self.client.post(self.ach_list, self.ach_payload(secret_code="salah"), format="json")
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(self.client.get(self.exp_list + "?title=Asisten").data[0]["title"], "Asisten Lab")
+        self.assertEqual(self.client.get(self.ach_list + "?title=Juara").data[0]["title"], "Juara Lomba")
+
+    def test_star_rejects_guest(self):
+        self.assertEqual(self.client.post(self.exp_star).status_code, 403)
+        self.assertEqual(self.client.post(self.ach_star).status_code, 403)
+
+    def test_session_authentication_rejects_missing_csrf_token(self):
+        csrf_client = APIClient(enforce_csrf_checks=True)
+        self.assertTrue(csrf_client.login(username="api_owner", password="pass12345"))
+        response = csrf_client.post(self.exp_list, self.exp_payload(), format="json")
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(Experience.objects.count(), 1)
