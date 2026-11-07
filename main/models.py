@@ -109,6 +109,6 @@ class Skill(models.Model):
     ]
     jenis = models.CharField(max_length=300,  choices=JENIS)
     nama = models.CharField(max_length=300)
-    img = models.ImageField(upload_to='skills/')
+    img = models.ImageField(upload_to='static/img')
     def __str__(self):
         return self.nama

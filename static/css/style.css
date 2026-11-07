@@ -3669,16 +3669,6 @@ html {
     margin-bottom: 35px;
 }
 
-.skills-heading h1 {
-    font-family: "Super Bouncer", "AGENTORANGE", sans-serif;
-    font-size: clamp(45px, 6vw, 76px);
-    color: #073b78;
-    -webkit-text-stroke: 3px white;
-    paint-order: stroke fill;
-    text-shadow: 0 5px 0 #075d78,
-        0 9px 15px rgba(0, 0, 0, .3);
-    letter-spacing: 2px;
-}
 
 .skills-ribbon {
     display: inline-block;
@@ -4148,10 +4138,6 @@ html {
         margin-bottom: 30px;
     }
 
-    .skills-heading h1 {
-        font-size: 43px;
-    }
-
     .skills-layout {
         display: flex;
         flex-direction: column;
@@ -4251,22 +4237,6 @@ html {
     transform: translateY(-50%) scaleX(-1);
 }
 
-.skills-heading h1 {
-    margin: 0;
-    font-family: "Taste Bread", "AGENTORANGE", sans-serif;
-    font-size: clamp(45px, 6vw, 85px);
-    line-height: 1.15;
-    font-weight: 900;
-    letter-spacing: 2px;
-
-    color: #08708e;
-    -webkit-text-stroke: 5px white;
-    paint-order: stroke fill;
-
-    text-shadow:
-        0 5px 0 #07536e,
-        0 9px 0 rgba(0, 40, 65, .35);
-}
 
 .skills-ribbon,
 .skills-heading p {
@@ -4291,8 +4261,12 @@ html {
         transform: translateY(-50%) scaleX(-1) scale(.65);
     }
 
-    .skills-heading h1 {
-        font-size: clamp(35px, 9vw, 55px);
-        -webkit-text-stroke: 3px white;
-    }
+}
+
+
+/* Hilangkan tiga garis dekoratif di kiri dan kanan judul My Skills */
+.skills-heading::before,
+.skills-heading::after {
+    display: none !important;
+    content: none !important;
 }
