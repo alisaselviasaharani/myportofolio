@@ -9,7 +9,7 @@
 <main class="pages">
     <!-- PAGE : EXPERIENCE -->
     <section class="experience-page" id="experience" data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}"
-        data-login-url="{% url 'main:login' %}" data-superuser="{{ user.is_superuser|yesno:'true,false' }}">
+        data-login-url="{% url 'main:login' %}" data-superuser="{{ user.is_superuser|yesno:'true,false' }}" data-editor="{{ is_editor|yesno:'true,false' }}">
         <!-- Gelembung -->
         <div class="bubbles">
             <span></span>
@@ -80,6 +80,8 @@
     const LOGIN_URL = experiencePage.dataset.loginUrl;
     const IS_AUTHENTICATED = experiencePage.dataset.authenticated === "true";
     const IS_SUPERUSER = experiencePage.dataset.superuser === "true";
+    const CAN_EDIT = IS_SUPERUSER || experiencePage.dataset.editor === "true";
+    let editingExperienceId = null;
 
     const experienceGrid = document.getElementById("experience-grid");
     const experienceLoading = document.getElementById("experience-loading");
@@ -158,10 +160,11 @@
             : `<a href="${escapeHtml(LOGIN_URL)}" class="button">Login untuk memberi Star</a>
                <span class="star-count">⭐ ${escapeHtml(experience.star_count)}</span>`;
 
+        const editHtml = CAN_EDIT
+            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(experience.id)}">Edit</button>` : "";
         const deleteHtml = IS_SUPERUSER
             ? `<button type="button" class="button button-danger" data-action="delete"
-                    data-id="${escapeHtml(experience.id)}">Hapus</button>`
-            : "";
+                    data-id="${escapeHtml(experience.id)}">Hapus</button>` : "";
 
         article.innerHTML = `
             ${websiteHtml}
@@ -171,6 +174,7 @@
             <p>${escapeHtml(experience.category_display)}</p>
             <p>${escapeHtml(experience.description)}</p>
             <div class="experience-star">${starHtml}</div>
+            ${editHtml}
             ${deleteHtml}
         `;
         return article;
@@ -241,7 +245,16 @@
         fetchExperiences(experienceSearchInput.value.trim());
     });
 
-    // Tambah experience lewat modal
+    // Tombol tambah selalu memulai mode create, bukan melanjutkan mode edit sebelumnya.
+    const addExperienceButton = document.querySelector('[popovertarget="experience-form-modal"]');
+    if (addExperienceButton) addExperienceButton.addEventListener("click", function () {
+        editingExperienceId = null;
+        experienceForm?.reset();
+        document.getElementById("experience-form-modal-title").textContent = "Tambah Experience Baru";
+        experienceForm?.querySelector('button[type="submit"]')?.replaceChildren("Tambah Experience");
+    });
+
+    // Tambah atau edit experience lewat modal
     if (experienceForm) {
         experienceForm.addEventListener("submit", async function (event) {
             event.preventDefault();
@@ -256,10 +269,15 @@
                     "description", "logo", "website",
                 ].map(name => [name, fields.get(name)]));
 
-                await writeExperience(EXPERIENCE_ENDPOINT, "POST", payload);
+                const isEditing = Boolean(editingExperienceId);
+                const url = isEditing ? experienceEndpoint(DETAIL_EXPERIENCE_ENDPOINT, editingExperienceId) : EXPERIENCE_ENDPOINT;
+                await writeExperience(url, isEditing ? "PATCH" : "POST", payload);
                 document.getElementById("experience-form-modal").hidePopover();
                 experienceForm.reset();
-                showToast("Berhasil", "Experience berhasil ditambahkan.", "success");
+                editingExperienceId = null;
+                document.getElementById("experience-form-modal-title").textContent = "Tambah Experience Baru";
+                submitButton.textContent = "Tambah Experience";
+                showToast("Berhasil", isEditing ? "Experience berhasil diperbarui." : "Experience berhasil ditambahkan.", "success");
                 await fetchExperiences(experienceSearchInput.value.trim());
             } catch (error) {
                 showToast("Gagal menambahkan experience", error.message, "error");
@@ -275,6 +293,22 @@
         if (!button || button.disabled) return;
 
         const action = button.dataset.action;
+        if (action === "edit") {
+            try {
+                const response = await fetch(experienceEndpoint(DETAIL_EXPERIENCE_ENDPOINT, button.dataset.id), { headers: { Accept: "application/json" } });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const item = await response.json();
+                editingExperienceId = item.id;
+                for (const [key, value] of Object.entries(item)) {
+                    const field = experienceForm.elements.namedItem(key);
+                    if (field) field.value = value ?? "";
+                }
+                document.getElementById("experience-form-modal-title").textContent = "Edit Experience";
+                experienceForm.querySelector('button[type="submit"]').textContent = "Simpan Perubahan";
+                document.getElementById("experience-form-modal").showPopover();
+            } catch (error) { showToast("Gagal membuka data", error.message, "error"); }
+            return;
+        }
         if (action === "delete" && !window.confirm("Apakah kamu yakin ingin menghapus Experience ini?")) return;
 
         button.disabled = true;
