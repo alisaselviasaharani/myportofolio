@@ -63,13 +63,15 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
         return strip_tags(value).strip()
 
     def validate(self, attrs):
-        # secret_code bukan field model, jadi dibuang setelah diperiksa.
+        # Kode rahasia hanya diwajibkan saat membuat achievement baru.
+        # Editor yang melakukan PUT/PATCH tidak perlu memasukkan ulang kode.
         code = attrs.pop("secret_code", None)
-        expected = os.getenv("PORTOFOLIO_SECRET")
-        if not code or not expected or not secrets.compare_digest(code, expected):
-            raise serializers.ValidationError(
-                {"secret_code": ["Kode rahasia yang anda masukkan salah."]}
-            )
+        if self.instance is None:
+            expected = os.getenv("PORTOFOLIO_SECRET")
+            if not code or not expected or not secrets.compare_digest(code, expected):
+                raise serializers.ValidationError(
+                    {"secret_code": ["Kode rahasia yang anda masukkan salah."]}
+                )
         return attrs
 
 
