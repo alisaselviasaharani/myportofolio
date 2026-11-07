@@ -8,17 +8,67 @@
 
 {% block content %}
 <main class="contact-hub">
-    <div class="contact-hub-inner">
-        <section class="contact-panel my-contacts-panel">
-            <div class="contact-panel-heading">
-               
-                <h1>My Contacts <span class="title-rays">✦</span></h1>
-                <p>Kelola daftar kontak penting kamu di sini.</p>
-            </div>
+    <div class="contact-hub-inner contact-tabbed">
 
-            <div class="contact-manager-layout">
+        <header class="contact-top">
+            <h1>Contact <span class="title-rays">✦</span></h1>
+            <div class="contact-tabs" role="tablist" aria-label="Pilih tampilan kontak">
+                <button type="button" class="contact-tab" id="tab-connect" role="tab" data-tab="connect"
+                        aria-controls="panel-connect" aria-selected="true">💌 Let's Connect</button>
+                <button type="button" class="contact-tab" id="tab-contacts" role="tab" data-tab="contacts"
+                        aria-controls="panel-contacts" aria-selected="false" tabindex="-1">📇 My Contacts</button>
+            </div>
+        </header>
+
+        <!-- TAB 1: Let's Connect (untuk pengunjung) -->
+        <section class="contact-panel send-message-panel" id="panel-connect" role="tabpanel" aria-labelledby="tab-connect">
+            <div class="connect-grid">
+                <div class="connect-hello">
+                    <div class="connect-bubble">
+                        <strong>Thank you for visiting my portfolio!</strong>
+                        <span>Punya pertanyaan, ingin berkolaborasi, atau sekadar menyapa? Kirim pesan ya 💙</span>
+                    </div>
+                    <img class="connect-mascot" src="{% static 'img/nailong1.png' %}" alt="Nailong melambai">
+                    <div class="connect-socials">
+                        <a href="https://www.linkedin.com/in/alisaselviasaharani" target="_blank" rel="noopener">
+                            <img src="{% static 'img/linkedin.png' %}" alt=""><b>LinkedIn</b>
+                        </a>
+                        <a href="https://github.com/alisaselviasaharani" target="_blank" rel="noopener">
+                            <img src="{% static 'img/github.png' %}" alt=""><b>GitHub</b>
+                        </a>
+                        <a href="mailto:alisa.selvia@ui.ac.id">
+                            <img src="{% static 'img/gmail.png' %}" alt=""><b>Email</b>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="message-form-card">
+                    <h2>✉ Send a Message</h2>
+                    <form class="send-message-form" action="mailto:alisa.selvia@ui.ac.id" method="post"
+                          enctype="text/plain">
+                        <label class="message-input">
+                            <span>♙</span>
+                            <input type="text" name="Nama" placeholder="Nama lengkap" required>
+                        </label>
+                        <label class="message-input">
+                            <span>✉</span>
+                            <input type="email" name="Email" placeholder="Email" required>
+                        </label>
+                        <label class="message-textarea">
+                            <span>▤</span>
+                            <textarea name="Pesan" placeholder="Pesan..." rows="5" required></textarea>
+                        </label>
+                        <button type="submit">Kirim Pesan</button>
+                    </form>
+                    <small>Pesan akan dibuka melalui aplikasi email kamu.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: My Contacts (kelola kontak, HTMX) -->
+        <section class="contact-panel my-contacts-panel" id="panel-contacts" role="tabpanel" aria-labelledby="tab-contacts" hidden>
+                        <div class="contact-manager-layout">
                 <aside class="contact-sidebar">
-                    <div class="contact-side-active">♙ <span>My Contacts</span></div>
                     <form class="contact-add-form" hx-post="{% url 'main:contact_add' %}" hx-target="#contact-rows"
                           hx-swap="innerHTML" hx-on::after-request="if (event.detail.successful) this.reset()">
                         {% csrf_token %}
@@ -54,65 +104,38 @@
                 </div>
             </div>
         </section>
-
-        <section class="contact-panel send-message-panel">
-            <div class="contact-panel-heading">
-                
-                <h1>Let's Connect! <span class="title-rays">✦</span></h1>
-                <p>Punya pertanyaan, ingin berkolaborasi, atau sekadar menyapa?<br>
-                   Jangan ragu untuk menghubungi saya ya! 💙</p>
-            </div>
-
-            <div class="send-message-layout">
-                <div class="contact-social-column">
-                    <div class="contact-info-box">
-                        <h2>🔗 Find Me Here</h2>
-                        <p>Temukan saya di berbagai platform:</p>
-                        <div class="contact-social-grid">
-                            <a href="https://github.com/alisaselviasaharani" target="_blank" rel="noopener">
-                                <span class="social-emoji github-emoji">⌘</span><b>GitHub</b>
-                            </a>
-                            <a href="https://www.linkedin.com/in/alisaselviasaharani" target="_blank" rel="noopener">
-                                <span class="social-emoji linkedin-emoji">in</span><b>LinkedIn</b>
-                            </a>
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener">
-                                <span class="social-emoji instagram-emoji">◎</span><b>Instagram</b>
-                            </a>
-                            <a href="mailto:alisa.selvia@ui.ac.id">
-                                <span class="social-emoji email-emoji">✉</span><b>Email</b>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-info-box other-ways-box">
-                        <h2>♧ Other Ways</h2>
-                        <p>Kamu juga bisa menghubungi saya melalui email di sebelah kanan.</p>
-                        <span class="other-way-arrow">›</span>
-                    </div>
-                </div>
-
-                <div class="message-form-card">
-                    <h2>➤ Send a Message</h2>
-                    <form class="send-message-form" action="mailto:alisa.selvia@ui.ac.id" method="post"
-                          enctype="text/plain">
-                        <label class="message-input">
-                            <span>♙</span>
-                            <input type="text" name="Nama" placeholder="Nama lengkap" required>
-                        </label>
-                        <label class="message-input">
-                            <span>✉</span>
-                            <input type="email" name="Email" placeholder="Email" required>
-                        </label>
-                        <label class="message-textarea">
-                            <span>▤</span>
-                            <textarea name="Pesan" placeholder="Pesan..." rows="4" required></textarea>
-                        </label>
-                        <button type="submit">➤ Kirim Pesan</button>
-                    </form>
-                    <small>Pesan akan dibuka melalui aplikasi email kamu.</small>
-                </div>
-            </div>
-        </section>
     </div>
     <div class="contact-seafloor" aria-hidden="true">🪸　🐢　⭐　🐚　🪸</div>
 </main>
+
+<script>
+    (function () {
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.contact-tab'));
+        var panels = { connect: document.getElementById('panel-connect'), contacts: document.getElementById('panel-contacts') };
+
+        function show(key, focus) {
+            tabs.forEach(function (t) {
+                var on = t.dataset.tab === key;
+                t.setAttribute('aria-selected', on);
+                t.tabIndex = on ? 0 : -1;
+                if (on && focus) t.focus();
+            });
+            Object.keys(panels).forEach(function (k) { panels[k].hidden = (k !== key); });
+            history.replaceState(null, '', '#' + key);
+        }
+
+        tabs.forEach(function (t, i) {
+            t.addEventListener('click', function () { show(t.dataset.tab); });
+            t.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                    var next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+                    show(next.dataset.tab, true);
+                }
+            });
+        });
+
+        var hash = location.hash.slice(1);
+        show(panels[hash] ? hash : 'connect');
+    })();
+</script>
 {% endblock content %}
