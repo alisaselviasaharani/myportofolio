@@ -71,13 +71,44 @@
             <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
             <!-- Peringatan untuk swipe-hint -->
-            <div class="swipe-hint">
+            <!-- <div class="swipe-hint">
                 <span>Swipe/ Scroll to explore</span>
                 <span class="arrow">→</span>
 
-            </div>
+            </div> -->
 
         </div>
+
+
+
+        <!-- QUICK LINKS: ditambahkan di bawah About Me yang asli -->
+
+        <a class="about-quick-card" href="#profile">
+            <span class="about-quick-icon">♙</span>
+            <span class="about-quick-copy">
+                <strong>My Journey</strong>
+                <span>Perjalanan saya dari awal hingga sekarang, termasuk pengalaman dan pencapaian.</span>
+            </span>
+            <span class="about-quick-arrow">›</span>
+        </a>
+
+        <a class="about-quick-card" href="{% url 'main:show_education' %}">
+            <span class="about-quick-icon">🎓</span>
+            <span class="about-quick-copy">
+                <strong>Education</strong>
+                <span>Riwayat pendidikan saya dan pelatihan yang pernah diikuti.</span>
+            </span>
+            <span class="about-quick-arrow">›</span>
+        </a>
+
+        <a class="about-quick-card" href="{% url 'main:skills' %}">
+            <span class="about-quick-icon">☆</span>
+            <span class="about-quick-copy">
+                <strong>Skills &amp; Interests</strong>
+                <span>Kemampuan, tools yang dikuasai, serta hal-hal yang saya sukai.</span>
+            </span>
+            <span class="about-quick-arrow">›</span>
+        </a>
     </section>
 
     <!-- >>>>>> INI DI COMMENT KARENA EDUCATION JADI MVT YG TERLIHAT DI MENU BAR <<<<<<-->
@@ -313,8 +344,8 @@
     <!-- PAGE 5 : SKILLS -->
     <!-- <section class="skills-page" id="skills"> -->
 
-        <!-- Gelembung -->
-        <!-- <div class="bubbles">
+    <!-- Gelembung -->
+    <!-- <div class="bubbles">
             <span></span>
             <span></span>
             <span></span>
@@ -333,8 +364,8 @@
 
             <div class="skills-cards"> -->
 
-                <!-- Skill 1 -->
-                <!-- <div class="skills-card">
+    <!-- Skill 1 -->
+    <!-- <div class="skills-card">
                     <img class="skills-logo" src="/static/img/technical-skills.png" alt="Logo technical-skills">
                     <h2>Technical Skills</h2>
                     <p>Python</p>
@@ -347,8 +378,8 @@
                     <p>Microsoft PowerPoint</p>
                 </div> -->
 
-                <!-- Skill 2 -->
-                <!-- <div class="skills-card">
+    <!-- Skill 2 -->
+    <!-- <div class="skills-card">
                     <img class="skills-logo" src="/static/img/soft-skills.png" alt="Logo soft-skills">
                     <h2> Soft Skills</h2>
                     <p>Problem Solving</p>
@@ -360,10 +391,10 @@
                 </div>
             </div> -->
 
-            <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
+    <!-- ket: karna saya punya ide untuk dari page ke page selanjutnya dengan mengguankan swipe geser ke kanan jadinya
                 saya menggunakan swipe hint agar pengunjung tau cara melihat informasi lainnya dengan cara di swipe ke kanan -->
-            <!-- Peringatan untuk NEXT -->
-            <!-- <div class="swipe-hint">
+    <!-- Peringatan untuk NEXT -->
+    <!-- <div class="swipe-hint">
                 <span>Next</span>
                 <span class="arrow">→</span>
             </div>
@@ -374,8 +405,8 @@
     <!-- PAGE 6 : CONTACT -->
     <!-- <section class="contact-page" id="contact"> -->
 
-        <!-- Gelembung -->
-        <!-- <div class="bubbles">
+    <!-- Gelembung -->
+    <!-- <div class="bubbles">
             <span></span>
             <span></span>
             <span></span>
@@ -392,8 +423,8 @@
                 <h1>CONTACT</h1>
             </div> -->
 
-            <!-- Bagian pesan + Nailong -->
-            <!-- <div class="contact-message">
+    <!-- Bagian pesan + Nailong -->
+    <!-- <div class="contact-message">
 
                 <div class="message-box">
                     <h2>Thank You for</h2>
@@ -406,30 +437,30 @@
 
             <h2 class="connect-title">Let's Connect!</h2>
 
-            <!-- Contact buttons -->
-            <div class="contact-cards">
+            <-- Contact buttons -->
+    <!-- <div class="contact-cards"> -->
 
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/alisaselviasaharani" class="contact-card" target="_blank">
+    <!-- LinkedIn -->
+    <!-- <a href="https://www.linkedin.com/in/alisaselviasaharani" class="contact-card" target="_blank">
                     <img class="contact-logo" src="/static/img/linkedin.png" alt="LinkedIn">
                     <span>LinkedIn</span>
-                </a>
+                </a> -->
 
-                <!-- GitHub -->
-                <a href="https://github.com/alisaselviasaharani" class="contact-card" target="_blank">
+    <!-- GitHub -->
+    <!-- <a href="https://github.com/alisaselviasaharani" class="contact-card" target="_blank">
                     <img class="contact-logo" src="/static/img/github.png" alt="GitHub">
                     <span>GitHub</span>
-                </a>
+                </a> -->
 
-                <!-- Gmail -->
-                <a href="mailto:alisa.selvia@ui.ac.id" class="contact-card">
+    <!-- Gmail -->
+    <!-- <a href="mailto:alisa.selvia@ui.ac.id" class="contact-card">
                     <img class="contact-logo" src="/static/img/gmail.png" alt="Email">
                     <span>Email</span>
                 </a>
             </div>
 
         </div>
-    </section> -->
+    </section>  -->
 </main>
 
 {% endblock content %}

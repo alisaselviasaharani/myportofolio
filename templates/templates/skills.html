@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="skills-page" id="skills">
+    <div class="skills-bubbles">
+        {% for i in "123456789" %}
+        <span></span>
+        {% endfor %}
+    </div>
+
+    <div class="skills-heading">
+        <div class="ketik">
+            <h1>MY SKILLS</h1>
+        </div>
+
+        <div class="skills-ribbon">
+            What I Can Do
+        </div>
+        <p>
+            Things I've learned and skills I've developed
+            throughout my journey.
+        </p>
+    </div>
+
+    <div class="skills-layout">
+        <div class="skills-panel hard-panel">
+            <div class="shell-decoration">
+                🐚
+            </div>
+            <div class="panel-title hard-title">
+                <span>‹/›</span>
+                Technical Skills
+            </div>
+
+            <p class="panel-description">
+                Tools and technologies I have learned.
+            </p>
+
+            <div class="skills-grid">
+                {% for skill in hard_skills %}
+                <div class="skill-item">
+                    {% if skill.img %}
+                    <img src="{{ skill.img.url }}" alt="{{ skill.nama }}">
+                    {% endif %}
+                    <p>
+                        {{ skill.nama }}
+                    </p>
+                </div>
+                {% empty %}
+                <p class="empty-skill">
+                    No technical skills yet.
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="nailong-container">
+            <!-- Glass Bubble -->
+            <div class="nailong-bubble">
+                <!-- Bubble Shine -->
+                <div class="bubble-shine"></div>
+                <!-- Nailong Character -->
+                <div class="nailong-character">
+                    <img src="{% static 'img/nailong-popcorn-hd.gif' %}" alt="Nailong eating popcorn"
+                        class="nailong-eating">
+                    <!-- Popcorn Animation -->
+                    <div class="popcorn-animation">
+                        <span>🍿</span>
+                        <span>🍿</span>
+                        <span>🍿</span>
+                    </div>
+                    <!-- Sparkle Effect -->
+                    <div class="eating-effect">
+                        ✨
+                    </div>
+                </div>
+            </div>
+            <!-- Bubble Shadow -->
+            <div class="bubble-shadow"></div>
+        </div>
+
+
+        <div class="skills-panel soft-panel">
+
+            <!-- Shell Decoration -->
+            <div class="shell-decoration">
+                🐚
+            </div>
+
+            <!-- Panel Title -->
+            <div class="panel-title soft-title">
+
+                <span>♟</span>
+
+                Soft Skills
+
+            </div>
+
+            <p class="panel-description">
+                Personal abilities that help me grow.
+            </p>
+
+            <!-- Skills Grid -->
+            <div class="skills-grid">
+
+                {% for skill in soft_skills %}
+
+                <div class="skill-item">
+
+                    {% if skill.img %}
+                    <img src="{{ skill.img.url }}" alt="{{ skill.nama }}">
+                    {% endif %}
+
+                    <p>
+                        {{ skill.nama }}
+                    </p>
+
+                </div>
+
+                {% empty %}
+
+                <p class="empty-skill">
+                    No soft skills yet.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+     <div class="ocean-decoration">
+
+        <span class="starfish">
+            ⭐
+        </span>
+
+        <span class="coral">
+            🪸
+        </span>
+
+        <span class="shell">
+            🐚
+        </span>
+
+        <span class="turtle">
+            🐢
+        </span>
+
+    </div>
+
+    <div class="skills-navigation">
+        <a href="#contact" class="next-button">
+            Next
+            <span>→</span>
+        </a>
+        <!-- Page Indicators -->
+        <div class="page-dots">
+            <span></span>
+            <span class="active"></span>
+            <span></span>
+        </div>
+    </div>
+</section>
+</section>
+
+{% endblock %}

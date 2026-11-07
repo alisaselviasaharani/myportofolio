@@ -1,22 +1,11 @@
 <tr id="contact-{{ contact.id }}" class="contact-row">
-
-    <td class="contact-info">
-        <strong>{{ contact.name }}</strong>
-        <span>{{ contact.email }}</span>
-    </td>
-
+    <td class="contact-number">•</td>
+    <td class="contact-name-cell">{{ contact.name }}</td>
+    <td class="contact-email-cell">{{ contact.email }}</td>
     <td class="contact-actions">
-
-        <button class="contact-edit" hx-get="{% url 'main:contact_edit' contact.id %}" hx-target="closest tr"
-            hx-swap="outerHTML">
-            Edit
-        </button>
-
-        <button class="contact-delete" hx-delete="{% url 'main:contact_delete' contact.id %}" hx-target="closest tr"
-            hx-swap="outerHTML" hx-confirm="Are you sure you want to delete this contact?">
-            Delete
-        </button>
-
+        <button type="button" class="contact-edit" hx-get="{% url 'main:contact_edit' contact.id %}" hx-headers=\'{"X-CSRFToken": "{{ csrf_token }}"}\'
+            hx-target="closest tr" hx-swap="outerHTML">✎</button>
+        <button type="button" class="contact-delete" hx-delete="{% url 'main:contact_delete' contact.id %}" hx-headers=\'{"X-CSRFToken": "{{ csrf_token }}"}\'
+            hx-target="closest tr" hx-swap="outerHTML" hx-confirm="Hapus kontak ini?">▣</button>
     </td>
-
 </tr>

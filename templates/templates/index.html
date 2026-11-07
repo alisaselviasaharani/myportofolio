@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Contact | Alisa Selvia Saharani</title>
+<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.11/dist/htmx.min.js"></script>
+{% endblock meta %}
+
+{% block content %}
+<main class="contact-hub">
+    <div class="contact-hub-inner {% if not can_manage_contacts %}contact-public-only{% endif %}">
+        {% if can_manage_contacts %}
+        <section class="contact-panel my-contacts-panel">
+            <div class="contact-panel-heading">
+                <span class="contact-kicker">3. CONTACT</span>
+                <h1>My Contacts <span class="title-rays">✦</span></h1>
+                <p>Kelola daftar kontak penting kamu di sini.</p>
+            </div>
+
+            <div class="contact-manager-layout">
+                <aside class="contact-sidebar">
+                    <div class="contact-side-active">♙ <span>My Contacts</span></div>
+                    <form class="contact-add-form" hx-post="{% url 'main:contact_add' %}" hx-target="#contact-rows"
+                          hx-swap="innerHTML" hx-on::after-request="if (event.detail.successful) this.reset()">
+                        {% csrf_token %}
+                        <label class="contact-form-label" for="contact-name">Add New Contact</label>
+                        <input id="contact-name" type="text" name="name" placeholder="Full name" required>
+                        <input type="email" name="email" placeholder="Email address" required>
+                        <button type="submit">＋ Add Contact</button>
+                    </form>
+                </aside>
+
+                <div class="contact-table-area">
+                    <div class="contact-table-toolbar">
+                        <span class="contact-count">{{ contacts|length }} saved contacts</span>
+                        <label class="contact-search">
+                            <span>⌕</span>
+                            <input type="search" name="q" placeholder="Search contacts..."
+                                hx-get="{% url 'main:contact_search' %}"
+                                hx-trigger="keyup changed delay:300ms, search"
+                                hx-target="#contact-rows" hx-indicator="#search-indicator">
+                        </label>
+                    </div>
+                    <span id="search-indicator" class="htmx-indicator">Searching...</span>
+                    <div class="contact-table-scroll">
+                        <table class="contact-table">
+                            <thead>
+                                <tr><th>No.</th><th>Nama</th><th>Email</th><th>Aksi</th></tr>
+                            </thead>
+                            <tbody id="contact-rows">
+                                {% include "_contact_rows.html" %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        <section class="contact-panel send-message-panel">
+            <div class="contact-panel-heading">
+                <span class="contact-kicker">4. CONTACT</span>
+                <h1>Let's Connect! <span class="title-rays">✦</span></h1>
+                <p>Punya pertanyaan, ingin berkolaborasi, atau sekadar menyapa?<br>
+                   Jangan ragu untuk menghubungi saya ya! 💙</p>
+            </div>
+
+            <div class="send-message-layout">
+                <div class="contact-social-column">
+                    <div class="contact-info-box">
+                        <h2>🔗 Find Me Here</h2>
+                        <p>Temukan saya di berbagai platform:</p>
+                        <div class="contact-social-grid">
+                            <a href="https://github.com/alisaselviasaharani" target="_blank" rel="noopener">
+                                <span class="social-emoji github-emoji">⌘</span><b>GitHub</b>
+                            </a>
+                            <a href="https://www.linkedin.com/in/alisaselviasaharani" target="_blank" rel="noopener">
+                                <span class="social-emoji linkedin-emoji">in</span><b>LinkedIn</b>
+                            </a>
+                            <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+                                <span class="social-emoji instagram-emoji">◎</span><b>Instagram</b>
+                            </a>
+                            <a href="mailto:alisa.selvia@ui.ac.id">
+                                <span class="social-emoji email-emoji">✉</span><b>Email</b>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-info-box other-ways-box">
+                        <h2>♧ Other Ways</h2>
+                        <p>Kamu juga bisa menghubungi saya melalui email di sebelah kanan.</p>
+                        <span class="other-way-arrow">›</span>
+                    </div>
+                </div>
+
+                <div class="message-form-card">
+                    <h2>➤ Send a Message</h2>
+                    <form class="send-message-form" action="mailto:alisa.selvia@ui.ac.id" method="post"
+                          enctype="text/plain">
+                        <label class="message-input">
+                            <span>♙</span>
+                            <input type="text" name="Nama" placeholder="Nama lengkap" required>
+                        </label>
+                        <label class="message-input">
+                            <span>✉</span>
+                            <input type="email" name="Email" placeholder="Email" required>
+                        </label>
+                        <label class="message-textarea">
+                            <span>▤</span>
+                            <textarea name="Pesan" placeholder="Pesan..." rows="4" required></textarea>
+                        </label>
+                        <button type="submit">➤ Kirim Pesan</button>
+                    </form>
+                    <small>Pesan akan dibuka melalui aplikasi email kamu.</small>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="contact-seafloor" aria-hidden="true">🪸　🐢　⭐　🐚　🪸</div>
+</main>
+{% endblock content %}
