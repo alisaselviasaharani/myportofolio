@@ -7397,3 +7397,103 @@ html {
         width: 100%;
     }
 }
+
+
+/* ===== MENU: ikon di semua item + mobile disamakan dengan dropdown user desktop ===== */
+.navbar-auth .btn-login svg,
+.navbar-auth .btn-register svg {
+    flex: none;
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mobile-menu-content {
+    gap: 2px;
+    padding: 10px;
+}
+
+.mobile-menu-content .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #0b3b55;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background .2s;
+}
+
+.mobile-menu-content .mobile-nav-link svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mobile-menu-content .mobile-nav-link:hover,
+.mobile-menu-content .mobile-nav-link.active {
+    background: #bdf1fb;
+}
+
+.mobile-menu-content .mobile-nav-main {
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+
+.mobile-menu-content .mobile-nav-register {
+    background: linear-gradient(180deg, #5ff3ff, #17dcf2);
+    color: #04526b;
+}
+
+.mobile-menu-content .mobile-nav-register:hover,
+.mobile-menu-content .mobile-nav-register.active {
+    background: linear-gradient(180deg, #8ff7ff, #3fe6f7);
+}
+
+.mobile-menu-content .mobile-nav-divider {
+    width: 100%;
+    margin: 6px 0;
+    border: 0;
+    border-top: 1px solid #e3eef2;
+}
+
+
+/* ===== LOGIN / REGISTER / FORM ACHIEVEMENT: beri jarak dari navbar dan footer ===== */
+.experience-section:not([id]) {
+    padding: 56px 0 80px;
+}
+
+@media (max-width: 600px) {
+    .experience-section:not([id]) {
+        padding: 28px 0 52px;
+    }
+}
+
+
+/* ===== ACHIEVEMENTS / EDUCATION / EXPERIENCE: jarak kartu terbawah ke footer ===== */
+#achievements,
+#education,
+#experience {
+    padding-bottom: 90px;
+}
+
+@media (max-width: 600px) {
+
+    #achievements,
+    #education,
+    #experience {
+        padding-bottom: 60px;
+    }
+}
