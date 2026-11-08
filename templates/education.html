@@ -31,17 +31,24 @@
                 <h1>EDUCATION</h1>
             </div>
 
+            <form id="education-search-form" class="page-search">
+                <label class="page-search__field">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>
+                    <input id="education-search-input" type="search" name="q" placeholder="Cari pendidikan..."
+                        class="page-search__input" aria-label="Cari pendidikan">
+                </label>
+                <button type="submit" class="page-search__button">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>
+                    Search
+                </button>
+            </form>
+
             {% if user.is_superuser %}
-            <button type="button" class="button" popovertarget="education-form-modal">
+            <button type="button" class="page-add-button" popovertarget="education-form-modal">
+                <span aria-hidden="true">+</span>
                 Tambah Education
             </button>
             {% endif %}
-
-            <form id="education-search-form" class="education-search">
-                <span class="education-search-icon" aria-hidden="true">⌕</span>
-                <input id="education-search-input" type="search" placeholder="Cari pendidikan..."
-                    aria-label="Cari pendidikan">
-            </form>
 
             <div id="education-loading" class="empty-state">
                 <h2>Memuat data pendidikan...</h2>

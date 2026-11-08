@@ -29,18 +29,24 @@
                 <h1>EXPERIENCE</h1>
             </div>
 
+            <form id="experience-search-form" class="page-search">
+                <label class="page-search__field">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>
+                    <input id="experience-search-input" type="search" name="q" placeholder="Cari pengalaman..."
+                        class="page-search__input" aria-label="Cari pengalaman">
+                </label>
+                <button type="submit" class="page-search__button">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>
+                    Search
+                </button>
+            </form>
+
             {% if user.is_superuser %}
-            <button type="button" class="button" popovertarget="experience-form-modal">
+            <button type="button" class="page-add-button" popovertarget="experience-form-modal">
+                <span aria-hidden="true">+</span>
                 Tambah Experience
             </button>
             {% endif %}
-
-            <!-- Search Experience -->
-            <form id="experience-search-form" class="experience-search">
-                <span class="experience-search-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>
-                <input id="experience-search-input" type="search" placeholder="Cari pengalaman..."
-                    aria-label="Cari pengalaman">
-            </form>
             
             <!-- Loading State -->
             <div id="experience-loading" class="empty-state hide">
