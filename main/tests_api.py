@@ -6,11 +6,9 @@ from django.contrib.auth.models import Group, User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
-
-from main.models import Achievements, Experience
+from main.models import Achievements, Education, Experience
 
 SECRET = "test-secret"
-
 
 class ResourceAPITestMixin:
     """
@@ -227,3 +225,225 @@ class ExperienceAPITest(ResourceAPITestMixin, APITestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("logo", response.data)
+
+
+class EducationAPITest(APITestCase):
+    """Tes API Education (Tugas 6) untuk keempat peran, validasi, star, dan CSRF."""
+
+    def setUp(self):
+        self.owner = User.objects.create_superuser(
+            username="owner", password="test-password", email="owner@example.com",
+        )
+        self.editor = User.objects.create_user(
+            username="editor", password="test-password", email="editor@example.com",
+        )
+        self.editor.groups.add(Group.objects.create(name="Editor"))
+        self.visitor = User.objects.create_user(
+            username="visitor", password="test-password", email="visitor@example.com",
+        )
+
+        self.obj = Education.objects.create(
+            institution="Universitas Indonesia",
+            degree="Ilmu Komputer",
+            period="2025 - Sekarang",
+            logo="/static/img/logoUI.png",
+            website="https://www.ui.ac.id/",
+        )
+        self.list_url = reverse("api:education-list")
+        self.detail_url = reverse("api:education-detail", args=[self.obj.id])
+        self.star_url = reverse("api:education-star", args=[self.obj.id])
+
+        self.payload = {
+            "institution": "SMAN 65 Jakarta",
+            "degree": "IPA",
+            "period": "2022 - 2025",
+            "logo": "/static/img/logoIT65.png",
+            "website": "https://example.com/",
+        }
+
+    def assertUnchanged(self):
+        """Database tidak berubah: jumlah data tetap satu dan isi aslinya utuh."""
+        self.assertEqual(Education.objects.count(), 1)
+        self.obj.refresh_from_db()
+        self.assertEqual(self.obj.institution, "Universitas Indonesia")
+        self.assertEqual(self.obj.degree, "Ilmu Komputer")
+
+    # ----- baca -----
+    def test_public_list_detail_and_no_sensitive_data(self):
+        self.obj.starred_by.add(self.visitor)
+        response = self.client.get(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["id"], self.obj.id)
+        self.assertEqual(response.data[0]["star_count"], 1)
+        self.assertFalse(response.data[0]["is_starred"])
+        self.assertEqual(self.client.get(self.detail_url).status_code, status.HTTP_200_OK)
+        body = str(response.data)
+        self.assertNotIn("visitor@example.com", body)
+        self.assertNotIn("password", body)
+
+    def test_search_by_institution(self):
+        response = self.client.get(self.list_url, {"institution": "UNIVERSITAS"})
+        self.assertEqual(len(response.data), 1)
+        response = self.client.get(self.list_url, {"institution": "tidak-ada"})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data, [])
+
+    def test_missing_object_returns_404(self):
+        url = reverse("api:education-detail", args=[99999])
+        self.assertEqual(self.client.get(url).status_code, status.HTTP_404_NOT_FOUND)
+
+    # ----- peran -----
+    def test_guest_and_regular_user_cannot_write(self):
+        for user in (None, self.visitor):
+            self.client.force_authenticate(user=user)
+            self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, 403)
+            self.assertEqual(self.client.put(self.detail_url, self.payload, format="json").status_code, 403)
+            self.assertEqual(self.client.patch(self.detail_url, {"institution": "Hack"}, format="json").status_code, 403)
+            self.assertEqual(self.client.delete(self.detail_url).status_code, 403)
+        self.assertUnchanged()
+
+    def test_staff_without_editor_group_cannot_write(self):
+        self.visitor.is_staff = True
+        self.visitor.save()
+        self.client.force_authenticate(user=self.visitor)
+        response = self.client.patch(self.detail_url, {"institution": "Hack"}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertUnchanged()
+
+    def test_editor_can_patch_and_put_but_not_create_or_delete(self):
+        self.client.force_authenticate(user=self.editor)
+
+        response = self.client.patch(self.detail_url, {"degree": "Sistem Informasi"}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.obj.refresh_from_db()
+        self.assertEqual(self.obj.degree, "Sistem Informasi")
+        self.assertEqual(self.obj.institution, "Universitas Indonesia")  # PATCH tidak menimpa field lain
+
+        response = self.client.put(self.detail_url, self.payload, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.obj.refresh_from_db()
+        self.assertEqual(self.obj.institution, "SMAN 65 Jakarta")
+
+        self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, 403)
+        self.assertEqual(self.client.delete(self.detail_url).status_code, 403)
+        self.assertEqual(Education.objects.count(), 1)
+        self.assertTrue(Education.objects.filter(pk=self.obj.pk).exists())
+
+    def test_owner_can_create_update_and_delete(self):
+        self.client.force_authenticate(user=self.owner)
+
+        response = self.client.post(self.list_url, self.payload, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        new_id = response.data["id"]
+        self.assertTrue(Education.objects.filter(pk=new_id, institution="SMAN 65 Jakarta").exists())
+
+        detail = reverse("api:education-detail", args=[new_id])
+        self.assertEqual(self.client.patch(detail, {"period": "2021 - 2024"}, format="json").status_code, 200)
+        self.assertEqual(Education.objects.get(pk=new_id).period, "2021 - 2024")
+
+        response = self.client.delete(detail)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.content, b"")
+        self.assertFalse(Education.objects.filter(pk=new_id).exists())
+
+    # ----- validasi -----
+    def test_validation_errors_return_400(self):
+        self.client.force_authenticate(user=self.owner)
+        cases = [
+            ({"institution": "   "}, "institution"),
+            ({"institution": "<b></b>"}, "institution"),
+            ({"degree": "<script></script>"}, "degree"),
+            ({"website": "javascript:alert(1)"}, "website"),
+            ({"logo": "javascript:alert(1)"}, "logo"),
+        ]
+        for changes, field in cases:
+            response = self.client.post(self.list_url, {**self.payload, **changes}, format="json")
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST, changes)
+            self.assertIn(field, response.data)
+        self.assertEqual(Education.objects.count(), 1)
+
+    def test_put_with_missing_fields_returns_400(self):
+        self.client.force_authenticate(user=self.owner)
+        response = self.client.put(self.detail_url, {"institution": "Saja"}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertUnchanged()
+
+    def test_html_tags_are_stripped_before_saving(self):
+        self.client.force_authenticate(user=self.owner)
+        response = self.client.post(
+            self.list_url, {**self.payload, "institution": "<b>UGM</b>"}, format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Education.objects.get(pk=response.data["id"]).institution, "UGM")
+
+    def test_logo_and_website_are_optional_and_long_url_is_accepted(self):
+        self.client.force_authenticate(user=self.owner)
+        response = self.client.post(
+            self.list_url, {**self.payload, "logo": "", "website": ""}, format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        long_logo = "https://example.com/" + "a" * 100 + ".png"
+        response = self.client.post(self.list_url, {**self.payload, "logo": long_logo}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    # ----- star -----
+    def test_star_requires_login_and_toggles(self):
+        self.assertEqual(self.client.post(self.star_url).status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.obj.starred_by.count(), 0)
+
+        self.client.force_authenticate(user=self.visitor)
+        response = self.client.post(self.star_url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response.data["is_starred"])
+        self.assertEqual(response.data["star_count"], 1)
+        self.assertTrue(self.obj.starred_by.filter(pk=self.visitor.pk).exists())
+
+        response = self.client.post(self.star_url)
+        self.assertFalse(response.data["is_starred"])
+        self.assertEqual(response.data["star_count"], 0)
+        self.assertEqual(self.obj.starred_by.count(), 0)
+
+    def test_star_uses_request_user_and_computed_fields_are_read_only(self):
+        self.client.force_authenticate(user=self.owner)
+        response = self.client.post(self.list_url, {
+            **self.payload, "star_count": 99, "is_starred": True,
+            "starred_by_names": "forged", "starred_by": [self.visitor.id],
+        }, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["star_count"], 0)
+        self.assertFalse(response.data["is_starred"])
+        self.assertEqual(Education.objects.get(pk=response.data["id"]).starred_by.count(), 0)
+
+        # Star selalu atas nama akun yang login, bukan data kiriman klien.
+        self.client.force_authenticate(user=self.visitor)
+        self.client.post(self.star_url, {"user": self.owner.id}, format="json")
+        self.assertEqual(list(self.obj.starred_by.all()), [self.visitor])
+
+    def test_wrong_methods_return_405(self):
+        self.client.force_authenticate(user=self.owner)
+        self.assertEqual(self.client.delete(self.list_url).status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.assertEqual(self.client.get(self.star_url).status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    # ----- CSRF -----
+    def test_session_write_without_csrf_token_is_rejected(self):
+        client = APIClient(enforce_csrf_checks=True)
+        self.assertTrue(client.login(username="owner", password="test-password"))
+        response = client.post(self.list_url, self.payload, format="json")
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Education.objects.count(), 1)
+
+        response = client.delete(self.detail_url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Education.objects.count(), 1)
+
+    def test_session_write_with_csrf_token_succeeds(self):
+        client = APIClient(enforce_csrf_checks=True)
+        client.login(username="owner", password="test-password")
+        # Halaman Education memuat {% csrf_token %}, sehingga cookie csrftoken terpasang.
+        page = client.get(reverse("main:show_education"))
+        self.assertEqual(page.status_code, status.HTTP_200_OK)
+        token = client.cookies["csrftoken"].value
+        response = client.post(self.list_url, self.payload, format="json", HTTP_X_CSRFTOKEN=token)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Education.objects.count(), 2)
+

@@ -4,6 +4,7 @@ from unittest import mock
 from django.contrib.auth.models import Group, User
 from django.test import TestCase
 from django.urls import reverse
+from rest_framework.test import APITestCase, APIClient
 
 from main.forms import AchievementsForm, ExperienceForm
 from main.models import Achievements, Contact, Education, Experience

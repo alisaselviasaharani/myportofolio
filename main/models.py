@@ -66,10 +66,10 @@ class Education(models.Model):
     period= models.CharField(max_length=50)
 
     # simpan logo institusi
-    logo =models.CharField(max_length=50)
+    logo = models.CharField(max_length=255, blank=True)
     
     # simpan website
-    website= models.CharField(max_length=100)
+    website = models.CharField(max_length=255, blank=True)
     starred_by = models.ManyToManyField( User, related_name="starred_education", blank=True)
 
     # Menentukan representasi object Education
