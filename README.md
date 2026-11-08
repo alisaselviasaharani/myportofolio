@@ -1353,7 +1353,13 @@
 
 ### Tugas 6
     ##  Deskripsi Proyek
-        Pada Tugas 6 ini, saya mengembangkan website portfolio pribadi menggunakan Django dengan menerapkan konsep REST API. Pengembangan ini bertujuan agar pengelolaan data pada website dapat dilakukan melalui API, sehingga proses menampilkan, menambahkan, mengubah, dan menghapus data menjadi lebih terstruktur. Pada tugas ini, saya juga menerapkan Django REST Framework untuk membuat serializer, mengatur endpoint API, serta mengimplementasikan autentikasi dan otorisasi agar akses terhadap data dapat dibatasi sesuai dengan hak pengguna. Selain itu, saya melakukan pengujian API untuk memastikan setiap endpoint dapat berjalan sesuai fungsinya, termasuk pengujian metode GET, POST, PUT, PATCH, dan DELETE.
+        Pada Tugas 6 ini, saya mengembangkan website portfolio pribadi menggunakan Django dengan menerapkan 
+        konsep REST API. Pengembangan ini bertujuan agar pengelolaan data pada website dapat dilakukan melalui 
+        API, sehingga proses menampilkan, menambahkan, mengubah, dan menghapus data menjadi lebih terstruktur. 
+        Pada tugas ini, saya juga menerapkan Django REST Framework untuk membuat serializer, mengatur endpoint API,
+        serta mengimplementasikan autentikasi dan otorisasi agar akses terhadap data dapat dibatasi sesuai dengan 
+        hak pengguna. Selain itu, saya melakukan pengujian API untuk memastikan setiap endpoint dapat berjalan 
+        sesuai fungsinya, termasuk pengujian metode GET, POST, PUT, PATCH, dan DELETE.
 
     ##  Design & Resources
         - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
@@ -1367,7 +1373,8 @@
         - About me:
             Ada beberapa card untuk mengarahka dengan halaman yang ingin di lihat
         - Contact:
-            Page kontak terbagi menjadi 2 section yaitu untuk mengirim email ke pemilik website dan my kontak (kontak email yang dapat dihubungin oleh user saat ingin mengirim pesan)
+            Page kontak terbagi menjadi 2 section yaitu untuk mengirim email ke pemilik website dan my kontak 
+            (kontak email yang dapat dihubungin oleh user saat ingin mengirim pesan)
         - Login
         - Register
 
@@ -1424,19 +1431,30 @@
         1.  Jelaskan apa yang dimaksud dengan REST dan mengapa mengembalikan JSON saja belum cukup untuk menyebut sebuah
             API sebagai RESTful! Jelaskan pula perbedaan PUT dan PATCH beserta contoh kapan masing-masing sebaiknya digunakan!
             Jawab:
-            REST (Representational State Transfer) adalah sebuah konsep atau gaya arsitektur yang digunakan dalam pembuatan API agar komunikasi antara client dan server lebih terstruktur. REST menggunakan HTTP method seperti GET, POST, PUT, PATCH, dan DELETE sesuai dengan fungsi masing-masing. Mengembalikan data dalam bentuk JSON saja belum cukup untuk disebut RESTful API, karena JSON hanya merupakan format untuk pertukaran data. Sebuah API juga harus mengikuti prinsip REST, seperti penggunaan URL untuk mengakses resource, penggunaan HTTP method yang sesuai, dan status code HTTP yang tepat.
+            REST (Representational State Transfer) adalah sebuah konsep atau gaya arsitektur yang digunakan 
+            dalam pembuatan API agar komunikasi antara client dan server lebih terstruktur. REST menggunakan 
+            HTTP method seperti GET, POST, PUT, PATCH, dan DELETE sesuai dengan fungsi masing-masing. Mengembalikan 
+            data dalam bentuk JSON saja belum cukup untuk disebut RESTful API, karena JSON hanya merupakan format 
+            untuk pertukaran data. Sebuah API juga harus mengikuti prinsip REST, seperti penggunaan URL untuk 
+            mengakses resource, penggunaan HTTP method yang sesuai, dan status code HTTP yang tepat.
 
             Perbedaan PUT dan PATCH terletak pada jumlah data yang diperbarui.
-            - PUT digunakan untuk memperbarui keseluruhan data pada suatu resource. Contohnya, ketika ingin mengganti seluruh informasi profil pengguna.
-            - PATCH digunakan untuk memperbarui sebagian data saja. Contohnya, ketika hanya ingin mengubah nama pengguna tanpa mengubah email dan informasi lainnya.
-            Jadi, PUT digunakan ketika ingin memperbarui seluruh data, sedangkan PATCH digunakan jika hanya ada beberapa bagian data yang ingin diubah.
+            - PUT digunakan untuk memperbarui keseluruhan data pada suatu resource. Contohnya, ketika ingin 
+            mengganti seluruh informasi profil pengguna.
+            - PATCH digunakan untuk memperbarui sebagian data saja. Contohnya, ketika hanya ingin mengubah nama 
+            pengguna tanpa mengubah email dan informasi lainnya.
+            Jadi, PUT digunakan ketika ingin memperbarui seluruh data, sedangkan PATCH digunakan jika hanya ada 
+            beberapa bagian data yang ingin diubah.
 
-        2.  Jelaskan peran serializer pada Django REST Framework! Apa keuntungannya dibandingkan merakit dictionary secara
-            manual dengan JsonResponse seperti pada Tutorial 05?
+        2.  Jelaskan peran serializer pada Django REST Framework! Apa keuntungannya dibandingkan merakit dictionary 
+            secara manual dengan JsonResponse seperti pada Tutorial 05?
             Jawab:
-            Serializer pada Django REST Framework berfungsi untuk mengubah data dari model Django menjadi format JSON agar bisa dikirim melalui API. Serializer juga digunakan untuk mengubah data JSON yang diterima dari client menjadi objek Python atau model Django.
+            Serializer pada Django REST Framework berfungsi untuk mengubah data dari model Django menjadi format 
+            JSON agar bisa dikirim melalui API. Serializer juga digunakan untuk mengubah data JSON yang diterima 
+            dari client menjadi objek Python atau model Django.
 
-            Dibandingkan dengan menggunakan JsonResponse seperti pada Tutorial 05, serializer memiliki beberapa kelebihan, yaitu:
+            Dibandingkan dengan menggunakan JsonResponse seperti pada Tutorial 05, serializer memiliki beberapa 
+            kelebihan, yaitu:
             1. Validasi data: Data yang dikirim oleh client bisa diperiksa terlebih dahulu agar sesuai dengan ketentuan.
             2. Lebih praktis: Tidak perlu membuat dictionary secara manual untuk setiap data yang ingin dikirim.
             3. Konversi otomatis: Mempermudah proses mengubah data model menjadi JSON dan sebaliknya.
@@ -1458,11 +1476,25 @@
         4.  Jelaskan mengapa permintaan yang mengubah data tetap memerlukan token CSRF ketika API memakai
             SessionAuthentication! Mengapa test yang memakai force_authenticate tidak cukup untuk membuktikan bahwa perlindungan CSRF berjalan?
             Jawab:
-            CSRF (Cross-Site Request Forgery) merupakan jenis serangan yang memanfaatkan sesi login pengguna untuk mengirimkan request tanpa sepengetahuan pengguna tersebut.Pada Django REST Framework yang menggunakan SessionAuthentication, request yang mengubah data seperti POST, PUT, PATCH, dan DELETE tetap membutuhkan token CSRF.Hal ini karena SessionAuthentication menggunakan session cookie untuk mengenali pengguna. Browser dapat mengirimkan cookie tersebut secara otomatis ketika melakukan request ke server. Karena itu, token CSRF diperlukan untuk memastikan bahwa request yang mengubah data berasal dari sumber yang memiliki token yang valid.
-            Sementara itu, force_authenticate() tidak cukup untuk membuktikan bahwa perlindungan CSRF sudah berjalan. Hal ini karena force_authenticate() langsung mengatur pengguna sebagai pengguna yang sudah terautentikasi, sehingga proses autentikasi normal dan pemeriksaan CSRF pada SessionAuthentication tidak benar-benar diuji.
-            Untuk menguji perlindungan CSRF, kita bisa menggunakan APIClient dengan enforce_csrf_checks=True, kemudian melakukan login menggunakan session dan mencoba mengirim request tanpa token CSRF maupun dengan token CSRF yang valid.
-            Dengan cara tersebut, kita bisa memastikan bahwa server menolak request yang tidak memiliki token CSRF yang valid dan menerima request yang memenuhi persyaratan.
+            CSRF (Cross-Site Request Forgery) merupakan jenis serangan yang memanfaatkan sesi login 
+            pengguna untuk mengirimkan request tanpa sepengetahuan pengguna tersebut.Pada Django REST Framework yang 
+            menggunakan SessionAuthentication, request yang mengubah data seperti POST, PUT, PATCH, dan DELETE 
+            tetap membutuhkan token CSRF.Hal ini karena SessionAuthentication menggunakan session cookie untuk 
+            mengenali pengguna. Browser dapat mengirimkan cookie tersebut secara otomatis ketika melakukan 
+            request ke server. Karena itu, token CSRF diperlukan untuk memastikan bahwa request yang mengubah 
+            data berasal dari sumber yang memiliki token yang valid.
+            Sementara itu, force_authenticate() tidak cukup untuk membuktikan bahwa perlindungan CSRF sudah berjalan. 
+            Hal ini karena force_authenticate() langsung mengatur pengguna sebagai pengguna yang sudah terautentikasi, 
+            sehingga proses autentikasi normal dan pemeriksaan CSRF pada SessionAuthentication tidak benar-benar diuji.
+            Untuk menguji perlindungan CSRF, kita bisa menggunakan APIClient dengan enforce_csrf_checks=True, kemudian 
+            melakukan login menggunakan session dan mencoba mengirim request tanpa token CSRF maupun dengan token 
+            CSRF yang valid. Dengan cara tersebut, kita bisa memastikan bahwa server menolak request yang tidak 
+            memiliki token CSRF yang valid dan menerima request yang memenuhi persyaratan.
         
     ##  AI Disclosure & Usage
-        Dalam Tugas 6, saya menggunakan ChatGPT sebagai alat bantu untuk memahami konsep REST API, Django REST Framework, serta membantu proses pengembangan dan perbaikan kode program. ChatGPT juga digunakan untuk membantu mencari penyebab error, memberikan saran terkait struktur kode, CSS, dan tampilan website. Meskipun menggunakan AI sebagai alat bantu, saya tetap mempelajari, memeriksa, menyesuaikan, dan menguji setiap kode atau saran yang diberikan agar sesuai dengan kebutuhan proyek dan pemahaman saya.
+        Dalam Tugas 6, saya menggunakan ChatGPT sebagai alat bantu untuk memahami konsep REST API, Django 
+        REST Framework, serta membantu proses pengembangan dan perbaikan kode program. ChatGPT juga digunakan 
+        untuk membantu mencari penyebab error, memberikan saran terkait struktur kode, CSS, dan tampilan website. 
+        Meskipun menggunakan AI sebagai alat bantu, saya tetap mempelajari, memeriksa, menyesuaikan, dan menguji 
+        setiap kode atau saran yang diberikan agar sesuai dengan kebutuhan proyek dan pemahaman saya.
         Berikut ini link GPT: https://chatgpt.com/share/6af0bb1d-3294-83ec-90d6-e3630a897312
