@@ -6297,3 +6297,302 @@ html {
 .education-page .ketik {
     margin-bottom: 8px;
 }
+
+
+/* ===== EXPERIENCE: TAMPILAN BARU (kartu kaca + ikon) ===== */
+.experience-page .experience-content {
+    max-width: 1180px;
+}
+
+.experience-page .ketik {
+    margin-bottom: 18px;
+}
+
+/* Tombol tambah (admin) */
+.experience-page .experience-content > .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 26px;
+    border: 2px solid rgba(255, 255, 255, .85);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #2f9bff, #1668d8);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 5px 0 #0f4aa3, 0 10px 18px rgba(0, 40, 90, .3);
+    cursor: pointer;
+}
+
+.experience-page .experience-content > .button::before {
+    content: "+";
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Search */
+.experience-page .experience-search {
+    width: min(560px, 92%);
+    margin: 22px auto 40px;
+    background: rgba(255, 255, 255, .95);
+    box-shadow: 0 8px 22px rgba(0, 60, 100, .22);
+}
+
+.experience-page .experience-search-icon {
+    display: grid;
+    place-items: center;
+    padding-left: 18px;
+    color: #0c5a73;
+}
+
+.experience-page .experience-search-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+.experience-page #experience-search-input {
+    height: 54px;
+    font-family: "SimpleHandmade", sans-serif;
+    font-size: 19px;
+}
+
+/* Kartu kaca */
+.experience-page .experience-cards {
+    gap: 30px;
+    padding-top: 22px;
+}
+
+.experience-page .experience-card {
+    position: relative;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 22px 22px 24px;
+    border: 3px solid rgba(255, 255, 255, .9);
+    border-radius: 34px;
+    background:
+        radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, .75), rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, rgba(214, 244, 255, .82), rgba(150, 214, 245, .72));
+    box-shadow:
+        0 0 0 3px rgba(120, 220, 255, .55),
+        0 0 28px rgba(110, 215, 255, .7),
+        inset 0 0 22px rgba(255, 255, 255, .55),
+        0 16px 30px rgba(0, 60, 110, .28);
+    backdrop-filter: blur(4px);
+    text-align: left;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.experience-page .experience-card:hover {
+    transform: translateY(-8px);
+    background:
+        radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, .85), rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, rgba(224, 248, 255, .92), rgba(160, 220, 248, .8));
+    box-shadow:
+        0 0 0 3px rgba(120, 220, 255, .7),
+        0 0 38px rgba(110, 215, 255, .9),
+        inset 0 0 22px rgba(255, 255, 255, .6),
+        0 22px 36px rgba(0, 60, 110, .32);
+}
+
+/* bintang laut di pojok kiri atas */
+.experience-page .exp-starfish {
+    position: absolute;
+    top: -24px;
+    left: -16px;
+    width: 58px;
+    height: 58px;
+    transform: rotate(-14deg);
+    filter: drop-shadow(0 4px 4px rgba(0, 60, 110, .35));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.experience-page .exp-starfish svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* bingkai logo */
+.experience-page .experience-logo-frame {
+    display: grid;
+    place-items: center;
+    height: 168px;
+    margin: 4px 14px 14px;
+    padding: 10px;
+    border: 3px solid rgba(255, 255, 255, .95);
+    border-radius: 36px 36px 30px 30px;
+    background: rgba(255, 255, 255, .92);
+    box-shadow: 0 0 0 3px rgba(150, 225, 255, .6), inset 0 -6px 14px rgba(120, 200, 240, .35), 0 8px 14px rgba(0, 70, 120, .18);
+}
+
+.experience-page .experience-card .experience-link {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+.experience-page .experience-card .experience-logo {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 144px;
+    margin: 0;
+    object-fit: contain;
+}
+
+/* judul + laurel */
+.experience-page .exp-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 66px;
+    margin-bottom: 12px;
+}
+
+.experience-page .exp-laurel {
+    flex: none;
+    width: 24px;
+    height: 54px;
+    color: #11536c;
+}
+
+.experience-page .exp-laurel svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.experience-page .exp-laurel-right {
+    transform: scaleX(-1);
+}
+
+.experience-page .experience-card h2 {
+    margin: 0;
+    font-family: "SimpleHandmade", sans-serif;
+    font-size: 25px;
+    line-height: 1.2;
+    color: #0c4f68;
+    text-align: center;
+    -webkit-text-stroke: .7px #0c4f68;
+}
+
+/* baris info */
+.experience-page .exp-info {
+    display: grid;
+    gap: 9px;
+    margin: 0 0 14px 6px;
+    padding: 0;
+    list-style: none;
+}
+
+.experience-page .exp-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: "SimpleHandmade", sans-serif;
+    font-size: 21px;
+    line-height: 1.25;
+    color: #0f4259;
+}
+
+.experience-page .exp-ic {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    margin-top: -1px;
+    color: #11536c;
+}
+
+/* deskripsi */
+.experience-page .experience-card p.exp-desc {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, .95);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, .38);
+    box-shadow: inset 0 0 14px rgba(255, 255, 255, .5);
+    font-family: "SimpleHandmade", sans-serif;
+    font-size: 19px;
+    line-height: 1.4;
+    text-align: center;
+    color: #14506a;
+}
+
+/* tombol aksi: nempel di dasar kartu */
+.experience-page .experience-card .experience-card-actions {
+    margin-top: auto;
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+.experience-page .experience-card .experience-card-actions .button {
+    flex: 1 1 auto;
+    min-height: 46px;
+    padding: 9px 12px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .28);
+}
+
+.experience-page .experience-card .experience-card-actions .button-star {
+    background: linear-gradient(180deg, #2c3138, #11151a);
+}
+
+.experience-page .experience-card .experience-card-actions .button-star.is-starred {
+    background: linear-gradient(180deg, #2c3138, #11151a);
+}
+
+.experience-page .experience-card .experience-card-actions .button-star.is-starred .exp-ic {
+    color: #fcd34d;
+}
+
+.experience-page .experience-card .experience-card-actions button[data-action="edit"] {
+    background: linear-gradient(180deg, #2f9bff, #1668d8);
+}
+
+.experience-page .experience-card .experience-card-actions .button-danger {
+    background: linear-gradient(180deg, #ef4438, #c4231a);
+}
+
+.experience-page .experience-card .experience-card-actions .exp-ic {
+    width: 19px;
+    height: 19px;
+    color: #fff;
+}
+
+.experience-page .experience-card .experience-card-actions .star-count {
+    background: rgba(255, 255, 255, .22);
+    min-width: 26px;
+    height: 26px;
+}
+
+@media (max-width: 900px) {
+    .experience-page .experience-card {
+        flex: 1 1 100%;
+        max-width: 480px;
+    }
+
+    .experience-page .experience-card .experience-card-actions {
+        flex-wrap: wrap;
+    }
+}
+
+/* sedikit lebih tebal agar terbaca jelas di atas kartu kaca */
+.experience-page .exp-info li,
+.experience-page .experience-card p.exp-desc,
+.experience-page #experience-search-input {
+    -webkit-text-stroke: .35px currentColor;
+}

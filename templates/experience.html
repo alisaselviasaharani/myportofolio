@@ -37,7 +37,7 @@
 
             <!-- Search Experience -->
             <form id="experience-search-form" class="experience-search">
-                <span class="experience-search-icon">⌕</span>
+                <span class="experience-search-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></span>
                 <input id="experience-search-input" type="search" placeholder="Cari pengalaman..."
                     aria-label="Cari pengalaman">
             </form>
@@ -120,6 +120,18 @@
         return /^(https?:\/\/|\/(?!\/))/i.test(url) ? url : "";
     }
 
+    // Ikon inline untuk kartu experience
+    const EXP_ICONS = {
+        star: '<svg class="exp-ic" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8Z" fill="currentColor"/></svg>',
+        edit: '<svg class="exp-ic" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16Z M13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        trash: '<svg class="exp-ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        building: '<svg class="exp-ic" viewBox="0 0 24 24"><path d="M4 21V5l9-2v18M13 9h7v12M2 21h20M7 8h3M7 12h3M7 16h3M16 13h1M16 17h1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+        calendar: '<svg class="exp-ic" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M8 3v4M16 3v4M3.5 10h17M8 14h2M14 14h2M8 17h2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>',
+        person: '<svg class="exp-ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M5 20c.8-4 3.4-6 7-6s6.200 2 7 6Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>',
+        laurel: '<svg viewBox="0 0 30 60"><g fill="currentColor"><path d="M20 58C8 48 5 28 12 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="9" cy="48" rx="3.4" ry="7" transform="rotate(-50 9 48)"/><ellipse cx="8" cy="36" rx="3.4" ry="7" transform="rotate(-38 8 36)"/><ellipse cx="9" cy="24" rx="3.2" ry="6.600" transform="rotate(-24 9 24)"/><ellipse cx="22" cy="44" rx="3.2" ry="6.600" transform="rotate(38 22 44)"/><ellipse cx="19" cy="31" rx="3.2" ry="6.400" transform="rotate(32 19 31)"/><ellipse cx="13" cy="10" rx="3" ry="6"/></g></svg>',
+        starfish: '<svg viewBox="0 0 64 64"><path d="M32 4l7.600 17.400 18.800 1.800-14.200 12.400 4.200 18.400L32 44.600 15.600 54l4.200-18.400L5.600 23.200l18.800-1.800Z" fill="#fcd34d" stroke="#f59e0b" stroke-width="3" stroke-linejoin="round"/><circle cx="26" cy="30" r="2.200" fill="#7c3f00"/><circle cx="38" cy="30" r="2.200" fill="#7c3f00"/><path d="M27 37q5 4.500 10 0" fill="none" stroke="#7c3f00" stroke-width="2.200" stroke-linecap="round"/></svg>'
+    };
+
     function experienceEndpoint(pattern, id) {
         return pattern.replace("00000000-0000-0000-0000-000000000000", id);
     }
@@ -153,26 +165,36 @@
             ? `<button type="button" class="button button-star ${experience.is_starred ? "is-starred" : ""}"
                     data-action="star" data-id="${escapeHtml(experience.id)}"
                     title="${escapeHtml(experience.starred_by_names || "Jadilah yang pertama memberi star")}">
-                    <span aria-hidden="true">★</span>
+                    ${EXP_ICONS.star}
                     ${experience.is_starred ? "Unstar" : "Star"}
                     <span class="star-count">${escapeHtml(experience.star_count)}</span>
                </button>`
-            : `<a href="${escapeHtml(LOGIN_URL)}" class="button">Login untuk memberi Star</a>
-               <span class="star-count">⭐ ${escapeHtml(experience.star_count)}</span>`;
+            : `<a href="${escapeHtml(LOGIN_URL)}" class="button button-star">${EXP_ICONS.star}Login untuk Star
+                    <span class="star-count">${escapeHtml(experience.star_count)}</span></a>`;
 
         const editHtml = CAN_EDIT
-            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(experience.id)}">Edit</button>` : "";
+            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(experience.id)}">${EXP_ICONS.edit}Edit</button>` : "";
         const deleteHtml = IS_SUPERUSER
             ? `<button type="button" class="button button-danger" data-action="delete"
-                    data-id="${escapeHtml(experience.id)}">Hapus</button>` : "";
+                    data-id="${escapeHtml(experience.id)}">${EXP_ICONS.trash}Hapus</button>` : "";
+
+        const logoFrame = websiteHtml
+            ? `<div class="experience-logo-frame">${websiteHtml}</div>` : "";
 
         article.innerHTML = `
-            ${websiteHtml}
-            <h2>${escapeHtml(experience.title)}</h2>
-            ${experience.institution ? `<p>${escapeHtml(experience.institution)}</p>` : ""}
-            ${experience.period ? `<p>${escapeHtml(experience.period)}</p>` : ""}
-            <p>${escapeHtml(experience.category_display)}</p>
-            <p>${escapeHtml(experience.description)}</p>
+            <span class="exp-starfish" aria-hidden="true">${EXP_ICONS.starfish}</span>
+            ${logoFrame}
+            <div class="exp-title">
+                <span class="exp-laurel">${EXP_ICONS.laurel}</span>
+                <h2>${escapeHtml(experience.title)}</h2>
+                <span class="exp-laurel exp-laurel-right">${EXP_ICONS.laurel}</span>
+            </div>
+            <ul class="exp-info">
+                ${experience.institution ? `<li>${EXP_ICONS.building}<span>${escapeHtml(experience.institution)}</span></li>` : ""}
+                ${experience.period ? `<li>${EXP_ICONS.calendar}<span>${escapeHtml(experience.period)}</span></li>` : ""}
+                ${experience.category_display ? `<li>${EXP_ICONS.person}<span>${escapeHtml(experience.category_display)}</span></li>` : ""}
+            </ul>
+            ${experience.description ? `<p class="exp-desc">${escapeHtml(experience.description)}</p>` : ""}
             <div class="experience-card-actions">
                 ${starHtml}
                 ${editHtml}
