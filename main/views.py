@@ -48,9 +48,10 @@ def show_aboutme(request):
 
 # VIEW PAGE EDUCATION
 def show_education(request):
+    is_editor = request.user.groups.filter(name="Editor").exists()
     context = {
         "name": "Alisa Selvia Saharani",
-        "education_list": Education.objects.all(),
+        "is_editor": is_editor,
     }
 
     return render(request, "education.html", context)

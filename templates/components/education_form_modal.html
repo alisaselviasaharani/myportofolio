@@ -1,0 +1,41 @@
+<div id="education-form-modal" class="education-form-modal" popover="auto" role="dialog"
+    aria-modal="true" aria-labelledby="education-form-modal-title">
+    <button type="button" class="education-form-modal__backdrop"
+        popovertarget="education-form-modal" popovertargetaction="hide" aria-label="Tutup form"></button>
+    <div class="education-form-modal__content">
+        <button type="button" class="education-form-modal__close"
+            popovertarget="education-form-modal" popovertargetaction="hide" aria-label="Tutup">×</button>
+        <h2 id="education-form-modal-title">Tambah Education</h2>
+        <form id="education-form" class="education-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="education-institution">Institusi Pendidikan</label>
+                <input id="education-institution" name="institution" type="text" maxlength="100" required>
+            </div>
+            <div class="form-group">
+                <label for="education-degree">Jurusan / Gelar</label>
+                <input id="education-degree" name="degree" type="text" maxlength="100" required>
+            </div>
+            <div class="form-group">
+                <label for="education-period">Periode</label>
+                <input id="education-period" name="period" type="text" maxlength="50" required
+                    placeholder="Contoh: 2025 - Sekarang">
+            </div>
+            <div class="form-group">
+                <label for="education-logo">URL / Path Logo</label>
+                <input id="education-logo" name="logo" type="text" maxlength="50"
+                    placeholder="/static/img/logo.png atau https://...">
+            </div>
+            <div class="form-group">
+                <label for="education-website">Website Institusi</label>
+                <input id="education-website" name="website" type="url" maxlength="100"
+                    placeholder="https://...">
+            </div>
+            <div class="education-form-modal__actions">
+                <button type="button" class="button button-secondary"
+                    popovertarget="education-form-modal" popovertargetaction="hide">Batal</button>
+                <button type="submit" class="button">Tambah Education</button>
+            </div>
+        </form>
+    </div>
+</div>
