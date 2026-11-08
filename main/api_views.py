@@ -7,19 +7,21 @@ from rest_framework.decorators import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from main.models import Achievements, Experience
+from main.models import Achievements, Education, Experience
 from main.permissions import IsPortfolioOwnerOrEditorOrReadOnly
-from main.serializers import AchievementsSerializer, ExperienceSerializer
+from main.serializers import AchievementsSerializer, EducationSerializer, ExperienceSerializer
 
 
 # ---------- helper bersama (pola sama untuk Achievements dan Experience) ----------
 
-def _list(request, model, serializer_class):
+def _list(request, model, serializer_class, search_field="title", order_fields=None):
     if request.method in ("GET", "HEAD"):
-        items = model.objects.prefetch_related("starred_by").order_by("title", "id")
-        title = request.query_params.get("title", "").strip()
-        if title:
-            items = items.filter(title__icontains=title)
+        if order_fields is None:
+            order_fields = ("title", "id")
+        items = model.objects.prefetch_related("starred_by").order_by(*order_fields)
+        search_value = request.query_params.get(search_field, "").strip()
+        if search_value:
+            items = items.filter(**{f"{search_field}__icontains": search_value})
         serializer = serializer_class(items, many=True, context={"request": request})
         return Response(serializer.data)
 
@@ -27,7 +29,6 @@ def _list(request, model, serializer_class):
     serializer.is_valid(raise_exception=True)
     serializer.save()
     return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 def _detail(request, model, serializer_class, pk):
     obj = get_object_or_404(model.objects.prefetch_related("starred_by"), pk=pk)
@@ -101,3 +102,32 @@ def experience_detail(request, experience_id):
 @permission_classes([IsAuthenticated])
 def experience_star(request, experience_id):
     return _star(request, Experience, ExperienceSerializer, experience_id)
+
+
+# ---------- Education ----------
+
+@api_view(["GET", "HEAD", "POST"])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
+def education_list(request):
+    return _list(
+        request,
+        Education,
+        EducationSerializer,
+        search_field="institution",
+        order_fields=("institution", "id"),
+    )
+
+
+@api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
+def education_detail(request, education_id):
+    return _detail(request, Education, EducationSerializer, education_id)
+
+
+@api_view(["POST"])
+@authentication_classes([SessionAuthentication])
+@permission_classes([IsAuthenticated])
+def education_star(request, education_id):
+    return _star(request, Education, EducationSerializer, education_id)
