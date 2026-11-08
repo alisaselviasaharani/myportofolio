@@ -4,7 +4,7 @@ import secrets
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
-from main.models import Achievements, Experience
+from main.models import Achievements, Education, Experience
 
 
 def _is_safe_url(value, allow_relative=False):
@@ -104,6 +104,54 @@ class ExperienceSerializer(StarFieldsMixin, serializers.ModelSerializer):
         if not value:
             raise serializers.ValidationError("Deskripsi experience tidak boleh kosong.")
         return value
+
+    def validate_logo(self, value):
+        value = strip_tags(value or "").strip()
+        if not _is_safe_url(value, allow_relative=True):
+            raise serializers.ValidationError("Logo harus berupa path /static/... atau URL http(s).")
+        return value
+
+    def validate_website(self, value):
+        value = strip_tags(value or "").strip()
+        if not _is_safe_url(value):
+            raise serializers.ValidationError("Website harus berupa URL http(s).")
+        return value
+
+class EducationSerializer(StarFieldsMixin, serializers.ModelSerializer):
+    class Meta:
+        model = Education
+        fields = [
+            "id",
+            "institution",
+            "degree",
+            "period",
+            "logo",
+            "website",
+            "star_count",
+            "is_starred",
+            "starred_by_names",
+        ]
+        read_only_fields = [
+            "id",
+            "star_count",
+            "is_starred",
+            "starred_by_names",
+        ]
+
+    def validate_institution(self, value):
+        value = strip_tags(value or "").strip()
+        if not value:
+            raise serializers.ValidationError("Nama institusi pendidikan tidak boleh kosong.")
+        return value
+
+    def validate_degree(self, value):
+        value = strip_tags(value or "").strip()
+        if not value:
+            raise serializers.ValidationError("Gelar atau jurusan pendidikan tidak boleh kosong.")
+        return value
+
+    def validate_period(self, value):
+        return strip_tags(value or "").strip()
 
     def validate_logo(self, value):
         value = strip_tags(value or "").strip()
