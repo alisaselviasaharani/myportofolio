@@ -1351,157 +1351,111 @@
             Penyebab awalnya adalah migration 0007_project.py tertimpa/berubah dari migration yang membuat Project menjadi migration yang membuat Achievements.Sedangkan error period di PWS adalah masalah schema database PWS yang tertinggal/tidak sinkron dengan model sekarang.
 
 
-# Tugas 6 – Django REST Framework
+### Tugas 6
+   ##  Deskripsi Proyek
+        Pada Tugas 6 ini, saya
 
-## Deskripsi Proyek
-Pada Tugas 6 ini, saya melanjutkan pengembangan website portfolio menggunakan Django. Pengembangan dilakukan dengan mempelajari dan menerapkan konsep REST API menggunakan Django REST Framework (DRF). Selain itu, tugas ini membahas penggunaan serializer untuk mengelola data, penerapan autentikasi dan otorisasi untuk mengatur hak akses pengguna, serta perlindungan CSRF pada API yang menggunakan SessionAuthentication.
-
-## Design & Resources
-Berikut beberapa sumber yang saya gunakan selama proses pengerjaan:
-- [W3Schools – HTML and CSS](https://www.w3schools.com/html/html_css.asp)  
-  Saya menggunakan sumber ini untuk mempelajari syntax HTML dan CSS.
-- [W3C – Starting with HTML + CSS](https://www.w3.org/Style/Examples/011/firstcss.en.html)  
-  Saya membaca artikel ini sebagai panduan dasar dalam menggunakan CSS.
-- [Django Documentation](https://docs.djangoproject.com/en/6.1/)  
-  Saya menggunakan dokumentasi resmi Django sebagai referensi dalam pengembangan website.
-
-## Struktur Halaman
-Website portfolio memiliki beberapa menu navigasi yang dapat diakses oleh pengguna, baik sebelum maupun sesudah login.
-
-### 1. Navbar Sebelum Login
-Menu yang tersedia sebelum pengguna login adalah:
-- **Home** – Halaman utama website.
-- **About Me** – Berisi beberapa card yang mengarahkan pengguna ke halaman informasi yang ingin dilihat.
-- **Contact** – Halaman kontak yang terbagi menjadi dua section:
-  - Form untuk mengirim email kepada pemilik website.
-  - My Contact, berisi informasi kontak email yang dapat dihubungi pengguna.
-- **Login** – Halaman untuk masuk ke akun pengguna.
-- **Register** – Halaman untuk mendaftarkan akun baru.
-### 2. Navbar Setelah Login
-
-Setelah pengguna berhasil login, terdapat beberapa menu tambahan, yaitu:
-- **Education** – Menampilkan riwayat pendidikan.
-- **Achievements** – Menampilkan pencapaian dan sertifikat.
-- **Skills** – Menampilkan kemampuan yang dimiliki.
-- **Profile** – Menampilkan profil pengguna dengan nama yang disesuaikan dengan username akun yang telah didaftarkan.
-- **Logout** – Digunakan untuk keluar dari akun dan mengakhiri sesi login.
-
-## Weekly Progress Tugas 6
-Berikut adalah progress pengerjaan website yang telah saya lakukan selama satu minggu, beserta aktivitas dan commit yang dilakukan di GitHub.
-
-## Weekly Progress
-
-### 4 November 2026
-- Menyelesaikan Tutorial 7.
-- Merapikan background dan navbar agar tampilan laut terlihat lebih terang dan cerah.
-
-### 5 November 2026
-- Merapikan tampilan dan style website.
-
-### 7 November 2026
-- Memisahkan file Skills agar struktur kode lebih rapi.
-- Menambahkan GIF Nailong.
-- Menghapus file duplikat pada folder `static/img`.
-- Menambahkan fitur My Contact agar pengunjung dapat menghubungi pemilik website secara langsung.
-- Merapikan halaman About.
-- Memperbaiki ikon Skills pada navbar.
-- Menambahkan migrations.
-- Menghapus `data.json` dari repository.
-- Memperbaiki `.gitignore` dan menghapus tracking file `.env.prod`.
-- Menambahkan pengujian API untuk Tugas 6.
-- Memperbaiki validasi Secret Code pada Achievements.
-- Menambahkan fitur Edit pada Experience dan Achievements.
-- Menambahkan ikon pada Skills.
-- Menambahkan SOA pada README.
-
-### 8 November 2026
-- Menambahkan relasi Star pada model Education.
-- Membuat `EducationSerializer`.
-- Memodifikasi `api_urls.py` dan `api_views.py` untuk fitur Education.
-- Memperbaiki fitur Star dan tampilan halaman Education.
-- Menambahkan pengujian API dan merapikan CSS.
-- Memperbaiki tampilan card Experience.
-- Memperbaiki fungsi musik agar dapat berjalan dengan baik.
+    ##  Design & Resources
+        - W3Schools (Saya menggunakan ini untuk mengetahui bagaimana syntax html dan css)https://www.w3schools.com/html/html_css.asp
+        - CSS tutorial starting with HTML + CSS (Saya membaca artikel ini untuk mendapatkan tutorial)https://www.w3.org/Style/Examples/011/firstcss.en.html
+        - Django Documentation (https://docs.djangoproject.com/en/6.1/)
 
 
-## Pertanyaan Reflektif
+    ##  Struktur Halaman
+        pada navbar terdiri dari (Tampilan  navbar yang dapat dilihat tanpa login):
+        - Home
+        - About me:
+            Ada beberapa card untuk mengarahka dengan halaman yang ingin di lihat
+        - Contact:
+            Page kontak terbagi menjadi 2 section yaitu untuk mengirim email ke pemilik website dan my kontak (kontak email yang dapat dihubungin oleh user saat ingin mengirim pesan)
+        - Login
+        - Register
+        Untuk summary menu yang tersedia saat sudah berhasil login:
+        - Education
+        - Achievements
+        - Skills
+        - Profile → namanya akan sesuai dengan username sesuai dengan akun yang telah di daftarkan
+        - Logout → tersedia setelah pengguna berhasil login.
 
-### 1. REST, JSON, PUT, dan PATCH
 
-**Pertanyaan:**
+    ##  Weekly Progress Tugas 6
+        Berikut ini progress yang saya telah lakukan dalam 1 minggu dalam mengerjakan website ini:
+        1. 21 September 2026
+            - Menyelesaikan Tutorial 4
 
-Jelaskan apa yang dimaksud dengan REST dan mengapa mengembalikan JSON saja belum cukup untuk menyebut sebuah API sebagai RESTful! Jelaskan pula perbedaan PUT dan PATCH beserta contoh kapan masing-masing sebaiknya digunakan!
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Menyelesaikan Tutorial 4
+        
+        2. 25 September 2026
+            - penambahan fitur star yang hanya dapat diakses oleh user yang sudah login serta pemberian komentar pada 
+              bagian View Certificate. 
+            - menambahkan pembatasan akses pada halaman Achievements, sehingga hanya user dengan role editor yang dapat 
+              mengupdate isi halaman tersebut.
 
-**Jawaban:**
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Menambahkan fitur yang dapat akses star hanya bagi user yang login
+            - Comment bagian View Certificate
+            - Menambah akses hanya editor yang dapat mengupdate isi tampilan page achievements
+        
+        3. 26 September 2026
+            - menambahkan group editor di admin django
 
-REST (*Representational State Transfer*) adalah sebuah konsep atau gaya arsitektur yang digunakan dalam pembuatan API agar komunikasi antara client dan server lebih terstruktur. REST menggunakan HTTP method seperti GET, POST, PUT, PATCH, dan DELETE sesuai dengan fungsi masing-masing.
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - menambahka editor bisa update dan membuat Editor melalui Django Group/Permission
 
-Mengembalikan data dalam bentuk JSON saja belum cukup untuk disebut RESTful API, karena JSON hanya merupakan format untuk pertukaran data. Sebuah API juga harus mengikuti prinsip REST, seperti penggunaan URL untuk mengakses resource, penggunaan HTTP method yang sesuai, dan status code HTTP yang tepat.
+        4. 27 September 2026
+            - merapikan tampilan navar syupaya lebih cakepdi lihat
+            - memperbarui dan update beberapa fitur navbar, hak akses Editor, fitur Star/Unstar Achievement, pembatasan 
+              Create/Update/Delete,autentikasi, dan endpoint JSON.
+            - Menamahkan popup jadi tiap ada perubahan ada massage dalam bentuk popup
 
-Perbedaan PUT dan PATCH terletak pada jumlah data yang diperbarui:
+            berikut ini progress commit di git hub yang telah saya lakukan:
+            - Merapikan CSS dan base.html untuk memperbaiki tampilan navbar.
+            - Memperbarui tampilan navbar, hak akses Editor, fitur Star/Unstar Achievement, pembatasan Create/Update/Delete,
+              autentikasi, dan endpoint JSON.
+            - Menambahkan messages.success() dan pop-up untuk memberikan notifikasi kepada user.
+            - Finishing Tugas 4 (menambahkan dan melengkapi README.md dan memberikan tampilan agar tetap smooth saat        
+              berpindah navbar)
 
-- **PUT** digunakan untuk memperbarui keseluruhan data pada suatu resource. Contohnya, ketika ingin mengganti seluruh informasi profil pengguna.
-- **PATCH** digunakan untuk memperbarui sebagian data saja. Contohnya, ketika hanya ingin mengubah nama pengguna tanpa mengubah email dan informasi lainnya.
+    ##  Pertanyaan Reflektif
+        1.  Jelaskan apa yang dimaksud dengan REST dan mengapa mengembalikan JSON saja belum cukup untuk menyebut sebuah API sebagai RESTful! 
+            Jelaskan pula perbedaan PUT dan PATCH beserta contoh kapan masing-masing sebaiknya digunakan!
+            Jawab:
+            REST (Representational State Transfer) adalah sebuah konsep atau gaya arsitektur yang digunakan dalam pembuatan API agar komunikasi antara client dan server lebih terstruktur. REST menggunakan HTTP method seperti GET, POST, PUT, PATCH, dan DELETE sesuai dengan fungsi masing-masing. Mengembalikan data dalam bentuk JSON saja belum cukup untuk disebut RESTful API, karena JSON hanya merupakan format untuk pertukaran data. Sebuah API juga harus mengikuti prinsip REST, seperti penggunaan URL untuk mengakses resource, penggunaan HTTP method yang sesuai, dan status code HTTP yang tepat.
 
-Jadi, PUT digunakan ketika ingin memperbarui seluruh data, sedangkan PATCH digunakan jika hanya ada beberapa bagian data yang ingin diubah.
+            Perbedaan PUT dan PATCH terletak pada jumlah data yang diperbarui.
+            - PUT digunakan untuk memperbarui keseluruhan data pada suatu resource. Contohnya, ketika ingin mengganti seluruh informasi profil pengguna.
+            - PATCH digunakan untuk memperbarui sebagian data saja. Contohnya, ketika hanya ingin mengubah nama pengguna tanpa mengubah email dan informasi lainnya.
+            Jadi, PUT digunakan ketika ingin memperbarui seluruh data, sedangkan PATCH digunakan jika hanya ada beberapa bagian data yang ingin diubah.
 
-### 2. Peran Serializer pada Django REST Framework
+        2.  Jelaskan peran serializer pada Django REST Framework! Apa keuntungannya dibandingkan merakit dictionary secara manual dengan 
+            JsonResponse seperti pada Tutorial 05?
+            Jawab:
+            Serializer pada Django REST Framework berfungsi untuk mengubah data dari model Django menjadi format JSON agar bisa dikirim melalui API. Serializer juga digunakan untuk mengubah data JSON yang diterima dari client menjadi objek Python atau model Django.
 
-**Pertanyaan:**
+            Dibandingkan dengan menggunakan JsonResponse seperti pada Tutorial 05, serializer memiliki beberapa kelebihan, yaitu:
+            1. Validasi data: Data yang dikirim oleh client bisa diperiksa terlebih dahulu agar sesuai dengan ketentuan.
+            2. Lebih praktis: Tidak perlu membuat dictionary secara manual untuk setiap data yang ingin dikirim.
+            3. Konversi otomatis: Mempermudah proses mengubah data model menjadi JSON dan sebaliknya.
+            4. Terintegrasi dengan model: Dengan ModelSerializer, field bisa disesuaikan langsung dengan model Django.
+            5. Mempermudah pengelolaan data: Serializer dapat membantu proses membuat dan memperbarui data melalui method create() dan update().
+            Menurut saya, penggunaan serializer membuat kode API lebih rapi dan mudah dikelola dibandingkan harus menyusun data secara manual menggunakan JsonResponse.
 
-Jelaskan peran serializer pada Django REST Framework! Apa keuntungannya dibandingkan merakit dictionary secara manual dengan JsonResponse seperti pada Tutorial 05?
+        3.  Jelaskan perbedaan autentikasi dan otorisasi pada Django REST Framework! Mengapa hak akses harus diperiksa dengan permission class di 
+            server, bukan hanya dengan menyembunyikan tombol di template?
+            Jawab:
+            Autentikasi dan otorisasi memiliki fungsi yang berbeda, tetapi keduanya sama-sama penting dalam menjaga keamanan API.
+            - Autentikasi (Authentication) adalah proses untuk memastikan siapa pengguna yang sedang mengakses sistem. Contohnya, ketika pengguna login menggunakan username dan password.
+            - Otorisasi (Authorization) adalah proses untuk menentukan apakah pengguna tersebut memiliki izin untuk melakukan tindakan tertentu. Contohnya, hanya pengguna dengan role Editor yang boleh mengedit atau menghapus data.
+            Pemeriksaan hak akses harus dilakukan menggunakan permission class di server, bukan hanya dengan menyembunyikan tombol pada template.
+            Alasannya, menyembunyikan tombol hanya memengaruhi tampilan website. Pengguna masih bisa mencoba mengakses endpoint API secara langsung melalui browser atau aplikasi lain.
+            Misalnya, tombol Edit disembunyikan untuk pengguna biasa, tetapi pengguna tersebut masih bisa mengirim request PATCH secara langsung. Jika server tidak melakukan pengecekan permission, perubahan data tetap bisa dilakukan.
+            Oleh karena itu, permission class diperlukan agar server benar-benar memeriksa apakah pengguna memiliki hak akses sebelum menjalankan suatu tindakan.
 
-**Jawaban:**
-
-Serializer pada Django REST Framework berfungsi untuk mengubah data dari model Django menjadi format JSON agar bisa dikirim melalui API. Serializer juga digunakan untuk mengubah data JSON yang diterima dari client menjadi objek Python atau model Django.
-
-Dibandingkan dengan menggunakan `JsonResponse` seperti pada Tutorial 05, serializer memiliki beberapa kelebihan, yaitu:
-
-1. **Validasi data:** Data yang dikirim oleh client bisa diperiksa terlebih dahulu agar sesuai dengan ketentuan.
-2. **Lebih praktis:** Tidak perlu membuat dictionary secara manual untuk setiap data yang ingin dikirim.
-3. **Konversi otomatis:** Mempermudah proses mengubah data model menjadi JSON dan sebaliknya.
-4. **Terintegrasi dengan model:** Dengan `ModelSerializer`, field bisa disesuaikan langsung dengan model Django.
-5. **Mempermudah pengelolaan data:** Serializer dapat membantu proses membuat dan memperbarui data melalui method `create()` dan `update()`.
-
-Menurut saya, penggunaan serializer membuat kode API lebih rapi dan mudah dikelola dibandingkan harus menyusun data secara manual menggunakan `JsonResponse`.
-
-### 3. Perbedaan Autentikasi dan Otorisasi pada Django REST Framework
-
-**Pertanyaan:**
-
-Jelaskan perbedaan autentikasi dan otorisasi pada Django REST Framework! Mengapa hak akses harus diperiksa dengan permission class di server, bukan hanya dengan menyembunyikan tombol di template?
-
-**Jawaban:**
-
-Autentikasi dan otorisasi memiliki fungsi yang berbeda, tetapi keduanya sama-sama penting dalam menjaga keamanan API.
-
-- **Autentikasi (Authentication)** adalah proses untuk memastikan siapa pengguna yang sedang mengakses sistem. Contohnya, ketika pengguna login menggunakan username dan password.
-- **Otorisasi (Authorization)** adalah proses untuk menentukan apakah pengguna tersebut memiliki izin untuk melakukan tindakan tertentu. Contohnya, hanya pengguna dengan role Editor yang boleh mengedit atau menghapus data.
-
-Pemeriksaan hak akses harus dilakukan menggunakan permission class di server, bukan hanya dengan menyembunyikan tombol pada template.
-
-Alasannya, menyembunyikan tombol hanya memengaruhi tampilan website. Pengguna masih bisa mencoba mengakses endpoint API secara langsung melalui browser atau aplikasi lain.
-
-Misalnya, tombol Edit disembunyikan untuk pengguna biasa, tetapi pengguna tersebut masih bisa mengirim request PATCH secara langsung. Jika server tidak melakukan pengecekan permission, perubahan data tetap bisa dilakukan.
-
-Oleh karena itu, permission class diperlukan agar server benar-benar memeriksa apakah pengguna memiliki hak akses sebelum menjalankan suatu tindakan.
-
-### 4. Token CSRF pada SessionAuthentication dan Pengujian force_authenticate
-
-**Pertanyaan:**
-
-Jelaskan mengapa permintaan yang mengubah data tetap memerlukan token CSRF ketika API memakai SessionAuthentication! Mengapa test yang memakai force_authenticate tidak cukup untuk membuktikan bahwa perlindungan CSRF berjalan?
-
-**Jawaban:**
-
-CSRF (*Cross-Site Request Forgery*) merupakan jenis serangan yang memanfaatkan sesi login pengguna untuk mengirimkan request tanpa sepengetahuan pengguna tersebut.
-
-Pada Django REST Framework yang menggunakan `SessionAuthentication`, request yang mengubah data seperti POST, PUT, PATCH, dan DELETE tetap membutuhkan token CSRF.
-
-Hal ini karena SessionAuthentication menggunakan session cookie untuk mengenali pengguna. Browser dapat mengirimkan cookie tersebut secara otomatis ketika melakukan request ke server. Karena itu, token CSRF diperlukan untuk memastikan bahwa request yang mengubah data berasal dari sumber yang memiliki token yang valid.
-
-Sementara itu, `force_authenticate()` tidak cukup untuk membuktikan bahwa perlindungan CSRF sudah berjalan. Hal ini karena `force_authenticate()` langsung mengatur pengguna sebagai pengguna yang sudah terautentikasi, sehingga proses autentikasi normal dan pemeriksaan CSRF pada SessionAuthentication tidak benar-benar diuji.
-
-Untuk menguji perlindungan CSRF, kita bisa menggunakan `APIClient` dengan `enforce_csrf_checks=True`, kemudian melakukan login menggunakan session dan mencoba mengirim request tanpa token CSRF maupun dengan token CSRF yang valid.
-
-Dengan cara tersebut, kita bisa memastikan bahwa server menolak request yang tidak memiliki token CSRF yang valid dan menerima request yang memenuhi persyaratan.
+        4.  Jelaskan mengapa permintaan yang mengubah data tetap memerlukan token CSRF ketika API memakai SessionAuthentication! Mengapa test   
+            yang memakai force_authenticate tidak cukup untuk membuktikan bahwa perlindungan CSRF berjalan?
+            Jawab:
+            CSRF (Cross-Site Request Forgery) merupakan jenis serangan yang memanfaatkan sesi login pengguna untuk mengirimkan request tanpa sepengetahuan pengguna tersebut.Pada Django REST Framework yang menggunakan SessionAuthentication, request yang mengubah data seperti POST, PUT, PATCH, dan DELETE tetap membutuhkan token CSRF.Hal ini karena SessionAuthentication menggunakan session cookie untuk mengenali pengguna. Browser dapat mengirimkan cookie tersebut secara otomatis ketika melakukan request ke server. Karena itu, token CSRF diperlukan untuk memastikan bahwa request yang mengubah data berasal dari sumber yang memiliki token yang valid.
+            Sementara itu, force_authenticate() tidak cukup untuk membuktikan bahwa perlindungan CSRF sudah berjalan. Hal ini karena force_authenticate() langsung mengatur pengguna sebagai pengguna yang sudah terautentikasi, sehingga proses autentikasi normal dan pemeriksaan CSRF pada SessionAuthentication tidak benar-benar diuji.
+            Untuk menguji perlindungan CSRF, kita bisa menggunakan APIClient dengan enforce_csrf_checks=True, kemudian melakukan login menggunakan session dan mencoba mengirim request tanpa token CSRF maupun dengan token CSRF yang valid.
+            Dengan cara tersebut, kita bisa memastikan bahwa server menolak request yang tidak memiliki token CSRF yang valid dan menerima request yang memenuhi persyaratan.

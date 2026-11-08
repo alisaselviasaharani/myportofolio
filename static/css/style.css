@@ -5966,98 +5966,334 @@ html {
     }
 }
 
-/* ===== NAILONG DECORATION ===== */
-
-.education-mascots {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/* Nailong membaca */
-.nailong-reading {
-    position: absolute;
-    width: 210px;
-    height: auto;
-    left: 10px;
-    bottom: 75px;
-    object-fit: contain;
-}
-
-/* Nailong berenang */
-.nailong-swimming {
-    position: absolute;
-    width: 220px;
-    height: auto;
-    right: 15px;
-    top: 135px;
-    object-fit: contain;
-}
-
-/* Laptop dan layar kecil */
-@media (max-width: 768px) {
-    .nailong-reading {
-        width: 150px;
-        left: 5px;
-    }
-
-    .nailong-swimming {
-        width: 155px;
-        right: 5px;
-        top: 120px;
-    }
-}
-
-/* =================================
-   NAILONG EDUCATION DECORATION
-================================= */
+/* ===== NAILONG DECORATION (EDUCATION) =====
+   Layar >= 1280px: nailong membaca besar di kiri bawah, nailong berenang
+   di kanan atas (sedikit terpotong tepi layar, seperti desain referensi).
+   Layar < 1280px: tetap kiri & kanan, tapi sebaris di bawah konten
+   supaya tidak menimpa search bar, kartu, atau tombol. */
 
 .education-page {
     position: relative;
     overflow: hidden;
 }
 
+.education-content {
+    position: relative;
+    z-index: 2;
+}
+
 .education-mascots {
     position: absolute;
     inset: 0;
-    z-index: 5;
+    z-index: 1;
     pointer-events: none;
 }
 
-/* Nailong membaca buku */
-.nailong-reading {
-    position: absolute;
-    width: 210px;
-    height: auto;
-    left: 10px;
-    bottom: 75px;
-    object-fit: contain;
-    z-index: 5;
-}
-
-/* Nailong berenang */
+.nailong-reading,
 .nailong-swimming {
     position: absolute;
-    width: 220px;
     height: auto;
-    right: 15px;
-    top: 135px;
     object-fit: contain;
-    z-index: 5;
+    filter: drop-shadow(0 8px 12px rgba(0, 40, 70, .3));
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .nailong-reading {
-        width: 150px;
-        left: 5px;
-        bottom: 50px;
+.nailong-reading {
+    width: clamp(150px, 17vw, 340px);
+    left: -1vw;
+    bottom: 20px;
+}
+
+.nailong-swimming {
+    width: clamp(150px, 17vw, 340px);
+    right: -1vw;
+    top: 100px;
+}
+
+@media (max-width: 1279px) {
+    .education-page {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .nailong-swimming {
-        width: 155px;
-        right: 5px;
-        top: 120px;
+    .education-mascots {
+        position: static;
+        order: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 12px;
+        margin-top: 24px;
     }
+
+    .nailong-reading,
+    .nailong-swimming {
+        position: static;
+        width: clamp(120px, 32vw, 220px);
+    }
+}
+
+
+/* ===== EDUCATION: TAMPILAN BARU (hero + kartu per jenjang) ===== */
+
+/* ---- Pita di bawah judul (judul memakai style .ketik yang sama dengan Contact) ---- */
+.education-page .edu-ribbon {
+    position: relative;
+    display: table;
+    margin: -4px auto 16px;
+    padding: 9px 56px 11px;
+    background: linear-gradient(180deg, #fff1cf, #f6d79b);
+    clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+    filter: drop-shadow(0 4px 6px rgba(80, 50, 0, .3));
+    transform: rotate(-1deg);
+}
+
+.education-page .edu-ribbon span {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 1.7vw, 22px);
+    color: #5a3a14;
+    white-space: nowrap;
+}
+
+/* ---- Search ---- */
+.education-page .education-search {
+    width: min(100%, 380px);
+    margin-bottom: 30px;
+    padding: 8px 16px;
+}
+
+/* ---- Kartu ---- */
+.education-page .education-cards {
+    gap: 30px;
+    padding-top: 16px;
+    align-items: stretch;
+}
+
+.education-page .education-card {
+    --t1: #8b5cf6;
+    --t2: #6d28d9;
+    --tdark: #3b1d8f;
+    --tbg1: #f4f0ff;
+    --tbg2: #e2d9ff;
+    --tglow: rgba(139, 92, 246, .55);
+
+    position: relative;
+    width: 280px;
+    min-height: 392px;
+    padding: 36px 20px 104px;
+    border: 3px solid rgba(255, 255, 255, .9);
+    border-radius: 26px 26px 40px 40px;
+    background: linear-gradient(180deg, var(--tbg1), var(--tbg2));
+    box-shadow:
+        0 0 0 3px var(--tglow),
+        0 0 26px var(--tglow),
+        0 16px 30px rgba(0, 40, 80, .25);
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.education-page .education-card.theme-sma {
+    --t1: #38bdf8;
+    --t2: #0284c7;
+    --tdark: #0b4a7a;
+    --tbg1: #effaff;
+    --tbg2: #d2eefc;
+    --tglow: rgba(56, 189, 248, .55);
+}
+
+.education-page .education-card.theme-mts {
+    --t1: #34d399;
+    --t2: #059669;
+    --tdark: #0b5d43;
+    --tbg1: #effcf6;
+    --tbg2: #d0f5e3;
+    --tglow: rgba(52, 211, 153, .55);
+}
+
+.education-page .education-card.theme-other {
+    --t1: #fbbf24;
+    --t2: #d97706;
+    --tdark: #7a4a05;
+    --tbg1: #fffaec;
+    --tbg2: #ffecbd;
+    --tglow: rgba(251, 191, 36, .55);
+}
+
+.education-page .education-card:hover {
+    transform: translateY(-8px);
+    background: linear-gradient(180deg, #fff, var(--tbg2));
+    box-shadow:
+        0 0 0 3px var(--tglow),
+        0 0 36px var(--tglow),
+        0 22px 36px rgba(0, 40, 80, .3);
+}
+
+/* Badge kategori di tepi atas kartu */
+.education-page .edu-badge {
+    position: absolute;
+    top: -17px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--t1), var(--t2));
+    border: 2px solid rgba(255, 255, 255, .85);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    white-space: nowrap;
+}
+
+.education-page .edu-badge svg {
+    width: 18px;
+    height: 18px;
+}
+
+.education-page .edu-badge svg,
+.education-page .edu-chip svg,
+.education-page .edu-period svg {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Logo */
+.education-page .education-card .education-link {
+    width: auto;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+    display: block;
+}
+
+.education-page .education-card .education-logo {
+    display: block;
+    width: 116px;
+    height: 116px;
+    margin: 4px auto 12px;
+    object-fit: contain;
+    border-radius: 16px;
+}
+
+.education-page .education-card .education-logo-placeholder {
+    display: grid;
+    place-items: center;
+    font-size: 64px;
+}
+
+/* Teks */
+.education-page .education-card h2 {
+    margin: 0 0 12px;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 1.2;
+    color: var(--tdark);
+}
+
+.education-page .education-card p {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.education-page .edu-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 100%;
+    padding: 6px 16px;
+    margin-bottom: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .6);
+    box-shadow: inset 0 0 0 2px var(--tglow);
+    color: var(--tdark);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.education-page .edu-chip svg,
+.education-page .edu-period svg {
+    width: 19px;
+    height: 19px;
+}
+
+.education-page .edu-period {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--tdark);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Tombol star / edit / hapus */
+.education-page .education-card-actions {
+    position: relative;
+    z-index: 1;
+    margin-top: 14px;
+    gap: 6px;
+}
+
+.education-page .education-card-actions .button {
+    font-size: 12px;
+    padding: 6px 11px;
+}
+
+.education-page .education-card .star-count {
+    font-size: 13px;
+    color: var(--tdark);
+}
+
+/* Ilustrasi gedung di dasar kartu */
+.education-page .edu-scene {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 0 0 37px 37px;
+    pointer-events: none;
+}
+
+.education-page .edu-scene svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---- Layar kecil ---- */
+@media (max-width: 1279px) {
+    .education-page .education-card {
+        width: min(100%, 300px);
+    }
+}
+
+@media (max-width: 600px) {
+    .education-page .edu-ribbon {
+        padding: 8px 38px 10px;
+    }
+}
+
+/* tombol Tambah Education (admin) di tengah, di bawah pita */
+.education-page .education-content > .button {
+    display: table;
+    margin: 0 auto 16px;
+}
+
+/* jarak judul ke pita */
+.education-page .ketik {
+    margin-bottom: 8px;
 }
