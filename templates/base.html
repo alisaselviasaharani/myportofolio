@@ -40,60 +40,115 @@
 
 <body>
 
-    <audio id="oceanSound" autoplay loop>
+    <!-- Global Ocean Music Player: mati saat pertama kali dibuka -->
+    <audio id="oceanSound" loop preload="metadata">
         <source src="{% static 'audio/Sound Of Ocean.mp3' %}" type="audio/mpeg">
+        Browser Anda tidak mendukung pemutar audio.
     </audio>
 
-    <button id="soundButton" class="sound-button" type="button">
-        🌊 Suara Laut
+    <button id="soundButton" class="sound-button" type="button" aria-pressed="false">
+        🔇 Suara Laut OFF
     </button>
 
     <script>
-        const oceanSound = document.getElementById("oceanSound");
-        const soundButton = document.getElementById("soundButton");
+        (function () {
+            const oceanSound = document.getElementById("oceanSound");
+            const soundButton = document.getElementById("soundButton");
 
-        // Ambil posisi lagu terakhir
-        const savedTime = sessionStorage.getItem("oceanTime");
-        if (savedTime !== null) {
-            oceanSound.currentTime = parseFloat(savedTime);
-        }
+            // Status dan posisi disimpan hanya untuk tab/sesi browser ini.
+            const MUSIC_STATE_KEY = "oceanMusicEnabled";
+            const MUSIC_TIME_KEY = "oceanMusicTime";
 
-        // Tombol ON / OFF
-        soundButton.addEventListener("click", async function () {
-            if (oceanSound.paused) {
-                oceanSound.volume = 0.25;
+            // Jika belum pernah dinyalakan, kondisi awal selalu OFF.
+            let musicEnabled = sessionStorage.getItem(MUSIC_STATE_KEY) === "true";
+            let restoreStarted = false;
+
+            oceanSound.volume = 0.25;
+
+            function updateMusicButton() {
+                soundButton.textContent = musicEnabled
+                    ? "🔊 Suara Laut ON"
+                    : "🔇 Suara Laut OFF";
+                soundButton.setAttribute("aria-pressed", String(musicEnabled));
+            }
+
+            function saveMusicPosition() {
+                if (musicEnabled && Number.isFinite(oceanSound.currentTime)) {
+                    sessionStorage.setItem(MUSIC_TIME_KEY, String(oceanSound.currentTime));
+                }
+            }
+
+            async function restoreAndPlayMusic() {
+                if (!musicEnabled || restoreStarted) return;
+                restoreStarted = true;
+
+                const savedTime = Number(sessionStorage.getItem(MUSIC_TIME_KEY) || 0);
+
+                // Pastikan metadata sudah tersedia sebelum mengatur posisi lagu.
+                if (oceanSound.readyState >= 1) {
+                    setSavedPosition(savedTime);
+                    await tryPlayMusic();
+                } else {
+                    oceanSound.addEventListener("loadedmetadata", async function () {
+                        if (!musicEnabled) return;
+                        setSavedPosition(savedTime);
+                        await tryPlayMusic();
+                    }, { once: true });
+                    oceanSound.load();
+                }
+            }
+
+            function setSavedPosition(savedTime) {
+                if (Number.isFinite(savedTime) && savedTime > 0 && Number.isFinite(oceanSound.duration)) {
+                    // Kurangi sedikit dari durasi agar tidak tepat berada di ujung audio.
+                    oceanSound.currentTime = Math.min(savedTime, Math.max(0, oceanSound.duration - 0.1));
+                }
+            }
+
+            async function tryPlayMusic() {
+                if (!musicEnabled) return;
                 try {
                     await oceanSound.play();
-                    soundButton.textContent = "🔊 Suara Laut ON";
+                    updateMusicButton();
                 } catch (error) {
-                    console.log("Audio gagal dimainkan:", error);
+                    // Browser tertentu dapat memblokir autoplay setelah navigasi/refresh.
+                    soundButton.textContent = "▶ Lanjutkan Suara Laut";
+                    soundButton.setAttribute("aria-pressed", "false");
+                    console.info("Browser meminta interaksi untuk melanjutkan audio.", error);
                 }
-            } else {
-                oceanSound.pause();
-                soundButton.textContent = "🔇 Suara Laut OFF";
-            }
-        });
-
-        // Simpan posisi lagu ketika pindah halaman
-        window.addEventListener("beforeunload", function () {
-            sessionStorage.setItem(
-                "oceanTime",
-                oceanSound.currentTime
-            );
-        });
-
-        // Simpan posisi setiap 1 detik
-        setInterval(function () {
-
-            if (!oceanSound.paused) {
-                sessionStorage.setItem(
-                    "oceanTime",
-                    oceanSound.currentTime
-                );
             }
 
-        }, 1000);
+            soundButton.addEventListener("click", async function () {
+                if (!musicEnabled) {
+                    musicEnabled = true;
+                    sessionStorage.setItem(MUSIC_STATE_KEY, "true");
+                    updateMusicButton();
 
+                    try {
+                        await oceanSound.play();
+                    } catch (error) {
+                        musicEnabled = false;
+                        sessionStorage.setItem(MUSIC_STATE_KEY, "false");
+                        updateMusicButton();
+                        console.error("Audio gagal diputar:", error);
+                    }
+                } else {
+                    // OFF: hentikan musik dan hapus status serta posisi tersimpan.
+                    musicEnabled = false;
+                    oceanSound.pause();
+                    oceanSound.currentTime = 0;
+                    sessionStorage.setItem(MUSIC_STATE_KEY, "false");
+                    sessionStorage.removeItem(MUSIC_TIME_KEY);
+                    updateMusicButton();
+                }
+            });
+
+            oceanSound.addEventListener("timeupdate", saveMusicPosition);
+            window.addEventListener("pagehide", saveMusicPosition);
+
+            updateMusicButton();
+            restoreAndPlayMusic();
+        })();
     </script>
     {% for message in messages %}
     <div class="popup-message">
