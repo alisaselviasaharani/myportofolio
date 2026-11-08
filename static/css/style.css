@@ -506,13 +506,21 @@ h2 {
 }
 
 
-/*  PAGE EDUCATION  */
+/* PAGE EDUCATION */
 .education-page {
     padding-top: 30px;
     padding-bottom: 30px;
+
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+    position: relative;
+    min-height: 100vh;
+    background-size: 100% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
 }
 
 .education-content {
@@ -5955,5 +5963,101 @@ html {
     .experience-card {
         flex: 1 1 100%;
         width: 100%;
+    }
+}
+
+/* ===== NAILONG DECORATION ===== */
+
+.education-mascots {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Nailong membaca */
+.nailong-reading {
+    position: absolute;
+    width: 210px;
+    height: auto;
+    left: 10px;
+    bottom: 75px;
+    object-fit: contain;
+}
+
+/* Nailong berenang */
+.nailong-swimming {
+    position: absolute;
+    width: 220px;
+    height: auto;
+    right: 15px;
+    top: 135px;
+    object-fit: contain;
+}
+
+/* Laptop dan layar kecil */
+@media (max-width: 768px) {
+    .nailong-reading {
+        width: 150px;
+        left: 5px;
+    }
+
+    .nailong-swimming {
+        width: 155px;
+        right: 5px;
+        top: 120px;
+    }
+}
+
+/* =================================
+   NAILONG EDUCATION DECORATION
+================================= */
+
+.education-page {
+    position: relative;
+    overflow: hidden;
+}
+
+.education-mascots {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Nailong membaca buku */
+.nailong-reading {
+    position: absolute;
+    width: 210px;
+    height: auto;
+    left: 10px;
+    bottom: 75px;
+    object-fit: contain;
+    z-index: 5;
+}
+
+/* Nailong berenang */
+.nailong-swimming {
+    position: absolute;
+    width: 220px;
+    height: auto;
+    right: 15px;
+    top: 135px;
+    object-fit: contain;
+    z-index: 5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nailong-reading {
+        width: 150px;
+        left: 5px;
+        bottom: 50px;
+    }
+
+    .nailong-swimming {
+        width: 155px;
+        right: 5px;
+        top: 120px;
     }
 }
