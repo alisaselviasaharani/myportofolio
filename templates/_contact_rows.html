@@ -8,7 +8,7 @@
             hx-get="{% url 'main:contact_edit' contact.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="closest tr" hx-swap="outerHTML">✎</button>
         <button type="button" class="contact-delete" aria-label="Delete {{ contact.name }}"
             hx-delete="{% url 'main:contact_delete' contact.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="closest tr"
-            hx-swap="outerHTML" hx-confirm="Hapus kontak ini?">▣</button>
+            hx-swap="outerHTML" hx-confirm="Hapus kontak ini?"> 🗑️</button>
     </td>
 </tr>
 {% empty %}

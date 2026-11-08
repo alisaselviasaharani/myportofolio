@@ -427,7 +427,11 @@ def create_achievements_ajax(request):
 
     return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
 
+
 def contact_add(request):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     if request.method == "POST":
         Contact.objects.create(
             name=request.POST.get("name"),
@@ -442,7 +446,10 @@ def contact_search(request):
     return render(request, "_contact_rows.html", {"contacts": contacts})
 
 @require_http_methods(["DELETE"])
+
 def contact_delete(request, pk):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     contact = get_object_or_404(Contact, pk=pk)
     contact.delete()
     return HttpResponse("")
@@ -452,6 +459,8 @@ def contact_list(request):
     return render (request, "index.html", {"contacts":contacts})
 
 def contact_edit(request, pk):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     contact = get_object_or_404(Contact, pk=pk)
     return render(request, "_contact_edit_row.html", {"contact": contact})
 
@@ -461,6 +470,8 @@ def contact_row(request, pk):
 
 @require_http_methods(["PUT"])
 def contact_update(request, pk):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     contact = get_object_or_404(Contact, pk=pk)
     data = QueryDict(request.body)
     contact.name = data.get("name", contact.name)

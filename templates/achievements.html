@@ -45,11 +45,21 @@
             <!-- Form pencarian -->
             <form id="achievements-search-form" class="achievements-search">
 
-                <input id="search-input" type="search" name="title" value=""
-                    placeholder="Cari berdasarkan nama penghargaan" class="achievements-search__input"
-                    aria-label="Cari berdasarkan nama penghargaan">
+                <label class="achievements-search__field">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5" />
+                        <path d="m16 16 4.5 4.5" />
+                    </svg>
+                    <input id="search-input" type="search" name="title" value=""
+                        placeholder="Cari berdasarkan nama penghargaan..." class="achievements-search__input"
+                        aria-label="Cari berdasarkan nama penghargaan">
+                </label>
 
-                <button type="submit" class="button">
+                <button type="submit" class="button achievements-search__button">
+                    <svg class="ach-ic" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5" />
+                        <path d="m16 16 4.5 4.5" />
+                    </svg>
                     Search
                 </button>
 
@@ -140,10 +150,43 @@
         gridContainer.classList.toggle('hide', !showGrid);
     }
 
+    // Ikon & ilustrasi kartu
+    const ACH_ICONS = {
+        star: '<svg class="ach-ic ach-ic-fill" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8Z"/></svg>',
+        edit: '<svg class="ach-ic" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16Z M13.5 6.5l4 4"/></svg>',
+        trash: '<svg class="ach-ic" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>',
+        calendar: '<svg class="ach-ic" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>',
+        cap: '<svg class="ach-ic" viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5"/></svg>',
+        trophy: '<svg class="ach-ic" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4ZM8 6H4c0 3 1.500 4.500 4 5M16 6h4c0 3-1.500 4.500-4 5M12 13v4M8 20h8M9.500 17h5"/></svg>',
+        cert: '<svg class="ach-ic" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6Z"/><path d="M14 3v5h5M9 12h6M9 16h6"/></svg>',
+        award: '<svg class="ach-ic" viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.500"/><path d="m8.500 14 -1.500 7 5-3 5 3-1.500-7"/></svg>',
+        medal: '<svg viewBox="0 0 70 90"><path d="M16 4h14l10 30H26Z" fill="#e5322d"/><path d="M54 4H40L30 34h14Z" fill="#c4231a"/><circle cx="35" cy="54" r="26" fill="#f5b50a" stroke="#d98a06" stroke-width="3"/><circle cx="35" cy="54" r="19" fill="#fcd34d" stroke="#fff3b0" stroke-width="2"/><path d="m35 40 4.500 9.500 10.500 1.200-7.800 7.200 2.100 10.400L35 63l-9.300 5.300 2.100-10.400-7.800-7.200 10.500-1.200Z" fill="#fff8d6" stroke="#f0a30a" stroke-width="1.500" stroke-linejoin="round"/></svg>'
+    };
+
+    const ACH_SCENES = {
+        academic: '<svg viewBox="0 0 200 200"><path d="M30 160c-14-14-16-40-6-62M170 160c14-14 16-40 6-62" fill="none" stroke="#e8b923" stroke-width="5" stroke-linecap="round"/><g fill="#f5c842"><ellipse cx="22" cy="140" rx="6" ry="12" transform="rotate(-35 22 140)"/><ellipse cx="22" cy="118" rx="6" ry="12" transform="rotate(-20 22 118)"/><ellipse cx="178" cy="140" rx="6" ry="12" transform="rotate(35 178 140)"/><ellipse cx="178" cy="118" rx="6" ry="12" transform="rotate(20 178 118)"/></g><rect x="42" y="132" width="116" height="22" rx="4" fill="#2d5fd1"/><rect x="48" y="136" width="104" height="14" rx="2" fill="#f8e7c8"/><rect x="38" y="112" width="124" height="22" rx="4" fill="#e9552f"/><rect x="44" y="116" width="112" height="14" rx="2" fill="#fff1d6"/><rect x="48" y="94" width="104" height="20" rx="4" fill="#f5a31a"/><rect x="54" y="98" width="92" height="12" rx="2" fill="#fff6e0"/><path d="M100 40 164 66 100 92 36 66Z" fill="#1d3f9c"/><path d="M100 40 164 66 100 76 36 66Z" fill="#2f5fd6"/><path d="M64 80v16c0 8 16 14 36 14s36-6 36-14V80l-36 14Z" fill="#17368a"/><path d="M100 66 150 80v28" fill="none" stroke="#f5b50a" stroke-width="4" stroke-linecap="round"/><path d="M144 104h12l-2 18h-8Z" fill="#f5b50a"/></svg>',
+        competition: '<svg viewBox="0 0 200 200"><path d="M30 160c-14-14-16-40-6-62M170 160c14-14 16-40 6-62" fill="none" stroke="#e8b923" stroke-width="5" stroke-linecap="round"/><path d="M62 40h76v38c0 24-16 42-38 42S62 102 62 78Z" fill="#f5b50a" stroke="#d98a06" stroke-width="4"/><path d="M62 52H40c0 24 10 36 28 40M138 52h22c0 24-10 36-28 40" fill="none" stroke="#d98a06" stroke-width="6" stroke-linecap="round"/><path d="M76 48v30c0 14 8 26 18 32" fill="none" stroke="#fff3b0" stroke-width="6" stroke-linecap="round" opacity=".8"/><rect x="92" y="118" width="16" height="22" fill="#d98a06"/><rect x="68" y="140" width="64" height="14" rx="4" fill="#2d5fd1"/><rect x="56" y="154" width="88" height="14" rx="4" fill="#1d3f9c"/><path d="m100 58 6 12 13 2-9.500 9 2.300 13L100 88l-11.800 6 2.300-13-9.500-9 13-2Z" fill="#fff8d6"/></svg>',
+        certification: '<svg viewBox="0 0 200 200"><path d="M30 160c-14-14-16-40-6-62M170 160c14-14 16-40 6-62" fill="none" stroke="#e8b923" stroke-width="5" stroke-linecap="round"/><rect x="34" y="42" width="132" height="102" rx="6" fill="#2f5fd6"/><rect x="42" y="50" width="116" height="86" rx="3" fill="#fff4dc"/><g fill="#b8c4dd"><rect x="62" y="62" width="76" height="6" rx="3"/><rect x="56" y="76" width="88" height="5" rx="2.500"/><rect x="56" y="88" width="88" height="5" rx="2.500"/></g><path d="M86 130 78 170l22-12 22 12-8-40Z" fill="#e5322d"/><circle cx="100" cy="118" r="22" fill="#f5b50a" stroke="#d98a06" stroke-width="3"/><circle cx="100" cy="118" r="15" fill="#fcd34d"/><path d="m100 106 3.800 7.800 8.600 1-6.300 5.900 1.700 8.500-7.800-4.300-7.800 4.300 1.700-8.500-6.300-5.900 8.600-1Z" fill="#fff8d6" stroke="#f0a30a" stroke-width="1.200" stroke-linejoin="round"/></svg>',
+        award: '<svg viewBox="0 0 200 200"><path d="M30 160c-14-14-16-40-6-62M170 160c14-14 16-40 6-62" fill="none" stroke="#e8b923" stroke-width="5" stroke-linecap="round"/><path d="M70 24h24l18 56H88Z" fill="#e5322d"/><path d="M130 24h-24L88 80h24Z" fill="#c4231a"/><circle cx="100" cy="122" r="44" fill="#f5b50a" stroke="#d98a06" stroke-width="5"/><circle cx="100" cy="122" r="33" fill="#fcd34d" stroke="#fff3b0" stroke-width="3"/><path d="m100 98 8.500 17.500 19 2.200-14 13 3.800 19L100 140l-17.300 9.700 3.800-19-14-13 19-2.200Z" fill="#fff8d6" stroke="#f0a30a" stroke-width="2.500" stroke-linejoin="round"/></svg>',
+        other: '<svg viewBox="0 0 200 200"><path d="M30 160c-14-14-16-40-6-62M170 160c14-14 16-40 6-62" fill="none" stroke="#e8b923" stroke-width="5" stroke-linecap="round"/><path d="m100 30 20 44 48 5-36 33 10 48-42-24-42 24 10-48-36-33 48-5Z" fill="#fcd34d" stroke="#f0a30a" stroke-width="5" stroke-linejoin="round"/></svg>'
+    };
+
+    const ACH_THEMES = {
+        academic: { label: 'Academic', icon: 'cap' },
+        competition: { label: 'Competition', icon: 'trophy' },
+        certification: { label: 'Certification', icon: 'cert' },
+        award: { label: 'Award', icon: 'award' },
+        other: { label: 'Other', icon: 'award' }
+    };
+
     // Membuat elemen card achievements dari objek JSON DRF (item.id, item.title, ...)
     function buildAchievementsCardElement(item) {
+        const key = String(item.category || 'other').toLowerCase();
+        const theme = ACH_THEMES[key] || { label: String(item.category || 'Other'), icon: 'award' };
+        const themeKey = ACH_THEMES[key] ? key : 'other';
+
         const articleElement = document.createElement('article');
-        articleElement.className = 'experience-card';
+        articleElement.className = `experience-card ach-card ach-${themeKey}`;
 
         const starTitle = item.star_count > 0
             ? `Dibintangi oleh ${item.starred_by_names}`
@@ -152,27 +195,36 @@
         const starHtml = IS_AUTHENTICATED
             ? `<button type="button" class="button button-star${item.is_starred ? ' is-starred' : ''}"
                     data-action="star" data-id="${escapeHtml(item.id)}" title="${escapeHtml(starTitle)}">
-                    <span aria-hidden="true">★</span>
+                    ${ACH_ICONS.star}
                     ${item.is_starred ? 'Unstar' : 'Star'}
                     <span class="star-count">${escapeHtml(item.star_count)}</span>
                </button>`
-            : `<a href="${escapeHtml(LOGIN_URL)}" class="button">Login untuk memberi Star (${escapeHtml(item.star_count)})</a>`;
+            : `<a href="${escapeHtml(LOGIN_URL)}" class="button button-star">${ACH_ICONS.star}Login untuk Star
+                    <span class="star-count">${escapeHtml(item.star_count)}</span></a>`;
 
         const editHtml = CAN_EDIT
-            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(item.id)}">Edit</button>` : '';
+            ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(item.id)}">${ACH_ICONS.edit}Edit</button>` : '';
         const deleteHtml = IS_SUPERUSER
             ? `<button type="button" class="button button-danger" data-action="delete"
-                    data-id="${escapeHtml(item.id)}">Hapus</button>` : '';
+                    data-id="${escapeHtml(item.id)}">${ACH_ICONS.trash}Hapus</button>` : '';
 
         articleElement.innerHTML = `
-            <h2>${escapeHtml(item.title)}</h2>
-            <span class="experience-category">${escapeHtml(item.category)}</span>
-            <p class="experience-description">${escapeHtml(item.description)}</p>
-            <div class="achievements-card-actions">
-                <div class="achievements-actions">
-                    ${starHtml}
-                    ${editHtml}
-                    ${deleteHtml}
+            <span class="ach-medal" aria-hidden="true">${ACH_ICONS.medal}</span>
+            <div class="ach-art" aria-hidden="true">${ACH_SCENES[themeKey]}</div>
+            <div class="ach-body">
+                <div class="ach-meta">
+                    <span class="experience-category ach-pill">${ACH_ICONS[theme.icon]}${escapeHtml(theme.label)}</span>
+                    ${item.period ? `<span class="ach-period">${ACH_ICONS.calendar}${escapeHtml(item.period)}</span>` : ''}
+                </div>
+                <h2>${escapeHtml(item.title)}</h2>
+                <div class="ach-divider" aria-hidden="true"><i></i>${ACH_ICONS.star}<i></i></div>
+                <p class="experience-description">${escapeHtml(item.description)}</p>
+                <div class="achievements-card-actions">
+                    <div class="achievements-actions">
+                        ${starHtml}
+                        ${editHtml}
+                        ${deleteHtml}
+                    </div>
                 </div>
             </div>
         `;

@@ -176,19 +176,6 @@
 
             <!-- Logo / Brand -->
             <a href="{% url 'main:show_home' %}" class="navbar-brand">
-                <svg class="brand-shell" viewBox="0 0 64 64" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="shellG" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0" stop-color="#d9b8ff" />
-                            <stop offset="1" stop-color="#8f6bd8" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M32 6C16 6 6 20 6 34c0 8 4 14 10 16l16 8 16-8c6-2 10-8 10-16C58 20 48 6 32 6z"
-                        fill="url(#shellG)" />
-                    <path d="M32 8v48M22 10l-6 42M42 10l6 42M13 18l-4 24M51 18l4 24" stroke="#fff" stroke-opacity=".55"
-                        stroke-width="2" fill="none" stroke-linecap="round" />
-                    <path d="M24 56h16l-8 6z" fill="#b99af0" />
-                </svg>
                 <span class="brand-name">{{ name|default:"Alisa Selvia Saharani" }}</span>
             </a>
 

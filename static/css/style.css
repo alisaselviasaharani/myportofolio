@@ -1623,7 +1623,7 @@ h2 {
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0;
     font-family: "Space Grotesk", system-ui, sans-serif;
     font-size: 26px;
     font-weight: 700;
@@ -5923,7 +5923,10 @@ html {
 }
 
 @media (max-width: 600px) {
-    .experience-card .experience-card-actions { gap: 8px; }
+    .experience-card .experience-card-actions {
+        gap: 8px;
+    }
+
     .experience-card .experience-card-actions .button {
         min-height: 40px;
         padding: 9px 13px;
@@ -6288,7 +6291,7 @@ html {
 }
 
 /* tombol Tambah Education (admin) di tengah, di bawah pita */
-.education-page .education-content > .button {
+.education-page .education-content>.button {
     display: table;
     margin: 0 auto 16px;
 }
@@ -6309,7 +6312,7 @@ html {
 }
 
 /* Tombol tambah (admin) */
-.experience-page .experience-content > .button {
+.experience-page .experience-content>.button {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -6325,7 +6328,7 @@ html {
     cursor: pointer;
 }
 
-.experience-page .experience-content > .button::before {
+.experience-page .experience-content>.button::before {
     content: "+";
     font-size: 26px;
     font-weight: 700;
@@ -6595,4 +6598,426 @@ html {
 .experience-page .experience-card p.exp-desc,
 .experience-page #experience-search-input {
     -webkit-text-stroke: .35px currentColor;
+}
+
+
+/* ===== ACHIEVEMENTS: TAMPILAN BARU (kartu kaca + medali) ===== */
+#achievements .container {
+    width: min(1240px, 94%);
+    max-width: none;
+    margin: 0 auto;
+}
+
+#achievements .ketik {
+    margin-bottom: 20px;
+}
+
+/* ikon */
+#achievements .ach-ic {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#achievements .ach-ic-fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+/* search */
+#achievements .achievements-search {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(880px, 100%);
+    margin: 6px auto 22px;
+}
+
+#achievements .achievements-search__field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 58px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 8px 22px rgba(0, 60, 110, .22);
+    color: #0b5ea8;
+}
+
+#achievements .achievements-search__field .ach-ic {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2.2;
+}
+
+#achievements .achievements-search__input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    color: #0f3a5c;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+}
+
+#achievements .achievements-search__input:focus {
+    outline: 0;
+}
+
+#achievements .achievements-search__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    height: 54px;
+    padding: 0 28px;
+    border: 3px solid #fff;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #2a86f5, #0b4fb3);
+    box-shadow: 0 0 0 2px #0a3f8f, 0 8px 16px rgba(0, 40, 100, .3);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#achievements .achievements-search__button .ach-ic {
+    width: 22px;
+    height: 22px;
+}
+
+/* tombol tambah */
+#achievements .achievements-add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: max-content;
+    margin: 0 auto 44px;
+    padding: 11px 34px;
+    border: 3px solid #fff;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffd04a, #f19a0a);
+    box-shadow: 0 0 0 2px #d98206, 0 8px 16px rgba(120, 70, 0, .3);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(120, 60, 0, .4);
+    cursor: pointer;
+}
+
+#achievements .achievements-add-button span {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* grid 2 kolom */
+#achievements .experience-grid.achievements-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 46px 34px;
+    padding-top: 14px;
+}
+
+/* kartu kaca horizontal */
+#achievements .achievements-grid .ach-card {
+    --pill: #1e56c8;
+    position: relative;
+    display: grid;
+    grid-template-columns: 172px minmax(0, 1fr);
+    column-gap: 22px;
+    align-items: start;
+    width: auto;
+    min-height: 300px;
+    padding: 38px 30px 26px 28px;
+    border: 3px solid rgba(255, 255, 255, .95);
+    border-radius: 40px;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26Q50 4 100 24T200 24T300 24T400 22V0H0Z' fill='%23fff' fill-opacity='.7'/%3E%3C/svg%3E") top / 100% 46px no-repeat,
+        linear-gradient(0deg, rgba(110, 195, 245, .6), rgba(110, 195, 245, 0) 30%),
+        linear-gradient(180deg, rgba(232, 248, 255, .9), rgba(196, 232, 250, .78));
+    box-shadow:
+        0 0 0 3px rgba(120, 220, 255, .55),
+        0 0 30px rgba(110, 215, 255, .75),
+        inset 0 0 22px rgba(255, 255, 255, .6),
+        0 16px 30px rgba(0, 60, 110, .26);
+    text-align: left;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+#achievements .achievements-grid .ach-card:hover {
+    transform: translateY(-6px);
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 44' preserveAspectRatio='none'%3E%3Cpath d='M0 26Q50 4 100 24T200 24T300 24T400 22V0H0Z' fill='%23fff' fill-opacity='.8'/%3E%3C/svg%3E") top / 100% 46px no-repeat,
+        linear-gradient(0deg, rgba(110, 195, 245, .6), rgba(110, 195, 245, 0) 30%),
+        linear-gradient(180deg, rgba(240, 251, 255, .95), rgba(204, 238, 252, .85));
+    box-shadow:
+        0 0 0 3px rgba(120, 220, 255, .75),
+        0 0 40px rgba(110, 215, 255, .95),
+        inset 0 0 22px rgba(255, 255, 255, .65),
+        0 22px 36px rgba(0, 60, 110, .3);
+}
+
+#achievements .ach-card.ach-academic {
+    --pill: #1e56c8;
+}
+
+#achievements .ach-card.ach-competition {
+    --pill: #e8741a;
+}
+
+#achievements .ach-card.ach-certification {
+    --pill: #7c5be0;
+}
+
+#achievements .ach-card.ach-award {
+    --pill: #d99a06;
+}
+
+#achievements .ach-card.ach-other {
+    --pill: #0d9488;
+}
+
+/* medali di pojok kanan atas */
+#achievements .ach-medal {
+    position: absolute;
+    top: -22px;
+    right: 24px;
+    width: 64px;
+    z-index: 2;
+    filter: drop-shadow(0 5px 5px rgba(0, 60, 110, .35));
+    pointer-events: none;
+}
+
+#achievements .ach-medal svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* bingkai ilustrasi */
+#achievements .ach-art {
+    width: 172px;
+    height: 172px;
+    margin-top: 20px;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 3px solid rgba(255, 255, 255, .95);
+    border-radius: 34px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(206, 238, 252, .85));
+    box-shadow: 0 0 0 3px rgba(150, 225, 255, .55), inset 0 -8px 16px rgba(120, 200, 240, .35), 0 8px 14px rgba(0, 70, 120, .18);
+}
+
+#achievements .ach-art svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* isi kartu */
+#achievements .ach-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+}
+
+#achievements .ach-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-bottom: 12px;
+}
+
+#achievements .ach-card .ach-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 7px 18px;
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: 999px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--pill) 82%, #fff), var(--pill));
+    box-shadow: 0 4px 8px rgba(0, 40, 90, .22);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#achievements .ach-period {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2a5b82;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#achievements .ach-period .ach-ic {
+    width: 17px;
+    height: 17px;
+}
+
+#achievements .ach-card h2 {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.22;
+    color: #0b3b66;
+    overflow-wrap: anywhere;
+}
+
+#achievements .ach-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 14px 0;
+    color: #f5b50a;
+}
+
+#achievements .ach-divider i {
+    flex: 1;
+    height: 2px;
+    border-radius: 2px;
+    background: rgba(11, 59, 102, .7);
+}
+
+#achievements .ach-divider .ach-ic {
+    width: 24px;
+    height: 24px;
+    stroke: #e08a00;
+    stroke-width: 1.2;
+}
+
+#achievements .ach-card p.experience-description {
+    margin: 0 0 16px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #123a5c;
+}
+
+/* tombol aksi */
+#achievements .ach-card .achievements-card-actions {
+    margin-top: auto;
+}
+
+#achievements .ach-card .achievements-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0;
+}
+
+#achievements .ach-card .achievements-actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 38px;
+    padding: 6px 10px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    background: linear-gradient(180deg, #2f9bff, #1668d8);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .26);
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#achievements .ach-card .achievements-actions .button-star,
+#achievements .ach-card .achievements-actions .button-star.is-starred {
+    background: linear-gradient(180deg, #2c3138, #11151a);
+}
+
+#achievements .ach-card .achievements-actions .button-star.is-starred .ach-ic {
+    color: #fcd34d;
+}
+
+#achievements .ach-card .achievements-actions .button-danger {
+    background: linear-gradient(180deg, #ef4438, #c4231a);
+}
+
+#achievements .ach-card .achievements-actions .star-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .22);
+    color: #fff;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    #achievements .experience-grid.achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    #achievements .achievements-search {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #achievements .achievements-search__button {
+        justify-content: center;
+    }
+
+    #achievements .achievements-grid .ach-card {
+        grid-template-columns: 1fr;
+        padding: 36px 20px 22px;
+    }
+
+    #achievements .ach-art {
+        justify-self: center;
+        width: 150px;
+        height: 150px;
+        margin: 6px 0 16px;
+    }
+}
+
+/* HILANGKAN LOGO NAVBAR */
+.navbar-brand img,
+.navbar-brand .logo,
+.logo-navbar {
+    display: none !important;
+}
+
+/* Achievements: judul ke tengah + jarak atas seperti Education */
+#achievements {
+    padding-top: 50px;
+}
+
+#achievements .education-content {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+#achievements .ketik {
+    justify-content: center;
+    margin-bottom: 20px;
 }
