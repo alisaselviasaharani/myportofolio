@@ -1,7 +1,5 @@
 /*  FONT  */
-/* 
-    Mengaktifkan font yang sudah di download di dafont 
-*/
+/* Mengaktifkan font yang sudah di download di dafont */
 @font-face {
     font-family: "Matcha Mint";
     src: url("/static/fonts/Matcha Mint.otf") format("opentype");
@@ -5840,5 +5838,122 @@ html {
 
     .education-form-modal__content {
         padding: 24px 18px;
+    }
+}
+
+/* ===== EXPERIENCE: ACTION BUTTONS ===== */
+.experience-card .experience-card-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 16px;
+}
+
+.experience-card .experience-card-actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 44px;
+    padding: 10px 18px;
+    margin: 0;
+    border: 0;
+    border-radius: 7px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+}
+
+.experience-card .experience-card-actions .button-star {
+    background: #171717;
+}
+
+.experience-card .experience-card-actions .button-star.is-starred {
+    background: #35add0;
+}
+
+.experience-card .experience-card-actions button[data-action="edit"] {
+    background: #35add0;
+}
+
+.experience-card .experience-card-actions .button-danger {
+    background: #bd241b;
+}
+
+.experience-card .experience-card-actions .star-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 27px;
+    height: 27px;
+    padding: 0 7px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, .28);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.experience-card .experience-card-actions .button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .16);
+}
+
+.experience-card .experience-card-actions .button:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, .95);
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .experience-card .experience-card-actions { gap: 8px; }
+    .experience-card .experience-card-actions .button {
+        min-height: 40px;
+        padding: 9px 13px;
+        font-size: 14px;
+    }
+}
+
+/* Desktop: 3 card sejajar */
+@media (min-width: 901px) {
+    .experience-cards {
+        flex-wrap: nowrap;
+    }
+
+    .experience-card {
+        flex: 1 1 0;
+        width: auto;
+    }
+}
+
+/* Tablet: 2 card per baris */
+@media (min-width: 601px) and (max-width: 900px) {
+    .experience-cards {
+        flex-wrap: wrap;
+    }
+
+    .experience-card {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+/* HP: 1 card per baris */
+@media (max-width: 600px) {
+    .experience-cards {
+        flex-wrap: wrap;
+    }
+
+    .experience-card {
+        flex: 1 1 100%;
+        width: 100%;
     }
 }

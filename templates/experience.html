@@ -173,9 +173,11 @@
             ${experience.period ? `<p>${escapeHtml(experience.period)}</p>` : ""}
             <p>${escapeHtml(experience.category_display)}</p>
             <p>${escapeHtml(experience.description)}</p>
-            <div class="experience-star">${starHtml}</div>
-            ${editHtml}
-            ${deleteHtml}
+            <div class="experience-card-actions">
+                ${starHtml}
+                ${editHtml}
+                ${deleteHtml}
+            </div>
         `;
         return article;
     }
