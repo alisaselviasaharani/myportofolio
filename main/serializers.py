@@ -37,7 +37,7 @@ class StarFieldsMixin(serializers.Serializer):
 
 
 class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
-    # Sama seperti AchievementsForm: tulis data wajib menyertakan kode rahasia.
+    # Sama seperti AchievementsForm: membuat data baru wajib menyertakan kode rahasia.
     secret_code = serializers.CharField(write_only=True, required=False)
 
     class Meta:
@@ -60,14 +60,22 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
         return strip_tags(value or "").strip()
 
     def validate_description(self, value):
-        return strip_tags(value).strip()
+        value = strip_tags(value).strip()
+        if not value:
+            raise serializers.ValidationError("Deskripsi penghargaan tidak boleh kosong.")
+        return value
 
     def validate(self, attrs):
-        # Kode rahasia hanya diwajibkan saat membuat achievement baru.
-        # Editor yang melakukan PUT/PATCH tidak perlu memasukkan ulang kode.
+        # secret_code bukan kolom model, jadi selalu dibuang dari data yang disimpan.
         code = attrs.pop("secret_code", None)
-        expected = os.getenv("PORTOFOLIO_SECRET")
 
+        # Kode rahasia hanya diwajibkan saat membuat achievement baru (POST).
+        # Update (PUT/PATCH) oleh Editor atau pemilik tidak perlu memasukkan ulang kode,
+        # sama seperti form edit di halaman Achievements yang menyembunyikan field-nya.
+        if self.instance is not None:
+            return attrs
+
+        expected = os.getenv("PORTOFOLIO_SECRET")
         if not code or not expected or not secrets.compare_digest(code, expected):
             raise serializers.ValidationError({
                 "secret_code": ["Kode rahasia yang anda masukkan salah."]

@@ -194,9 +194,16 @@ class AchievementsAPITest(ResourceAPITestMixin, APITestCase):
             response = self.client.post(self.list_url, data, format="json")
             self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
             self.assertIn("secret_code", response.data)
-        response = self.client.patch(self.detail_url, {"title": "Changed"}, format="json")
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(self.model.objects.count(), 1)
+
+    def test_secret_code_is_not_required_when_updating(self):
+        # Kode rahasia hanya untuk membuat data baru; edit dari halaman tidak mengirimnya.
+        self.client.force_authenticate(user=self.owner)
+        response = self.client.patch(self.detail_url, {"title": "Changed"}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.obj.refresh_from_db()
+        self.assertEqual(self.obj.title, "Changed")
+        self.assertNotIn("secret_code", response.data)
 
 
 class ExperienceAPITest(ResourceAPITestMixin, APITestCase):
@@ -446,4 +453,3 @@ class EducationAPITest(APITestCase):
         response = client.post(self.list_url, self.payload, format="json", HTTP_X_CSRFTOKEN=token)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Education.objects.count(), 2)
-
