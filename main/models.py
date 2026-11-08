@@ -70,6 +70,7 @@ class Education(models.Model):
     
     # simpan website
     website= models.CharField(max_length=100)
+    starred_by = models.ManyToManyField( User, related_name="starred_education", blank=True)
 
     # Menentukan representasi object Education
     # ketika object tersebut ditampilkan sebagai string.
