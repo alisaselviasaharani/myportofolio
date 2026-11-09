@@ -4,6 +4,76 @@
 {% block meta %}
 <title>{{ name }} - Education</title>
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+/* ===== Education: tombol aksi disamakan dengan Experience ===== */
+main.pages .education-page .education-card .education-card-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+main.pages .education-page .education-card .education-card-actions .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 46px;
+    padding: 9px 14px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    line-height: 1.1;
+    white-space: nowrap;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, .28);
+}
+
+main.pages .education-page .education-card .education-card-actions .button-star,
+main.pages .education-page .education-card .button-star.is-starred {
+    background: linear-gradient(180deg, #2c3138, #11151a);
+    color: #fff;
+}
+
+main.pages .education-page .education-card .education-card-actions .button-star.is-starred .edu-act-ic {
+    color: #fcd34d;
+}
+
+main.pages .education-page .education-card .education-card-actions button[data-action="edit"] {
+    background: linear-gradient(180deg, #2f9bff, #1668d8);
+}
+
+main.pages .education-page .education-card .education-card-actions .button-danger {
+    background: linear-gradient(180deg, #ef4438, #c4231a);
+}
+
+main.pages .education-page .education-card .education-card-actions svg.edu-act-ic {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    flex: none;
+    color: #fff;
+}
+
+main.pages .education-page .education-card .education-card-actions .star-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 6px;
+    background: rgba(255, 255, 255, .22);
+    color: #fff;
+    font-size: 16px;
+}
+
+main.pages .education-page .education-card .education-card-actions .button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+</style>
 {% endblock meta %}
 
 {% block content %}
@@ -129,6 +199,13 @@
             calendar: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>'
         };
 
+        // Ikon tombol aksi (sama dengan halaman Experience)
+        const ACT_ICONS = {
+            star: '<svg class="edu-act-ic" width="19" height="19" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2 6.3 20.3l1.2-6.4L2.8 9.5l6.4-.8Z" fill="currentColor"/></svg>',
+            edit: '<svg class="edu-act-ic" width="19" height="19" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16Z M13.5 6.5l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            trash: '<svg class="edu-act-ic" width="19" height="19" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        };
+
         const SCENES = {
             higher: '<svg viewBox="0 0 300 90" preserveAspectRatio="xMidYMax slice"><path d="M0 90V58C40 38 80 62 120 50s70-26 110-8 50 8 70 2v46Z" fill="#cfc2fb"/><path d="M0 90V70c50-14 90 4 150-6s110 0 150 6v20Z" fill="#b9a7f7"/><g fill="#a78bfa"><path d="M150 26l32 14H118Z"/><rect x="124" y="40" width="52" height="8"/><path d="M150 44l40 12H110Z"/><rect x="116" y="56" width="68" height="10"/><path d="M150 60l50 12H100Z"/><rect x="104" y="72" width="92" height="18"/></g><g fill="#7c3aed" opacity=".55"><rect x="140" y="74" width="20" height="16" rx="2"/></g><g fill="#c4b5fd"><circle cx="40" cy="64" r="14"/><rect x="38" y="64" width="4" height="26"/><circle cx="262" cy="62" r="15"/><rect x="260" y="62" width="4" height="28"/></g></svg>',
             sma: '<svg viewBox="0 0 300 90" preserveAspectRatio="xMidYMax slice"><path d="M0 90V62c50-18 90 6 150-6s110-6 150 4v30Z" fill="#bfe6f7"/><g fill="#38bdf8"><circle cx="38" cy="58" r="16"/><rect x="36" y="60" width="4" height="30"/><circle cx="264" cy="56" r="17"/><rect x="262" y="58" width="4" height="32"/></g><g fill="#7dd3fc"><rect x="96" y="56" width="108" height="34"/><path d="M96 56l54-14 54 14Z"/></g><rect x="140" y="64" width="20" height="26" rx="2" fill="#0ea5e9"/><g fill="#e0f4ff"><rect x="106" y="64" width="12" height="12" rx="2"/><rect x="124" y="64" width="12" height="12" rx="2"/><rect x="164" y="64" width="12" height="12" rx="2"/><rect x="182" y="64" width="12" height="12" rx="2"/></g><path d="M150 42V20" stroke="#0369a1" stroke-width="2.5"/><path d="M150 20l16 5-16 5Z" fill="#0ea5e9"/></svg>',
@@ -164,13 +241,15 @@
             const star = authenticated
                 ? `<button type="button" class="button button-star ${item.is_starred ? "is-starred" : ""}"
                     data-action="star" data-id="${escapeHtml(item.id)}"
-                    title="${escapeHtml(item.starred_by_names || "Beri star")}">
-                    ★ ${item.is_starred ? "Unstar" : "Star"} <span class="star-count">${Number(item.star_count) || 0}</span>
+                    title="${escapeHtml(item.starred_by_names || "Jadilah yang pertama memberi star")}">
+                    ${ACT_ICONS.star}
+                    ${item.is_starred ? "Unstar" : "Star"}
+                    <span class="star-count">${Number(item.star_count) || 0}</span>
                </button>`
-                : `<a class="button" href="${escapeHtml(loginUrl)}">Login untuk memberi Star</a>
-               <span class="star-count">★ ${Number(item.star_count) || 0}</span>`;
-            const edit = canEdit ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(item.id)}">Edit</button>` : "";
-            const remove = owner ? `<button type="button" class="button button-danger" data-action="delete" data-id="${escapeHtml(item.id)}">Hapus</button>` : "";
+                : `<a href="${escapeHtml(loginUrl)}" class="button button-star">${ACT_ICONS.star}Login untuk Star
+                    <span class="star-count">${Number(item.star_count) || 0}</span></a>`;
+            const edit = canEdit ? `<button type="button" class="button" data-action="edit" data-id="${escapeHtml(item.id)}">${ACT_ICONS.edit}Edit</button>` : "";
+            const remove = owner ? `<button type="button" class="button button-danger" data-action="delete" data-id="${escapeHtml(item.id)}">${ACT_ICONS.trash}Hapus</button>` : "";
             const degree = (item.degree || "").trim() || cat.label;
             article.innerHTML = `<span class="edu-badge">${ICONS[cat.badge]}${escapeHtml(cat.label)}</span>
             ${logoBlock}
