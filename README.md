@@ -1526,5 +1526,5 @@
         penyebab error, memberikan saran terkait struktur kode, CSS, dan tampilan website. Meskipun menggunakan AI sebagai 
         alat bantu, saya tetap mempelajari, memeriksa, menyesuaikan, dan menguji setiap kode atau saran yang diberikan 
         agar sesuai dengan kebutuhan proyek dan pemahaman saya.
-        Berikut ini link GPT:   [ChatGPT – Riwayat Percakapan](https://chatgpt.com/share/6af0bb1d-3294-83ec-90d6-e3630a897312)
+        Berikut ini link GPT:   [ChatGPT – Riwayat Percakapan](https://chatgpt.com/share/6af1fa30-2dc0-83ec-b76f-e8b8a888a90a)
           
