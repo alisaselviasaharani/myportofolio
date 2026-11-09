@@ -9,6 +9,8 @@ from main.models import Achievements, Education, Experience
 
 def _is_safe_url(value, allow_relative=False):
     """URL kosong, http(s), atau (opsional) path relatif seperti /static/img/a.png."""
+    # Note: ini buat nolak skema berbahaya kayak javascript:alert(1) di field logo/website/gambar.
+    # "//" dilarang juga karena itu bisa dianggap browser sebagai URL ke domain lain.
     if not value:
         return True
     if value.startswith(("http://", "https://")):
@@ -17,7 +19,12 @@ def _is_safe_url(value, allow_relative=False):
 
 
 class StarFieldsMixin(serializers.Serializer):
-    """Field hasil perhitungan untuk model yang punya relasi starred_by."""
+    """
+    Field hasil perhitungan untuk model yang punya relasi starred_by.
+    Ketiganya SerializerMethodField, jadi otomatis read-only: kalau client nekat kirim
+    star_count=99 lewat POST/PUT, nilainya diabaikan dan tetap dihitung dari database.
+    Dibuat sebagai mixin biar ga ditulis ulang di tiga serializer.
+    """
 
     star_count = serializers.SerializerMethodField()
     is_starred = serializers.SerializerMethodField()
@@ -27,12 +34,14 @@ class StarFieldsMixin(serializers.Serializer):
         return obj.starred_by.count()
 
     def get_is_starred(self, obj):
+        # request diambil dari context yang dikirim view; user yang belum login selalu False
         request = self.context.get("request")
         if request is None or not request.user.is_authenticated:
             return False
         return request.user in obj.starred_by.all()
 
     def get_starred_by_names(self, obj):
+        # cuma username yang dikeluarkan, jadi data sensitif user (email, password) tidak ikut bocor
         return ", ".join(user.username for user in obj.starred_by.all())
 
 
@@ -50,6 +59,8 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
         ]
         read_only_fields = ["id"]
 
+    # validate_<nama_field> dipanggil otomatis oleh DRF untuk tiap field.
+    # strip_tags dipakai biar input kayak "<script>..." ga tersimpan ke database (cegah XSS).
     def validate_title(self, value):
         value = strip_tags(value).strip()
         if not value:
@@ -65,6 +76,7 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
             raise serializers.ValidationError("Deskripsi penghargaan tidak boleh kosong.")
         return value
 
+    # validate() dipakai untuk aturan yang melibatkan lebih dari satu field / konteks request
     def validate(self, attrs):
         # secret_code bukan kolom model, jadi selalu dibuang dari data yang disimpan.
         code = attrs.pop("secret_code", None)
@@ -75,6 +87,7 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
         if self.instance is not None:
             return attrs
 
+        # compare_digest dipakai (bukan ==) supaya perbandingan kodenya aman dari timing attack
         expected = os.getenv("PORTOFOLIO_SECRET")
         if not code or not expected or not secrets.compare_digest(code, expected):
             raise serializers.ValidationError({
@@ -85,6 +98,7 @@ class AchievementsSerializer(StarFieldsMixin, serializers.ModelSerializer):
 
 
 class ExperienceSerializer(StarFieldsMixin, serializers.ModelSerializer):
+    # label kategori yang enak dibaca (mis. "Part-Time"); read_only karena cuma buat tampilan
     category_display = serializers.CharField(source="get_category_display", read_only=True)
 
     class Meta:
@@ -127,6 +141,8 @@ class ExperienceSerializer(StarFieldsMixin, serializers.ModelSerializer):
         return value
 
 class EducationSerializer(StarFieldsMixin, serializers.ModelSerializer):
+    # Education tidak butuh secret_code seperti Achievements, jadi validasinya cuma
+    # bersihin tag HTML dan memastikan field wajib tidak kosong.
     class Meta:
         model = Education
         fields = [
@@ -140,6 +156,7 @@ class EducationSerializer(StarFieldsMixin, serializers.ModelSerializer):
             "is_starred",
             "starred_by_names",
         ]
+        # field hasil perhitungan ditulis eksplisit di sini juga biar jelas kalau ini tidak bisa diisi client
         read_only_fields = [
             "id",
             "star_count",
