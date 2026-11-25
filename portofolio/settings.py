@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-&l-i^&wj_@+_m0la(wgme_n@4^g0dgi)1z!u7j6$2rxn-z)8$u
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "alisa-selvia-myportofolio.pws.cs.ui.ac.id"]
-
+PRODUCTION= os.getenv("PRODUCTION", "False").lower=="true"
 
 # Application definition
 
@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "main",
+    "corsheaders",
     "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,32 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        # TODO: Add corsheaders.middleware.CorsMiddleware before CommonMiddleware
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    # ... remaining middleware ...
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        # TODO: Enable TokenAuthentication first, followed by SessionAuthentication,
+        #       so mobile clients use tokens (and get 401 on missing/invalid tokens)
+        #       while web pages keep using sessions
+    ],
+}
+# Local development CORS settings for Flutter Web (Chrome).
+# Uses the `PRODUCTION` flag from `.env` / `.env.prod` (Tutorial 00/01):
+# allow all origins locally (`PRODUCTION=False`), and restrict in production.
+# In production (.env.prod), set CORS_ALLOWED_ORIGINS="https://your-web-app.example"
+# (only needed if you host Flutter Web; native Android apps do not use CORS).
+CORS_ALLOW_ALL_ORIGINS = not PRODUCTION
+if PRODUCTION:
+    CORS_ALLOWED_ORIGINS = [
+        origin.strip()
+        for origin in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",")
+        if origin.strip()
+    ]
 
 TEMPLATES = [
     {

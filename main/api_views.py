@@ -1,16 +1,15 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.decorators import (
     api_view, authentication_classes, permission_classes,
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from main.models import Achievements, Education, Experience
 from main.permissions import IsPortfolioOwnerOrEditorOrReadOnly
 from main.serializers import AchievementsSerializer, EducationSerializer, ExperienceSerializer
-
+from rest_framework.decorators import api_view, permission_classes
 
 # ---------- helper bersama (pola sama untuk Achievements, Experience, dan Education) ----------
 # Note: awalnya saya nulis view-nya satu-satu per model dan hasilnya hampir kembar semua.
@@ -80,21 +79,21 @@ def _star(request, model, serializer_class, pk):
 # ---------- Achievements ----------
 
 @api_view(["GET", "HEAD", "POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def achievements_list(request):
     return _list(request, Achievements, AchievementsSerializer)
 
 
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def achievements_detail(request, achievements_id):
     return _detail(request, Achievements, AchievementsSerializer, achievements_id)
 
 
 @api_view(["POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def achievements_star(request, achievements_id):
     return _star(request, Achievements, AchievementsSerializer, achievements_id)
@@ -103,21 +102,21 @@ def achievements_star(request, achievements_id):
 # ---------- Experience ----------
 
 @api_view(["GET", "HEAD", "POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def experience_list(request):
     return _list(request, Experience, ExperienceSerializer)
 
 
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def experience_detail(request, experience_id):
     return _detail(request, Experience, ExperienceSerializer, experience_id)
 
 
 @api_view(["POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def experience_star(request, experience_id):
     return _star(request, Experience, ExperienceSerializer, experience_id)
@@ -126,7 +125,7 @@ def experience_star(request, experience_id):
 # ---------- Education ----------
 
 @api_view(["GET", "HEAD", "POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def education_list(request):
     return _list(
@@ -139,14 +138,21 @@ def education_list(request):
 
 
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 def education_detail(request, education_id):
     return _detail(request, Education, EducationSerializer, education_id)
 
 
 @api_view(["POST"])
-@authentication_classes([SessionAuthentication])
+# @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
 def education_star(request, education_id):
     return _star(request, Education, EducationSerializer, education_id)
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def api_logout(request):
+    if request.auth is not None:
+        request.auth.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
