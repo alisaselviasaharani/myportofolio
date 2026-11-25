@@ -453,3 +453,48 @@ class EducationAPITest(APITestCase):
         response = client.post(self.list_url, self.payload, format="json", HTTP_X_CSRFTOKEN=token)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Education.objects.count(), 2)
+
+class TokenAuthAPITests(APITestCase):
+    """Tutorial 10: login token + logout untuk klien mobile (Flutter)."""
+
+    def setUp(self):
+        self.owner = User.objects.create_superuser(
+            username="owner", password="test-password", email="owner@example.com",
+        )
+        self.token_url = reverse("api:api_token_auth")
+        self.logout_url = reverse("api:api_logout")
+        self.list_url = reverse("api:achievements-list")
+
+    def _get_token(self):
+        response = self.client.post(
+            self.token_url,
+            {"username": "owner", "password": "test-password"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        return response.data["token"]
+
+    def test_obtain_token_with_valid_and_invalid_credentials(self):
+        self.assertTrue(self._get_token())
+        response = self.client.post(
+            self.token_url, {"username": "owner", "password": "salah"}, format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_invalid_token_returns_401(self):
+        self.client.credentials(HTTP_AUTHORIZATION="Token tokenpalsu")
+        response = self.client.get(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_logout_requires_authentication(self):
+        response = self.client.post(self.logout_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_logout_revokes_token(self):
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
+        response = self.client.post(self.logout_url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        # token sudah dihapus, jadi dipakai lagi harus ditolak
+        response = self.client.get(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)

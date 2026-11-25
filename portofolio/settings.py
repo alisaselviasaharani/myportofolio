@@ -29,8 +29,14 @@ SECRET_KEY = 'django-insecure-&l-i^&wj_@+_m0la(wgme_n@4^g0dgi)1z!u7j6$2rxn-z)8$u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "alisa-selvia-myportofolio.pws.cs.ui.ac.id"]
-PRODUCTION= os.getenv("PRODUCTION", "False").lower=="true"
+# 10.0.2.2 = alamat localhost komputer kamu dari dalam emulator Android
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "10.0.2.2",
+    "alisa-selvia-myportofolio.pws.cs.ui.ac.id",
+]
+PRODUCTION = os.getenv("PRODUCTION", "False").lower() == "true"
 
 # Application definition
 
@@ -41,35 +47,33 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main",
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
+    "main",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # harus sebelum CommonMiddleware
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-        # TODO: Add corsheaders.middleware.CorsMiddleware before CommonMiddleware
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    # ... remaining middleware ...
 ]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        # TODO: Enable TokenAuthentication first, followed by SessionAuthentication,
-        #       so mobile clients use tokens (and get 401 on missing/invalid tokens)
-        #       while web pages keep using sessions
+        # Token dulu: klien mobile pakai header "Authorization: Token <key>"
+        # (token salah/hilang -> 401). Session tetap dipakai halaman web.
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
 }
+
 # Local development CORS settings for Flutter Web (Chrome).
 # Uses the `PRODUCTION` flag from `.env` / `.env.prod` (Tutorial 00/01):
 # allow all origins locally (`PRODUCTION=False`), and restrict in production.
