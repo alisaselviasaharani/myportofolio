@@ -428,56 +428,145 @@ def create_achievements_ajax(request):
     return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
 
 
-def contact_add(request):
-    if not request.user.is_superuser:
-            raise PermissionDenied
-    
-    if request.method == "POST":
-        Contact.objects.create(
-            name=request.POST.get("name"),
-            email=request.POST.get("email"),
-        )
-    contacts = Contact.objects.all()
-    return render(request, "_contact_rows.html", {"contacts": contacts})
+# ==========================================
+# CONTACT - HTMX CRUD
+# Hanya superuser yang boleh mengelola kontak
+# ==========================================
 
-def contact_search(request):
-    query = request.GET.get("q", "")
-    contacts = Contact.objects.filter(name__icontains=query) if query else Contact.objects.all()
-    return render(request, "_contact_rows.html", {"contacts": contacts})
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse, QueryDict
+from django.shortcuts import get_object_or_404, render
+from django.views.decorators.http import require_http_methods
 
-@require_http_methods(["DELETE"])
-
-def contact_delete(request, pk):
-    if not request.user.is_superuser:
-        raise PermissionDenied
-    contact = get_object_or_404(Contact, pk=pk)
-    contact.delete()
-    return HttpResponse("")
 
 def contact_list(request):
-    contacts=Contact.objects.all()
-    return render (request, "index.html", {"contacts":contacts})
+    """Menampilkan seluruh daftar kontak."""
+    contacts = Contact.objects.all().order_by("name")
 
-def contact_edit(request, pk):
+    return render(
+        request,
+        "index.html",
+        {"contacts": contacts}
+    )
+
+
+def contact_search(request):
+    """Mencari kontak berdasarkan nama."""
+    query = request.GET.get("q", "").strip()
+
+    contacts = Contact.objects.all().order_by("name")
+
+    if query:
+        contacts = contacts.filter(name__icontains=query)
+
+    return render(
+        request,
+        "_contact_rows.html",
+        {"contacts": contacts}
+    )
+
+
+@login_required(login_url="/login/")
+@require_http_methods(["POST"])
+def contact_add(request):
+    """Menambahkan kontak baru."""
     if not request.user.is_superuser:
         raise PermissionDenied
-    contact = get_object_or_404(Contact, pk=pk)
-    return render(request, "_contact_edit_row.html", {"contact": contact})
 
+    name = request.POST.get("name", "").strip()
+    email = request.POST.get("email", "").strip()
+
+    if not name or not email:
+        return HttpResponse(
+            "Nama dan email wajib diisi.",
+            status=400
+        )
+
+    Contact.objects.create(
+        name=name,
+        email=email
+    )
+
+    contacts = Contact.objects.all().order_by("name")
+
+    return render(
+        request,
+        "_contact_rows.html",
+        {"contacts": contacts}
+    )
+
+
+@login_required(login_url="/login/")
+@require_http_methods(["GET"])
+def contact_edit(request, pk):
+    """Menampilkan baris kontak dalam mode edit."""
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
+    contact = get_object_or_404(Contact, pk=pk)
+
+    return render(
+        request,
+        "_contact_edit_row.html",
+        {"contact": contact}
+    )
+
+
+@require_http_methods(["GET"])
 def contact_row(request, pk):
+    """Menampilkan satu baris kontak."""
     contact = get_object_or_404(Contact, pk=pk)
-    return render(request, "_contact_row.html", {"contact": contact})
 
+    return render(
+        request,
+        "_contact_row.html",
+        {"contact": contact}
+    )
+
+
+@login_required(login_url="/login/")
 @require_http_methods(["PUT"])
 def contact_update(request, pk):
+    """Memperbarui data kontak."""
     if not request.user.is_superuser:
         raise PermissionDenied
+
     contact = get_object_or_404(Contact, pk=pk)
+
     data = QueryDict(request.body)
-    contact.name = data.get("name", contact.name)
-    contact.email = data.get("email", contact.email)
+
+    name = data.get("name", contact.name).strip()
+    email = data.get("email", contact.email).strip()
+
+    if not name or not email:
+        return HttpResponse(
+            "Nama dan email wajib diisi.",
+            status=400
+        )
+
+    contact.name = name
+    contact.email = email
     contact.save()
-    return render(request, "_contact_row.html", {"contact": contact})
+
+    return render(
+        request,
+        "_contact_row.html",
+        {"contact": contact}
+    )
+
+
+@login_required(login_url="/login/")
+@require_http_methods(["DELETE"])
+def contact_delete(request, pk):
+    """Menghapus kontak."""
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
+    contact = get_object_or_404(Contact, pk=pk)
+    contact.delete()
+
+    return HttpResponse("")
 
 def show_skills(request):
     hard_skills = Skill.objects.filter(jenis='Hard Skill')

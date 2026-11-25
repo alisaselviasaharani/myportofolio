@@ -101,17 +101,21 @@ class MainTest(TestCase):
             logo="/static/img/logoUI.png",
             website="https://cs.ui.ac.id/",
         )
-        #mengakses halaman education
-        response = self.client.get(reverse("main:show_education"))
 
-        #cek institusi muncul
-        self.assertContains( response,education.institution)
+        # Halaman Education dirender lebih dulu; kartu datanya diambil melalui API.
+        page_response = self.client.get(reverse("main:show_education"))
+        self.assertEqual(page_response.status_code, 200)
+        self.assertTemplateUsed(page_response, "education.html")
+        self.assertContains(page_response, reverse("api:education-list"))
 
-        #cek jurusan 
-        self.assertContains(response, education.degree)
-
-        #cek periode pendidikan
-        self.assertContains(response,education.period)
+        # Pastikan data pendidikan benar-benar tersedia melalui endpoint API.
+        api_response = self.client.get(reverse("api:education-list"))
+        self.assertEqual(api_response.status_code, 200)
+        data = api_response.json()
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]["institution"], education.institution)
+        self.assertEqual(data[0]["degree"], education.degree)
+        self.assertEqual(data[0]["period"], education.period)
 
     # Test URL dan TEMPLATE
     def test_education_url_and_template(self):
@@ -559,47 +563,123 @@ class ExperienceAjaxTest(BaseSiteTestCase):
 
 
 # --------->>>>> Tutorial 6 (HTMX): KONTAK <<<<<---------
+
 class ContactHtmxTest(BaseSiteTestCase):
+
     def setUp(self):
         super().setUp()
-        self.contact = Contact.objects.create(name="Budi", email="budi@example.com")
+
+        self.contact = Contact.objects.create(
+            name="Budi",
+            email="budi@example.com"
+        )
 
     def test_list_and_search(self):
-        response = self.client.get(reverse("main:contact_list"))
+        response = self.client.get(
+            reverse("main:contact_list")
+        )
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Budi")
 
-        response = self.client.get(reverse("main:contact_search"), {"q": "bud"})
+        response = self.client.get(
+            reverse("main:contact_search"),
+            {"q": "bud"}
+        )
+
         self.assertContains(response, "Budi")
-        response = self.client.get(reverse("main:contact_search"), {"q": "zzz"})
-        self.assertContains(response, "Tidak ada kontak.")
+
+        response = self.client.get(
+            reverse("main:contact_search"),
+            {"q": "zzz"}
+        )
+
+        self.assertContains(response, "🐠 Belum ada kontak. Tambahkan kontak pertamamu!")
 
     def test_add_returns_rows_partial(self):
-        response = self.client.post(reverse("main:contact_add"),
-                                    {"name": "Sari", "email": "sari@example.com"})
+        self.login(self.owner)
+
+        response = self.client.post(
+            reverse("main:contact_add"),
+            {
+                "name": "Sari",
+                "email": "sari@example.com"
+            }
+        )
+
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "_contact_rows.html")
+
+        self.assertTemplateUsed(
+            response,
+            "_contact_rows.html"
+        )
+
         self.assertContains(response, "Sari")
+
         self.assertEqual(Contact.objects.count(), 2)
 
     def test_edit_row_update_and_delete(self):
-        response = self.client.get(reverse("main:contact_edit", args=[self.contact.pk]))
-        self.assertTemplateUsed(response, "_contact_edit_row.html")
-        response = self.client.get(reverse("main:contact_row", args=[self.contact.pk]))
-        self.assertTemplateUsed(response, "_contact_row.html")
+        self.login(self.owner)
+
+        response = self.client.get(
+            reverse(
+                "main:contact_edit",
+                args=[self.contact.pk]
+            )
+        )
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTemplateUsed(
+            response,
+            "_contact_edit_row.html"
+        )
+
+        response = self.client.get(
+            reverse(
+                "main:contact_row",
+                args=[self.contact.pk]
+            )
+        )
+
+        self.assertTemplateUsed(
+            response,
+            "_contact_row.html"
+        )
 
         response = self.client.put(
-            reverse("main:contact_update", args=[self.contact.pk]),
+            reverse(
+                "main:contact_update",
+                args=[self.contact.pk]
+            ),
             "name=Baru&email=baru%40example.com",
-            content_type="application/x-www-form-urlencoded",
+            content_type="application/x-www-form-urlencoded"
         )
-        self.assertEqual(response.status_code, 200)
-        self.contact.refresh_from_db()
-        self.assertEqual((self.contact.name, self.contact.email), ("Baru", "baru@example.com"))
 
-        delete_url = reverse("main:contact_delete", args=[self.contact.pk])
-        self.assertEqual(self.client.get(delete_url).status_code, 405)
-        self.assertEqual(self.client.delete(delete_url).status_code, 200)
+        self.assertEqual(response.status_code, 200)
+
+        self.contact.refresh_from_db()
+
+        self.assertEqual(
+            (self.contact.name, self.contact.email),
+            ("Baru", "baru@example.com")
+        )
+
+        delete_url = reverse(
+            "main:contact_delete",
+            args=[self.contact.pk]
+        )
+
+        self.assertEqual(
+            self.client.get(delete_url).status_code,
+            405
+        )
+
+        self.assertEqual(
+            self.client.delete(delete_url).status_code,
+            200
+        )
+
         self.assertEqual(Contact.objects.count(), 0)
 
 
@@ -646,7 +726,8 @@ class PortfolioSectionAPITest(APITestCase):
         for url in (self.exp_list, self.ach_list, self.exp_detail, self.ach_detail):
             self.assertEqual(self.client.get(url).status_code, 200)
         for url, payload in ((self.exp_list, self.exp_payload()), (self.ach_list, self.ach_payload())):
-            self.assertEqual(self.client.post(url, payload, format="json").status_code, 403)
+            # tamu tanpa token/session -> 401 (Tutorial 10: TokenAuthentication di urutan pertama)
+            self.assertEqual(self.client.post(url, payload, format="json").status_code, 401)
         self.assertEqual(Experience.objects.count(), 1)
         self.assertEqual(Achievements.objects.count(), 1)
 
@@ -702,8 +783,9 @@ class PortfolioSectionAPITest(APITestCase):
         self.assertEqual(self.client.get(self.ach_list + "?title=Juara").data[0]["title"], "Juara Lomba")
 
     def test_star_rejects_guest(self):
-        self.assertEqual(self.client.post(self.exp_star).status_code, 403)
-        self.assertEqual(self.client.post(self.ach_star).status_code, 403)
+        # tamu -> 401 (Tutorial 10)
+        self.assertEqual(self.client.post(self.exp_star).status_code, 401)
+        self.assertEqual(self.client.post(self.ach_star).status_code, 401)
 
     def test_session_authentication_rejects_missing_csrf_token(self):
         csrf_client = APIClient(enforce_csrf_checks=True)

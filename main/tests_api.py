@@ -5,6 +5,7 @@ from unittest import mock
 from django.contrib.auth.models import Group, User
 from django.urls import reverse
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient, APITestCase
 from main.models import Achievements, Education, Experience
 
@@ -57,11 +58,17 @@ class ResourceAPITestMixin:
 
     # ----- izin -----
     def test_guest_and_visitor_cannot_write(self):
-        for user in (None, self.visitor):
+        # Sejak Tutorial 10, TokenAuthentication ada di urutan pertama sehingga:
+        # - tamu (belum login)          -> 401 Unauthorized
+        # - user login tanpa hak akses  -> 403 Forbidden
+        for user, expected in (
+            (None, status.HTTP_401_UNAUTHORIZED),
+            (self.visitor, status.HTTP_403_FORBIDDEN),
+        ):
             self.client.force_authenticate(user=user)
-            self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, 403)
-            self.assertEqual(self.client.patch(self.detail_url, self.patch_payload, format="json").status_code, 403)
-            self.assertEqual(self.client.delete(self.detail_url).status_code, 403)
+            self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, expected)
+            self.assertEqual(self.client.patch(self.detail_url, self.patch_payload, format="json").status_code, expected)
+            self.assertEqual(self.client.delete(self.detail_url).status_code, expected)
         self.assertEqual(self.model.objects.count(), 1)
         self.obj.refresh_from_db()
         self.assertEqual(self.obj.title, self.create_kwargs["title"])
@@ -127,7 +134,8 @@ class ResourceAPITestMixin:
 
     # ----- star -----
     def test_star_requires_login_and_toggles(self):
-        self.assertEqual(self.client.post(self.star_url).status_code, status.HTTP_403_FORBIDDEN)
+        # tamu tanpa token/session -> 401 (Tutorial 10)
+        self.assertEqual(self.client.post(self.star_url).status_code, status.HTTP_401_UNAUTHORIZED)
 
         self.client.force_authenticate(user=self.visitor)
         response = self.client.post(self.star_url)
@@ -301,12 +309,16 @@ class EducationAPITest(APITestCase):
 
     # ----- peran -----
     def test_guest_and_regular_user_cannot_write(self):
-        for user in (None, self.visitor):
+        # tamu -> 401 (Tutorial 10: TokenAuthentication di urutan pertama), user biasa -> 403
+        for user, expected in (
+            (None, status.HTTP_401_UNAUTHORIZED),
+            (self.visitor, status.HTTP_403_FORBIDDEN),
+        ):
             self.client.force_authenticate(user=user)
-            self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, 403)
-            self.assertEqual(self.client.put(self.detail_url, self.payload, format="json").status_code, 403)
-            self.assertEqual(self.client.patch(self.detail_url, {"institution": "Hack"}, format="json").status_code, 403)
-            self.assertEqual(self.client.delete(self.detail_url).status_code, 403)
+            self.assertEqual(self.client.post(self.list_url, self.payload, format="json").status_code, expected)
+            self.assertEqual(self.client.put(self.detail_url, self.payload, format="json").status_code, expected)
+            self.assertEqual(self.client.patch(self.detail_url, {"institution": "Hack"}, format="json").status_code, expected)
+            self.assertEqual(self.client.delete(self.detail_url).status_code, expected)
         self.assertUnchanged()
 
     def test_staff_without_editor_group_cannot_write(self):
@@ -395,7 +407,7 @@ class EducationAPITest(APITestCase):
 
     # ----- star -----
     def test_star_requires_login_and_toggles(self):
-        self.assertEqual(self.client.post(self.star_url).status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(self.client.post(self.star_url).status_code, status.HTTP_401_UNAUTHORIZED)
         self.assertEqual(self.obj.starred_by.count(), 0)
 
         self.client.force_authenticate(user=self.visitor)
@@ -498,3 +510,36 @@ class TokenAuthAPITests(APITestCase):
         # token sudah dihapus, jadi dipakai lagi harus ditolak
         response = self.client.get(self.list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_token_header_allows_owner_to_write(self):
+        # POST dengan "Authorization: Token <key>" harus diterima (bukan 403)
+        token = self._get_token()
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {token}")
+        response = self.client.post(
+            reverse("api:experience-list"),
+            {
+                "title": "Magang Token", "institution": "PT Contoh", "period": "2026",
+                "category": "internship", "description": "Dibuat lewat token",
+                "logo": "", "website": "",
+            },
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertTrue(Experience.objects.filter(title="Magang Token").exists())
+
+    def test_token_of_regular_user_cannot_write(self):
+        # token valid tapi bukan superuser -> sudah terautentikasi, jadi 403 (bukan 401)
+        visitor = User.objects.create_user(username="visitor", password="test-password")
+        token = Token.objects.create(user=visitor)
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
+        response = self.client.post(
+            reverse("api:experience-list"), {"title": "Hack"}, format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Experience.objects.count(), 0)
+
+    def test_logout_with_session_login_returns_204(self):
+        # login lewat session: request.auth = None, jadi tidak ada token yang dihapus
+        self.assertTrue(self.client.login(username="owner", password="test-password"))
+        response = self.client.post(self.logout_url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

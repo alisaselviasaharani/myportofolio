@@ -95,7 +95,10 @@
 
 
 </main>
-{% include "components/achievements_form_modal.html" %}
+{# Modal dipakai superuser untuk menambah dan Editor/superuser untuk mengedit. #}
+{% if user.is_superuser or is_editor %}
+    {% include "components/achievements_form_modal.html" %}
+{% endif %}
 
 
 {% csrf_token %}
